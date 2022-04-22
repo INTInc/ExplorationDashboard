@@ -1,24 +1,14 @@
 # vue-ep-exploration-demo
 
-## Project setup
-```
-npm install
-```
+## Task
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Rewrite 'Exploration Dashboard' to ES6.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+The old demo is deployed at https://www.int.com/geotoolkit-demos/ep-exploration/
+The source code can be found in jsToolkitWebDemos repository
+Use Angular, Vue or React framework
+Use TypeScript
+Try to repeat look and feel (Improve where it is possible).
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Use Geotoolkit Map instead of Google Map
+Provide option to switch 'light' / 'dark' theme
