@@ -1,0 +1,294 @@
+@import "../../common/less/project.less";
+
+@padding-tool : 3px;
+
+#exploration-tab {
+  height: 100%;
+}
+
+.widget-padding {
+  padding: @padding-widget;
+}
+
+.vertical-height {
+  height: 100%;
+  overflow: hidden;
+}
+
+#vertical-container {
+  overflow: hidden;
+  padding: @padding-widget;
+  height: 100%;
+  background-color: @body-bg;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  border-radius: @border-radius-base;
+}
+
+.top-horizontal-row {
+  overflow: hidden;
+  height: 50%;
+
+  @media (min-width: @screen-sm) {
+    height: 60%;
+  }
+
+  &.large-size {
+    height: 100%;
+  }
+}
+
+.first-container {
+  @media (min-width: @screen-sm) {
+    padding-right: 0;
+  }
+}
+
+.second-container {
+  height: 200%;
+  padding: 0 !important;
+
+  @media (min-width: @screen-sm) {
+    height: 100%;
+  }
+}
+
+#horizontal-container {
+  overflow: hidden;
+  height: 100%;
+  padding: @padding-widget;
+  background-color: @body-bg;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  border-radius: @border-radius-base;
+}
+
+.horizontal-wlw {
+  padding-top: 0;
+
+  @media (min-width: @screen-sm) {
+    padding-top: @padding-widget;
+  }
+}
+
+.bottom-horizontal-row {
+  overflow: hidden;
+  padding-top: 0;
+  padding-bottom: @padding-widget;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  height: 50%;
+
+  @media (min-width: @screen-sm) {
+    height: 40%;
+  }
+
+  &.large-size {
+    height: 100%;
+    padding-top: 20px;
+  }
+}
+
+.toolbox {
+  position: absolute;
+  top: @padding-widget;
+  right: 0;
+  width: @tool-width;
+  height: @tool-height + @separator-margin;
+  z-index: 200;
+  transition-duration: 0.8s;
+
+  background: @gray-light;
+
+  &.collapsed {
+    margin-right: -@tool-width;
+  }
+}
+
+.icon-spin {
+  position: inherit;
+  top: 0;
+  width: 40px;
+  left: -@spin-offset;
+
+  > i {
+    position: relative;
+    top: 0;
+    left: 0;
+    padding: 4px 0 4px 8px;
+    width: 40px;
+    height: @spin-height;
+    font-size: 14pt;
+
+    color: @color-accent;
+    cursor: pointer;
+  }
+}
+
+.toolbox-content {
+  position: relative;
+  top: 0;
+  height: 100%;
+  background: @project-bg;
+  > div {
+    padding: 10px;
+    cursor: pointer;
+
+    &.active {
+      background-color: @color-accent;
+    }
+  }
+}
+
+i.tool {
+  color: @body-bg;
+  font-size: 18pt;
+  padding-left: @padding-tool;
+}
+
+#google-map-view-container {
+  background-color: @body-bg;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  border-radius: @border-radius-base;
+
+  @media (min-width: @screen-sm) {
+    padding: 0 5px 0 40px;
+  }
+}
+
+.google-map-div-container {
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+.google-map {
+  top: 0;
+
+  .icon-spin {
+    left: -30px
+  }
+
+  .widget-expand-tool {
+    left: -65px;
+  }
+  .widget-reset-expand-tool{
+    left: -100px;
+  }
+}
+
+.dynamic-view-3d-layout {
+  height: 50%;
+  padding: @padding-widget 0 0 0 !important;
+
+  @media (min-width: @screen-sm) {
+    height: 100%;
+    padding: 0 0 0 @padding-widget !important;
+
+    &.medium-size {
+      padding-left: 0 ! important;
+    }
+
+    &.large-size {
+      padding-left: 0 ! important;
+    }
+  }
+}
+
+.bottom-row-vertical-height {
+  height: 50%;
+
+  @media (min-width: @screen-sm) {
+    height: 100%;
+  }
+
+  &.medium-size {
+    width: 100%;
+  }
+
+  &.large-size {
+    width: 100%;
+  }
+}
+
+#3d-view-container {
+  height: 50%;
+
+  @media (min-width: @screen-sm) {
+    height: 100%;
+  }
+}
+
+.toolbox-3d {
+  top: 0;
+  width: @tool-width;
+
+  &.collapsed {
+    margin-right: -@tool-width - @padding-widget/2;
+  }
+
+  > i {
+    &.tool {
+      color: @int-primary-color;
+      font-size: 14pt;
+    }
+  }
+}
+
+.view-3d-div-container {
+  padding: 0 !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  border-radius: @border-radius-base;
+  background-color: @body-bg;
+}
+
+.domain-text {
+  font-weight: 700;
+  color: @body-bg;
+  font-size: 11pt;
+  cursor: pointer;
+}
+
+.warning-container {
+  display: table-cell;
+  vertical-align: middle;
+  height: 200px;
+  width: 50%;
+}
+
+.warning-text {
+  text-align: center;
+}
+
+.warning-sign {
+  display: inline-block;
+  font-size: 52pt;
+  width: 100%;
+  text-align: center;
+  color: @alert-danger-text;
+}
+
+.widget-expand-tool {
+  left: -80px;
+}
+
+.widget-reset-expand-tool{
+  left: -120px;
+}
+
+.widget-full-screen {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 300;
+  width: 100% !important;
+  height: 100%;
+}
+canvas {
+    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none; /* IE10+ */
+    -ms-touch-action: none;   /* Disable any special actions on tap/touch for IE10*/
+    touch-action: none;   /* Disable any special actions on tap/touch for IE11*/
+}
