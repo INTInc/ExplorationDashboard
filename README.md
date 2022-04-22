@@ -1,8 +1,6 @@
 # vue-ep-exploration-demo
 
-## Task
-
-Rewrite 'Exploration Dashboard' to ES6.
+## Task: Rewrite 'Exploration Dashboard' to ES6
 
 The old demo is deployed at https://www.int.com/geotoolkit-demos/ep-exploration/
 
