@@ -10,7 +10,10 @@
   "dependencies": {
     "core-js": "^3.8.3",
     "vue": "^3.2.13",
-    "vue-class-component": "^8.0.0-0"
+    "vue-class-component": "^8.0.0-0",
+    "@int/geotoolkit": "file:./src/geotoolkit/int-geotoolkit-3.1.29.tgz",
+    "@int/geotoolkit3d": "file:./src/geotoolkit/int-geotoolkit3d-3.1.29.tgz",
+    "@int/impl": "file:./src/geotoolkit/int-impl-3.1.29.tgz"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.4.0",
