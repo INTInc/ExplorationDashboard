@@ -67,16 +67,12 @@ export default class ThemeSwitcher extends Vue {}
     color: var(--text-color);
 
     select {
-        font-size: 14px;
+        font-size: 16px;
         margin-left: 8px;
         color: var(--text-color);
         background: transparent;
+        border: none;
         outline: none;
-        padding: 8px;
-        border: 1px solid var(--stroke-color);
-        border-radius: 4px;
-
-        //TODO fix select color, maybe use js dropdown instead
     }
 }
 </style>

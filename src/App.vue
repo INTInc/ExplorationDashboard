@@ -34,6 +34,10 @@ export default class App extends Vue {}
 
 body {
   background: var(--background-color);
+  transition:
+    color .5s,
+    border .5s,
+    background-color .5s
 }
 
 #app {
@@ -67,9 +71,9 @@ body {
   .wells-model {
     margin: 8px;
     padding: 16px;
-    border: 1px solid var(--stroke-color);
     border-radius: 4px;
     color: var(--title-color);
+    background: var(--card-color);
 
     @media (max-width: 600px) {
       grid-row-start: auto;
