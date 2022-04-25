@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
+import { Options, Vue } from 'vue-class-component';
 
 enum Theme {
     System = 'system',
@@ -76,12 +76,7 @@ export default class ThemeSwitcher extends Vue {}
         border: 1px solid var(--stroke-color);
         border-radius: 4px;
 
-        option {
-            font-size: inherit;
-            color: var(--text-color);
-            border: 1px solid var(--stroke-color);
-            background: transparent;
-        }
+        //TODO fix select color, maybe use js dropdown instead
     }
 }
 </style>
