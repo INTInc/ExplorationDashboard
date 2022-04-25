@@ -1,4 +1,5 @@
 <template>
+  <theme-switcher></theme-switcher>
   <vertical-log></vertical-log>
   <horizontal-log></horizontal-log>
   <wells-map></wells-map>
@@ -8,6 +9,7 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 
+import ThemeSwitcher from '@/components/theme-switcher.vue';
 import HorizontalLog from '@/components/horizontal-log.vue';
 import VerticalLog from '@/components/vertical-log.vue';
 import WellsMap from '@/components/wells-map.vue';
@@ -15,6 +17,7 @@ import WellsModel from '@/components/wells-model.vue';
 
 @Options({
   components: {
+    ThemeSwitcher,
     HorizontalLog,
     VerticalLog,
     WellsMap,
@@ -26,20 +29,27 @@ export default class App extends Vue {}
 
 <style lang="scss">
 
+@import '/src/assets/theme-dark.scss';
+@import '/src/assets/theme-light.scss';
+
 body {
-  background: rgb(224, 224, 224);
+  background: var(--background-color);
 }
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  margin-top: 60px;
 
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 
+  .theme-switcher {
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end: 4;
+  }
 
   .horizontal-log {
     grid-column-start: 2;
@@ -47,8 +57,8 @@ body {
   }
 
   .vertical-log {
-    grid-row-start: 1;
-    grid-row-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 5;
   }
 
   .horizontal-log,
@@ -56,9 +66,10 @@ body {
   .wells-map,
   .wells-model {
     margin: 8px;
-    padding: 8px;
+    padding: 16px;
+    border: 1px solid var(--stroke-color);
     border-radius: 4px;
-    background: rgb(255, 255, 255);
+    color: var(--title-color);
 
     @media (max-width: 600px) {
       grid-row-start: auto;
