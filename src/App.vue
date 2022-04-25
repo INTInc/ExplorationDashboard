@@ -1,9 +1,11 @@
 <template>
   <theme-switcher></theme-switcher>
-  <vertical-log></vertical-log>
-  <horizontal-log></horizontal-log>
-  <wells-map></wells-map>
-  <wells-model></wells-model>
+  <div class="charts-container">
+    <vertical-log></vertical-log>
+    <horizontal-log></horizontal-log>
+    <wells-map></wells-map>
+    <wells-model></wells-model>
+  </div>
 </template>
 
 <script lang="ts">
@@ -33,11 +35,17 @@ export default class App extends Vue {}
 @import '/src/assets/theme-light.scss';
 
 body {
+  margin: 0;
+  padding: 0;
   background: var(--background-color);
   transition:
     color .5s,
     border .5s,
-    background-color .5s
+    background-color .5s;
+
+    div {
+      box-sizing: border-box;
+    }
 }
 
 #app {
@@ -45,41 +53,64 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-
   .theme-switcher {
-    grid-row-start: 1;
-    grid-row-end: 2;
-    grid-column-start: 1;
-    grid-column-end: 4;
+    height: 5vh;
+    min-height: 42px;
   }
 
-  .horizontal-log {
-    grid-column-start: 2;
-    grid-column-end: 4;
-  }
+  .charts-container {
+    height: 95vh;
+    min-height: 800px;
 
-  .vertical-log {
-    grid-row-start: 2;
-    grid-row-end: 5;
-  }
+    padding: 8px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
 
-  .horizontal-log,
-  .vertical-log,
-  .wells-map,
-  .wells-model {
-    margin: 8px;
-    padding: 16px;
-    border-radius: 4px;
-    color: var(--title-color);
-    background: var(--card-color);
-
-    @media (max-width: 600px) {
-      grid-row-start: auto;
-      grid-row-end: auto;
-      grid-column-start: 1;
+    .horizontal-log {
+      grid-column-start: 2;
       grid-column-end: 4;
+    }
+
+    .vertical-log {
+      grid-row-start: 1;
+      grid-row-end: 5;
+    }
+
+    .horizontal-log,
+    .vertical-log,
+    .wells-map,
+    .wells-model {
+      margin: 8px;
+      padding: 16px;
+      overflow: hidden;
+      border-radius: 8px;
+
+      color: var(--title-color);
+      background: var(--card-color);
+
+      @media (max-width: 800px) {
+        grid-row-start: auto;
+        grid-row-end: auto;
+        grid-column-start: 1;
+        grid-column-end: 4;
+      }
+    }
+
+    .wells-map {
+      padding: 0;
+    }
+
+    @media (max-width: 800px) {
+      grid-template-rows: repeat(4, 1fr);
+    }
+
+  }
+
+  @media (max-width: 800px) {
+    .theme-switcher,
+    .charts-container {
+      height: unset;
     }
   }
 }

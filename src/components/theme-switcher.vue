@@ -63,8 +63,10 @@ export default class ThemeSwitcher extends Vue {}
 
 <style scoped lang="scss">
 .theme-switcher {
-    padding: 16px;
-    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding: 16px 16px 0 16px;
     color: var(--text-color);
 
     select {
