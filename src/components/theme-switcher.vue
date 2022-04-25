@@ -2,7 +2,6 @@
     <div class="theme-switcher">
         <span>Theme:</span>
         <select v-model="selectorValue" @change="onThemeChanged">
-            <option :value="Theme.System">System</option>
             <option :value="Theme.Light">Light</option>
             <option :value="Theme.Dark">Dark</option> 
         </select>
@@ -13,48 +12,50 @@
 import { Options, Vue } from 'vue-class-component';
 
 enum Theme {
-    System = 'system',
     Light = 'light',
     Dark = 'dark'
 }
+
+const STORAGE_ITEM_KEY = 'preferred-theme';
+const DEFAULT_THEME = Theme.Light;
 
 @Options({
     name: 'ThemeSwitcher',
     data() {
         return {
             Theme,
-            selectorValue: Theme.System,
+            selectorValue: null
         }
     },
     mounted() {
-        this.useDeviceTheme();
+        this.selectorValue = this.savedTheme || DEFAULT_THEME;
+        this.themeMediaQuery.addEventListener('change', () => this.onSystemThemeChanged());
+        this.onThemeChanged();
     },
     computed: {
-        themeMediaQuery() {
-            return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)'); 
+        savedTheme(): Theme | null {
+            return localStorage.getItem(STORAGE_ITEM_KEY) as Theme; 
         },
-        themeMediaQueryListener() {
-            return (event: MediaQueryListEvent) => this.selectThemeByMediaQuery(event);
+        themeMediaQuery(): MediaQueryList {
+            return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)'); 
         }
     },
     methods: {
+        onSystemThemeChanged() {
+           this.selectorValue = this.themeMediaQuery.matches ? Theme.Dark : Theme.Light;
+           this.onThemeChanged();
+        },
         onThemeChanged() {
-            this.selectorValue === Theme.System ? this.useDeviceTheme() : this.useManualSelectedTheme();
+           this.setTheme(this.selectorValue);
+           this.saveTheme(this.selectorValue);
         },
-        useDeviceTheme() {
-            this.themeMediaQuery.addEventListener('change', this.themeMediaQueryListener);
-            this.selectThemeByMediaQuery(this.themeMediaQuery);
-        },
-        useManualSelectedTheme() {
-            this.themeMediaQuery.removeEventListener('change', this.themeMediaQueryListener);
-            this.setThemeAttribute(this.selectorValue);
-        },
-        selectThemeByMediaQuery(matchable: MediaQueryList | MediaQueryListEvent) {
-           this.setThemeAttribute(matchable.matches ? Theme.Dark : Theme.Light);
-        },
-        setThemeAttribute(theme: Theme) {
+        setTheme(theme: Theme) {
             document.documentElement.setAttribute('theme', theme);
         },
+        saveTheme(theme: Theme) {
+            
+            localStorage.setItem(STORAGE_ITEM_KEY, theme);
+        }
     }
 })
 export default class ThemeSwitcher extends Vue {}
