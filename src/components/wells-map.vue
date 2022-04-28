@@ -5,46 +5,36 @@
 </template>
 
 <script lang="ts">
-import { Field } from '@/Field';
-
+import { Options, Vue } from 'vue-class-component';
 import { Map } from '@int/geotoolkit/map/Map';
 import { Plot } from '@int/geotoolkit/plot/Plot';
 import { Tile as TileLayer } from '@int/geotoolkit/map/layers/Tile';
 import { Shape as ShapeLayer } from '@int/geotoolkit/map/layers/Shape';
-import { Options, Vue } from 'vue-class-component';
 import { GeodeticSystem } from '@int/geotoolkit/map/GeodeticSystem';
 import { Shape } from '@int/geotoolkit/scene/shapes/Shape';
 import { AnchorType } from '@int/geotoolkit/util/AnchorType';
 import { PointerMode } from '@int/geotoolkit/controls/tools/PointerMode';
+import { Field } from '@/Field';
 
 @Options({
     name: 'WellsMap',
     data() {
         return {
             map: null,
-            plot: null
+            plot: null,
+            dataLoaded: false 
         }
     },
     mounted() {
         this.createMap();
+        this.drawMapLayer();
+        this.drawExplorationObjectsLayer();
         this.createPlot();
         this.resizePlot();
         this.addResizeListener();
     },
     methods: {
-        createPlot() {
-            this.plot = new Plot({
-                canvaselement: this.$refs.canvas,
-                root: this.map,
-                autosize: true
-            })
-        },
-        createMap() {
-            const openStreetsMapLayer = new TileLayer({
-                url: 'https://demo.int.com/osm_tiles/',
-                formatterfunction: (z: number, y: number, x: number) => z + '/' + x + '/' + y + '.png'
-            });
-                
+        createMap() {        
             this.map = new Map({
                 system: GeodeticSystem.WGS84,
                 tooltip: {
@@ -54,15 +44,20 @@ import { PointerMode } from '@int/geotoolkit/controls/tools/PointerMode';
                     mode: PointerMode.Hover,
                     autoupdate: false
                 }
-            })
-                .addLayer(openStreetsMapLayer);
-
-            this.showExplorationObjects();
+            });
         },
-        showExplorationObjects() {
+        drawMapLayer() {
+            this.map.addLayer(
+                new TileLayer({
+                    url: 'https://demo.int.com/osm_tiles/',
+                    formatterfunction: (z: number, y: number, x: number) => z + '/' + x + '/' + y + '.png'
+                })
+            );
+        },
+        drawExplorationObjectsLayer() {
             const field = new Field('/data/fieldB.json');
 
-            field.load().then(() => {               
+            field.load().then(() => {           
                 this.map.addLayer(
                     new ShapeLayer({
                         alpha: 0.75,
@@ -78,6 +73,13 @@ import { PointerMode } from '@int/geotoolkit/controls/tools/PointerMode';
                     .setZoomLevel(5)
                     .panTo(field.position, GeodeticSystem.WGS84)
             });
+        },
+        createPlot() {
+            this.plot = new Plot({
+                canvaselement: this.$refs.canvas,
+                root: this.map,
+                autosize: true
+            })
         },
         resizePlot() {
             this.plot.setSize(this.$refs.root.clientWidth, this.$refs.root.clientHeight);
