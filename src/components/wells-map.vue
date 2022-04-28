@@ -7,13 +7,14 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import { Map } from '@int/geotoolkit/map/Map';
-import { Plot } from '@int/geotoolkit/plot/Plot';
 import { Tile as TileLayer } from '@int/geotoolkit/map/layers/Tile';
 import { Shape as ShapeLayer } from '@int/geotoolkit/map/layers/Shape';
 import { GeodeticSystem } from '@int/geotoolkit/map/GeodeticSystem';
 import { Shape } from '@int/geotoolkit/scene/shapes/Shape';
 import { AnchorType } from '@int/geotoolkit/util/AnchorType';
 import { PointerMode } from '@int/geotoolkit/controls/tools/PointerMode';
+
+import { StretchablePlot } from '@/StrechablePlot';
 
 import { ExplorationMapAdapter } from '@/data-sources/exploration-map-adapter/ExplorationMapAdapter';
 import { ExplorationMapDrawer } from '@/drawers/ExplorationMapDrawer'; 
@@ -31,8 +32,6 @@ import { ExplorationMapDrawer } from '@/drawers/ExplorationMapDrawer';
         this.addMapLayer();
         this.addExplorationObjectsLayer();
         this.createPlot();
-        this.resizePlot();
-        this.addResizeListener();
     },
     methods: {
         createMap() {        
@@ -78,18 +77,8 @@ import { ExplorationMapDrawer } from '@/drawers/ExplorationMapDrawer';
                 })
         },
         createPlot() {
-            this.plot = new Plot({
-                canvaselement: this.$refs.canvas,
-                root: this.map,
-                autosize: true
-            })
+            this.plot = new StretchablePlot(this.$refs.root, this.$refs.canvas, this.map);
         },
-        resizePlot() {
-            this.plot.setSize(this.$refs.root.clientWidth, this.$refs.root.clientHeight);
-        },
-        addResizeListener() {
-            window.addEventListener('resize', () => this.resizePlot());
-        }
     }
 })
 export default class WellsMap extends Vue {}
