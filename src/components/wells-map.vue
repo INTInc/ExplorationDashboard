@@ -14,21 +14,22 @@ import { GeodeticSystem } from '@int/geotoolkit/map/GeodeticSystem';
 import { Shape } from '@int/geotoolkit/scene/shapes/Shape';
 import { AnchorType } from '@int/geotoolkit/util/AnchorType';
 import { PointerMode } from '@int/geotoolkit/controls/tools/PointerMode';
-import { Field } from '@/Field';
+
+import { ExplorationMapAdapter } from '@/data-sources/exploration-map-adapter/ExplorationMapAdapter';
+import { ExplorationMapDrawer } from '@/drawers/ExplorationMapDrawer'; 
 
 @Options({
     name: 'WellsMap',
     data() {
         return {
             map: null,
-            plot: null,
-            dataLoaded: false 
+            plot: null
         }
     },
     mounted() {
         this.createMap();
-        this.drawMapLayer();
-        this.drawExplorationObjectsLayer();
+        this.addMapLayer();
+        this.addExplorationObjectsLayer();
         this.createPlot();
         this.resizePlot();
         this.addResizeListener();
@@ -46,7 +47,7 @@ import { Field } from '@/Field';
                 }
             });
         },
-        drawMapLayer() {
+        addMapLayer() {
             this.map.addLayer(
                 new TileLayer({
                     url: 'https://demo.int.com/osm_tiles/',
@@ -54,25 +55,27 @@ import { Field } from '@/Field';
                 })
             );
         },
-        drawExplorationObjectsLayer() {
-            const field = new Field('/data/fieldB.json');
+        addExplorationObjectsLayer() {
+            const source = new ExplorationMapAdapter();
+            const drawer = new ExplorationMapDrawer(source);
 
-            field.load().then(() => {           
-                this.map.addLayer(
-                    new ShapeLayer({
-                        alpha: 0.75,
-                        tooltip: {
-                            visible: true,
-                            formatter: (shapes: Shape[]) => shapes[0] && shapes[0].getName() || null
-                        }
-                    })
-                        .addShape(field.zone)
-                        .addShape(field.wells[0])
-                        .addShape(field.wells[1])
-                )
-                    .setZoomLevel(5)
-                    .panTo(field.position, GeodeticSystem.WGS84)
-            });
+            source.load('/data/fieldB.json')
+                .then(() => {
+                    this.map.addLayer(
+                        new ShapeLayer({
+                            alpha: 0.75,
+                            tooltip: {
+                                visible: true,
+                                formatter: (shapes: Shape[]) => shapes[0] && shapes[0].getName() || null
+                            }
+                        })
+                            .addShape(drawer.zone)
+                            .addShape(drawer.wells[0])
+                            .addShape(drawer.wells[1])
+                    )
+                        .setZoomLevel(5)
+                        .panTo(source.explorationCoordinates, GeodeticSystem.WGS84)
+                })
         },
         createPlot() {
             this.plot = new Plot({
