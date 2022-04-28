@@ -2,10 +2,17 @@ import { GeodeticSystem } from '@int/geotoolkit/map/GeodeticSystem';
 import { Transformer } from '@int/geotoolkit/map/coordinatesystems/Transformer';
 import { Point } from '@int/geotoolkit/util/Point';
 
-import { DataSource } from '../DataSource';
-import { Coordinates } from './Coordinates';
-import { NamedCoordinates } from './NamedCoordinates';
-import { DataSourceStatus } from '../DataSourceStatus';
+import { DataSource } from './DataSource';
+import { DataSourceStatus } from './DataSourceStatus';
+
+export interface Coordinates {
+  x: number[],
+  y: number[]
+}
+
+export interface NamedCoordinates extends Coordinates {
+  name: string
+}
 
 export class ExplorationMapAdapter implements DataSource {
     

@@ -4,7 +4,7 @@ import { Shape } from '@int/geotoolkit/scene/shapes/Shape';
 import { RgbaColor } from '@int/geotoolkit/util/RgbaColor';
 
 import { Drawer } from './Drawer';
-import { ExplorationMapAdapter } from '@/data-sources/exploration-map-adapter/ExplorationMapAdapter';
+import { ExplorationMapAdapter } from '@/data-sources/ExplorationMapAdapter';
 
 const PRIMARY_COLOR = new RgbaColor(140, 104, 205, 1);
 const PRIMARY_TRANSPARENT_COLOR = new RgbaColor(140, 104, 205, 0.5);
