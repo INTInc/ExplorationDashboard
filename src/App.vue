@@ -1,8 +1,8 @@
 <template>
   <theme-switcher></theme-switcher>
   <div class="charts-container">
-    <vertical-chart></vertical-chart>
-    <horizontal-chart></horizontal-chart>
+    <vertical-log></vertical-log>
+    <horizontal-log></horizontal-log>
     <wells-map></wells-map>
     <wells-model></wells-model>
   </div>
@@ -12,16 +12,16 @@
 import { Options, Vue } from 'vue-class-component';
 
 import ThemeSwitcher from '@/components/theme-switcher.vue';
-import HorizontalChart from '@/components/horizontal-chart.vue';
-import VerticalChart from '@/components/vertical-chart.vue';
+import HorizontalLog from '@/components/horizontal-log.vue';
+import VerticalLog from '@/components/vertical-log.vue';
 import WellsMap from '@/components/wells-map.vue';
 import WellsModel from '@/components/wells-model.vue';
 
 @Options({
   components: {
     ThemeSwitcher,
-    HorizontalChart,
-    VerticalChart,
+    HorizontalLog,
+    VerticalLog,
     WellsMap,
     WellsModel
   }
@@ -67,18 +67,18 @@ body {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
 
-    .horizontal-chart {
+    .horizontal-log {
       grid-column-start: 2;
       grid-column-end: 4;
     }
 
-    .vertical-chart {
+    .vertical-log {
       grid-row-start: 1;
       grid-row-end: 5;
     }
 
-    .horizontal-chart,
-    .vertical-chart,
+    .horizontal-log,
+    .vertical-log,
     .wells-map,
     .wells-model {
       margin: 8px;
