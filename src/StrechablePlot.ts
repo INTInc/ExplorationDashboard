@@ -21,7 +21,13 @@ export class StretchablePlot extends Plot {
     }
 
     resize() {
-        this.setSize(this.parent.clientWidth, this.parent.clientHeight);
+        const cs = getComputedStyle(this.parent);
+        const csVal = (property: keyof CSSStyleDeclaration): number => parseFloat(cs[property]?.toString() as string);
+
+        this.setSize(
+          this.parent.clientWidth - csVal('paddingLeft') - csVal('paddingRight'),
+          this.parent.clientHeight - csVal('paddingTop') - csVal('paddingBottom')
+        );
     }
 
     addResizeListener() {

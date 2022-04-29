@@ -97,7 +97,8 @@ body {
       }
     }
 
-    .wells-map {
+    .wells-map,
+    .vertical-log {
       padding: 0;
     }
 
