@@ -17,6 +17,7 @@ import { TrackType } from '@int/geotoolkit/welllog/TrackType';
 import { HeaderType } from '@int/geotoolkit/welllog/header/LogAxisVisualHeader';
 import { WellLogWidget } from '@int/geotoolkit/welllog/widgets/WellLogWidget';
 import { KnownColors } from '@int/geotoolkit/util/ColorUtil';
+import { FillType } from '@int/geotoolkit/welllog/LogFill';
 
 const container = ref();
 const canvas = ref();
@@ -32,21 +33,33 @@ function configureTracks(widget: WellLogWidget) {
   const source = new WellLogAdapter();
   const drawer = new WellLogDrawer(source);
 
-  source.load('/data/wellB-2/logs_desktop.las').then(() => {    
+  source.load('/data/wellB-2/logs_desktop.las').then(() => {
+    
+    const
+      cali = drawer.curve(Measure.CALI),
+      gr = drawer.curve(Measure.GR),
+      nphi = drawer.curve(Measure.NPHI),
+      rhob = drawer.curve(Measure.RHOB),
+      ild = drawer.curve(Measure.ILD),
+      ilm = drawer.curve(Measure.ILM)
+
     widget
       .setIndexUnit(source.unit)
       .setAxisHeaderType(HeaderType.Simple)
       .setDepthLimits(source.minDepth, source.maxDepth);
     widget.addTrack(TrackType.LinearTrack)
-      .addChild(drawer.curve(Measure.CALI, KnownColors.Orange))
-      .addChild(drawer.curve(Measure.GR, KnownColors.Green))
+      .addChild(gr)
+      .addChild(drawer.fill(gr, 0.3, FillType.Right, KnownColors.Yellow)) //TODO fill curve2
+      .addChild(cali)
     widget.addTrack(TrackType.IndexTrack);
     widget.addTrack(TrackType.LinearTrack)
-      .addChild(drawer.curve(Measure.NPHI, KnownColors.Red))
-      .addChild(drawer.curve(Measure.RHOB, KnownColors.Blue))
+      .addChild(nphi)
+      .addChild(rhob)
+      .addChild(drawer.fill(nphi, rhob, FillType.Left, KnownColors.Yellow))
+      .addChild(drawer.fill(rhob, nphi, FillType.Right, KnownColors.Green))
     widget.addTrack(TrackType.LinearTrack)
-      .addChild(drawer.curve(Measure.ILD, KnownColors.DarkBlue))
-      .addChild(drawer.curve(Measure.ILM, KnownColors.Blue))
+      .addChild(ild)
+      .addChild(ilm)
   });
 }
 
