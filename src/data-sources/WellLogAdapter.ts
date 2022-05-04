@@ -34,8 +34,8 @@ const LIMITS = {
   [Measure.GR]: new Limit(0, 150),
   [Measure.NPHI]: new Limit(0.45, -0.15),
   [Measure.RHOB]: new Limit(1.95, 2.95),
-  [Measure.ILD]: new Limit(0.2, 2000),
-  [Measure.ILM]: new Limit(0.2, 2000),
+  [Measure.ILD]: new Limit(0, 200),
+  [Measure.ILM]: new Limit(0, 200),
   [Measure.DEPT]: new Limit()             // TODO FIX THAT
 }
 
