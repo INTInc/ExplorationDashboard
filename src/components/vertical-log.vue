@@ -56,7 +56,7 @@ function configureTracks(widget: WellLogWidget) {
       .addChild(nphi)
       .addChild(rhob)
       .addChild(drawer.fill(nphi, rhob, FillType.Left, KnownColors.Yellow))
-      .addChild(drawer.fill(rhob, nphi, FillType.Right, KnownColors.Green))
+      .addChild(drawer.fill(rhob, nphi, FillType.Left, KnownColors.Green))
     widget.addTrack(TrackType.LinearTrack)
       .addChild(ild)
       .addChild(ilm)

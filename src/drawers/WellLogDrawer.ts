@@ -17,10 +17,13 @@ const CURVE_COLORS = {
 export class WellLogDrawer extends Drawer<WellLogAdapter> {
 
   curve (type: Measure) {
-    return new LogCurve(this.dataSource.logData(type))
+    const limit = this.dataSource.limit(type);
+    const logCurve = new LogCurve(this.dataSource.logData(type))
       .setName(type)
       .setLineStyle(CURVE_COLORS[type])
-      .setNormalizationLimits(this.dataSource.limit(type));
+      .setNormalizationLimits(limit.left, limit.right);
+
+    return logCurve;
   }
 
   //TODO DO WE REALLY NEED THIS METHOD? THINK ABOUT ARCH

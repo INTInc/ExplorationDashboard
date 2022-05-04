@@ -5,7 +5,6 @@ import { Las20 } from '@int/geotoolkit/welllog/data/las/Las20';
 import { LogData } from '@int/geotoolkit/welllog/data/LogData';
 import { LasSectionGroup } from '@int/geotoolkit/welllog/data/las/LasSectionGroup';
 import { LasSection } from '@int/geotoolkit/welllog/data/las/LasSection';
-import { Range } from '@int/geotoolkit/util/Range';
 
 export enum MeasureProperty {
   Start,
@@ -23,14 +22,21 @@ export enum Measure {
   DEPT = 'DEPT',
 }
 
+class Limit {
+  constructor(
+    public left: number = 0,
+    public right: number = 0
+  ){}
+}
+
 const LIMITS = {
-  [Measure.CALI]: new Range(0, 15),
-  [Measure.GR]: new Range(0, 150),
-  [Measure.NPHI]: new Range(0, 0.45),
-  [Measure.RHOB]: new Range(1.95, 2.95),
-  [Measure.ILD]: new Range(0.2, 2000),
-  [Measure.ILM]: new Range(0.2, 2000),
-  [Measure.DEPT]: new Range()             // TODO FIX THAT
+  [Measure.CALI]: new Limit(0, 15),
+  [Measure.GR]: new Limit(0, 150),
+  [Measure.NPHI]: new Limit(0.45, -0.15),
+  [Measure.RHOB]: new Limit(1.95, 2.95),
+  [Measure.ILD]: new Limit(0.2, 2000),
+  [Measure.ILM]: new Limit(0.2, 2000),
+  [Measure.DEPT]: new Limit()             // TODO FIX THAT
 }
 
 export class WellLogAdapter implements DataSource {
@@ -74,7 +80,7 @@ export class WellLogAdapter implements DataSource {
         .setValueUnit(this.info(measure).getUnit())
     }
 
-    public limit(measure: Measure): Range {
+    public limit(measure: Measure): Limit {
       return LIMITS[measure];
     }    
 
