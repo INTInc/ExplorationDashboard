@@ -108,7 +108,7 @@ export class WellLogAdapter implements DataSource {
     public get dataBinding(): DataBinding {
       return {
         accept: (node: Node) => node instanceof LogCurve,
-        bind: (curve: LogCurve, _: any) => curve.setData(this.logData(curve.getName())),
+        bind: (curve: LogCurve) => curve.setData(this.logData(curve.getName())),
         unbind: (curve: LogCurve) => curve.setData()
       };
     }

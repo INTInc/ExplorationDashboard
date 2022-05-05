@@ -10,7 +10,7 @@
 import { ref, onMounted } from 'vue'
 
 import { StretchablePlot } from '@/StrechablePlot';
-import { Measure, WellLogAdapter } from '@/data-sources/WellLogAdapter';
+import { Measure, WellLogAdapter } from '@/data-sources/WellLogDataAdapter';
 import { WellLogDrawer } from '@/drawers/WellLogDrawer';
 
 import { TrackType } from '@int/geotoolkit/welllog/TrackType';

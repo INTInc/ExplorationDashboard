@@ -17,7 +17,7 @@ import { PointerMode } from '@int/geotoolkit/controls/tools/PointerMode';
 
 import { StretchablePlot } from '@/StrechablePlot';
 
-import { ExplorationMapAdapter } from '@/data-sources/ExplorationMapAdapter';
+import { ExplorationMapAdapter } from '@/data-sources/ExplorationMapDataAdapter';
 import { ExplorationMapDrawer } from '@/drawers/ExplorationMapDrawer';
 
 const canvas = ref();

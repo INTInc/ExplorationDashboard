@@ -1,4 +1,4 @@
-import { Measure, WellLogAdapter } from '@/data-sources/WellLogAdapter';
+import { Measure, WellLogAdapter } from '@/data-sources/WellLogDataAdapter';
 import { KnownColors } from '@int/geotoolkit/util/ColorUtil';
 import { LogCurve } from '@int/geotoolkit/welllog/LogCurve';
 import { FillType, LogFill } from '@int/geotoolkit/welllog/LogFill';

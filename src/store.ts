@@ -1,6 +1,6 @@
 import { DataBindingRegistry } from '@int/geotoolkit/data/DataBindingRegistry';
-import { ExplorationMapAdapter } from './data-sources/ExplorationMapAdapter';
-import { WellLogAdapter } from './data-sources/WellLogAdapter';
+import { ExplorationMapAdapter } from './data-sources/ExplorationMapDataAdapter';
+import { WellLogAdapter } from './data-sources/WellLogDataAdapter';
 
 export const createStore = () => {
 
