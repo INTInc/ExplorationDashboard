@@ -1,10 +1,13 @@
 import { DataSource } from './DataSource';
 import { DataSourceStatus } from './DataSourceStatus';
 
+import { Node } from '@int/geotoolkit/scene/Node';
 import { Las20 } from '@int/geotoolkit/welllog/data/las/Las20';
 import { LogData } from '@int/geotoolkit/welllog/data/LogData';
 import { LasSectionGroup } from '@int/geotoolkit/welllog/data/las/LasSectionGroup';
 import { LasSection } from '@int/geotoolkit/welllog/data/las/LasSection';
+import { DataBinding } from '@int/geotoolkit/data/DataBinding';
+import { LogCurve } from '@int/geotoolkit/welllog/LogCurve';
 
 export enum MeasureProperty {
   Start,
@@ -72,7 +75,13 @@ export class WellLogAdapter implements DataSource {
       return this.curves.getCurveInfo(measure)
     }
 
-    public logData(measure: Measure) {
+    public logData(maybeMeasure: string): LogData {
+
+      if (maybeMeasure !in Measure) {
+        throw new Error('')
+      }
+
+      const measure = maybeMeasure as Measure;
       return new LogData({
         depths: this.values(Measure.DEPT),
         values: this.values(measure)
@@ -94,6 +103,14 @@ export class WellLogAdapter implements DataSource {
 
     public get maxDepth(): number {
       return parseFloat(this.property(MeasureProperty.Stop).value);
+    }
+
+    public get dataBinding(): DataBinding {
+      return {
+        accept: (node: Node) => node instanceof LogCurve,
+        bind: (curve: LogCurve, _: any) => curve.setData(this.logData(curve.getName())),
+        unbind: (curve: LogCurve) => curve.setData()
+      };
     }
     
 }

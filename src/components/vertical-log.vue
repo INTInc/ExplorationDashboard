@@ -19,6 +19,9 @@ import { WellLogWidget } from '@int/geotoolkit/welllog/widgets/WellLogWidget';
 import { KnownColors } from '@int/geotoolkit/util/ColorUtil';
 import { FillType } from '@int/geotoolkit/welllog/LogFill';
 
+//import template from '@/welllog/template';
+//import registry from '@/welllog/registry';
+
 const container = ref();
 const canvas = ref();
 

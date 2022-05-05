@@ -1,6 +1,5 @@
 import { Node } from '@int/geotoolkit/scene/Node';
 import { Plot } from '@int/geotoolkit/plot/Plot';
-import { Ref } from 'vue';
 
 export class StretchablePlot extends Plot {
 
