@@ -1,15 +1,14 @@
 import { Path } from '@int/geotoolkit/scene/shapes/Path';
 import { Polygon } from '@int/geotoolkit/scene/shapes/Polygon';
-import { Shape } from '@int/geotoolkit/scene/shapes/Shape';
 import { RgbaColor } from '@int/geotoolkit/util/RgbaColor';
 
 import { Drawer } from './Drawer';
-import { ExplorationMapAdapter } from '@/data-sources/ExplorationMapDataAdapter';
+import { ExplorationMapDataAdapter } from '@/data-sources/ExplorationMapDataAdapter';
 
 const PRIMARY_COLOR = new RgbaColor(140, 104, 205, 1);
 const PRIMARY_TRANSPARENT_COLOR = new RgbaColor(140, 104, 205, 0.5);
 
-export class ExplorationMapDrawer extends Drawer<ExplorationMapAdapter> {
+export class ExplorationMapDrawer extends Drawer<ExplorationMapDataAdapter> {
 
     public get zone(): Polygon {
         this.checkDataSource();

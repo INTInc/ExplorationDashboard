@@ -17,7 +17,7 @@ import { PointerMode } from '@int/geotoolkit/controls/tools/PointerMode';
 
 import { StretchablePlot } from '@/StrechablePlot';
 
-import { ExplorationMapAdapter } from '@/data-sources/ExplorationMapDataAdapter';
+import { ExplorationMapDataAdapter } from '@/data-sources/ExplorationMapDataAdapter';
 import { ExplorationMapDrawer } from '@/drawers/ExplorationMapDrawer';
 
 const canvas = ref();
@@ -46,7 +46,7 @@ function addMapLayer(map: Map) {
 }
 
 function addExplorationLayer(map: Map) {
-  const source = new ExplorationMapAdapter();
+  const source = new ExplorationMapDataAdapter();
   const drawer = new ExplorationMapDrawer(source);
 
   source.load('/data/fieldB.json')

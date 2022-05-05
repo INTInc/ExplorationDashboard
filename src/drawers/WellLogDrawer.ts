@@ -1,4 +1,4 @@
-import { Measure, WellLogAdapter } from '@/data-sources/WellLogDataAdapter';
+import { Measure, WellLogDataAdapter } from '@/data-sources/WellLogDataAdapter';
 import { KnownColors } from '@int/geotoolkit/util/ColorUtil';
 import { LogCurve } from '@int/geotoolkit/welllog/LogCurve';
 import { FillType, LogFill } from '@int/geotoolkit/welllog/LogFill';
@@ -14,7 +14,7 @@ const CURVE_COLORS = {
   [Measure.DEPT]: ''
 }
 
-export class WellLogDrawer extends Drawer<WellLogAdapter> {
+export class WellLogDrawer extends Drawer<WellLogDataAdapter> {
 
   curve (type: Measure) {
     const limit = this.dataSource.limit(type);

@@ -42,7 +42,7 @@ const LIMITS = {
   [Measure.DEPT]: new Limit()             // TODO FIX THAT
 }
 
-export class WellLogAdapter implements DataSource {
+export class WellLogDataAdapter implements DataSource {
     
     public status: DataSourceStatus = DataSourceStatus.Loading;
 
