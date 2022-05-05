@@ -1,29 +1,49 @@
-import { DataBindingRegistry } from '@int/geotoolkit/data/DataBindingRegistry';
-import { ExplorationMapAdapter } from './data-sources/ExplorationMapDataAdapter';
-import { WellLogAdapter } from './data-sources/WellLogDataAdapter';
+import { inject } from 'vue';
+import { DataSource } from './data-sources/DataSource';
+import { ExplorationMapDataAdapter } from './data-sources/ExplorationMapDataAdapter';
+import { WellLogDataAdapter } from './data-sources/WellLogDataAdapter';
 
-export const createStore = () => {
+interface State {
+  wellLogSource: WellLogDataAdapter,
+  explMapSource: ExplorationMapDataAdapter,
+  wellLogSourceLoaded: Promise<WellLogDataAdapter>,
+  explMapSourceLoaded: Promise<ExplorationMapDataAdapter>
+}
 
-  const wellLogSource = new WellLogAdapter();
-  const explMapSource = new ExplorationMapAdapter();
+export interface Store {
+  state: State,
+  setExplMapDataUrl: (url: string) => Promise<DataSource>,
+  setWellLogDataUrl: (url: string) => Promise<DataSource>
+}
 
-  const state = {
-    wellLogRegistry: new DataBindingRegistry(),
-    explorationMapData: {} 
+export const storeSymbol = Symbol('store');
+
+export const createStore = (): Store => {
+
+  const
+    wellLogSource = new WellLogDataAdapter(),
+    explMapSource = new ExplorationMapDataAdapter();
+
+  const state: State = {
+    wellLogSource,
+    explMapSource,
+    wellLogSourceLoaded: Promise.resolve(wellLogSource),
+    explMapSourceLoaded: Promise.resolve(explMapSource)
   };
 
-  const fetchWellLogData = (url: string) => {
-    wellLogSource.load(url)
-      .then(() => state.wellLogRegistry.add(wellLogSource.dataBinding));
+  function setWellLogDataUrl(url: string): Promise<DataSource> {
+    return state.wellLogSourceLoaded = state.wellLogSource.load(url);
   }
 
-  const fetchExplMapData = (url: string) => {
-    explMapSource.load(url)
+  function setExplMapDataUrl(url: string): Promise<DataSource> {
+    return state.explMapSourceLoaded = state.explMapSource.load(url)
   }
 
   return {
     state,
-    fetchWellLogData,
-    fetchExplMapData
+    setExplMapDataUrl,
+    setWellLogDataUrl
   }
 }
+
+export const useStore = () => inject(storeSymbol) as Store;

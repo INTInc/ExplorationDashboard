@@ -43,7 +43,6 @@ const LIMITS = {
 }
 
 export class WellLogDataAdapter implements DataSource {
-    
     public status: DataSourceStatus = DataSourceStatus.Loading;
 
     private las: Las20 = new Las20();
@@ -61,6 +60,8 @@ export class WellLogDataAdapter implements DataSource {
       } catch (e) {
         this.status = DataSourceStatus.Error;
       }
+
+      return this;
     }
 
     private property(propertyIndex: MeasureProperty) {
@@ -76,13 +77,15 @@ export class WellLogDataAdapter implements DataSource {
     }
 
     public logData(maybeMeasure: string): LogData {
+      //TODO fix that
 
-      if (maybeMeasure !in Measure) {
-        throw new Error('')
-      }
+      // if (maybeMeasure !in Measure) {
+      //   throw new Error('')
+      // }
 
       const measure = maybeMeasure as Measure;
       return new LogData({
+        name: measure,
         depths: this.values(Measure.DEPT),
         values: this.values(measure)
       })

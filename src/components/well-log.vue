@@ -7,37 +7,57 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue';
-import { defineProps } from 'vue';
+import { useStore } from '@/store';
+import { StretchablePlot } from '@/StrechablePlot';
+import { HeaderType } from '@int/geotoolkit/welllog/header/LogAxisVisualHeader';
+import { WellLogWidget } from '@int/geotoolkit/welllog/widgets/WellLogWidget';
+import { onMounted, defineProps, ref } from 'vue';
+
+const {state} = useStore();
 
 const props = defineProps<{
   templateUrl: string
 }>();
 
-async function fetchTemplate(templateUrl: string): Promise<string> {
-  const response = await fetch(templateUrl);
+const container = ref();
+const canvas = ref();
+
+async function fetchTemplate(): Promise<string> {
+  const response = await fetch(props.templateUrl);
   return await response.text(); 
 }
 
 function validateTemplate(template: string) {
   //TODO here will be runtime template validation
-  console.log(JSON.parse(template));
   return template;
 }
 
-function handleError(e: Error) {
+function createWidget(template: string) {
+  return new WellLogWidget()
+    .setDepthLimits(state.wellLogSource.minDepth, state.wellLogSource.maxDepth)
+    .setDataBinding(state.wellLogSource.dataBinding)
+    .setAxisHeaderType(HeaderType.Simple)
+    .loadTemplate(template)
+}
+
+function createPlot(widget: WellLogWidget) {
+    return new StretchablePlot(container.value, canvas.value, widget)
+}
+
+function handleError() {
   console.error(`Problem loading template from ${props.templateUrl}.`);
 }
 
 function initialize() {
-  fetchTemplate(props.templateUrl)
+  state.wellLogSourceLoaded
+    .then(fetchTemplate)
     .then(validateTemplate)
+    .then(createWidget)
+    .then(createPlot)
     .catch(handleError)
 }
 
-onMounted(() => {
-  initialize();
-});
+onMounted(initialize);
 </script>
 
 <style lang="scss" scoped>

@@ -1,4 +1,7 @@
 import { createApp } from 'vue'
-import App from './App.vue'
+import App from '@/App.vue'
+import { createStore, storeSymbol } from '@/store'
 
-createApp(App).mount('#app')
+createApp(App)
+  .provide(storeSymbol, createStore())
+  .mount('#app')

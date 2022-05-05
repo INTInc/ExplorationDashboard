@@ -21,7 +21,7 @@ export class WellLogDrawer extends Drawer<WellLogDataAdapter> {
     const logCurve = new LogCurve(this.dataSource.logData(type))
       .setName(type)
       .setLineStyle(CURVE_COLORS[type])
-      .setNormalizationLimits(limit.left, limit.right);
+      .setNormalizationLimits(limit.left, limit.right)
 
     return logCurve;
   }

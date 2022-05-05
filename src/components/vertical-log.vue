@@ -10,7 +10,7 @@
 import { ref, onMounted } from 'vue'
 
 import { StretchablePlot } from '@/StrechablePlot';
-import { Measure, WellLogAdapter } from '@/data-sources/WellLogDataAdapter';
+import { Measure, WellLogDataAdapter } from '@/data-sources/WellLogDataAdapter';
 import { WellLogDrawer } from '@/drawers/WellLogDrawer';
 
 import { TrackType } from '@int/geotoolkit/welllog/TrackType';
@@ -33,7 +33,7 @@ function createWidget() {
 }
 
 function configureTracks(widget: WellLogWidget) {
-  const source = new WellLogAdapter();
+  const source = new WellLogDataAdapter();
   const drawer = new WellLogDrawer(source);
 
   source.load('/data/wellB-2/logs_desktop.las').then(() => {
@@ -71,7 +71,7 @@ function createPlot(widget: WellLogWidget) {
 }
 
 onMounted(() => {
-  const widget = createWidget(); 
+  const widget = createWidget();
   configureTracks(widget);
   createPlot(widget);
 })

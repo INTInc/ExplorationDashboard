@@ -2,29 +2,26 @@
   <theme-switcher></theme-switcher>
   <div class="charts-container">
     <well-log class="vertical-log" :template-url="'/templates/vertical-log.json'"></well-log>
-    <well-log class="horizontal-log" :template-url="'/templates/horizontal-log.json'"></well-log>
+    <vertical-log></vertical-log>
+    <!-- <well-log class="horizontal-log" :template-url="'/templates/horizontal-log.json'"></well-log> -->
     <wells-map></wells-map>
     <wells-model></wells-model>
   </div>
 </template>
 
-<script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-
+<script setup lang="ts">
 import ThemeSwitcher from '@/components/theme-switcher.vue';
 import WellLog from '@/components/well-log.vue'; 
 import WellsMap from '@/components/wells-map.vue';
 import WellsModel from '@/components/wells-model.vue';
+import VerticalLog from '@/components/vertical-log.vue'
 
-@Options({
-  components: {
-    ThemeSwitcher,
-    WellLog,
-    WellsMap,
-    WellsModel
-  }
-})
-export default class App extends Vue {}
+import { Store, useStore } from '@/store';
+
+const store: Store = useStore();
+
+store.setWellLogDataUrl('/data/wellB-2/logs_desktop.las');
+
 </script>
 
 <style lang="scss">
