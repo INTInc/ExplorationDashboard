@@ -1,0 +1,63 @@
+{
+  "template": {
+    "type": "welllog",
+    "tracks": [{
+      "name": "Track 1",
+      "type": "linear",
+      "visuals": [{
+        "cg_type": "curve",
+        "name": "GR",
+        "linestyle": {
+          "color": "green",
+          "width": 1
+        }
+      }, {
+        "cg_type": "curve",
+        "name": "CALI",
+        "linestyle": {
+          "color": "orange",
+          "width": 1
+        }
+      }]
+    }, {
+      "name": "Track 2",
+      "type": "index"
+    }, {
+      "name": "Track 3",
+      "type": "linear",
+      "visuals": [{
+        "cg_type": "curve",
+        "name": "NPHI",
+        "linestyle": {
+          "color": "red",
+          "width": 1
+        }
+      }, {
+        "cg_type": "curve",
+        "name": "RHOB",
+        "linestyle": {
+          "color": "blue",
+          "width": 1
+        }
+      }]
+    }, {
+      "name": "Track 4",
+      "type": "linear",
+      "visuals": [{
+        "cg_type": "curve",
+        "name": "ILD",
+        "linestyle": {
+          "color": "darkblue",
+          "width": 1
+        }
+      }, {
+        "cg_type": "curve",
+        "name": "ILM",
+        "linestyle": {
+          "color": "blue",
+          "width": 1
+        }
+      }]
+    }]
+  }
+}

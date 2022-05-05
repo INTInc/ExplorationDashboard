@@ -1,8 +1,8 @@
 <template>
   <theme-switcher></theme-switcher>
   <div class="charts-container">
-    <vertical-log></vertical-log>
-    <horizontal-log></horizontal-log>
+    <well-log class="vertical-log" :template-url="'/templates/vertical-log.json'"></well-log>
+    <well-log class="horizontal-log" :template-url="'/templates/horizontal-log.json'"></well-log>
     <wells-map></wells-map>
     <wells-model></wells-model>
   </div>
@@ -12,16 +12,14 @@
 import { Options, Vue } from 'vue-class-component';
 
 import ThemeSwitcher from '@/components/theme-switcher.vue';
-import HorizontalLog from '@/components/horizontal-log.vue';
-import VerticalLog from '@/components/vertical-log.vue';
+import WellLog from '@/components/well-log.vue'; 
 import WellsMap from '@/components/wells-map.vue';
 import WellsModel from '@/components/wells-model.vue';
 
 @Options({
   components: {
     ThemeSwitcher,
-    HorizontalLog,
-    VerticalLog,
+    WellLog,
     WellsMap,
     WellsModel
   }
