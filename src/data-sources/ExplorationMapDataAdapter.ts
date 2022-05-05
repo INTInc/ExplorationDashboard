@@ -60,7 +60,7 @@ export class ExplorationMapDataAdapter implements DataSource {
         rawPath.forEach((rawPoint: string) => {
             const initialPoint = this.parsePointCoordinates(rawPoint);
 
-            initialPath.x.push(initialFunctionPoint[0]);
+            initialPath.x.push(initialPoint[0]);
             initialPath.y.push(initialPoint[1])
         })
 
