@@ -33,7 +33,10 @@ function validateTemplate(template: string) {
 }
 
 function createWidget(template: string) {
-  return new WellLogWidget()
+  return new WellLogWidget({
+    horizontalscrollable: false,
+    verticalscrollable: false
+  })
     .setDepthLimits(state.wellLogSource.minDepth, state.wellLogSource.maxDepth)
     .setDataBinding(state.wellLogSource.dataBinding)
     .setAxisHeaderType(HeaderType.Simple)
