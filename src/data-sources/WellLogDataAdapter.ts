@@ -25,23 +25,6 @@ export enum Measure {
   DEPT = 'DEPT',
 }
 
-class Limit {
-  constructor(
-    public left: number = 0,
-    public right: number = 0
-  ){}
-}
-
-const LIMITS = {
-  [Measure.CALI]: new Limit(0, 15),
-  [Measure.GR]: new Limit(0, 150),
-  [Measure.NPHI]: new Limit(0.45, -0.15),
-  [Measure.RHOB]: new Limit(1.95, 2.95),
-  [Measure.ILD]: new Limit(0, 200),
-  [Measure.ILM]: new Limit(0, 200),
-  [Measure.DEPT]: new Limit()             // TODO FIX THAT
-}
-
 export class WellLogDataAdapter implements DataSource {
     public status: DataSourceStatus = DataSourceStatus.Loading;
 
@@ -92,10 +75,6 @@ export class WellLogDataAdapter implements DataSource {
         .setValueUnit(this.info(measure).getUnit())
     }
 
-    public limit(measure: Measure): Limit {
-      return LIMITS[measure];
-    }    
-
     public get unit(): string {
       return this.property(MeasureProperty.Start).getUnit()
     }
@@ -111,8 +90,8 @@ export class WellLogDataAdapter implements DataSource {
     public get dataBinding(): DataBinding {
       return {
         accept: (node: Node) => node instanceof LogCurve,
-        bind: (curve: LogCurve) => curve.setData(this.logData(curve.getName())),
-        unbind: (curve: LogCurve) => curve.setData()
+        unbind: (curve: LogCurve) => curve.setData({}, false),
+        bind: (curve: LogCurve, data: any) => curve.setData(this.logData(curve.getName()), false)
       };
     }
     

@@ -7,6 +7,8 @@
 </template>
 
 <script setup lang="ts">
+import { DataSource } from '@/data-sources/DataSource';
+import { WellLogDataAdapter } from '@/data-sources/WellLogDataAdapter';
 import { useStore } from '@/store';
 import { StretchablePlot } from '@/StrechablePlot';
 import { HeaderType } from '@int/geotoolkit/welllog/header/LogAxisVisualHeader';
@@ -16,11 +18,18 @@ import { onMounted, defineProps, ref } from 'vue';
 const {state} = useStore();
 
 const props = defineProps<{
+  dataUrl: string,
   templateUrl: string
 }>();
 
+let dataSource: WellLogDataAdapter;
+
 const container = ref();
 const canvas = ref();
+
+async function fetchData(): Promise<DataSource> {
+  return dataSource = await new WellLogDataAdapter().load(props.dataUrl)
+}
 
 async function fetchTemplate(): Promise<string> {
   const response = await fetch(props.templateUrl);
@@ -37,8 +46,8 @@ function createWidget(template: string) {
     horizontalscrollable: false,
     verticalscrollable: false
   })
-    .setDepthLimits(state.wellLogSource.minDepth, state.wellLogSource.maxDepth)
-    .setDataBinding(state.wellLogSource.dataBinding)
+    .setDepthLimits(dataSource.minDepth, dataSource.maxDepth)
+    .setDataBinding(dataSource.dataBinding)
     .setAxisHeaderType(HeaderType.Simple)
     .loadTemplate(template)
 }
@@ -52,12 +61,12 @@ function handleError() {
 }
 
 function initialize() {
-  state.wellLogSourceLoaded
+  fetchData()
     .then(fetchTemplate)
     .then(validateTemplate)
     .then(createWidget)
     .then(createPlot)
-    .catch(handleError)
+    //.catch(handleError)
 }
 
 onMounted(initialize);

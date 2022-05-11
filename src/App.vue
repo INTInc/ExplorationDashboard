@@ -1,9 +1,16 @@
 <template>
   <theme-switcher></theme-switcher>
   <div class="charts-container">
-    <well-log class="vertical-log" :template-url="'/templates/vertical-log.json'"></well-log>
-    <vertical-log></vertical-log>
-    <!-- <well-log class="horizontal-log" :template-url="'/templates/horizontal-log.json'"></well-log> -->
+    <well-log
+      class="vertical-log"
+      :data-url="WELLB2_DATA_URL"
+      :template-url="WELLB2_TEMPLATE_URL"
+    ></well-log>
+    <well-log
+      class="horizontal-log"
+      :data-url="WELLB32_DATA_URL"
+      :template-url="WELLB32_TEMPLATE_URL"
+      ></well-log>
     <wells-map></wells-map>
     <wells-model></wells-model>
   </div>
@@ -14,14 +21,16 @@ import ThemeSwitcher from '@/components/theme-switcher.vue';
 import WellLog from '@/components/well-log.vue'; 
 import WellsMap from '@/components/wells-map.vue';
 import WellsModel from '@/components/wells-model.vue';
-import VerticalLog from '@/components/vertical-log.vue'
 
 import { Store, useStore } from '@/store';
 
-const store: Store = useStore();
+const
+  store: Store = useStore(),
 
-store.setWellLogDataUrl('/data/wellB-2/logs_desktop.las');
-
+  WELLB2_DATA_URL = '/data/wellB-2/logs_desktop.las',
+  WELLB32_DATA_URL = '/data/wellB-32/logs_desktop.las',
+  WELLB2_TEMPLATE_URL = '/templates/vertical-log.json',
+  WELLB32_TEMPLATE_URL = '/templates/horizontal-log.json';
 </script>
 
 <style lang="scss">
