@@ -2,8 +2,8 @@ import { GeodeticSystem } from '@int/geotoolkit/map/GeodeticSystem';
 import { Transformer } from '@int/geotoolkit/map/coordinatesystems/Transformer';
 import { Point } from '@int/geotoolkit/util/Point';
 
-import { DataSource } from './DataSource';
 import { DataSourceStatus } from './DataSourceStatus';
+import { SimpleDataSource } from './SimpleDataSource';
 
 export interface Coordinates {
   x: number[],
@@ -14,7 +14,7 @@ export interface NamedCoordinates extends Coordinates {
   name: string
 }
 
-export class ExplorationMapDataAdapter implements DataSource {
+export class ExplorationMapDataAdapter extends SimpleDataSource {
     
     public status: DataSourceStatus = DataSourceStatus.Loading;
 
@@ -23,7 +23,8 @@ export class ExplorationMapDataAdapter implements DataSource {
 
     constructor()
     {
-        this.transformer = this.createTransformer();
+      super();
+      this.transformer = this.createTransformer();
     }
 
     private createTransformer() {
@@ -33,17 +34,19 @@ export class ExplorationMapDataAdapter implements DataSource {
         });
     }
 
-    public async load(url: string) {
-        try {
-            const response = await fetch(url);
-            const json = await response.json() as Array<any>;
-            this.status = DataSourceStatus.Ok;
-            this.rawData = Object.values(json[0])[0];
-        } catch (e) {
-            this.status = DataSourceStatus.Error;
-        }
+    public async load() {
+      this.checkUrl();
+
+      try {
+        const response = await fetch(this.url);
+        const json = await response.json() as Array<any>;
+        this.status = DataSourceStatus.Ok;
+        this.rawData = Object.values(json[0])[0];
+      } catch (e) {
+        this.status = DataSourceStatus.Error;
+      }
         
-        return this;
+      return this;
     }
 
     private parsePointCoordinates(rawPoint: string): number[] {

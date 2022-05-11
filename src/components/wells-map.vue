@@ -19,6 +19,7 @@ import { StretchablePlot } from '@/StrechablePlot';
 
 import { ExplorationMapDataAdapter } from '@/data-sources/ExplorationMapDataAdapter';
 import { ExplorationMapDrawer } from '@/drawers/ExplorationMapDrawer';
+import { Store, useStore } from '@/store';
 
 const canvas = ref();
 const container = ref();
@@ -46,10 +47,13 @@ function addMapLayer(map: Map) {
 }
 
 function addExplorationLayer(map: Map) {
-  const source = new ExplorationMapDataAdapter();
+
+  const { state }: Store = useStore();
+
+  const source = state.explMapSource;
   const drawer = new ExplorationMapDrawer(source);
 
-  source.load('/data/fieldB.json')
+  source.load()
     .then(() => {
       map.addLayer(
         new ShapeLayer({

@@ -3,14 +3,14 @@
   <div class="charts-container">
     <well-log
       class="vertical-log"
-      :data-url="WELLB2_DATA_URL"
-      :template-url="WELLB2_TEMPLATE_URL"
+      :source="state.wellB2Source"
+      :template-url="'/templates/vertical-log.json'"
     ></well-log>
     <well-log
       class="horizontal-log"
-      :data-url="WELLB32_DATA_URL"
-      :template-url="WELLB32_TEMPLATE_URL"
-      ></well-log>
+      :source="state.wellB32Source"
+      :template-url="'/templates/horizontal-log.json'"
+    ></well-log>
     <wells-map></wells-map>
     <wells-model></wells-model>
   </div>
@@ -24,13 +24,13 @@ import WellsModel from '@/components/wells-model.vue';
 
 import { Store, useStore } from '@/store';
 
-const
-  store: Store = useStore(),
+const { state }: Store = useStore();
 
-  WELLB2_DATA_URL = '/data/wellB-2/logs_desktop.las',
-  WELLB32_DATA_URL = '/data/wellB-32/logs_desktop.las',
-  WELLB2_TEMPLATE_URL = '/templates/vertical-log.json',
-  WELLB32_TEMPLATE_URL = '/templates/horizontal-log.json';
+//TODO add logic to switch between las files for different devices
+
+state.wellB2Source.setUrl('/data/wellB-2/logs_desktop.las');
+state.wellB32Source.setUrl('/data/wellB-32/logs_desktop.las');
+state.explMapSource.setUrl('/data/fieldB.json');
 </script>
 
 <style lang="scss">

@@ -1,13 +1,11 @@
-import { DataSource } from './DataSource';
+import { SimpleDataSource } from './SimpleDataSource';
 import { DataSourceStatus } from './DataSourceStatus';
 
-import { Node } from '@int/geotoolkit/scene/Node';
 import { Las20 } from '@int/geotoolkit/welllog/data/las/Las20';
 import { LogData } from '@int/geotoolkit/welllog/data/LogData';
 import { LasSectionGroup } from '@int/geotoolkit/welllog/data/las/LasSectionGroup';
 import { LasSection } from '@int/geotoolkit/welllog/data/las/LasSection';
-import { DataBinding } from '@int/geotoolkit/data/DataBinding';
-import { LogCurve } from '@int/geotoolkit/welllog/LogCurve';
+
 
 export enum MeasureProperty {
   Start,
@@ -25,27 +23,13 @@ export enum Measure {
   DEPT = 'DEPT',
 }
 
-export class WellLogDataAdapter implements DataSource {
+export class WellLogAdapter extends SimpleDataSource {
     public status: DataSourceStatus = DataSourceStatus.Loading;
 
-    private las: Las20 = new Las20();
-    private curves: LasSectionGroup = new LasSectionGroup();
-    private properties: LasSection = new LasSection();
-
-    public async load(url: string) {
-      try {
-        const response = await fetch(url);
-        const text = await response.text();
-        this.las.parse(text);
-        this.curves = this.las.getSectionGroups()[0];
-        this.properties = this.las.getSections()[1];
-        this.status = DataSourceStatus.Ok;
-      } catch (e) {
-        this.status = DataSourceStatus.Error;
-      }
-
-      return this;
-    }
+    protected url = '';
+    protected las: Las20 = new Las20();
+    protected curves: LasSectionGroup = new LasSectionGroup();
+    protected properties: LasSection = new LasSection();
 
     private property(propertyIndex: MeasureProperty) {
       return this.properties.getData()[propertyIndex];
@@ -85,14 +69,6 @@ export class WellLogDataAdapter implements DataSource {
 
     public get maxDepth(): number {
       return parseFloat(this.property(MeasureProperty.Stop).value);
-    }
-
-    public get dataBinding(): DataBinding {
-      return {
-        accept: (node: Node) => node instanceof LogCurve,
-        unbind: (curve: LogCurve) => curve.setData({}, false),
-        bind: (curve: LogCurve, data: any) => curve.setData(this.logData(curve.getName()), false)
-      };
     }
     
 }
