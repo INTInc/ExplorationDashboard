@@ -6,8 +6,8 @@ import { DataSourceStatus } from './DataSourceStatus';
 
 export class WellB2LogAdapter extends WellLogAdapter {
 
-  public async load(): Promise<this> {
-    this.checkUrl();
+  public async load(): Promise<void> {
+    this.checkUrl(this.url);
     
     try {
       const response = await fetch(this.url);
@@ -19,8 +19,6 @@ export class WellB2LogAdapter extends WellLogAdapter {
     } catch (e) {
       this.status = DataSourceStatus.Error;
     }
-
-    return this;
   }
 
   public get dataBinding(): DataBinding {

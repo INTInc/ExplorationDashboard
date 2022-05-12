@@ -5,6 +5,7 @@ import { Las20 } from '@int/geotoolkit/welllog/data/las/Las20';
 import { LogData } from '@int/geotoolkit/welllog/data/LogData';
 import { LasSectionGroup } from '@int/geotoolkit/welllog/data/las/LasSectionGroup';
 import { LasSection } from '@int/geotoolkit/welllog/data/las/LasSection';
+import { WellLogProps } from './WellLogProps';
 
 
 export enum MeasureProperty {
@@ -23,10 +24,9 @@ export enum Measure {
   DEPT = 'DEPT',
 }
 
-export class WellLogAdapter extends SimpleDataSource {
+export class WellLogAdapter extends SimpleDataSource<WellLogProps> {
     public status: DataSourceStatus = DataSourceStatus.Loading;
 
-    protected url = '';
     protected las: Las20 = new Las20();
     protected curves: LasSectionGroup = new LasSectionGroup();
     protected properties: LasSection = new LasSection();
@@ -44,12 +44,6 @@ export class WellLogAdapter extends SimpleDataSource {
     }
 
     public logData(maybeMeasure: string): LogData {
-      //TODO fix that
-
-      // if (maybeMeasure !in Measure) {
-      //   throw new Error('')
-      // }
-
       const measure = maybeMeasure as Measure;
       return new LogData({
         name: measure,

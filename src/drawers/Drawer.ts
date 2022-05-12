@@ -1,7 +1,7 @@
 import { DataSource } from '@/data-sources/DataSource';
 import { DataSourceStatus } from '@/data-sources/DataSourceStatus';
 
-export class Drawer<T extends DataSource> {
+export class Drawer<T extends DataSource<T>> {
 
     constructor(
         protected dataSource: T

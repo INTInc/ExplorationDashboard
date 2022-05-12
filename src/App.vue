@@ -28,9 +28,10 @@ const { state }: Store = useStore();
 
 //TODO add logic to switch between las files for different devices
 
-state.wellB2Source.setUrl('/data/wellB-2/logs_desktop.las');
-state.wellB32Source.setUrl('/data/wellB-32/logs_desktop.las');
-state.explMapSource.setUrl('/data/fieldB.json');
+state.wellB2Source.url = '/data/wellB-2/logs_desktop.las';
+state.wellB32Source.url = '/data/wellB-32/logs_desktop.las';
+state.wellB32Source.url = '/data/wellB-32/tops.json';
+state.explMapSource.url = '/data/fieldB.json';
 </script>
 
 <style lang="scss">

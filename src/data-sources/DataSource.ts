@@ -1,10 +1,9 @@
 import { DataSourceStatus } from './DataSourceStatus';
 
-export interface DataSource {
-
+export interface DataSource<T> {
+  url: string;
+  data: T | null;
   status: DataSourceStatus;
 
-  setUrl: (url: string) => void,
-  load: () => Promise<any>
-
+  load: () => Promise<void>
 }

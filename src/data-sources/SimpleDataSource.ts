@@ -1,23 +1,17 @@
 import { DataSource } from "./DataSource";
 import { DataSourceStatus } from "./DataSourceStatus";
 
-export class SimpleDataSource implements DataSource {
+export class SimpleDataSource<T> implements DataSource<T> {
 
-  protected url = '';
+  public url = '';
+  public data = null;
   public status: DataSourceStatus = DataSourceStatus.Loading;
 
-  public setUrl(url: string) {
-    this.url = url;
-  }
-
   public async load() {
-    this.checkUrl();
-    return this;
+    return;
   }
 
-  protected checkUrl() {
-    if (!this.url.trim().length) {
-      throw new Error(`Url for data source ${this.constructor.name} is not specified`)
-    }
+  protected checkUrl(url: string) {
+    if (!url.trim().length) throw new Error(`Url for data source ${this.constructor.name} is not specified`);
   }
 }

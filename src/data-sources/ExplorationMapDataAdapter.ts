@@ -14,7 +14,7 @@ export interface NamedCoordinates extends Coordinates {
   name: string
 }
 
-export class ExplorationMapDataAdapter extends SimpleDataSource {
+export class ExplorationMapDataAdapter extends SimpleDataSource<any> {
     
     public status: DataSourceStatus = DataSourceStatus.Loading;
 
@@ -35,7 +35,7 @@ export class ExplorationMapDataAdapter extends SimpleDataSource {
     }
 
     public async load() {
-      this.checkUrl();
+      this.checkUrl(this.url);
 
       try {
         const response = await fetch(this.url);
@@ -45,8 +45,6 @@ export class ExplorationMapDataAdapter extends SimpleDataSource {
       } catch (e) {
         this.status = DataSourceStatus.Error;
       }
-        
-      return this;
     }
 
     private parsePointCoordinates(rawPoint: string): number[] {

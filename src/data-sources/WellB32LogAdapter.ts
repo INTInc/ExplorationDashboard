@@ -2,11 +2,29 @@ import { DataBinding } from '@int/geotoolkit/data/DataBinding';
 import { LogCurve } from '@int/geotoolkit/welllog/LogCurve';
 import { Node } from '@int/geotoolkit/scene/Node';
 import { WellLogAdapter } from './WellLogAdapter';
+import { DataSourceStatus } from './DataSourceStatus';
 
-export class WellB32LogAdapter extends WellLogAdapter {
+export class WellB32LogAdapter extends WellLogAdapter { 
 
-  public async load() {
+  private topsUrl = '';
+
+  private async loadTops(): Promise<any> {
     return this;
+  }
+
+  private async loadMeasures(): Promise<any> {
+    return this;
+  }
+
+  public setTopsUrl(topsUrl: string) {
+    this.topsUrl = topsUrl;
+  }
+
+  public async load(): Promise<any> {
+    return Promise.all([
+      this.loadTops(),
+      this.loadMeasures()
+    ]);
   }
 
   public get dataBinding(): DataBinding {
