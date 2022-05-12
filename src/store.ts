@@ -1,13 +1,12 @@
 import { inject } from 'vue';
-import { DataSource } from './data-sources/DataSource';
-import { ExplorationMapDataAdapter } from './data-sources/ExplorationMapDataAdapter';
-import { WellB2LogAdapter } from './data-sources/WellB2LogAdapter';
-import { WellB32LogAdapter } from './data-sources/WellB32LogAdapter';
+import { ExplorationMapAdapter } from './data-sources/ExplorationMapAdapter';
+import { MeasurementsLogAdapter } from './data-sources/MeasurementsLogAdapter';
+import { MeasurementsTopsLogAdapter } from './data-sources/MeasurementsTopsLogAdapter';
 
 interface State {
-  wellB2Source: WellB2LogAdapter,
-  wellB32Source: WellB32LogAdapter,
-  explMapSource: ExplorationMapDataAdapter
+  wellB2: MeasurementsLogAdapter,
+  wellB32: MeasurementsTopsLogAdapter,
+  explMap: ExplorationMapAdapter
 }
 
 export interface Store {
@@ -18,9 +17,9 @@ export const storeSymbol = Symbol('store');
 
 export const createStore = (): Store => ({
   state: {
-    wellB2Source: new WellB2LogAdapter(),
-    wellB32Source: new WellB32LogAdapter(),
-    explMapSource: new ExplorationMapDataAdapter()
+    wellB2: new MeasurementsLogAdapter(),
+    wellB32: new MeasurementsTopsLogAdapter(),
+    explMap: new ExplorationMapAdapter()
   }
 });
 

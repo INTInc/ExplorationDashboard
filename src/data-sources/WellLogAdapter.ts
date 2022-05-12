@@ -5,7 +5,7 @@ import { Las20 } from '@int/geotoolkit/welllog/data/las/Las20';
 import { LogData } from '@int/geotoolkit/welllog/data/LogData';
 import { LasSectionGroup } from '@int/geotoolkit/welllog/data/las/LasSectionGroup';
 import { LasSection } from '@int/geotoolkit/welllog/data/las/LasSection';
-import { WellLogProps } from './WellLogProps';
+import { WellLogProps } from '../components/well-log/WellLogProps';
 
 
 export enum MeasureProperty {

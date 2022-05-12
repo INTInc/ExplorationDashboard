@@ -50,7 +50,7 @@ function addExplorationLayer(map: Map) {
 
   const { state }: Store = useStore();
 
-  const source = state.explMapSource;
+  const source = state.explMap;
   const drawer = new ExplorationMapDrawer(source);
 
   source.load()

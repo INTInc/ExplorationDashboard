@@ -3,12 +3,12 @@
   <div class="charts-container">
     <well-log
       class="vertical-log"
-      :source="state.wellB2Source"
+      :source="state.wellB2"
       :template-url="'/templates/vertical-log.json'"
     ></well-log>
     <well-log
       class="horizontal-log"
-      :source="state.wellB32Source"
+      :source="state.wellB32"
       :template-url="'/templates/horizontal-log.json'"
     ></well-log>
     <wells-map></wells-map>
@@ -18,8 +18,8 @@
 
 <script setup lang="ts">
 import ThemeSwitcher from '@/components/theme-switcher.vue';
-import WellLog from '@/components/well-log.vue'; 
-import WellsMap from '@/components/wells-map.vue';
+import WellLog from '@/components/well-log/well-log.vue'; 
+import WellsMap from '@/components/wells-map/wells-map.vue';
 import WellsModel from '@/components/wells-model.vue';
 
 import { Store, useStore } from '@/store';
@@ -28,10 +28,9 @@ const { state }: Store = useStore();
 
 //TODO add logic to switch between las files for different devices
 
-state.wellB2Source.url = '/data/wellB-2/logs_desktop.las';
-state.wellB32Source.url = '/data/wellB-32/logs_desktop.las';
-state.wellB32Source.url = '/data/wellB-32/tops.json';
-state.explMapSource.url = '/data/fieldB.json';
+state.wellB2.url = '/data/wellB-2/logs_desktop.las';
+state.wellB32.url = '/data/wellB-32/logs_desktop.las';
+state.explMap.url = '/data/fieldB.json';
 </script>
 
 <style lang="scss">

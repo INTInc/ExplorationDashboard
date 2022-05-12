@@ -4,7 +4,7 @@ import { Node } from '@int/geotoolkit/scene/Node';
 import { WellLogAdapter } from './WellLogAdapter';
 import { DataSourceStatus } from './DataSourceStatus';
 
-export class WellB2LogAdapter extends WellLogAdapter {
+export class MeasurementsLogAdapter extends WellLogAdapter {
 
   public async load(): Promise<void> {
     this.checkUrl(this.url);

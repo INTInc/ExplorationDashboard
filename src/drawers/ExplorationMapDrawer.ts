@@ -3,12 +3,12 @@ import { Polygon } from '@int/geotoolkit/scene/shapes/Polygon';
 import { RgbaColor } from '@int/geotoolkit/util/RgbaColor';
 
 import { Drawer } from './Drawer';
-import { ExplorationMapDataAdapter } from '@/data-sources/ExplorationMapDataAdapter';
+import { ExplorationMapAdapter } from '@/data-sources/ExplorationMapAdapter';
 
 const PRIMARY_COLOR = new RgbaColor(140, 104, 205, 1);
 const PRIMARY_TRANSPARENT_COLOR = new RgbaColor(140, 104, 205, 0.5);
 
-export class ExplorationMapDrawer extends Drawer<ExplorationMapDataAdapter> {
+export class ExplorationMapDrawer extends Drawer<ExplorationMapAdapter> {
 
     public get zone(): Polygon {
         this.checkDataSource();

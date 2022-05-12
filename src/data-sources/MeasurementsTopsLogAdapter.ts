@@ -4,7 +4,7 @@ import { Node } from '@int/geotoolkit/scene/Node';
 import { WellLogAdapter } from './WellLogAdapter';
 import { DataSourceStatus } from './DataSourceStatus';
 
-export class WellB32LogAdapter extends WellLogAdapter { 
+export class MeasurementsTopsLogAdapter extends WellLogAdapter { 
 
   private topsUrl = '';
 

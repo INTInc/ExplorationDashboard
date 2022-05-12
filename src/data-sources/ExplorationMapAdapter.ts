@@ -14,7 +14,7 @@ export interface NamedCoordinates extends Coordinates {
   name: string
 }
 
-export class ExplorationMapDataAdapter extends SimpleDataSource<any> {
+export class ExplorationMapAdapter extends SimpleDataSource<any> {
     
     public status: DataSourceStatus = DataSourceStatus.Loading;
 
