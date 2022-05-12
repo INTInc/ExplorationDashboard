@@ -1,5 +1,7 @@
 {
   "template": {
-    
+    "type": "welllog",
+    "tracks": [],
+    "orientation": "horizontal"
   }
 }
