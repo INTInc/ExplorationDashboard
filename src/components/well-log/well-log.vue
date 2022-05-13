@@ -7,7 +7,8 @@
 </template>
 
 <script setup lang="ts">
-import { WellLogAdapter } from '@/data-sources/WellLogAdapter';
+import { MeasurementsLogAdapter } from '@/data-sources/MeasurementsLogAdapter';
+import { MeasurementsTopsLogAdapter } from '@/data-sources/MeasurementsTopsLogAdapter';
 import { useStore } from '@/store';
 import { StretchablePlot } from '@/StrechablePlot';
 import { HeaderType } from '@int/geotoolkit/welllog/header/LogAxisVisualHeader';
@@ -17,7 +18,7 @@ import { onMounted, defineProps, ref } from 'vue';
 const {state} = useStore();
 
 const props = defineProps<{
-  source: WellLogAdapter,
+  source: MeasurementsLogAdapter | MeasurementsTopsLogAdapter,
   templateUrl: string
 }>();
 
@@ -39,8 +40,8 @@ function createWidget(template: string) {
     horizontalscrollable: false,
     verticalscrollable: false
   })
-    .setDepthLimits(props.source.minDepth, props.source.maxDepth)
-    .setDataBinding(props.source.dataBinding)
+    .setDepthLimits(props.source.limits)
+    .setDataBinding(props.source.binding)
     .setAxisHeaderType(HeaderType.Simple)
     .loadTemplate(template)
 }

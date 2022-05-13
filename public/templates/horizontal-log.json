@@ -1,7 +1,129 @@
 {
   "template": {
     "type": "welllog",
-    "tracks": [],
-    "orientation": "horizontal"
+    "orientation": "horizontal",
+    "tracks": [
+      {
+        "name": "Track1",
+        "type": "linear",
+        "visuals": [
+          {
+            "cg_id": "1",
+            "cg_type": "curve",
+            "limits_type": 2,
+						"custom_limits_minimum": 2109,
+						"custom_limits_maximum": 992,
+            "name": "TopH",
+            "linestyle": {
+              "color": "orange",
+              "width": 1
+            }
+          },
+          {
+            "cg_type": "curve",
+            "limits_type": 2,
+						"custom_limits_minimum": 2109,
+						"custom_limits_maximum": 992,
+            "name": "TopG",
+            "linestyle": {
+              "color": "green",
+              "width": 1
+            }
+          },
+          {
+            "cg_type": "curve",
+            "limits_type": 2,
+						"custom_limits_minimum": 2109,
+						"custom_limits_maximum": 992,
+            "name": "TopF",
+            "linestyle": {
+              "color": "yellow",
+              "width": 1
+            }
+          },
+          {
+            "cg_type": "curve",
+            "limits_type": 2,
+						"custom_limits_minimum": 2109,
+						"custom_limits_maximum": 992,
+            "name": "TopE",
+            "linestyle": {
+              "color": "blue",
+              "width": 1
+            }
+          },
+          {
+            "cg_type": "curve",
+            "limits_type": 2,
+						"custom_limits_minimum": 2109,
+						"custom_limits_maximum": 992,
+            "name": "TopD",
+            "linestyle": {
+              "color": "green",
+              "width": 1
+            }
+          },
+          {
+            "cg_type": "curve",
+            "limits_type": 2,
+						"custom_limits_minimum": 2109,
+						"custom_limits_maximum": 992,
+            "name": "TopC",
+            "linestyle": {
+              "color": "brown",
+              "width": 1
+            }
+          },
+          {
+            "cg_type": "curve",
+            "limits_type": 2,
+						"custom_limits_minimum": 2109,
+						"custom_limits_maximum": 992,
+            "name": "TopB",
+            "linestyle": {
+              "color": "blue",
+              "width": 1
+            }
+          },
+          {
+            "cg_type": "curve",
+            "limits_type": 2,
+						"custom_limits_minimum": 2109,
+						"custom_limits_maximum": 992,
+            "name": "TopA",
+            "linestyle": {
+              "color": "red",
+              "width": 1
+            }
+          },
+          {
+            "cg_type": "curve",
+            "name": "GR",
+            "limits_type": 2,
+						"custom_limits_minimum": -150,
+						"custom_limits_maximum": 150,
+            "linestyle": {
+              "color": "green",
+              "width": 1
+            }
+          },
+          {
+            "cg_type": "curve",
+            "limits_type": 2,
+						"custom_limits_minimum": 2109,
+						"custom_limits_maximum": 992,
+            "name": "TVD",
+            "linestyle": {
+              "color": "black",
+              "width": 3
+            }
+          }
+        ]
+      },
+      {
+        "name": "Track2",
+        "type": "index"
+      }
+    ]
   }
 }
