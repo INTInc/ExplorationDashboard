@@ -8,11 +8,11 @@
         "type": "linear",
         "visuals": [
           {
-            "cg_id": "1",
+            "cg_id": 7,
             "cg_type": "curve",
             "limits_type": 2,
-						"custom_limits_minimum": 2109,
-						"custom_limits_maximum": 992,
+              "custom_limits_minimum": 2109,
+			  "custom_limits_maximum": 992,
             "name": "TopH",
             "linestyle": {
               "color": "orange",
@@ -20,10 +20,30 @@
             }
           },
           {
+            "cg_type": "logfill",
+            "cssclass": "horizontal-welllog-fill fill-bc",
+            "selectable": true,
+            "visible": true,
+            "tag": null,
+            "animationstyle": null,
+            "linestyle": null,
+            "curve1": "#href(4)",
+            "curve2": "#href(0)",
+            "fillstyle": {
+              "cg_type": "fillstyle",
+              "cg_id": 700,
+              "color": "orange",
+              "evenoddmode": false
+            },
+            "negativefillstyle": "#href(700)",
+            "positivefillstyle": "#href(700)",
+            "filltype": "left"
+          },
+          {
             "cg_type": "curve",
             "limits_type": 2,
-						"custom_limits_minimum": 2109,
-						"custom_limits_maximum": 992,
+              "custom_limits_minimum": 2109,
+              "custom_limits_maximum": 992,
             "name": "TopG",
             "linestyle": {
               "color": "green",
@@ -31,10 +51,31 @@
             }
           },
           {
+            "cg_type": "logfill",
+            "cssclass": "horizontal-welllog-fill fill-bc",
+            "selectable": true,
+            "visible": true,
+            "tag": null,
+            "animationstyle": null,
+            "linestyle": null,
+            "curve1": "#href(6)",
+            "curve2": "#href(7)",
+            "fillstyle": {
+              "cg_type": "fillstyle",
+              "cg_id": 600,
+              "color": "green",
+              "evenoddmode": false
+            },
+            "negativefillstyle": "#href(600)",
+            "positivefillstyle": "#href(600)",
+            "filltype": "left"
+          },
+          {
             "cg_type": "curve",
+            "cg_id": 6,
             "limits_type": 2,
-						"custom_limits_minimum": 2109,
-						"custom_limits_maximum": 992,
+              "custom_limits_minimum": 2109,
+              "custom_limits_maximum": 992,
             "name": "TopF",
             "linestyle": {
               "color": "yellow",
@@ -42,10 +83,31 @@
             }
           },
           {
+            "cg_type": "logfill",
+            "cssclass": "horizontal-welllog-fill fill-bc",
+            "selectable": true,
+            "visible": true,
+            "tag": null,
+            "animationstyle": null,
+            "linestyle": null,
+            "curve1": "#href(6)",
+            "curve2": "#href(7)",
+            "fillstyle": {
+              "cg_type": "fillstyle",
+              "cg_id": 600,
+              "color": "yellow",
+              "evenoddmode": false
+            },
+            "negativefillstyle": "#href(600)",
+            "positivefillstyle": "#href(600)",
+            "filltype": "left"
+          },
+          {
             "cg_type": "curve",
+            "cg_id": 5,
             "limits_type": 2,
-						"custom_limits_minimum": 2109,
-						"custom_limits_maximum": 992,
+              "custom_limits_minimum": 2109,
+              "custom_limits_maximum": 992,
             "name": "TopE",
             "linestyle": {
               "color": "blue",
@@ -53,10 +115,31 @@
             }
           },
           {
+            "cg_type": "logfill",
+            "cssclass": "horizontal-welllog-fill fill-bc",
+            "selectable": true,
+            "visible": true,
+            "tag": null,
+            "animationstyle": null,
+            "linestyle": null,
+            "curve1": "#href(5)",
+            "curve2": "#href(6)",
+            "fillstyle": {
+              "cg_type": "fillstyle",
+              "cg_id": 500,
+              "color": "blue",
+              "evenoddmode": false
+            },
+            "negativefillstyle": "#href(500)",
+            "positivefillstyle": "#href(500)",
+            "filltype": "left"
+          },
+          {
             "cg_type": "curve",
+            "cg_id": 4,
             "limits_type": 2,
-						"custom_limits_minimum": 2109,
-						"custom_limits_maximum": 992,
+              "custom_limits_minimum": 2109,
+              "custom_limits_maximum": 992,
             "name": "TopD",
             "linestyle": {
               "color": "green",
@@ -64,10 +147,31 @@
             }
           },
           {
+            "cg_type": "logfill",
+            "cssclass": "horizontal-welllog-fill fill-bc",
+            "selectable": true,
+            "visible": true,
+            "tag": null,
+            "animationstyle": null,
+            "linestyle": null,
+            "curve1": "#href(4)",
+            "curve2": "#href(5)",
+            "fillstyle": {
+              "cg_type": "fillstyle",
+              "cg_id": 400,
+              "color": "green",
+              "evenoddmode": false
+            },
+            "negativefillstyle": "#href(400)",
+            "positivefillstyle": "#href(400)",
+            "filltype": "left"
+          },
+          {
             "cg_type": "curve",
+            "cg_id": 3,
             "limits_type": 2,
-						"custom_limits_minimum": 2109,
-						"custom_limits_maximum": 992,
+              "custom_limits_minimum": 2109,
+              "custom_limits_maximum": 992,
             "name": "TopC",
             "linestyle": {
               "color": "brown",
@@ -75,10 +179,31 @@
             }
           },
           {
+            "cg_type": "logfill",
+            "cssclass": "horizontal-welllog-fill fill-bc",
+            "selectable": true,
+            "visible": true,
+            "tag": null,
+            "animationstyle": null,
+            "linestyle": null,
+            "curve1": "#href(3)",
+            "curve2": "#href(4)",
+            "fillstyle": {
+              "cg_type": "fillstyle",
+              "cg_id": 300,
+              "color": "brown",
+              "evenoddmode": false
+            },
+            "negativefillstyle": "#href(300)",
+            "positivefillstyle": "#href(300)",
+            "filltype": "left"
+          },
+          {
             "cg_type": "curve",
+            "cg_id": 2,
             "limits_type": 2,
-						"custom_limits_minimum": 2109,
-						"custom_limits_maximum": 992,
+              "custom_limits_minimum": 2109,
+              "custom_limits_maximum": 992,
             "name": "TopB",
             "linestyle": {
               "color": "blue",
@@ -86,10 +211,31 @@
             }
           },
           {
+            "cg_type": "logfill",
+            "cssclass": "horizontal-welllog-fill fill-bc",
+            "selectable": true,
+            "visible": true,
+            "tag": null,
+            "animationstyle": null,
+            "linestyle": null,
+            "curve1": "#href(2)",
+            "curve2": "#href(3)",
+            "fillstyle": {
+              "cg_type": "fillstyle",
+              "cg_id": 200,
+              "color": "blue",
+              "evenoddmode": false
+            },
+            "negativefillstyle": "#href(200)",
+            "positivefillstyle": "#href(200)",
+            "filltype": "left"
+          },
+          {
             "cg_type": "curve",
+            "cg_id": 1,
             "limits_type": 2,
-						"custom_limits_minimum": 2109,
-						"custom_limits_maximum": 992,
+              "custom_limits_minimum": 2109,
+              "custom_limits_maximum": 992,
             "name": "TopA",
             "linestyle": {
               "color": "red",
@@ -97,11 +243,31 @@
             }
           },
           {
+            "cg_type": "logfill",
+            "cssclass": "horizontal-welllog-fill fill-ab",
+            "selectable": true,
+            "visible": true,
+            "tag": null,
+            "animationstyle": null,
+            "linestyle": null,
+            "curve1": "#href(1)",
+            "curve2": "#href(2)",
+            "fillstyle": {
+              "cg_type": "fillstyle",
+              "cg_id": 100,
+              "color": "red",
+              "evenoddmode": false
+            },
+            "negativefillstyle": "#href(100)",
+            "positivefillstyle": "#href(100)",
+            "filltype": "left"
+          },
+          {
             "cg_type": "curve",
             "name": "GR",
             "limits_type": 2,
-						"custom_limits_minimum": -150,
-						"custom_limits_maximum": 150,
+              "custom_limits_minimum": -150,
+              "custom_limits_maximum": 150,
             "linestyle": {
               "color": "green",
               "width": 1
@@ -110,8 +276,8 @@
           {
             "cg_type": "curve",
             "limits_type": 2,
-						"custom_limits_minimum": 2109,
-						"custom_limits_maximum": 992,
+              "custom_limits_minimum": 2109,
+              "custom_limits_maximum": 992,
             "name": "TVD",
             "linestyle": {
               "color": "black",
