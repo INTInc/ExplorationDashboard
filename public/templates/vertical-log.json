@@ -1,364 +1,382 @@
 {
-	"template": {
-		"type": "welllog",
-		"tracks": [
+	"template":{
+		"type":"welllog",
+		"tracks":[
 			{
-				"cg_id": 2,
-				"name": "Track # 0",
-				"id": "LOG_TRACK",
-				"type": "linear",
-				"width": 200,
-				"block": {
-					"cg_type": "geotoolkit.welllog.LogBlock",
-					"cg_id": 3,
-					"id": null,
-					"name": "",
-					"cssclass": null,
-					"selectable": false,
-					"visible": false,
-					"tag": null,
-					"animationstyle": null,
-					"linestyle": {
-						"cg_type": "linestyle",
-						"cg_id": 4,
-						"color": "#9e9e9eff",
-						"width": 1,
-						"pattern": [],
-						"pixelsnapmode": {
-							"cg_id": 5,
-							"x": true,
-							"y": true
+				"cg_id":2,
+				"name":"Track # 0",
+				"id":"LOG_TRACK",
+				"type":"linear",
+				"width":200,
+				"block":{
+					"cg_type":"geotoolkit.welllog.LogBlock",
+					"cg_id":3,
+					"id":null,
+					"name":"",
+					"cssclass":null,
+					"selectable":false,
+					"visible":false,
+					"tag":null,
+					"animationstyle":null,
+					"linestyle":{
+						"cg_type":"linestyle",
+						"cg_id":4,
+						"color":"#9e9e9eff",
+						"width":1,
+						"pattern":[
+
+						],
+						"pixelsnapmode":{
+							"cg_id":5,
+							"x":true,
+							"y":true
 						},
-						"linejoin": "round",
-						"linecap": "butt"
+						"linejoin":"round",
+						"linecap":"butt"
 					},
-					"position": 1,
-					"fillstyle": {
-						"cg_type": "fillstyle",
-						"cg_id": 6,
-						"color": "#cc0066cc",
-						"evenoddmode": false
+					"position":1,
+					"fillstyle":{
+						"cg_type":"fillstyle",
+						"cg_id":6,
+						"color":"#cc0066cc",
+						"evenoddmode":false
 					}
 				},
-				"header": {
-					"cg_type": "trackheader",
-					"visible": true,
-					"visibletracktitle": false,
-					"firsttolast": true,
-					"titlefirst": true,
-					"toptobottom": true,
-					"holdtitle": "None",
-					"isbordervisible": false,
-					"borderlinestyle": {
-						"cg_type": "linestyle",
-						"cg_id": 8,
-						"color": "#dfe0e3ff",
-						"width": 1,
-						"pattern": [],
-						"pixelsnapmode": {
-							"cg_id": 9,
-							"x": false,
-							"y": false
+				"header":{
+					"cg_type":"trackheader",
+					"visible":true,
+					"visibletracktitle":false,
+					"firsttolast":true,
+					"titlefirst":true,
+					"toptobottom":true,
+					"holdtitle":"None",
+					"isbordervisible":false,
+					"borderlinestyle":{
+						"cg_type":"linestyle",
+						"cg_id":8,
+						"color":"#dfe0e3ff",
+						"width":1,
+						"pattern":[
+
+						],
+						"pixelsnapmode":{
+							"cg_id":9,
+							"x":false,
+							"y":false
 						},
-						"linejoin": "round",
-						"linecap": "butt"
+						"linejoin":"round",
+						"linecap":"butt"
 					},
-					"title": {
-						"visible": true,
-						"linestyle": {
-							"cg_type": "linestyle",
-							"cg_id": 10,
-							"color": "#000000ff",
-							"width": 1,
-							"pattern": [],
-							"pixelsnapmode": {
-								"cg_id": 11,
-								"x": true,
-								"y": true
+					"title":{
+						"visible":true,
+						"linestyle":{
+							"cg_type":"linestyle",
+							"cg_id":10,
+							"color":"#000000ff",
+							"width":1,
+							"pattern":[
+
+							],
+							"pixelsnapmode":{
+								"cg_id":11,
+								"x":true,
+								"y":true
 							},
-							"linejoin": "round",
-							"linecap": "butt"
+							"linejoin":"round",
+							"linecap":"butt"
 						},
-						"textstyle": {
-							"cg_type": "textstyle",
-							"cg_id": 12,
-							"color": "#000000ff",
-							"font": "11px Tahoma",
-							"baseline": "alphabetic",
-							"alignment": "center"
+						"textstyle":{
+							"cg_type":"textstyle",
+							"cg_id":12,
+							"color":"#000000ff",
+							"font":"11px Tahoma",
+							"baseline":"alphabetic",
+							"alignment":"center"
 						},
-						"adaptiveheight": false,
-						"autolabelrotation": true,
-						"labelrotationangle": 0
+						"adaptiveheight":false,
+						"autolabelrotation":true,
+						"labelrotationangle":0
 					}
 				},
-				"grids": {
-					"index": [
+				"grids":{
+					"index":[
 						{
-							"cg_type": "horizontalgrid",
-							"cg_id": 13,
-							"id": "IndexGrid1",
-							"name": "",
-							"cssclass": "horizontalGrid",
-							"selectable": true,
-							"visible": true,
-							"tag": null,
-							"animationstyle": null,
-							"linestyle": {
-								"cg_type": "linestyle",
-								"cg_id": 14,
-								"color": "#aaaaaaff",
-								"width": 1,
-								"pattern": [],
-								"pixelsnapmode": {
-									"cg_id": 15,
-									"x": false,
-									"y": false
+							"cg_type":"horizontalgrid",
+							"cg_id":13,
+							"id":"IndexGrid1",
+							"name":"",
+							"cssclass":"horizontalGrid",
+							"selectable":true,
+							"visible":true,
+							"tag":null,
+							"animationstyle":null,
+							"linestyle":{
+								"cg_type":"linestyle",
+								"cg_id":14,
+								"color":"#aaaaaaff",
+								"width":1,
+								"pattern":[
+
+								],
+								"pixelsnapmode":{
+									"cg_id":15,
+									"x":false,
+									"y":false
 								},
-								"linejoin": "round",
-								"linecap": "butt"
+								"linejoin":"round",
+								"linecap":"butt"
 							},
-							"minorlinestyle": "#href(14)",
-							"majorlinestyle": {
-								"cg_type": "linestyle",
-								"cg_id": 16,
-								"color": "#40444cff",
-								"width": 2,
-								"pattern": [],
-								"pixelsnapmode": {
-									"cg_id": 17,
-									"x": false,
-									"y": false
+							"minorlinestyle":"#href(14)",
+							"majorlinestyle":{
+								"cg_type":"linestyle",
+								"cg_id":16,
+								"color":"#40444cff",
+								"width":2,
+								"pattern":[
+
+								],
+								"pixelsnapmode":{
+									"cg_id":17,
+									"x":false,
+									"y":false
 								},
-								"linejoin": "round",
-								"linecap": "butt"
+								"linejoin":"round",
+								"linecap":"butt"
 							},
-							"tickgenerator": {
-								"cg_type": "adaptivetickgenerator",
-								"cg_id": 18,
-								"tickstyles": {
-									"cg_id": 19,
-									"MINOR": {
-										"cg_type": "linestyle",
-										"cg_id": 20,
-										"color": "#dfe0e3ff",
-										"width": 1,
-										"pattern": [],
-										"pixelsnapmode": {
-											"cg_id": 21,
-											"x": false,
-											"y": true
+							"tickgenerator":{
+								"cg_type":"adaptivetickgenerator",
+								"cg_id":18,
+								"tickstyles":{
+									"cg_id":19,
+									"MINOR":{
+										"cg_type":"linestyle",
+										"cg_id":20,
+										"color":"#dfe0e3ff",
+										"width":1,
+										"pattern":[
+
+										],
+										"pixelsnapmode":{
+											"cg_id":21,
+											"x":false,
+											"y":true
 										},
-										"linejoin": "round",
-										"linecap": "butt"
+										"linejoin":"round",
+										"linecap":"butt"
 									},
-									"MAJOR": {
-										"cg_type": "linestyle",
-										"cg_id": 22,
-										"color": "#dfe0e3ff",
-										"width": 1,
-										"pattern": [],
-										"pixelsnapmode": {
-											"cg_id": 23,
-											"x": false,
-											"y": true
+									"MAJOR":{
+										"cg_type":"linestyle",
+										"cg_id":22,
+										"color":"#dfe0e3ff",
+										"width":1,
+										"pattern":[
+
+										],
+										"pixelsnapmode":{
+											"cg_id":23,
+											"x":false,
+											"y":true
 										},
-										"linejoin": "round",
-										"linecap": "butt"
+										"linejoin":"round",
+										"linecap":"butt"
 									},
-									"EDGE": {
-										"cg_type": "linestyle",
-										"cg_id": 24,
-										"color": "#757575ff",
-										"width": 1,
-										"pattern": [],
-										"pixelsnapmode": {
-											"cg_id": 25,
-											"x": true,
-											"y": true
+									"EDGE":{
+										"cg_type":"linestyle",
+										"cg_id":24,
+										"color":"#757575ff",
+										"width":1,
+										"pattern":[
+
+										],
+										"pixelsnapmode":{
+											"cg_id":25,
+											"x":true,
+											"y":true
 										},
-										"linejoin": "round",
-										"linecap": "butt"
+										"linejoin":"round",
+										"linecap":"butt"
 									},
-									"INTERMEDIATE": {
-										"cg_type": "linestyle",
-										"cg_id": 26,
-										"color": "#757575ff",
-										"width": 1,
-										"pattern": [],
-										"pixelsnapmode": {
-											"cg_id": 27,
-											"x": true,
-											"y": true
+									"INTERMEDIATE":{
+										"cg_type":"linestyle",
+										"cg_id":26,
+										"color":"#757575ff",
+										"width":1,
+										"pattern":[
+
+										],
+										"pixelsnapmode":{
+											"cg_id":27,
+											"x":true,
+											"y":true
 										},
-										"linejoin": "round",
-										"linecap": "butt"
+										"linejoin":"round",
+										"linecap":"butt"
 									}
 								},
-								"labelstyles": {
-									"cg_id": 28,
-									"MINOR": {
-										"cg_type": "textstyle",
-										"cg_id": 29,
-										"color": "#e0e0e0ff",
-										"font": "12px Roboto",
-										"alignment": "center"
+								"labelstyles":{
+									"cg_id":28,
+									"MINOR":{
+										"cg_type":"textstyle",
+										"cg_id":29,
+										"color":"#e0e0e0ff",
+										"font":"12px Roboto",
+										"alignment":"center"
 									},
-									"MAJOR": {
-										"cg_type": "textstyle",
-										"cg_id": 30,
-										"color": "#757575ff",
-										"font": "12px Roboto",
-										"alignment": "center"
+									"MAJOR":{
+										"cg_type":"textstyle",
+										"cg_id":30,
+										"color":"#757575ff",
+										"font":"12px Roboto",
+										"alignment":"center"
 									},
-									"EDGE": {
-										"cg_type": "textstyle",
-										"cg_id": 31,
-										"color": "#757575ff",
-										"font": "12px Roboto",
-										"alignment": "center"
+									"EDGE":{
+										"cg_type":"textstyle",
+										"cg_id":31,
+										"color":"#757575ff",
+										"font":"12px Roboto",
+										"alignment":"center"
 									},
-									"INTERMEDIATE": {
-										"cg_type": "textstyle",
-										"cg_id": 32,
-										"color": "#757575ff",
-										"font": "12px Roboto",
-										"alignment": "center"
+									"INTERMEDIATE":{
+										"cg_type":"textstyle",
+										"cg_id":32,
+										"color":"#757575ff",
+										"font":"12px Roboto",
+										"alignment":"center"
 									}
 								},
-								"ticksizes": {
-									"cg_id": 33,
-									"EDGE": 6,
-									"MAJOR": 6,
-									"INTERMEDIATE": 5,
-									"MINOR": 4
+								"ticksizes":{
+									"cg_id":33,
+									"EDGE":6,
+									"MAJOR":6,
+									"INTERMEDIATE":5,
+									"MINOR":4
 								},
-								"labelangles": {
-									"cg_id": 34
+								"labelangles":{
+									"cg_id":34
 								},
-								"visibleticks": {
-									"cg_id": 35,
-									"INTERMEDIATE": false,
-									"MINOR": true,
-									"EDGE": false
+								"visibleticks":{
+									"cg_id":35,
+									"INTERMEDIATE":false,
+									"MINOR":true,
+									"EDGE":false
 								},
-								"visiblelabels": {
-									"cg_id": 36,
-									"INTERMEDIATE": false,
-									"MINOR": false,
-									"EDGE": false,
-									"MAJOR": false
+								"visiblelabels":{
+									"cg_id":36,
+									"INTERMEDIATE":false,
+									"MINOR":false,
+									"EDGE":false,
+									"MAJOR":false
 								},
-								"labelanchortypes": {
-									"cg_id": 37
+								"labelanchortypes":{
+									"cg_id":37
 								},
-								"tag": null,
-								"transformer": null,
-								"formatlabelhandler": null,
-								"edge": {
-									"cg_id": 38,
-									"tickstyle": "#href(24)",
-									"tickvisible": false,
-									"ticksize": 6,
-									"labelstyle": "#href(31)",
-									"labelvisible": false
+								"tag":null,
+								"transformer":null,
+								"formatlabelhandler":null,
+								"edge":{
+									"cg_id":38,
+									"tickstyle":"#href(24)",
+									"tickvisible":false,
+									"ticksize":6,
+									"labelstyle":"#href(31)",
+									"labelvisible":false
 								},
-								"major": {
-									"cg_id": 39,
-									"tickstyle": "#href(22)",
-									"ticksize": 6,
-									"labelstyle": "#href(30)",
-									"labelvisible": false
+								"major":{
+									"cg_id":39,
+									"tickstyle":"#href(22)",
+									"ticksize":6,
+									"labelstyle":"#href(30)",
+									"labelvisible":false
 								},
-								"intermediate": {
-									"cg_id": 40,
-									"tickstyle": "#href(26)",
-									"tickvisible": false,
-									"ticksize": 5,
-									"labelstyle": "#href(32)",
-									"labelvisible": false
+								"intermediate":{
+									"cg_id":40,
+									"tickstyle":"#href(26)",
+									"tickvisible":false,
+									"ticksize":5,
+									"labelstyle":"#href(32)",
+									"labelvisible":false
 								},
-								"minor": {
-									"cg_id": 41,
-									"tickstyle": "#href(20)",
-									"tickvisible": true,
-									"ticksize": 4,
-									"labelstyle": "#href(29)",
-									"labelvisible": false
+								"minor":{
+									"cg_id":41,
+									"tickstyle":"#href(20)",
+									"tickvisible":true,
+									"ticksize":4,
+									"labelstyle":"#href(29)",
+									"labelvisible":false
 								},
-								"maxlabeleventhandler": null,
-								"MAJOR": {
-									"cg_id": 42,
-									"labelformat": {
-										"cg_type": "geotoolkit.util.NumberFormat",
-										"cg_id": 43,
-										"locale": {
-											"cg_type": "geotoolkit.util.Locale",
-											"cg_id": 44,
-											"numberformat": {
-												"cg_id": 45,
-												"dec": ".",
-												"group": ",",
-												"neg": "-",
-												"infinity": "∞"
+								"maxlabeleventhandler":null,
+								"MAJOR":{
+									"cg_id":42,
+									"labelformat":{
+										"cg_type":"geotoolkit.util.NumberFormat",
+										"cg_id":43,
+										"locale":{
+											"cg_type":"geotoolkit.util.Locale",
+											"cg_id":44,
+											"numberformat":{
+												"cg_id":45,
+												"dec":".",
+												"group":",",
+												"neg":"-",
+												"infinity":"∞"
 											},
-											"locale": "us"
+											"locale":"us"
 										},
-										"round": true,
-										"fulllocale": false,
-										"maximumfractiondigits": 2,
-										"minimumfractiondigits": 0,
-										"grouplength": 3
+										"round":true,
+										"fulllocale":false,
+										"maximumfractiondigits":2,
+										"minimumfractiondigits":0,
+										"grouplength":3
 									}
 								},
-								"MINOR": {
-									"cg_id": 46,
-									"labelformat": {
-										"cg_type": "geotoolkit.util.NumberFormat",
-										"cg_id": 47,
-										"locale": "#href(44)",
-										"round": true,
-										"fulllocale": false,
-										"maximumfractiondigits": 2,
-										"minimumfractiondigits": 0,
-										"grouplength": 3
+								"MINOR":{
+									"cg_id":46,
+									"labelformat":{
+										"cg_type":"geotoolkit.util.NumberFormat",
+										"cg_id":47,
+										"locale":"#href(44)",
+										"round":true,
+										"fulllocale":false,
+										"maximumfractiondigits":2,
+										"minimumfractiondigits":0,
+										"grouplength":3
 									}
 								},
-								"EDGE": {
-									"cg_id": 48,
-									"labelformat": {
-										"cg_type": "geotoolkit.util.NumberFormat",
-										"cg_id": 49,
-										"locale": "#href(44)",
-										"round": true,
-										"fulllocale": false,
-										"maximumfractiondigits": 2,
-										"minimumfractiondigits": 0,
-										"grouplength": 3
+								"EDGE":{
+									"cg_id":48,
+									"labelformat":{
+										"cg_type":"geotoolkit.util.NumberFormat",
+										"cg_id":49,
+										"locale":"#href(44)",
+										"round":true,
+										"fulllocale":false,
+										"maximumfractiondigits":2,
+										"minimumfractiondigits":0,
+										"grouplength":3
 									}
 								},
-								"INTERMEDIATE": {
-									"cg_id": 50,
-									"labelformat": {
-										"cg_type": "geotoolkit.util.NumberFormat",
-										"cg_id": 51,
-										"locale": "#href(44)",
-										"round": true,
-										"fulllocale": false,
-										"maximumfractiondigits": 2,
-										"minimumfractiondigits": 0,
-										"grouplength": 3
+								"INTERMEDIATE":{
+									"cg_id":50,
+									"labelformat":{
+										"cg_type":"geotoolkit.util.NumberFormat",
+										"cg_id":51,
+										"locale":"#href(44)",
+										"round":true,
+										"fulllocale":false,
+										"maximumfractiondigits":2,
+										"minimumfractiondigits":0,
+										"grouplength":3
 									}
 								},
-								"minspan": 15,
-								"minlabelspan": 5,
-								"modelorigin": 0,
-								"precision": 9,
-								"adaptivetype": "nice",
-								"minorticksamount": 5,
-								"minspangrade": "minor",
-								"hidelabelsonspantoosmall": false,
-								"gradespriority": [
+								"minspan":15,
+								"minlabelspan":5,
+								"modelorigin":0,
+								"precision":9,
+								"adaptivetype":"nice",
+								"minorticksamount":5,
+								"minspangrade":"minor",
+								"hidelabelsonspantoosmall":false,
+								"gradespriority":[
 									"major",
 									"intermediate",
 									"minor",
@@ -367,1259 +385,1311 @@
 							}
 						}
 					],
-					"value": [
+					"value":[
 						{
-							"cg_type": "linearvaluegrid",
-							"cg_id": 52,
-							"id": "LinearGrid1",
-							"name": "",
-							"cssclass": "verticalGrid",
-							"selectable": true,
-							"visible": true,
-							"tag": null,
-							"animationstyle": null,
-							"linestyle": {
-								"cg_type": "linestyle",
-								"cg_id": 53,
-								"color": "#dfe0e3ff",
-								"width": 1,
-								"pattern": [],
-								"pixelsnapmode": {
-									"cg_id": 54,
-									"x": true,
-									"y": false
+							"cg_type":"linearvaluegrid",
+							"cg_id":52,
+							"id":"LinearGrid1",
+							"name":"",
+							"cssclass":"verticalGrid",
+							"selectable":true,
+							"visible":true,
+							"tag":null,
+							"animationstyle":null,
+							"linestyle":{
+								"cg_type":"linestyle",
+								"cg_id":53,
+								"color":"#dfe0e3ff",
+								"width":1,
+								"pattern":[
+
+								],
+								"pixelsnapmode":{
+									"cg_id":54,
+									"x":true,
+									"y":false
 								},
-								"linejoin": "round",
-								"linecap": "butt"
+								"linejoin":"round",
+								"linecap":"butt"
 							},
-							"linescount": 11,
-							"edge": {
-								"cg_id": 55,
-								"visible": true
+							"linescount":11,
+							"edge":{
+								"cg_id":55,
+								"visible":true
 							}
 						},
 						{
-							"cg_type": "linearvaluegrid",
-							"cg_id": 56,
-							"id": "LinearGrid2",
-							"name": "",
-							"cssclass": "verticalGrid",
-							"selectable": true,
-							"visible": true,
-							"tag": null,
-							"animationstyle": null,
-							"linestyle": {
-								"cg_type": "linestyle",
-								"cg_id": 57,
-								"color": "#dfe0e3ff",
-								"width": 1,
-								"pattern": [],
-								"pixelsnapmode": {
-									"cg_id": 58,
-									"x": true,
-									"y": false
+							"cg_type":"linearvaluegrid",
+							"cg_id":56,
+							"id":"LinearGrid2",
+							"name":"",
+							"cssclass":"verticalGrid",
+							"selectable":true,
+							"visible":true,
+							"tag":null,
+							"animationstyle":null,
+							"linestyle":{
+								"cg_type":"linestyle",
+								"cg_id":57,
+								"color":"#dfe0e3ff",
+								"width":1,
+								"pattern":[
+
+								],
+								"pixelsnapmode":{
+									"cg_id":58,
+									"x":true,
+									"y":false
 								},
-								"linejoin": "round",
-								"linecap": "butt"
+								"linejoin":"round",
+								"linecap":"butt"
 							},
-							"linescount": 3,
-							"edge": {
-								"cg_id": 59,
-								"visible": true
+							"linescount":3,
+							"edge":{
+								"cg_id":59,
+								"visible":true
 							}
 						},
 						{
-							"cg_type": "log10valuegrid",
-							"cg_id": 60,
-							"id": "LogGrid1",
-							"name": "",
-							"cssclass": "verticalGrid",
-							"selectable": true,
-							"visible": true,
-							"tag": null,
-							"animationstyle": null,
-							"linestyle": {
-								"cg_type": "linestyle",
-								"cg_id": 61,
-								"color": "#dfe0e3ff",
-								"width": 1,
-								"pattern": [],
-								"pixelsnapmode": {
-									"cg_id": 62,
-									"x": true,
-									"y": false
+							"cg_type":"log10valuegrid",
+							"cg_id":60,
+							"id":"LogGrid1",
+							"name":"",
+							"cssclass":"verticalGrid",
+							"selectable":true,
+							"visible":true,
+							"tag":null,
+							"animationstyle":null,
+							"linestyle":{
+								"cg_type":"linestyle",
+								"cg_id":61,
+								"color":"#dfe0e3ff",
+								"width":1,
+								"pattern":[
+
+								],
+								"pixelsnapmode":{
+									"cg_id":62,
+									"x":true,
+									"y":false
 								},
-								"linejoin": "round",
-								"linecap": "butt"
+								"linejoin":"round",
+								"linecap":"butt"
 							},
-							"decadecount": 2,
-							"bounds": null,
-							"intermediate": true,
-							"logstart": null,
-							"logstop": null,
-							"logbase": 10,
-							"reverse": false
+							"decadecount":2,
+							"bounds":null,
+							"intermediate":true,
+							"logstart":null,
+							"logstop":null,
+							"logbase":10,
+							"reverse":false
 						},
 						{
-							"cg_type": "log10valuegrid",
-							"cg_id": 63,
-							"id": "LogGrid2",
-							"name": "",
-							"cssclass": "verticalGrid",
-							"selectable": true,
-							"visible": true,
-							"tag": null,
-							"animationstyle": null,
-							"linestyle": {
-								"cg_type": "linestyle",
-								"cg_id": 64,
-								"color": "#dfe0e3ff",
-								"width": 1,
-								"pattern": [],
-								"pixelsnapmode": {
-									"cg_id": 65,
-									"x": true,
-									"y": false
+							"cg_type":"log10valuegrid",
+							"cg_id":63,
+							"id":"LogGrid2",
+							"name":"",
+							"cssclass":"verticalGrid",
+							"selectable":true,
+							"visible":true,
+							"tag":null,
+							"animationstyle":null,
+							"linestyle":{
+								"cg_type":"linestyle",
+								"cg_id":64,
+								"color":"#dfe0e3ff",
+								"width":1,
+								"pattern":[
+
+								],
+								"pixelsnapmode":{
+									"cg_id":65,
+									"x":true,
+									"y":false
 								},
-								"linejoin": "round",
-								"linecap": "butt"
+								"linejoin":"round",
+								"linecap":"butt"
 							},
-							"decadecount": 2,
-							"bounds": null,
-							"intermediate": false,
-							"logstart": null,
-							"logstop": null,
-							"logbase": 10,
-							"reverse": false
+							"decadecount":2,
+							"bounds":null,
+							"intermediate":false,
+							"logstart":null,
+							"logstop":null,
+							"logbase":10,
+							"reverse":false
 						}
 					]
 				},
-				"visuals": [
+				"visuals":[
 					{
-						"cg_type": "curve",
-						"id": null,
-						"name": "GR",
-						"display_mode": [
+						"cg_type":"curve",
+						"id":null,
+						"name":"GR",
+						"display_mode":[
 							"line"
 						],
-						"limits_type": 2,
-						"custom_limits_minimum": 0,
-						"custom_limits_maximum": 150,
-						"valueformat": {
-							"cg_type": "geotoolkit.util.DecimalFormat",
-							"cg_id": 67,
-							"format": "#,###.00",
-							"locale": "us",
-							"decimalseparatoralwaysshown": false,
-							"round": true,
-							"overridegroupsep": null,
-							"overridedecsep": null,
-							"overridenegsign": null,
-							"ispercentage": false,
-							"autodetectpercentage": true,
-							"maximumfractiondigits": 2,
-							"minimumfractiondigits": 0
+						"limits_type":2,
+						"custom_limits_minimum":0,
+						"custom_limits_maximum":150,
+						"valueformat":{
+							"cg_type":"geotoolkit.util.DecimalFormat",
+							"cg_id":67,
+							"format":"#,###.00",
+							"locale":"us",
+							"decimalseparatoralwaysshown":false,
+							"round":true,
+							"overridegroupsep":null,
+							"overridedecsep":null,
+							"overridenegsign":null,
+							"ispercentage":false,
+							"autodetectpercentage":true,
+							"maximumfractiondigits":2,
+							"minimumfractiondigits":0
 						},
-						"linestyle": {
-							"cg_type": "linestyle",
-							"cg_id": 68,
-							"color": "#7cb342ff",
-							"width": 1,
-							"pattern": [],
-							"pixelsnapmode": {
-								"cg_id": 69,
-								"x": false,
-								"y": false
+						"linestyle":{
+							"cg_type":"linestyle",
+							"cg_id":68,
+							"color":"#7cb342ff",
+							"width":1,
+							"pattern":[
+
+							],
+							"pixelsnapmode":{
+								"cg_id":69,
+								"x":false,
+								"y":false
 							},
-							"linejoin": "round",
-							"linecap": "butt"
+							"linejoin":"round",
+							"linecap":"butt"
 						},
-						"textstyle": {
-							"cg_type": "textstyle",
-							"cg_id": 70,
-							"color": "#757575ff",
-							"font": "12px Roboto"
+						"textstyle":{
+							"cg_type":"textstyle",
+							"cg_id":70,
+							"color":"#757575ff",
+							"font":"12px Roboto"
 						},
-						"header": {
-							"cssclass": null,
-							"visible": true,
-							"linestyle": {
-								"cg_type": "linestyle",
-								"cg_id": 72,
-								"color": "#000000ff",
-								"width": 1,
-								"pattern": [],
-								"pixelsnapmode": {
-									"cg_id": 73,
-									"x": true,
-									"y": true
+						"header":{
+							"cssclass":null,
+							"visible":true,
+							"linestyle":{
+								"cg_type":"linestyle",
+								"cg_id":72,
+								"color":"#000000ff",
+								"width":1,
+								"pattern":[
+
+								],
+								"pixelsnapmode":{
+									"cg_id":73,
+									"x":true,
+									"y":true
 								},
-								"linejoin": "round",
-								"linecap": "butt"
+								"linejoin":"round",
+								"linecap":"butt"
 							},
-							"textstyle": {
-								"cg_type": "textstyle",
-								"cg_id": 74,
-								"color": "#000000ff",
-								"font": "normal 11px Arial"
+							"textstyle":{
+								"cg_type":"textstyle",
+								"cg_id":74,
+								"color":"#000000ff",
+								"font":"normal 11px Arial"
 							},
-							"gap": 5,
-							"order": [
+							"gap":5,
+							"order":[
 								"Name",
 								"Tracking",
 								"Unit",
 								"Description"
 							],
-							"elements": [
+							"elements":[
 								{
-									"cg_id": 75,
-									"visible": true,
-									"text": "0",
-									"verticalpos": "bottom",
-									"horizontalpos": "left",
-									"textstyle": {
-										"cg_type": "textstyle",
-										"cg_id": 76,
-										"color": "#000000ff",
-										"font": "normal 11px Arial"
+									"cg_id":75,
+									"name":"ScaleFrom",
+									"textstyle":{
+										"cg_type":"textstyle",
+										"cg_id":76,
+										"color":"#000000ff",
+										"font":"normal 11px Arial"
 									},
-									"name": "ScaleFrom"
+									"horizontalpos":"left",
+									"verticalpos":"top",
+									"text":"0",
+									"visible":true
 								},
 								{
-									"cg_id": 77,
-									"cut": "left-to-right",
-									"visible": true,
-									"text": "GR",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": {
-										"cg_type": "textstyle",
-										"cg_id": 78,
-										"color": "#000000ff",
-										"font": "normal 11px Arial"
+									"cg_id":77,
+									"name":"Name",
+									"textstyle":{
+										"cg_type":"textstyle",
+										"cg_id":78,
+										"color":"#000000ff",
+										"font":"normal 11px Arial"
 									},
-									"name": "Name"
+									"horizontalpos":"center",
+									"verticalpos":"top",
+									"text":"GR",
+									"visible":true,
+									"cut":"left-to-right"
 								},
 								{
-									"cg_id": 79,
-									"cut": "left-to-right",
-									"visible": true,
-									"text": null,
-									"verticalpos": "bottom",
-									"horizontalpos": "center",
-									"textstyle": {
-										"cg_type": "textstyle",
-										"cg_id": 80,
-										"color": "#000000ff",
-										"font": "normal 11px Arial"
+									"cg_id":79,
+									"name":"Description",
+									"textstyle":{
+										"cg_type":"textstyle",
+										"cg_id":80,
+										"color":"#000000ff",
+										"font":"normal 11px Arial"
 									},
-									"name": "Description"
+									"horizontalpos":"center",
+									"verticalpos":"bottom",
+									"text":null,
+									"visible":true,
+									"cut":"left-to-right"
 								},
 								{
-									"cg_id": 81,
-									"visible": true,
-									"text": null,
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": {
-										"cg_type": "textstyle",
-										"cg_id": 82,
-										"color": "#000000ff",
-										"font": "normal 11px Arial"
+									"cg_id":81,
+									"name":"Tracking",
+									"textstyle":{
+										"cg_type":"textstyle",
+										"cg_id":82,
+										"color":"#000000ff",
+										"font":"normal 11px Arial"
 									},
-									"name": "Tracking"
+									"horizontalpos":"center",
+									"verticalpos":"bottom",
+									"text":null,
+									"visible":true
 								},
 								{
-									"cg_id": 83,
-									"visible": true,
-									"text": "gAPI",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": {
-										"cg_type": "textstyle",
-										"cg_id": 84,
-										"color": "#000000ff",
-										"font": "normal 11px Arial"
+									"cg_id":83,
+									"name":"Unit",
+									"textstyle":{
+										"cg_type":"textstyle",
+										"cg_id":84,
+										"color":"#000000ff",
+										"font":"normal 11px Arial"
 									},
-									"name": "Unit"
+									"horizontalpos":"center",
+									"verticalpos":"bottom",
+									"text":"gAPI",
+									"visible":true
 								},
 								{
-									"cg_id": 85,
-									"visible": true,
-									"text": "150",
-									"verticalpos": "bottom",
-									"horizontalpos": "right",
-									"textstyle": {
-										"cg_type": "textstyle",
-										"cg_id": 86,
-										"color": "#000000ff",
-										"font": "normal 11px Arial"
+									"cg_id":85,
+									"name":"ScaleTo",
+									"textstyle":{
+										"cg_type":"textstyle",
+										"cg_id":86,
+										"color":"#000000ff",
+										"font":"normal 11px Arial"
 									},
-									"name": "ScaleTo"
+									"horizontalpos":"right",
+									"verticalpos":"top",
+									"text":"150",
+									"visible":true
 								},
 								{
-									"cg_id": 87,
-									"options": {
-										"cg_id": 88,
-										"position": "bottom"
+									"cg_id":87,
+									"name":"Axis",
+									"textstyle":{
+										"cg_type":"textstyle",
+										"cg_id":88,
+										"color":"#000000ff",
+										"font":"normal 11px Arial"
 									},
-									"visible": false,
-									"text": "",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": {
-										"cg_type": "textstyle",
-										"cg_id": 89,
-										"color": "#000000ff",
-										"font": "normal 11px Arial"
-									},
-									"name": "Axis"
+									"horizontalpos":"center",
+									"verticalpos":"top",
+									"text":"",
+									"visible":false,
+									"options":{
+										"cg_id":89,
+										"position":"bottom"
+									}
 								},
 								{
-									"cg_id": 90,
-									"visible": true,
-									"text": "",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": {
-										"cg_type": "textstyle",
-										"cg_id": 91,
-										"color": "#000000ff",
-										"font": "normal 11px Arial"
+									"cg_id":90,
+									"name":"Fill",
+									"textstyle":{
+										"cg_type":"textstyle",
+										"cg_id":91,
+										"color":"#000000ff",
+										"font":"normal 11px Arial"
 									},
-									"name": "Fill"
+									"horizontalpos":"center",
+									"verticalpos":"top",
+									"text":"",
+									"visible":true
 								},
 								{
-									"cg_id": 92,
-									"visible": true,
-									"text": "",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": {
-										"cg_type": "textstyle",
-										"cg_id": 93,
-										"color": "#000000ff",
-										"font": "normal 11px Arial"
+									"cg_id":92,
+									"name":"Line",
+									"textstyle":{
+										"cg_type":"textstyle",
+										"cg_id":93,
+										"color":"#000000ff",
+										"font":"normal 11px Arial"
 									},
-									"name": "Line"
+									"horizontalpos":"center",
+									"verticalpos":"center",
+									"text":"",
+									"visible":true
 								},
 								{
-									"cg_id": 94,
-									"visible": true,
-									"text": "",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": {
-										"cg_type": "textstyle",
-										"cg_id": 95,
-										"color": "#000000ff",
-										"font": "normal 11px Arial"
+									"cg_id":94,
+									"name":"Symbol",
+									"textstyle":{
+										"cg_type":"textstyle",
+										"cg_id":95,
+										"color":"#000000ff",
+										"font":"normal 11px Arial"
 									},
-									"name": "Symbol"
+									"horizontalpos":"center",
+									"verticalpos":"top",
+									"text":"",
+									"visible":true
 								}
 							]
 						},
-						"cg_id": 66
+						"cg_id":66
 					},
 					{
-						"cg_type": "logfill",
-						"cg_id": 96,
-						"id": null,
-						"name": "",
-						"cssclass": null,
-						"selectable": true,
-						"visible": true,
-						"tag": null,
-						"animationstyle": null,
-						"linestyle": null,
-						"curve1": "#href(66)",
-						"curve2": {
-							"cg_type": "referenceline",
-							"cg_id": 97,
-							"id": null,
-							"name": "",
-							"cssclass": null,
-							"selectable": true,
-							"visible": true,
-							"tag": null,
-							"animationstyle": null,
-							"linestyle": null,
-							"value": 0.3,
-							"level": null
+						"cg_type":"logfill",
+						"cg_id":96,
+						"id":null,
+						"name":"",
+						"cssclass":null,
+						"selectable":true,
+						"visible":true,
+						"tag":null,
+						"animationstyle":null,
+						"linestyle":null,
+						"curve1":"#href(66)",
+						"curve2":{
+							"cg_type":"referenceline",
+							"cg_id":97,
+							"id":null,
+							"name":"",
+							"cssclass":null,
+							"selectable":true,
+							"visible":true,
+							"tag":null,
+							"animationstyle":null,
+							"linestyle":null,
+							"value":0.3,
+							"level":null
 						},
-						"fillstyle": {
-							"cg_type": "fillstyle",
-							"cg_id": 98,
-							"color": "#fdd835ff",
-							"evenoddmode": false
+						"fillstyle":{
+							"cg_type":"fillstyle",
+							"cg_id":98,
+							"color":"#fdd835ff",
+							"evenoddmode":false
 						},
-						"negativefillstyle": "#href(98)",
-						"positivefillstyle": "#href(98)",
-						"filltype": "right"
+						"negativefillstyle":"#href(98)",
+						"positivefillstyle":"#href(98)",
+						"filltype":"right"
 					},
 					{
-						"cg_type": "curve",
-						"id": null,
-						"name": "CALI",
-						"display_mode": [
+						"cg_type":"curve",
+						"id":null,
+						"name":"CALI",
+						"display_mode":[
 							"line"
 						],
-						"limits_type": 2,
-						"custom_limits_minimum": 0,
-						"custom_limits_maximum": 15,
-						"valueformat": {
-							"cg_type": "geotoolkit.util.DecimalFormat",
-							"cg_id": 100,
-							"format": "#,###.00",
-							"locale": "us",
-							"decimalseparatoralwaysshown": false,
-							"round": true,
-							"overridegroupsep": null,
-							"overridedecsep": null,
-							"overridenegsign": null,
-							"ispercentage": false,
-							"autodetectpercentage": true,
-							"maximumfractiondigits": 2,
-							"minimumfractiondigits": 0
+						"limits_type":2,
+						"custom_limits_minimum":0,
+						"custom_limits_maximum":15,
+						"valueformat":{
+							"cg_type":"geotoolkit.util.DecimalFormat",
+							"cg_id":100,
+							"format":"#,###.00",
+							"locale":"us",
+							"decimalseparatoralwaysshown":false,
+							"round":true,
+							"overridegroupsep":null,
+							"overridedecsep":null,
+							"overridenegsign":null,
+							"ispercentage":false,
+							"autodetectpercentage":true,
+							"maximumfractiondigits":2,
+							"minimumfractiondigits":0
 						},
-						"linestyle": {
-							"cg_type": "linestyle",
-							"cg_id": 101,
-							"color": "#ef6c00ff",
-							"width": 1,
-							"pattern": [],
-							"pixelsnapmode": {
-								"cg_id": 102,
-								"x": false,
-								"y": false
+						"linestyle":{
+							"cg_type":"linestyle",
+							"cg_id":101,
+							"color":"#ef6c00ff",
+							"width":1,
+							"pattern":[
+
+							],
+							"pixelsnapmode":{
+								"cg_id":102,
+								"x":false,
+								"y":false
 							},
-							"linejoin": "round",
-							"linecap": "butt"
+							"linejoin":"round",
+							"linecap":"butt"
 						},
-						"textstyle": {
-							"cg_type": "textstyle",
-							"cg_id": 103,
-							"color": "#757575ff",
-							"font": "12px Roboto"
+						"textstyle":{
+							"cg_type":"textstyle",
+							"cg_id":103,
+							"color":"#757575ff",
+							"font":"12px Roboto"
 						},
-						"header": {
-							"cssclass": null,
-							"visible": true,
-							"linestyle": {
-								"cg_type": "linestyle",
-								"cg_id": 105,
-								"color": "#000000ff",
-								"width": 1,
-								"pattern": [],
-								"pixelsnapmode": {
-									"cg_id": 106,
-									"x": true,
-									"y": true
+						"header":{
+							"cssclass":null,
+							"visible":true,
+							"linestyle":{
+								"cg_type":"linestyle",
+								"cg_id":105,
+								"color":"#000000ff",
+								"width":1,
+								"pattern":[
+
+								],
+								"pixelsnapmode":{
+									"cg_id":106,
+									"x":true,
+									"y":true
 								},
-								"linejoin": "round",
-								"linecap": "butt"
+								"linejoin":"round",
+								"linecap":"butt"
 							},
-							"textstyle": {
-								"cg_type": "textstyle",
-								"cg_id": 107,
-								"color": "#000000ff",
-								"font": "normal 11px Arial"
+							"textstyle":{
+								"cg_type":"textstyle",
+								"cg_id":107,
+								"color":"#000000ff",
+								"font":"normal 11px Arial"
 							},
-							"gap": 5,
-							"order": [
+							"gap":5,
+							"order":[
 								"Name",
 								"Tracking",
 								"Unit",
 								"Description"
 							],
-							"elements": [
+							"elements":[
 								{
-									"cg_id": 108,
-									"visible": true,
-									"text": "0",
-									"verticalpos": "bottom",
-									"horizontalpos": "left",
-									"textstyle": "#href(76)",
-									"name": "ScaleFrom"
+									"cg_id":108,
+									"name":"ScaleFrom",
+									"textstyle":"#href(76)",
+									"horizontalpos":"left",
+									"verticalpos":"top",
+									"text":"0",
+									"visible":true
 								},
 								{
-									"cg_id": 109,
-									"cut": "left-to-right",
-									"visible": true,
-									"text": "CALI",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(78)",
-									"name": "Name"
+									"cg_id":109,
+									"name":"Name",
+									"textstyle":"#href(78)",
+									"horizontalpos":"center",
+									"verticalpos":"top",
+									"text":"CALI",
+									"visible":true,
+									"cut":"left-to-right"
 								},
 								{
-									"cg_id": 110,
-									"cut": "left-to-right",
-									"visible": true,
-									"text": null,
-									"verticalpos": "bottom",
-									"horizontalpos": "center",
-									"textstyle": "#href(80)",
-									"name": "Description"
+									"cg_id":110,
+									"name":"Description",
+									"textstyle":"#href(80)",
+									"horizontalpos":"center",
+									"verticalpos":"bottom",
+									"text":null,
+									"visible":true,
+									"cut":"left-to-right"
 								},
 								{
-									"cg_id": 111,
-									"visible": true,
-									"text": null,
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(82)",
-									"name": "Tracking"
+									"cg_id":111,
+									"name":"Tracking",
+									"textstyle":"#href(82)",
+									"horizontalpos":"center",
+									"verticalpos":"bottom",
+									"text":null,
+									"visible":true
 								},
 								{
-									"cg_id": 112,
-									"visible": true,
-									"text": "in",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(84)",
-									"name": "Unit"
+									"cg_id":112,
+									"name":"Unit",
+									"textstyle":"#href(84)",
+									"horizontalpos":"center",
+									"verticalpos":"bottom",
+									"text":"in",
+									"visible":true
 								},
 								{
-									"cg_id": 113,
-									"visible": true,
-									"text": "15",
-									"verticalpos": "bottom",
-									"horizontalpos": "right",
-									"textstyle": "#href(86)",
-									"name": "ScaleTo"
+									"cg_id":113,
+									"name":"ScaleTo",
+									"textstyle":"#href(86)",
+									"horizontalpos":"right",
+									"verticalpos":"top",
+									"text":"15",
+									"visible":true
 								},
 								{
-									"cg_id": 114,
-									"options": {
-										"cg_id": 115,
-										"position": "bottom"
-									},
-									"visible": false,
-									"text": "",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(89)",
-									"name": "Axis"
+									"cg_id":114,
+									"name":"Axis",
+									"textstyle":"#href(88)",
+									"horizontalpos":"center",
+									"verticalpos":"top",
+									"text":"",
+									"visible":false,
+									"options":{
+										"cg_id":115,
+										"position":"bottom"
+									}
 								},
 								{
-									"cg_id": 116,
-									"visible": true,
-									"text": "",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(91)",
-									"name": "Fill"
+									"cg_id":116,
+									"name":"Fill",
+									"textstyle":"#href(91)",
+									"horizontalpos":"center",
+									"verticalpos":"top",
+									"text":"",
+									"visible":true
 								},
 								{
-									"cg_id": 117,
-									"visible": true,
-									"text": "",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(93)",
-									"name": "Line"
+									"cg_id":117,
+									"name":"Line",
+									"textstyle":"#href(93)",
+									"horizontalpos":"center",
+									"verticalpos":"center",
+									"text":"",
+									"visible":true
 								},
 								{
-									"cg_id": 118,
-									"visible": true,
-									"text": "",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(95)",
-									"name": "Symbol"
+									"cg_id":118,
+									"name":"Symbol",
+									"textstyle":"#href(95)",
+									"horizontalpos":"center",
+									"verticalpos":"top",
+									"text":"",
+									"visible":true
 								}
 							]
 						},
-						"cg_id": 99
+						"cg_id":99
 					}
 				]
 			},
 			{
-				"cg_id": 120,
-				"name": "Track # 1",
-				"id": "INDEX",
-				"type": "index",
-				"width": 50,
-				"block": {
-					"cg_type": "geotoolkit.welllog.LogBlock",
-					"cg_id": 121,
-					"id": null,
-					"name": "",
-					"cssclass": null,
-					"selectable": false,
-					"visible": false,
-					"tag": null,
-					"animationstyle": null,
-					"linestyle": {
-						"cg_type": "linestyle",
-						"cg_id": 122,
-						"color": "#9e9e9eff",
-						"width": 1,
-						"pattern": [],
-						"pixelsnapmode": {
-							"cg_id": 123,
-							"x": true,
-							"y": true
+				"cg_id":120,
+				"name":"Track # 1",
+				"id":"INDEX",
+				"type":"index",
+				"width":50,
+				"block":{
+					"cg_type":"geotoolkit.welllog.LogBlock",
+					"cg_id":121,
+					"id":null,
+					"name":"",
+					"cssclass":null,
+					"selectable":false,
+					"visible":false,
+					"tag":null,
+					"animationstyle":null,
+					"linestyle":{
+						"cg_type":"linestyle",
+						"cg_id":122,
+						"color":"#9e9e9eff",
+						"width":1,
+						"pattern":[
+
+						],
+						"pixelsnapmode":{
+							"cg_id":123,
+							"x":true,
+							"y":true
 						},
-						"linejoin": "round",
-						"linecap": "butt"
+						"linejoin":"round",
+						"linecap":"butt"
 					},
-					"position": 1,
-					"fillstyle": {
-						"cg_type": "fillstyle",
-						"cg_id": 124,
-						"color": "#cc0066cc",
-						"evenoddmode": false
+					"position":1,
+					"fillstyle":{
+						"cg_type":"fillstyle",
+						"cg_id":124,
+						"color":"#cc0066cc",
+						"evenoddmode":false
 					}
 				},
-				"header": {
-					"cg_type": "trackheader",
-					"visible": true,
-					"visibletracktitle": false,
-					"firsttolast": true,
-					"titlefirst": true,
-					"toptobottom": true,
-					"holdtitle": "None",
-					"isbordervisible": false,
-					"borderlinestyle": {
-						"cg_type": "linestyle",
-						"cg_id": 126,
-						"color": "#dfe0e3ff",
-						"width": 1,
-						"pattern": [],
-						"pixelsnapmode": {
-							"cg_id": 127,
-							"x": false,
-							"y": false
+				"header":{
+					"cg_type":"trackheader",
+					"visible":true,
+					"visibletracktitle":false,
+					"firsttolast":true,
+					"titlefirst":true,
+					"toptobottom":true,
+					"holdtitle":"None",
+					"isbordervisible":false,
+					"borderlinestyle":{
+						"cg_type":"linestyle",
+						"cg_id":126,
+						"color":"#dfe0e3ff",
+						"width":1,
+						"pattern":[
+
+						],
+						"pixelsnapmode":{
+							"cg_id":127,
+							"x":false,
+							"y":false
 						},
-						"linejoin": "round",
-						"linecap": "butt"
+						"linejoin":"round",
+						"linecap":"butt"
 					},
-					"title": {
-						"visible": true,
-						"linestyle": {
-							"cg_type": "linestyle",
-							"cg_id": 128,
-							"color": "#000000ff",
-							"width": 1,
-							"pattern": [],
-							"pixelsnapmode": {
-								"cg_id": 129,
-								"x": true,
-								"y": true
+					"title":{
+						"visible":true,
+						"linestyle":{
+							"cg_type":"linestyle",
+							"cg_id":128,
+							"color":"#000000ff",
+							"width":1,
+							"pattern":[
+
+							],
+							"pixelsnapmode":{
+								"cg_id":129,
+								"x":true,
+								"y":true
 							},
-							"linejoin": "round",
-							"linecap": "butt"
+							"linejoin":"round",
+							"linecap":"butt"
 						},
-						"textstyle": {
-							"cg_type": "textstyle",
-							"cg_id": 130,
-							"color": "#000000ff",
-							"font": "11px Tahoma",
-							"baseline": "alphabetic",
-							"alignment": "center"
+						"textstyle":{
+							"cg_type":"textstyle",
+							"cg_id":130,
+							"color":"#000000ff",
+							"font":"11px Tahoma",
+							"baseline":"alphabetic",
+							"alignment":"center"
 						},
-						"adaptiveheight": false,
-						"autolabelrotation": true,
-						"labelrotationangle": 0
+						"adaptiveheight":false,
+						"autolabelrotation":true,
+						"labelrotationangle":0
 					}
 				},
-				"axis": {
-					"cg_type": "axis",
-					"id": "AXIS",
-					"visible": true,
-					"name": "",
-					"auto_label_rotation": true,
-					"auto_label_rotation_angle": -1.5707963267948966,
-					"tick_generator": {
-						"cg_type": "adaptivetickgenerator",
-						"cg_id": 132,
-						"tickstyles": {
-							"cg_id": 133,
-							"MINOR": {
-								"cg_type": "linestyle",
-								"cg_id": 134,
-								"color": "#e0e0e0ff",
-								"width": 1,
-								"pattern": [],
-								"pixelsnapmode": {
-									"cg_id": 135,
-									"x": false,
-									"y": false
+				"axis":{
+					"cg_type":"axis",
+					"id":"AXIS",
+					"visible":true,
+					"name":"",
+					"auto_label_rotation":true,
+					"auto_label_rotation_angle":-1.5707963267948966,
+					"tick_generator":{
+						"cg_type":"adaptivetickgenerator",
+						"cg_id":132,
+						"tickstyles":{
+							"cg_id":133,
+							"MINOR":{
+								"cg_type":"linestyle",
+								"cg_id":134,
+								"color":"#e0e0e0ff",
+								"width":1,
+								"pattern":[
+
+								],
+								"pixelsnapmode":{
+									"cg_id":135,
+									"x":false,
+									"y":false
 								},
-								"linejoin": "round",
-								"linecap": "butt"
+								"linejoin":"round",
+								"linecap":"butt"
 							},
-							"MAJOR": {
-								"cg_type": "linestyle",
-								"cg_id": 136,
-								"color": "#9e9e9eff",
-								"width": 1,
-								"pattern": [],
-								"pixelsnapmode": {
-									"cg_id": 137,
-									"x": false,
-									"y": false
+							"MAJOR":{
+								"cg_type":"linestyle",
+								"cg_id":136,
+								"color":"#9e9e9eff",
+								"width":1,
+								"pattern":[
+
+								],
+								"pixelsnapmode":{
+									"cg_id":137,
+									"x":false,
+									"y":false
 								},
-								"linejoin": "round",
-								"linecap": "butt"
+								"linejoin":"round",
+								"linecap":"butt"
 							},
-							"EDGE": {
-								"cg_type": "linestyle",
-								"cg_id": 138,
-								"color": "#9e9e9eff",
-								"width": 1,
-								"pattern": [],
-								"pixelsnapmode": {
-									"cg_id": 139,
-									"x": false,
-									"y": false
+							"EDGE":{
+								"cg_type":"linestyle",
+								"cg_id":138,
+								"color":"#9e9e9eff",
+								"width":1,
+								"pattern":[
+
+								],
+								"pixelsnapmode":{
+									"cg_id":139,
+									"x":false,
+									"y":false
 								},
-								"linejoin": "round",
-								"linecap": "butt"
+								"linejoin":"round",
+								"linecap":"butt"
 							},
-							"INTERMEDIATE": {
-								"cg_type": "linestyle",
-								"cg_id": 140,
-								"color": "#757575ff",
-								"width": 1,
-								"pattern": [],
-								"pixelsnapmode": {
-									"cg_id": 141,
-									"x": true,
-									"y": true
+							"INTERMEDIATE":{
+								"cg_type":"linestyle",
+								"cg_id":140,
+								"color":"#757575ff",
+								"width":1,
+								"pattern":[
+
+								],
+								"pixelsnapmode":{
+									"cg_id":141,
+									"x":true,
+									"y":true
 								},
-								"linejoin": "round",
-								"linecap": "butt"
+								"linejoin":"round",
+								"linecap":"butt"
 							}
 						},
-						"labelstyles": {
-							"cg_id": 142,
-							"MINOR": {
-								"cg_type": "textstyle",
-								"cg_id": 143,
-								"color": "#e0e0e0ff",
-								"font": "12px Roboto",
-								"alignment": "center"
+						"labelstyles":{
+							"cg_id":142,
+							"MINOR":{
+								"cg_type":"textstyle",
+								"cg_id":143,
+								"color":"#e0e0e0ff",
+								"font":"12px Roboto",
+								"alignment":"center"
 							},
-							"MAJOR": {
-								"cg_type": "textstyle",
-								"cg_id": 144,
-								"color": "#9e9e9eff"
+							"MAJOR":{
+								"cg_type":"textstyle",
+								"cg_id":144,
+								"color":"#9e9e9eff"
 							},
-							"EDGE": {
-								"cg_type": "textstyle",
-								"cg_id": 145,
-								"color": "#9e9e9eff"
+							"EDGE":{
+								"cg_type":"textstyle",
+								"cg_id":145,
+								"color":"#9e9e9eff"
 							},
-							"INTERMEDIATE": {
-								"cg_type": "textstyle",
-								"cg_id": 146,
-								"color": "#757575ff",
-								"font": "12px Roboto",
-								"alignment": "center"
+							"INTERMEDIATE":{
+								"cg_type":"textstyle",
+								"cg_id":146,
+								"color":"#757575ff",
+								"font":"12px Roboto",
+								"alignment":"center"
 							}
 						},
-						"ticksizes": {
-							"cg_id": 147,
-							"EDGE": 6,
-							"MAJOR": 6,
-							"INTERMEDIATE": 5,
-							"MINOR": 4
+						"ticksizes":{
+							"cg_id":147,
+							"EDGE":6,
+							"MAJOR":6,
+							"INTERMEDIATE":5,
+							"MINOR":4
 						},
-						"labelangles": {
-							"cg_id": 148
+						"labelangles":{
+							"cg_id":148
 						},
-						"visibleticks": {
-							"cg_id": 149,
-							"INTERMEDIATE": false,
-							"MINOR": false
+						"visibleticks":{
+							"cg_id":149,
+							"INTERMEDIATE":false,
+							"MINOR":false
 						},
-						"visiblelabels": {
-							"cg_id": 150,
-							"INTERMEDIATE": false,
-							"MINOR": false
+						"visiblelabels":{
+							"cg_id":150,
+							"INTERMEDIATE":false,
+							"MINOR":false
 						},
-						"labelanchortypes": {
-							"cg_id": 151
+						"labelanchortypes":{
+							"cg_id":151
 						},
-						"tag": null,
-						"transformer": null,
-						"formatlabelhandler": null,
-						"edge": {
-							"cg_id": 152,
-							"tickstyle": "#href(138)",
-							"ticksize": 6,
-							"labelstyle": "#href(145)"
+						"tag":null,
+						"transformer":null,
+						"formatlabelhandler":null,
+						"edge":{
+							"cg_id":152,
+							"tickstyle":"#href(138)",
+							"ticksize":6,
+							"labelstyle":"#href(145)"
 						},
-						"major": {
-							"cg_id": 153,
-							"tickstyle": "#href(136)",
-							"ticksize": 6,
-							"labelstyle": "#href(144)"
+						"major":{
+							"cg_id":153,
+							"tickstyle":"#href(136)",
+							"ticksize":6,
+							"labelstyle":"#href(144)"
 						},
-						"intermediate": {
-							"cg_id": 154,
-							"tickstyle": "#href(140)",
-							"tickvisible": false,
-							"ticksize": 5,
-							"labelstyle": "#href(146)",
-							"labelvisible": false
+						"intermediate":{
+							"cg_id":154,
+							"tickstyle":"#href(140)",
+							"tickvisible":false,
+							"ticksize":5,
+							"labelstyle":"#href(146)",
+							"labelvisible":false
 						},
-						"minor": {
-							"cg_id": 155,
-							"tickstyle": "#href(134)",
-							"tickvisible": false,
-							"ticksize": 4,
-							"labelstyle": "#href(143)",
-							"labelvisible": false
+						"minor":{
+							"cg_id":155,
+							"tickstyle":"#href(134)",
+							"tickvisible":false,
+							"ticksize":4,
+							"labelstyle":"#href(143)",
+							"labelvisible":false
 						},
-						"maxlabeleventhandler": null,
-						"MAJOR": {
-							"cg_id": 156,
-							"labelformat": {
-								"cg_type": "geotoolkit.util.NumberFormat",
-								"cg_id": 157,
-								"locale": "#href(44)",
-								"round": true,
-								"fulllocale": false,
-								"maximumfractiondigits": 2,
-								"minimumfractiondigits": 0,
-								"grouplength": 3
+						"maxlabeleventhandler":null,
+						"MAJOR":{
+							"cg_id":156,
+							"labelformat":{
+								"cg_type":"geotoolkit.util.NumberFormat",
+								"cg_id":157,
+								"locale":"#href(44)",
+								"round":true,
+								"fulllocale":false,
+								"maximumfractiondigits":2,
+								"minimumfractiondigits":0,
+								"grouplength":3
 							}
 						},
-						"MINOR": {
-							"cg_id": 158,
-							"labelformat": {
-								"cg_type": "geotoolkit.util.NumberFormat",
-								"cg_id": 159,
-								"locale": "#href(44)",
-								"round": true,
-								"fulllocale": false,
-								"maximumfractiondigits": 2,
-								"minimumfractiondigits": 0,
-								"grouplength": 3
+						"MINOR":{
+							"cg_id":158,
+							"labelformat":{
+								"cg_type":"geotoolkit.util.NumberFormat",
+								"cg_id":159,
+								"locale":"#href(44)",
+								"round":true,
+								"fulllocale":false,
+								"maximumfractiondigits":2,
+								"minimumfractiondigits":0,
+								"grouplength":3
 							}
 						},
-						"EDGE": {
-							"cg_id": 160,
-							"labelformat": {
-								"cg_type": "geotoolkit.util.NumberFormat",
-								"cg_id": 161,
-								"locale": "#href(44)",
-								"round": true,
-								"fulllocale": false,
-								"maximumfractiondigits": 2,
-								"minimumfractiondigits": 0,
-								"grouplength": 3
+						"EDGE":{
+							"cg_id":160,
+							"labelformat":{
+								"cg_type":"geotoolkit.util.NumberFormat",
+								"cg_id":161,
+								"locale":"#href(44)",
+								"round":true,
+								"fulllocale":false,
+								"maximumfractiondigits":2,
+								"minimumfractiondigits":0,
+								"grouplength":3
 							}
 						},
-						"INTERMEDIATE": {
-							"cg_id": 162,
-							"labelformat": {
-								"cg_type": "geotoolkit.util.NumberFormat",
-								"cg_id": 163,
-								"locale": "#href(44)",
-								"round": true,
-								"fulllocale": false,
-								"maximumfractiondigits": 2,
-								"minimumfractiondigits": 0,
-								"grouplength": 3
+						"INTERMEDIATE":{
+							"cg_id":162,
+							"labelformat":{
+								"cg_type":"geotoolkit.util.NumberFormat",
+								"cg_id":163,
+								"locale":"#href(44)",
+								"round":true,
+								"fulllocale":false,
+								"maximumfractiondigits":2,
+								"minimumfractiondigits":0,
+								"grouplength":3
 							}
 						},
-						"minspan": 15,
-						"minlabelspan": 5,
-						"modelorigin": 0,
-						"precision": 9,
-						"adaptivetype": "nice",
-						"minorticksamount": 5,
-						"minspangrade": "minor",
-						"hidelabelsonspantoosmall": false,
-						"gradespriority": [
+						"minspan":15,
+						"minlabelspan":5,
+						"modelorigin":0,
+						"precision":9,
+						"adaptivetype":"nice",
+						"minorticksamount":5,
+						"minspangrade":"minor",
+						"hidelabelsonspantoosmall":false,
+						"gradespriority":[
 							"major",
 							"intermediate",
 							"minor",
 							"edge"
 						]
 					},
-					"header": {
-						"visible": true,
-						"linestyle": {
-							"cg_type": "linestyle",
-							"cg_id": 165,
-							"color": "#000000ff",
-							"width": 1,
-							"pattern": [],
-							"pixelsnapmode": {
-								"cg_id": 166,
-								"x": true,
-								"y": true
+					"header":{
+						"visible":true,
+						"linestyle":{
+							"cg_type":"linestyle",
+							"cg_id":165,
+							"color":"#000000ff",
+							"width":1,
+							"pattern":[
+
+							],
+							"pixelsnapmode":{
+								"cg_id":166,
+								"x":true,
+								"y":true
 							},
-							"linejoin": "round",
-							"linecap": "butt"
+							"linejoin":"round",
+							"linecap":"butt"
 						},
-						"textstyle": {
-							"cg_type": "textstyle",
-							"cg_id": 167,
-							"color": "#000000ff",
-							"font": "normal 11px Tahoma",
-							"alignment": "center"
+						"textstyle":{
+							"cg_type":"textstyle",
+							"cg_id":167,
+							"color":"#000000ff",
+							"font":"normal 11px Tahoma",
+							"alignment":"center"
 						},
-						"headertype": "simple",
-						"valuetypestyle": 0,
-						"autolabelrotation": true,
-						"labelrotationangle": 0
+						"headertype":"simple",
+						"valuetypestyle":0,
+						"autolabelrotation":true,
+						"labelrotationangle":0
 					}
 				},
-				"visuals": []
+				"visuals":[
+
+				]
 			},
 			{
-				"cg_id": 169,
-				"name": "Track # 2",
-				"id": "LOG_TRACK",
-				"type": "linear",
-				"width": 200,
-				"block": {
-					"cg_type": "geotoolkit.welllog.LogBlock",
-					"cg_id": 170,
-					"id": null,
-					"name": "",
-					"cssclass": null,
-					"selectable": false,
-					"visible": false,
-					"tag": null,
-					"animationstyle": null,
-					"linestyle": {
-						"cg_type": "linestyle",
-						"cg_id": 171,
-						"color": "#9e9e9eff",
-						"width": 1,
-						"pattern": [],
-						"pixelsnapmode": {
-							"cg_id": 172,
-							"x": true,
-							"y": true
+				"cg_id":169,
+				"name":"Track # 2",
+				"id":"LOG_TRACK",
+				"type":"linear",
+				"width":200,
+				"block":{
+					"cg_type":"geotoolkit.welllog.LogBlock",
+					"cg_id":170,
+					"id":null,
+					"name":"",
+					"cssclass":null,
+					"selectable":false,
+					"visible":false,
+					"tag":null,
+					"animationstyle":null,
+					"linestyle":{
+						"cg_type":"linestyle",
+						"cg_id":171,
+						"color":"#9e9e9eff",
+						"width":1,
+						"pattern":[
+
+						],
+						"pixelsnapmode":{
+							"cg_id":172,
+							"x":true,
+							"y":true
 						},
-						"linejoin": "round",
-						"linecap": "butt"
+						"linejoin":"round",
+						"linecap":"butt"
 					},
-					"position": 1,
-					"fillstyle": {
-						"cg_type": "fillstyle",
-						"cg_id": 173,
-						"color": "#cc0066cc",
-						"evenoddmode": false
+					"position":1,
+					"fillstyle":{
+						"cg_type":"fillstyle",
+						"cg_id":173,
+						"color":"#cc0066cc",
+						"evenoddmode":false
 					}
 				},
-				"header": {
-					"cg_type": "trackheader",
-					"visible": true,
-					"visibletracktitle": false,
-					"firsttolast": true,
-					"titlefirst": true,
-					"toptobottom": true,
-					"holdtitle": "None",
-					"isbordervisible": false,
-					"borderlinestyle": {
-						"cg_type": "linestyle",
-						"cg_id": 175,
-						"color": "#dfe0e3ff",
-						"width": 1,
-						"pattern": [],
-						"pixelsnapmode": {
-							"cg_id": 176,
-							"x": false,
-							"y": false
+				"header":{
+					"cg_type":"trackheader",
+					"visible":true,
+					"visibletracktitle":false,
+					"firsttolast":true,
+					"titlefirst":true,
+					"toptobottom":true,
+					"holdtitle":"None",
+					"isbordervisible":false,
+					"borderlinestyle":{
+						"cg_type":"linestyle",
+						"cg_id":175,
+						"color":"#dfe0e3ff",
+						"width":1,
+						"pattern":[
+
+						],
+						"pixelsnapmode":{
+							"cg_id":176,
+							"x":false,
+							"y":false
 						},
-						"linejoin": "round",
-						"linecap": "butt"
+						"linejoin":"round",
+						"linecap":"butt"
 					},
-					"title": {
-						"visible": true,
-						"linestyle": {
-							"cg_type": "linestyle",
-							"cg_id": 177,
-							"color": "#000000ff",
-							"width": 1,
-							"pattern": [],
-							"pixelsnapmode": {
-								"cg_id": 178,
-								"x": true,
-								"y": true
+					"title":{
+						"visible":true,
+						"linestyle":{
+							"cg_type":"linestyle",
+							"cg_id":177,
+							"color":"#000000ff",
+							"width":1,
+							"pattern":[
+
+							],
+							"pixelsnapmode":{
+								"cg_id":178,
+								"x":true,
+								"y":true
 							},
-							"linejoin": "round",
-							"linecap": "butt"
+							"linejoin":"round",
+							"linecap":"butt"
 						},
-						"textstyle": {
-							"cg_type": "textstyle",
-							"cg_id": 179,
-							"color": "#000000ff",
-							"font": "11px Tahoma",
-							"baseline": "alphabetic",
-							"alignment": "center"
+						"textstyle":{
+							"cg_type":"textstyle",
+							"cg_id":179,
+							"color":"#000000ff",
+							"font":"11px Tahoma",
+							"baseline":"alphabetic",
+							"alignment":"center"
 						},
-						"adaptiveheight": false,
-						"autolabelrotation": true,
-						"labelrotationangle": 0
+						"adaptiveheight":false,
+						"autolabelrotation":true,
+						"labelrotationangle":0
 					}
 				},
-				"grids": {
-					"index": [
+				"grids":{
+					"index":[
 						{
-							"cg_type": "horizontalgrid",
-							"cg_id": 180,
-							"id": "IndexGrid1",
-							"name": "",
-							"cssclass": "horizontalGrid",
-							"selectable": true,
-							"visible": true,
-							"tag": null,
-							"animationstyle": null,
-							"linestyle": {
-								"cg_type": "linestyle",
-								"cg_id": 181,
-								"color": "#aaaaaaff",
-								"width": 1,
-								"pattern": [],
-								"pixelsnapmode": {
-									"cg_id": 182,
-									"x": false,
-									"y": false
+							"cg_type":"horizontalgrid",
+							"cg_id":180,
+							"id":"IndexGrid1",
+							"name":"",
+							"cssclass":"horizontalGrid",
+							"selectable":true,
+							"visible":true,
+							"tag":null,
+							"animationstyle":null,
+							"linestyle":{
+								"cg_type":"linestyle",
+								"cg_id":181,
+								"color":"#aaaaaaff",
+								"width":1,
+								"pattern":[
+
+								],
+								"pixelsnapmode":{
+									"cg_id":182,
+									"x":false,
+									"y":false
 								},
-								"linejoin": "round",
-								"linecap": "butt"
+								"linejoin":"round",
+								"linecap":"butt"
 							},
-							"minorlinestyle": "#href(181)",
-							"majorlinestyle": {
-								"cg_type": "linestyle",
-								"cg_id": 183,
-								"color": "#40444cff",
-								"width": 2,
-								"pattern": [],
-								"pixelsnapmode": {
-									"cg_id": 184,
-									"x": false,
-									"y": false
+							"minorlinestyle":"#href(181)",
+							"majorlinestyle":{
+								"cg_type":"linestyle",
+								"cg_id":183,
+								"color":"#40444cff",
+								"width":2,
+								"pattern":[
+
+								],
+								"pixelsnapmode":{
+									"cg_id":184,
+									"x":false,
+									"y":false
 								},
-								"linejoin": "round",
-								"linecap": "butt"
+								"linejoin":"round",
+								"linecap":"butt"
 							},
-							"tickgenerator": {
-								"cg_type": "adaptivetickgenerator",
-								"cg_id": 185,
-								"tickstyles": {
-									"cg_id": 186,
-									"MINOR": {
-										"cg_type": "linestyle",
-										"cg_id": 187,
-										"color": "#dfe0e3ff",
-										"width": 1,
-										"pattern": [],
-										"pixelsnapmode": {
-											"cg_id": 188,
-											"x": false,
-											"y": true
+							"tickgenerator":{
+								"cg_type":"adaptivetickgenerator",
+								"cg_id":185,
+								"tickstyles":{
+									"cg_id":186,
+									"MINOR":{
+										"cg_type":"linestyle",
+										"cg_id":187,
+										"color":"#dfe0e3ff",
+										"width":1,
+										"pattern":[
+
+										],
+										"pixelsnapmode":{
+											"cg_id":188,
+											"x":false,
+											"y":true
 										},
-										"linejoin": "round",
-										"linecap": "butt"
+										"linejoin":"round",
+										"linecap":"butt"
 									},
-									"MAJOR": {
-										"cg_type": "linestyle",
-										"cg_id": 189,
-										"color": "#dfe0e3ff",
-										"width": 1,
-										"pattern": [],
-										"pixelsnapmode": {
-											"cg_id": 190,
-											"x": false,
-											"y": true
+									"MAJOR":{
+										"cg_type":"linestyle",
+										"cg_id":189,
+										"color":"#dfe0e3ff",
+										"width":1,
+										"pattern":[
+
+										],
+										"pixelsnapmode":{
+											"cg_id":190,
+											"x":false,
+											"y":true
 										},
-										"linejoin": "round",
-										"linecap": "butt"
+										"linejoin":"round",
+										"linecap":"butt"
 									},
-									"EDGE": {
-										"cg_type": "linestyle",
-										"cg_id": 191,
-										"color": "#757575ff",
-										"width": 1,
-										"pattern": [],
-										"pixelsnapmode": {
-											"cg_id": 192,
-											"x": true,
-											"y": true
+									"EDGE":{
+										"cg_type":"linestyle",
+										"cg_id":191,
+										"color":"#757575ff",
+										"width":1,
+										"pattern":[
+
+										],
+										"pixelsnapmode":{
+											"cg_id":192,
+											"x":true,
+											"y":true
 										},
-										"linejoin": "round",
-										"linecap": "butt"
+										"linejoin":"round",
+										"linecap":"butt"
 									},
-									"INTERMEDIATE": {
-										"cg_type": "linestyle",
-										"cg_id": 193,
-										"color": "#757575ff",
-										"width": 1,
-										"pattern": [],
-										"pixelsnapmode": {
-											"cg_id": 194,
-											"x": true,
-											"y": true
+									"INTERMEDIATE":{
+										"cg_type":"linestyle",
+										"cg_id":193,
+										"color":"#757575ff",
+										"width":1,
+										"pattern":[
+
+										],
+										"pixelsnapmode":{
+											"cg_id":194,
+											"x":true,
+											"y":true
 										},
-										"linejoin": "round",
-										"linecap": "butt"
+										"linejoin":"round",
+										"linecap":"butt"
 									}
 								},
-								"labelstyles": {
-									"cg_id": 195,
-									"MINOR": {
-										"cg_type": "textstyle",
-										"cg_id": 196,
-										"color": "#e0e0e0ff",
-										"font": "12px Roboto",
-										"alignment": "center"
+								"labelstyles":{
+									"cg_id":195,
+									"MINOR":{
+										"cg_type":"textstyle",
+										"cg_id":196,
+										"color":"#e0e0e0ff",
+										"font":"12px Roboto",
+										"alignment":"center"
 									},
-									"MAJOR": {
-										"cg_type": "textstyle",
-										"cg_id": 197,
-										"color": "#757575ff",
-										"font": "12px Roboto",
-										"alignment": "center"
+									"MAJOR":{
+										"cg_type":"textstyle",
+										"cg_id":197,
+										"color":"#757575ff",
+										"font":"12px Roboto",
+										"alignment":"center"
 									},
-									"EDGE": {
-										"cg_type": "textstyle",
-										"cg_id": 198,
-										"color": "#757575ff",
-										"font": "12px Roboto",
-										"alignment": "center"
+									"EDGE":{
+										"cg_type":"textstyle",
+										"cg_id":198,
+										"color":"#757575ff",
+										"font":"12px Roboto",
+										"alignment":"center"
 									},
-									"INTERMEDIATE": {
-										"cg_type": "textstyle",
-										"cg_id": 199,
-										"color": "#757575ff",
-										"font": "12px Roboto",
-										"alignment": "center"
+									"INTERMEDIATE":{
+										"cg_type":"textstyle",
+										"cg_id":199,
+										"color":"#757575ff",
+										"font":"12px Roboto",
+										"alignment":"center"
 									}
 								},
-								"ticksizes": {
-									"cg_id": 200,
-									"EDGE": 6,
-									"MAJOR": 6,
-									"INTERMEDIATE": 5,
-									"MINOR": 4
+								"ticksizes":{
+									"cg_id":200,
+									"EDGE":6,
+									"MAJOR":6,
+									"INTERMEDIATE":5,
+									"MINOR":4
 								},
-								"labelangles": {
-									"cg_id": 201
+								"labelangles":{
+									"cg_id":201
 								},
-								"visibleticks": {
-									"cg_id": 202,
-									"INTERMEDIATE": false,
-									"MINOR": true,
-									"EDGE": false
+								"visibleticks":{
+									"cg_id":202,
+									"INTERMEDIATE":false,
+									"MINOR":true,
+									"EDGE":false
 								},
-								"visiblelabels": {
-									"cg_id": 203,
-									"INTERMEDIATE": false,
-									"MINOR": false,
-									"EDGE": false,
-									"MAJOR": false
+								"visiblelabels":{
+									"cg_id":203,
+									"INTERMEDIATE":false,
+									"MINOR":false,
+									"EDGE":false,
+									"MAJOR":false
 								},
-								"labelanchortypes": {
-									"cg_id": 204
+								"labelanchortypes":{
+									"cg_id":204
 								},
-								"tag": null,
-								"transformer": null,
-								"formatlabelhandler": null,
-								"edge": {
-									"cg_id": 205,
-									"tickstyle": "#href(191)",
-									"tickvisible": false,
-									"ticksize": 6,
-									"labelstyle": "#href(198)",
-									"labelvisible": false
+								"tag":null,
+								"transformer":null,
+								"formatlabelhandler":null,
+								"edge":{
+									"cg_id":205,
+									"tickstyle":"#href(191)",
+									"tickvisible":false,
+									"ticksize":6,
+									"labelstyle":"#href(198)",
+									"labelvisible":false
 								},
-								"major": {
-									"cg_id": 206,
-									"tickstyle": "#href(189)",
-									"ticksize": 6,
-									"labelstyle": "#href(197)",
-									"labelvisible": false
+								"major":{
+									"cg_id":206,
+									"tickstyle":"#href(189)",
+									"ticksize":6,
+									"labelstyle":"#href(197)",
+									"labelvisible":false
 								},
-								"intermediate": {
-									"cg_id": 207,
-									"tickstyle": "#href(193)",
-									"tickvisible": false,
-									"ticksize": 5,
-									"labelstyle": "#href(199)",
-									"labelvisible": false
+								"intermediate":{
+									"cg_id":207,
+									"tickstyle":"#href(193)",
+									"tickvisible":false,
+									"ticksize":5,
+									"labelstyle":"#href(199)",
+									"labelvisible":false
 								},
-								"minor": {
-									"cg_id": 208,
-									"tickstyle": "#href(187)",
-									"tickvisible": true,
-									"ticksize": 4,
-									"labelstyle": "#href(196)",
-									"labelvisible": false
+								"minor":{
+									"cg_id":208,
+									"tickstyle":"#href(187)",
+									"tickvisible":true,
+									"ticksize":4,
+									"labelstyle":"#href(196)",
+									"labelvisible":false
 								},
-								"maxlabeleventhandler": null,
-								"MAJOR": {
-									"cg_id": 209,
-									"labelformat": {
-										"cg_type": "geotoolkit.util.NumberFormat",
-										"cg_id": 210,
-										"locale": "#href(44)",
-										"round": true,
-										"fulllocale": false,
-										"maximumfractiondigits": 2,
-										"minimumfractiondigits": 0,
-										"grouplength": 3
+								"maxlabeleventhandler":null,
+								"MAJOR":{
+									"cg_id":209,
+									"labelformat":{
+										"cg_type":"geotoolkit.util.NumberFormat",
+										"cg_id":210,
+										"locale":"#href(44)",
+										"round":true,
+										"fulllocale":false,
+										"maximumfractiondigits":2,
+										"minimumfractiondigits":0,
+										"grouplength":3
 									}
 								},
-								"MINOR": {
-									"cg_id": 211,
-									"labelformat": {
-										"cg_type": "geotoolkit.util.NumberFormat",
-										"cg_id": 212,
-										"locale": "#href(44)",
-										"round": true,
-										"fulllocale": false,
-										"maximumfractiondigits": 2,
-										"minimumfractiondigits": 0,
-										"grouplength": 3
+								"MINOR":{
+									"cg_id":211,
+									"labelformat":{
+										"cg_type":"geotoolkit.util.NumberFormat",
+										"cg_id":212,
+										"locale":"#href(44)",
+										"round":true,
+										"fulllocale":false,
+										"maximumfractiondigits":2,
+										"minimumfractiondigits":0,
+										"grouplength":3
 									}
 								},
-								"EDGE": {
-									"cg_id": 213,
-									"labelformat": {
-										"cg_type": "geotoolkit.util.NumberFormat",
-										"cg_id": 214,
-										"locale": "#href(44)",
-										"round": true,
-										"fulllocale": false,
-										"maximumfractiondigits": 2,
-										"minimumfractiondigits": 0,
-										"grouplength": 3
+								"EDGE":{
+									"cg_id":213,
+									"labelformat":{
+										"cg_type":"geotoolkit.util.NumberFormat",
+										"cg_id":214,
+										"locale":"#href(44)",
+										"round":true,
+										"fulllocale":false,
+										"maximumfractiondigits":2,
+										"minimumfractiondigits":0,
+										"grouplength":3
 									}
 								},
-								"INTERMEDIATE": {
-									"cg_id": 215,
-									"labelformat": {
-										"cg_type": "geotoolkit.util.NumberFormat",
-										"cg_id": 216,
-										"locale": "#href(44)",
-										"round": true,
-										"fulllocale": false,
-										"maximumfractiondigits": 2,
-										"minimumfractiondigits": 0,
-										"grouplength": 3
+								"INTERMEDIATE":{
+									"cg_id":215,
+									"labelformat":{
+										"cg_type":"geotoolkit.util.NumberFormat",
+										"cg_id":216,
+										"locale":"#href(44)",
+										"round":true,
+										"fulllocale":false,
+										"maximumfractiondigits":2,
+										"minimumfractiondigits":0,
+										"grouplength":3
 									}
 								},
-								"minspan": 15,
-								"minlabelspan": 5,
-								"modelorigin": 0,
-								"precision": 9,
-								"adaptivetype": "nice",
-								"minorticksamount": 5,
-								"minspangrade": "minor",
-								"hidelabelsonspantoosmall": false,
-								"gradespriority": [
+								"minspan":15,
+								"minlabelspan":5,
+								"modelorigin":0,
+								"precision":9,
+								"adaptivetype":"nice",
+								"minorticksamount":5,
+								"minspangrade":"minor",
+								"hidelabelsonspantoosmall":false,
+								"gradespriority":[
 									"major",
 									"intermediate",
 									"minor",
@@ -1628,880 +1698,914 @@
 							}
 						}
 					],
-					"value": [
+					"value":[
 						{
-							"cg_type": "linearvaluegrid",
-							"cg_id": 217,
-							"id": "LinearGrid1",
-							"name": "",
-							"cssclass": "verticalGrid",
-							"selectable": true,
-							"visible": true,
-							"tag": null,
-							"animationstyle": null,
-							"linestyle": {
-								"cg_type": "linestyle",
-								"cg_id": 218,
-								"color": "#dfe0e3ff",
-								"width": 1,
-								"pattern": [],
-								"pixelsnapmode": {
-									"cg_id": 219,
-									"x": true,
-									"y": false
+							"cg_type":"linearvaluegrid",
+							"cg_id":217,
+							"id":"LinearGrid1",
+							"name":"",
+							"cssclass":"verticalGrid",
+							"selectable":true,
+							"visible":true,
+							"tag":null,
+							"animationstyle":null,
+							"linestyle":{
+								"cg_type":"linestyle",
+								"cg_id":218,
+								"color":"#dfe0e3ff",
+								"width":1,
+								"pattern":[
+
+								],
+								"pixelsnapmode":{
+									"cg_id":219,
+									"x":true,
+									"y":false
 								},
-								"linejoin": "round",
-								"linecap": "butt"
+								"linejoin":"round",
+								"linecap":"butt"
 							},
-							"linescount": 11,
-							"edge": {
-								"cg_id": 220,
-								"visible": true
+							"linescount":11,
+							"edge":{
+								"cg_id":220,
+								"visible":true
 							}
 						},
 						{
-							"cg_type": "linearvaluegrid",
-							"cg_id": 221,
-							"id": "LinearGrid2",
-							"name": "",
-							"cssclass": "verticalGrid",
-							"selectable": true,
-							"visible": true,
-							"tag": null,
-							"animationstyle": null,
-							"linestyle": {
-								"cg_type": "linestyle",
-								"cg_id": 222,
-								"color": "#dfe0e3ff",
-								"width": 1,
-								"pattern": [],
-								"pixelsnapmode": {
-									"cg_id": 223,
-									"x": true,
-									"y": false
+							"cg_type":"linearvaluegrid",
+							"cg_id":221,
+							"id":"LinearGrid2",
+							"name":"",
+							"cssclass":"verticalGrid",
+							"selectable":true,
+							"visible":true,
+							"tag":null,
+							"animationstyle":null,
+							"linestyle":{
+								"cg_type":"linestyle",
+								"cg_id":222,
+								"color":"#dfe0e3ff",
+								"width":1,
+								"pattern":[
+
+								],
+								"pixelsnapmode":{
+									"cg_id":223,
+									"x":true,
+									"y":false
 								},
-								"linejoin": "round",
-								"linecap": "butt"
+								"linejoin":"round",
+								"linecap":"butt"
 							},
-							"linescount": 3,
-							"edge": {
-								"cg_id": 224,
-								"visible": true
+							"linescount":3,
+							"edge":{
+								"cg_id":224,
+								"visible":true
 							}
 						},
 						{
-							"cg_type": "log10valuegrid",
-							"cg_id": 225,
-							"id": "LogGrid1",
-							"name": "",
-							"cssclass": "verticalGrid",
-							"selectable": true,
-							"visible": true,
-							"tag": null,
-							"animationstyle": null,
-							"linestyle": {
-								"cg_type": "linestyle",
-								"cg_id": 226,
-								"color": "#dfe0e3ff",
-								"width": 1,
-								"pattern": [],
-								"pixelsnapmode": {
-									"cg_id": 227,
-									"x": true,
-									"y": false
+							"cg_type":"log10valuegrid",
+							"cg_id":225,
+							"id":"LogGrid1",
+							"name":"",
+							"cssclass":"verticalGrid",
+							"selectable":true,
+							"visible":true,
+							"tag":null,
+							"animationstyle":null,
+							"linestyle":{
+								"cg_type":"linestyle",
+								"cg_id":226,
+								"color":"#dfe0e3ff",
+								"width":1,
+								"pattern":[
+
+								],
+								"pixelsnapmode":{
+									"cg_id":227,
+									"x":true,
+									"y":false
 								},
-								"linejoin": "round",
-								"linecap": "butt"
+								"linejoin":"round",
+								"linecap":"butt"
 							},
-							"decadecount": 2,
-							"bounds": null,
-							"intermediate": true,
-							"logstart": null,
-							"logstop": null,
-							"logbase": 10,
-							"reverse": false
+							"decadecount":2,
+							"bounds":null,
+							"intermediate":true,
+							"logstart":null,
+							"logstop":null,
+							"logbase":10,
+							"reverse":false
 						},
 						{
-							"cg_type": "log10valuegrid",
-							"cg_id": 228,
-							"id": "LogGrid2",
-							"name": "",
-							"cssclass": "verticalGrid",
-							"selectable": true,
-							"visible": true,
-							"tag": null,
-							"animationstyle": null,
-							"linestyle": {
-								"cg_type": "linestyle",
-								"cg_id": 229,
-								"color": "#dfe0e3ff",
-								"width": 1,
-								"pattern": [],
-								"pixelsnapmode": {
-									"cg_id": 230,
-									"x": true,
-									"y": false
+							"cg_type":"log10valuegrid",
+							"cg_id":228,
+							"id":"LogGrid2",
+							"name":"",
+							"cssclass":"verticalGrid",
+							"selectable":true,
+							"visible":true,
+							"tag":null,
+							"animationstyle":null,
+							"linestyle":{
+								"cg_type":"linestyle",
+								"cg_id":229,
+								"color":"#dfe0e3ff",
+								"width":1,
+								"pattern":[
+
+								],
+								"pixelsnapmode":{
+									"cg_id":230,
+									"x":true,
+									"y":false
 								},
-								"linejoin": "round",
-								"linecap": "butt"
+								"linejoin":"round",
+								"linecap":"butt"
 							},
-							"decadecount": 2,
-							"bounds": null,
-							"intermediate": false,
-							"logstart": null,
-							"logstop": null,
-							"logbase": 10,
-							"reverse": false
+							"decadecount":2,
+							"bounds":null,
+							"intermediate":false,
+							"logstart":null,
+							"logstop":null,
+							"logbase":10,
+							"reverse":false
 						}
 					]
 				},
-				"visuals": [
+				"visuals":[
 					{
-						"cg_type": "curve",
-						"id": null,
-						"name": "NPHI",
-						"display_mode": [
+						"cg_type":"curve",
+						"id":null,
+						"name":"NPHI",
+						"display_mode":[
 							"line"
 						],
-						"limits_type": 2,
-						"custom_limits_minimum": 0.45,
-						"custom_limits_maximum": -0.15,
-						"valueformat": {
-							"cg_type": "geotoolkit.util.DecimalFormat",
-							"cg_id": 232,
-							"format": "#,###.00",
-							"locale": "us",
-							"decimalseparatoralwaysshown": false,
-							"round": true,
-							"overridegroupsep": null,
-							"overridedecsep": null,
-							"overridenegsign": null,
-							"ispercentage": false,
-							"autodetectpercentage": true,
-							"maximumfractiondigits": 2,
-							"minimumfractiondigits": 0
+						"limits_type":2,
+						"custom_limits_minimum":0.45,
+						"custom_limits_maximum":-0.15,
+						"valueformat":{
+							"cg_type":"geotoolkit.util.DecimalFormat",
+							"cg_id":232,
+							"format":"#,###.00",
+							"locale":"us",
+							"decimalseparatoralwaysshown":false,
+							"round":true,
+							"overridegroupsep":null,
+							"overridedecsep":null,
+							"overridenegsign":null,
+							"ispercentage":false,
+							"autodetectpercentage":true,
+							"maximumfractiondigits":2,
+							"minimumfractiondigits":0
 						},
-						"linestyle": {
-							"cg_type": "linestyle",
-							"cg_id": 233,
-							"color": "#e64a19ff",
-							"width": 1,
-							"pattern": [],
-							"pixelsnapmode": {
-								"cg_id": 234,
-								"x": false,
-								"y": false
+						"linestyle":{
+							"cg_type":"linestyle",
+							"cg_id":233,
+							"color":"#e64a19ff",
+							"width":1,
+							"pattern":[
+
+							],
+							"pixelsnapmode":{
+								"cg_id":234,
+								"x":false,
+								"y":false
 							},
-							"linejoin": "round",
-							"linecap": "butt"
+							"linejoin":"round",
+							"linecap":"butt"
 						},
-						"textstyle": {
-							"cg_type": "textstyle",
-							"cg_id": 235,
-							"color": "#757575ff",
-							"font": "12px Roboto"
+						"textstyle":{
+							"cg_type":"textstyle",
+							"cg_id":235,
+							"color":"#757575ff",
+							"font":"12px Roboto"
 						},
-						"header": {
-							"cssclass": null,
-							"visible": true,
-							"linestyle": {
-								"cg_type": "linestyle",
-								"cg_id": 237,
-								"color": "#000000ff",
-								"width": 1,
-								"pattern": [],
-								"pixelsnapmode": {
-									"cg_id": 238,
-									"x": true,
-									"y": true
+						"header":{
+							"cssclass":null,
+							"visible":true,
+							"linestyle":{
+								"cg_type":"linestyle",
+								"cg_id":237,
+								"color":"#000000ff",
+								"width":1,
+								"pattern":[
+
+								],
+								"pixelsnapmode":{
+									"cg_id":238,
+									"x":true,
+									"y":true
 								},
-								"linejoin": "round",
-								"linecap": "butt"
+								"linejoin":"round",
+								"linecap":"butt"
 							},
-							"textstyle": {
-								"cg_type": "textstyle",
-								"cg_id": 239,
-								"color": "#000000ff",
-								"font": "normal 11px Arial"
+							"textstyle":{
+								"cg_type":"textstyle",
+								"cg_id":239,
+								"color":"#000000ff",
+								"font":"normal 11px Arial"
 							},
-							"gap": 5,
-							"order": [
+							"gap":5,
+							"order":[
 								"Name",
 								"Tracking",
 								"Unit",
 								"Description"
 							],
-							"elements": [
+							"elements":[
 								{
-									"cg_id": 240,
-									"visible": true,
-									"text": "0.45",
-									"verticalpos": "bottom",
-									"horizontalpos": "left",
-									"textstyle": "#href(76)",
-									"name": "ScaleFrom"
+									"cg_id":240,
+									"name":"ScaleFrom",
+									"textstyle":"#href(76)",
+									"horizontalpos":"left",
+									"verticalpos":"top",
+									"text":"0.45",
+									"visible":true
 								},
 								{
-									"cg_id": 241,
-									"cut": "left-to-right",
-									"visible": true,
-									"text": "NPHI",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(78)",
-									"name": "Name"
+									"cg_id":241,
+									"name":"Name",
+									"textstyle":"#href(78)",
+									"horizontalpos":"center",
+									"verticalpos":"top",
+									"text":"NPHI",
+									"visible":true,
+									"cut":"left-to-right"
 								},
 								{
-									"cg_id": 242,
-									"cut": "left-to-right",
-									"visible": true,
-									"text": null,
-									"verticalpos": "bottom",
-									"horizontalpos": "center",
-									"textstyle": "#href(80)",
-									"name": "Description"
+									"cg_id":242,
+									"name":"Description",
+									"textstyle":"#href(80)",
+									"horizontalpos":"center",
+									"verticalpos":"bottom",
+									"text":null,
+									"visible":true,
+									"cut":"left-to-right"
 								},
 								{
-									"cg_id": 243,
-									"visible": true,
-									"text": null,
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(82)",
-									"name": "Tracking"
+									"cg_id":243,
+									"name":"Tracking",
+									"textstyle":"#href(82)",
+									"horizontalpos":"center",
+									"verticalpos":"bottom",
+									"text":null,
+									"visible":true
 								},
 								{
-									"cg_id": 244,
-									"visible": true,
-									"text": "m3/m3",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(84)",
-									"name": "Unit"
+									"cg_id":244,
+									"name":"Unit",
+									"textstyle":"#href(84)",
+									"horizontalpos":"center",
+									"verticalpos":"bottom",
+									"text":"m3/m3",
+									"visible":true
 								},
 								{
-									"cg_id": 245,
-									"visible": true,
-									"text": "-0.15",
-									"verticalpos": "bottom",
-									"horizontalpos": "right",
-									"textstyle": "#href(86)",
-									"name": "ScaleTo"
+									"cg_id":245,
+									"name":"ScaleTo",
+									"textstyle":"#href(86)",
+									"horizontalpos":"right",
+									"verticalpos":"top",
+									"text":"-0.15",
+									"visible":true
 								},
 								{
-									"cg_id": 246,
-									"options": {
-										"cg_id": 247,
-										"position": "bottom"
-									},
-									"visible": false,
-									"text": "",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(89)",
-									"name": "Axis"
+									"cg_id":246,
+									"name":"Axis",
+									"textstyle":"#href(88)",
+									"horizontalpos":"center",
+									"verticalpos":"top",
+									"text":"",
+									"visible":false,
+									"options":{
+										"cg_id":247,
+										"position":"bottom"
+									}
 								},
 								{
-									"cg_id": 248,
-									"visible": true,
-									"text": "",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(91)",
-									"name": "Fill"
+									"cg_id":248,
+									"name":"Fill",
+									"textstyle":"#href(91)",
+									"horizontalpos":"center",
+									"verticalpos":"top",
+									"text":"",
+									"visible":true
 								},
 								{
-									"cg_id": 249,
-									"visible": true,
-									"text": "",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(93)",
-									"name": "Line"
+									"cg_id":249,
+									"name":"Line",
+									"textstyle":"#href(93)",
+									"horizontalpos":"center",
+									"verticalpos":"center",
+									"text":"",
+									"visible":true
 								},
 								{
-									"cg_id": 250,
-									"visible": true,
-									"text": "",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(95)",
-									"name": "Symbol"
+									"cg_id":250,
+									"name":"Symbol",
+									"textstyle":"#href(95)",
+									"horizontalpos":"center",
+									"verticalpos":"top",
+									"text":"",
+									"visible":true
 								}
 							]
 						},
-						"cg_id": 231
+						"cg_id":231
 					},
 					{
-						"cg_type": "curve",
-						"id": null,
-						"name": "RHOB",
-						"display_mode": [
+						"cg_type":"curve",
+						"id":null,
+						"name":"RHOB",
+						"display_mode":[
 							"line"
 						],
-						"limits_type": 2,
-						"custom_limits_minimum": 1.95,
-						"custom_limits_maximum": 2.95,
-						"valueformat": {
-							"cg_type": "geotoolkit.util.DecimalFormat",
-							"cg_id": 252,
-							"format": "#,###.00",
-							"locale": "us",
-							"decimalseparatoralwaysshown": false,
-							"round": true,
-							"overridegroupsep": null,
-							"overridedecsep": null,
-							"overridenegsign": null,
-							"ispercentage": false,
-							"autodetectpercentage": true,
-							"maximumfractiondigits": 2,
-							"minimumfractiondigits": 0
+						"limits_type":2,
+						"custom_limits_minimum":1.95,
+						"custom_limits_maximum":2.95,
+						"valueformat":{
+							"cg_type":"geotoolkit.util.DecimalFormat",
+							"cg_id":252,
+							"format":"#,###.00",
+							"locale":"us",
+							"decimalseparatoralwaysshown":false,
+							"round":true,
+							"overridegroupsep":null,
+							"overridedecsep":null,
+							"overridenegsign":null,
+							"ispercentage":false,
+							"autodetectpercentage":true,
+							"maximumfractiondigits":2,
+							"minimumfractiondigits":0
 						},
-						"linestyle": {
-							"cg_type": "linestyle",
-							"cg_id": 253,
-							"color": "#2196f3ff",
-							"width": 1,
-							"pattern": [],
-							"pixelsnapmode": {
-								"cg_id": 254,
-								"x": false,
-								"y": false
+						"linestyle":{
+							"cg_type":"linestyle",
+							"cg_id":253,
+							"color":"#2196f3ff",
+							"width":1,
+							"pattern":[
+
+							],
+							"pixelsnapmode":{
+								"cg_id":254,
+								"x":false,
+								"y":false
 							},
-							"linejoin": "round",
-							"linecap": "butt"
+							"linejoin":"round",
+							"linecap":"butt"
 						},
-						"textstyle": {
-							"cg_type": "textstyle",
-							"cg_id": 255,
-							"color": "#757575ff",
-							"font": "12px Roboto"
+						"textstyle":{
+							"cg_type":"textstyle",
+							"cg_id":255,
+							"color":"#757575ff",
+							"font":"12px Roboto"
 						},
-						"header": {
-							"cssclass": null,
-							"visible": true,
-							"linestyle": {
-								"cg_type": "linestyle",
-								"cg_id": 257,
-								"color": "#000000ff",
-								"width": 1,
-								"pattern": [],
-								"pixelsnapmode": {
-									"cg_id": 258,
-									"x": true,
-									"y": true
+						"header":{
+							"cssclass":null,
+							"visible":true,
+							"linestyle":{
+								"cg_type":"linestyle",
+								"cg_id":257,
+								"color":"#000000ff",
+								"width":1,
+								"pattern":[
+
+								],
+								"pixelsnapmode":{
+									"cg_id":258,
+									"x":true,
+									"y":true
 								},
-								"linejoin": "round",
-								"linecap": "butt"
+								"linejoin":"round",
+								"linecap":"butt"
 							},
-							"textstyle": {
-								"cg_type": "textstyle",
-								"cg_id": 259,
-								"color": "#000000ff",
-								"font": "normal 11px Arial"
+							"textstyle":{
+								"cg_type":"textstyle",
+								"cg_id":259,
+								"color":"#000000ff",
+								"font":"normal 11px Arial"
 							},
-							"gap": 5,
-							"order": [
+							"gap":5,
+							"order":[
 								"Name",
 								"Tracking",
 								"Unit",
 								"Description"
 							],
-							"elements": [
+							"elements":[
 								{
-									"cg_id": 260,
-									"visible": true,
-									"text": "1.95",
-									"verticalpos": "bottom",
-									"horizontalpos": "left",
-									"textstyle": "#href(76)",
-									"name": "ScaleFrom"
+									"cg_id":260,
+									"name":"ScaleFrom",
+									"textstyle":"#href(76)",
+									"horizontalpos":"left",
+									"verticalpos":"top",
+									"text":"1.95",
+									"visible":true
 								},
 								{
-									"cg_id": 261,
-									"cut": "left-to-right",
-									"visible": true,
-									"text": "RHOB",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(78)",
-									"name": "Name"
+									"cg_id":261,
+									"name":"Name",
+									"textstyle":"#href(78)",
+									"horizontalpos":"center",
+									"verticalpos":"top",
+									"text":"RHOB",
+									"visible":true,
+									"cut":"left-to-right"
 								},
 								{
-									"cg_id": 262,
-									"cut": "left-to-right",
-									"visible": true,
-									"text": null,
-									"verticalpos": "bottom",
-									"horizontalpos": "center",
-									"textstyle": "#href(80)",
-									"name": "Description"
+									"cg_id":262,
+									"name":"Description",
+									"textstyle":"#href(80)",
+									"horizontalpos":"center",
+									"verticalpos":"bottom",
+									"text":null,
+									"visible":true,
+									"cut":"left-to-right"
 								},
 								{
-									"cg_id": 263,
-									"visible": true,
-									"text": null,
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(82)",
-									"name": "Tracking"
+									"cg_id":263,
+									"name":"Tracking",
+									"textstyle":"#href(82)",
+									"horizontalpos":"center",
+									"verticalpos":"bottom",
+									"text":null,
+									"visible":true
 								},
 								{
-									"cg_id": 264,
-									"visible": true,
-									"text": "g/cm3",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(84)",
-									"name": "Unit"
+									"cg_id":264,
+									"name":"Unit",
+									"textstyle":"#href(84)",
+									"horizontalpos":"center",
+									"verticalpos":"bottom",
+									"text":"g/cm3",
+									"visible":true
 								},
 								{
-									"cg_id": 265,
-									"visible": true,
-									"text": "2.95",
-									"verticalpos": "bottom",
-									"horizontalpos": "right",
-									"textstyle": "#href(86)",
-									"name": "ScaleTo"
+									"cg_id":265,
+									"name":"ScaleTo",
+									"textstyle":"#href(86)",
+									"horizontalpos":"right",
+									"verticalpos":"top",
+									"text":"2.95",
+									"visible":true
 								},
 								{
-									"cg_id": 266,
-									"options": {
-										"cg_id": 267,
-										"position": "bottom"
-									},
-									"visible": false,
-									"text": "",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(89)",
-									"name": "Axis"
+									"cg_id":266,
+									"name":"Axis",
+									"textstyle":"#href(88)",
+									"horizontalpos":"center",
+									"verticalpos":"top",
+									"text":"",
+									"visible":false,
+									"options":{
+										"cg_id":267,
+										"position":"bottom"
+									}
 								},
 								{
-									"cg_id": 268,
-									"visible": true,
-									"text": "",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(91)",
-									"name": "Fill"
+									"cg_id":268,
+									"name":"Fill",
+									"textstyle":"#href(91)",
+									"horizontalpos":"center",
+									"verticalpos":"top",
+									"text":"",
+									"visible":true
 								},
 								{
-									"cg_id": 269,
-									"visible": true,
-									"text": "",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(93)",
-									"name": "Line"
+									"cg_id":269,
+									"name":"Line",
+									"textstyle":"#href(93)",
+									"horizontalpos":"center",
+									"verticalpos":"center",
+									"text":"",
+									"visible":true
 								},
 								{
-									"cg_id": 270,
-									"visible": true,
-									"text": "",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(95)",
-									"name": "Symbol"
+									"cg_id":270,
+									"name":"Symbol",
+									"textstyle":"#href(95)",
+									"horizontalpos":"center",
+									"verticalpos":"top",
+									"text":"",
+									"visible":true
 								}
 							]
 						},
-						"cg_id": 251
+						"cg_id":251
 					},
 					{
-						"cg_type": "logfill",
-						"cg_id": 271,
-						"id": null,
-						"name": "",
-						"cssclass": null,
-						"selectable": true,
-						"visible": true,
-						"tag": null,
-						"animationstyle": null,
-						"linestyle": null,
-						"curve1": "#href(231)",
-						"curve2": "#href(251)",
-						"fillstyle": {
-							"cg_type": "fillstyle",
-							"cg_id": 272,
-							"color": "#fdd835ff",
-							"evenoddmode": false
+						"cg_type":"logfill",
+						"cg_id":271,
+						"id":null,
+						"name":"",
+						"cssclass":null,
+						"selectable":true,
+						"visible":true,
+						"tag":null,
+						"animationstyle":null,
+						"linestyle":null,
+						"curve1":"#href(231)",
+						"curve2":"#href(251)",
+						"fillstyle":{
+							"cg_type":"fillstyle",
+							"cg_id":272,
+							"color":"#fdd835ff",
+							"evenoddmode":false
 						},
-						"negativefillstyle": "#href(272)",
-						"positivefillstyle": "#href(272)",
-						"filltype": "left"
+						"negativefillstyle":"#href(272)",
+						"positivefillstyle":"#href(272)",
+						"filltype":"left"
 					},
 					{
-						"cg_type": "logfill",
-						"cg_id": 273,
-						"id": null,
-						"name": "",
-						"cssclass": null,
-						"selectable": true,
-						"visible": true,
-						"tag": null,
-						"animationstyle": null,
-						"linestyle": null,
-						"curve1": "#href(251)",
-						"curve2": "#href(231)",
-						"fillstyle": {
-							"cg_type": "fillstyle",
-							"cg_id": 274,
-							"color": "#7cb342ff",
-							"evenoddmode": false
+						"cg_type":"logfill",
+						"cg_id":273,
+						"id":null,
+						"name":"",
+						"cssclass":null,
+						"selectable":true,
+						"visible":true,
+						"tag":null,
+						"animationstyle":null,
+						"linestyle":null,
+						"curve1":"#href(251)",
+						"curve2":"#href(231)",
+						"fillstyle":{
+							"cg_type":"fillstyle",
+							"cg_id":274,
+							"color":"#7cb342ff",
+							"evenoddmode":false
 						},
-						"negativefillstyle": "#href(274)",
-						"positivefillstyle": "#href(274)",
-						"filltype": "left"
+						"negativefillstyle":"#href(274)",
+						"positivefillstyle":"#href(274)",
+						"filltype":"left"
 					}
 				]
 			},
 			{
-				"cg_id": 276,
-				"name": "Track # 3",
-				"id": "LOG_TRACK",
-				"type": "linear",
-				"width": 200,
-				"block": {
-					"cg_type": "geotoolkit.welllog.LogBlock",
-					"cg_id": 277,
-					"id": null,
-					"name": "",
-					"cssclass": null,
-					"selectable": false,
-					"visible": false,
-					"tag": null,
-					"animationstyle": null,
-					"linestyle": {
-						"cg_type": "linestyle",
-						"cg_id": 278,
-						"color": "#9e9e9eff",
-						"width": 1,
-						"pattern": [],
-						"pixelsnapmode": {
-							"cg_id": 279,
-							"x": true,
-							"y": true
+				"cg_id":276,
+				"name":"Track # 3",
+				"id":"LOG_TRACK",
+				"type":"linear",
+				"width":200,
+				"block":{
+					"cg_type":"geotoolkit.welllog.LogBlock",
+					"cg_id":277,
+					"id":null,
+					"name":"",
+					"cssclass":null,
+					"selectable":false,
+					"visible":false,
+					"tag":null,
+					"animationstyle":null,
+					"linestyle":{
+						"cg_type":"linestyle",
+						"cg_id":278,
+						"color":"#9e9e9eff",
+						"width":1,
+						"pattern":[
+
+						],
+						"pixelsnapmode":{
+							"cg_id":279,
+							"x":true,
+							"y":true
 						},
-						"linejoin": "round",
-						"linecap": "butt"
+						"linejoin":"round",
+						"linecap":"butt"
 					},
-					"position": 1,
-					"fillstyle": {
-						"cg_type": "fillstyle",
-						"cg_id": 280,
-						"color": "#cc0066cc",
-						"evenoddmode": false
+					"position":1,
+					"fillstyle":{
+						"cg_type":"fillstyle",
+						"cg_id":280,
+						"color":"#cc0066cc",
+						"evenoddmode":false
 					}
 				},
-				"header": {
-					"cg_type": "trackheader",
-					"visible": true,
-					"visibletracktitle": false,
-					"firsttolast": true,
-					"titlefirst": true,
-					"toptobottom": true,
-					"holdtitle": "None",
-					"isbordervisible": false,
-					"borderlinestyle": {
-						"cg_type": "linestyle",
-						"cg_id": 282,
-						"color": "#dfe0e3ff",
-						"width": 1,
-						"pattern": [],
-						"pixelsnapmode": {
-							"cg_id": 283,
-							"x": false,
-							"y": false
+				"header":{
+					"cg_type":"trackheader",
+					"visible":true,
+					"visibletracktitle":false,
+					"firsttolast":true,
+					"titlefirst":true,
+					"toptobottom":true,
+					"holdtitle":"None",
+					"isbordervisible":false,
+					"borderlinestyle":{
+						"cg_type":"linestyle",
+						"cg_id":282,
+						"color":"#dfe0e3ff",
+						"width":1,
+						"pattern":[
+
+						],
+						"pixelsnapmode":{
+							"cg_id":283,
+							"x":false,
+							"y":false
 						},
-						"linejoin": "round",
-						"linecap": "butt"
+						"linejoin":"round",
+						"linecap":"butt"
 					},
-					"title": {
-						"visible": true,
-						"linestyle": {
-							"cg_type": "linestyle",
-							"cg_id": 284,
-							"color": "#000000ff",
-							"width": 1,
-							"pattern": [],
-							"pixelsnapmode": {
-								"cg_id": 285,
-								"x": true,
-								"y": true
+					"title":{
+						"visible":true,
+						"linestyle":{
+							"cg_type":"linestyle",
+							"cg_id":284,
+							"color":"#000000ff",
+							"width":1,
+							"pattern":[
+
+							],
+							"pixelsnapmode":{
+								"cg_id":285,
+								"x":true,
+								"y":true
 							},
-							"linejoin": "round",
-							"linecap": "butt"
+							"linejoin":"round",
+							"linecap":"butt"
 						},
-						"textstyle": {
-							"cg_type": "textstyle",
-							"cg_id": 286,
-							"color": "#000000ff",
-							"font": "11px Tahoma",
-							"baseline": "alphabetic",
-							"alignment": "center"
+						"textstyle":{
+							"cg_type":"textstyle",
+							"cg_id":286,
+							"color":"#000000ff",
+							"font":"11px Tahoma",
+							"baseline":"alphabetic",
+							"alignment":"center"
 						},
-						"adaptiveheight": false,
-						"autolabelrotation": true,
-						"labelrotationangle": 0
+						"adaptiveheight":false,
+						"autolabelrotation":true,
+						"labelrotationangle":0
 					}
 				},
-				"grids": {
-					"index": [
+				"grids":{
+					"index":[
 						{
-							"cg_type": "horizontalgrid",
-							"cg_id": 287,
-							"id": "IndexGrid1",
-							"name": "",
-							"cssclass": "horizontalGrid",
-							"selectable": true,
-							"visible": true,
-							"tag": null,
-							"animationstyle": null,
-							"linestyle": {
-								"cg_type": "linestyle",
-								"cg_id": 288,
-								"color": "#aaaaaaff",
-								"width": 1,
-								"pattern": [],
-								"pixelsnapmode": {
-									"cg_id": 289,
-									"x": false,
-									"y": false
+							"cg_type":"horizontalgrid",
+							"cg_id":287,
+							"id":"IndexGrid1",
+							"name":"",
+							"cssclass":"horizontalGrid",
+							"selectable":true,
+							"visible":true,
+							"tag":null,
+							"animationstyle":null,
+							"linestyle":{
+								"cg_type":"linestyle",
+								"cg_id":288,
+								"color":"#aaaaaaff",
+								"width":1,
+								"pattern":[
+
+								],
+								"pixelsnapmode":{
+									"cg_id":289,
+									"x":false,
+									"y":false
 								},
-								"linejoin": "round",
-								"linecap": "butt"
+								"linejoin":"round",
+								"linecap":"butt"
 							},
-							"minorlinestyle": "#href(288)",
-							"majorlinestyle": {
-								"cg_type": "linestyle",
-								"cg_id": 290,
-								"color": "#40444cff",
-								"width": 2,
-								"pattern": [],
-								"pixelsnapmode": {
-									"cg_id": 291,
-									"x": false,
-									"y": false
+							"minorlinestyle":"#href(288)",
+							"majorlinestyle":{
+								"cg_type":"linestyle",
+								"cg_id":290,
+								"color":"#40444cff",
+								"width":2,
+								"pattern":[
+
+								],
+								"pixelsnapmode":{
+									"cg_id":291,
+									"x":false,
+									"y":false
 								},
-								"linejoin": "round",
-								"linecap": "butt"
+								"linejoin":"round",
+								"linecap":"butt"
 							},
-							"tickgenerator": {
-								"cg_type": "adaptivetickgenerator",
-								"cg_id": 292,
-								"tickstyles": {
-									"cg_id": 293,
-									"MINOR": {
-										"cg_type": "linestyle",
-										"cg_id": 294,
-										"color": "#dfe0e3ff",
-										"width": 1,
-										"pattern": [],
-										"pixelsnapmode": {
-											"cg_id": 295,
-											"x": false,
-											"y": true
+							"tickgenerator":{
+								"cg_type":"adaptivetickgenerator",
+								"cg_id":292,
+								"tickstyles":{
+									"cg_id":293,
+									"MINOR":{
+										"cg_type":"linestyle",
+										"cg_id":294,
+										"color":"#dfe0e3ff",
+										"width":1,
+										"pattern":[
+
+										],
+										"pixelsnapmode":{
+											"cg_id":295,
+											"x":false,
+											"y":true
 										},
-										"linejoin": "round",
-										"linecap": "butt"
+										"linejoin":"round",
+										"linecap":"butt"
 									},
-									"MAJOR": {
-										"cg_type": "linestyle",
-										"cg_id": 296,
-										"color": "#dfe0e3ff",
-										"width": 1,
-										"pattern": [],
-										"pixelsnapmode": {
-											"cg_id": 297,
-											"x": false,
-											"y": true
+									"MAJOR":{
+										"cg_type":"linestyle",
+										"cg_id":296,
+										"color":"#dfe0e3ff",
+										"width":1,
+										"pattern":[
+
+										],
+										"pixelsnapmode":{
+											"cg_id":297,
+											"x":false,
+											"y":true
 										},
-										"linejoin": "round",
-										"linecap": "butt"
+										"linejoin":"round",
+										"linecap":"butt"
 									},
-									"EDGE": {
-										"cg_type": "linestyle",
-										"cg_id": 298,
-										"color": "#757575ff",
-										"width": 1,
-										"pattern": [],
-										"pixelsnapmode": {
-											"cg_id": 299,
-											"x": true,
-											"y": true
+									"EDGE":{
+										"cg_type":"linestyle",
+										"cg_id":298,
+										"color":"#757575ff",
+										"width":1,
+										"pattern":[
+
+										],
+										"pixelsnapmode":{
+											"cg_id":299,
+											"x":true,
+											"y":true
 										},
-										"linejoin": "round",
-										"linecap": "butt"
+										"linejoin":"round",
+										"linecap":"butt"
 									},
-									"INTERMEDIATE": {
-										"cg_type": "linestyle",
-										"cg_id": 300,
-										"color": "#757575ff",
-										"width": 1,
-										"pattern": [],
-										"pixelsnapmode": {
-											"cg_id": 301,
-											"x": true,
-											"y": true
+									"INTERMEDIATE":{
+										"cg_type":"linestyle",
+										"cg_id":300,
+										"color":"#757575ff",
+										"width":1,
+										"pattern":[
+
+										],
+										"pixelsnapmode":{
+											"cg_id":301,
+											"x":true,
+											"y":true
 										},
-										"linejoin": "round",
-										"linecap": "butt"
+										"linejoin":"round",
+										"linecap":"butt"
 									}
 								},
-								"labelstyles": {
-									"cg_id": 302,
-									"MINOR": {
-										"cg_type": "textstyle",
-										"cg_id": 303,
-										"color": "#e0e0e0ff",
-										"font": "12px Roboto",
-										"alignment": "center"
+								"labelstyles":{
+									"cg_id":302,
+									"MINOR":{
+										"cg_type":"textstyle",
+										"cg_id":303,
+										"color":"#e0e0e0ff",
+										"font":"12px Roboto",
+										"alignment":"center"
 									},
-									"MAJOR": {
-										"cg_type": "textstyle",
-										"cg_id": 304,
-										"color": "#757575ff",
-										"font": "12px Roboto",
-										"alignment": "center"
+									"MAJOR":{
+										"cg_type":"textstyle",
+										"cg_id":304,
+										"color":"#757575ff",
+										"font":"12px Roboto",
+										"alignment":"center"
 									},
-									"EDGE": {
-										"cg_type": "textstyle",
-										"cg_id": 305,
-										"color": "#757575ff",
-										"font": "12px Roboto",
-										"alignment": "center"
+									"EDGE":{
+										"cg_type":"textstyle",
+										"cg_id":305,
+										"color":"#757575ff",
+										"font":"12px Roboto",
+										"alignment":"center"
 									},
-									"INTERMEDIATE": {
-										"cg_type": "textstyle",
-										"cg_id": 306,
-										"color": "#757575ff",
-										"font": "12px Roboto",
-										"alignment": "center"
+									"INTERMEDIATE":{
+										"cg_type":"textstyle",
+										"cg_id":306,
+										"color":"#757575ff",
+										"font":"12px Roboto",
+										"alignment":"center"
 									}
 								},
-								"ticksizes": {
-									"cg_id": 307,
-									"EDGE": 6,
-									"MAJOR": 6,
-									"INTERMEDIATE": 5,
-									"MINOR": 4
+								"ticksizes":{
+									"cg_id":307,
+									"EDGE":6,
+									"MAJOR":6,
+									"INTERMEDIATE":5,
+									"MINOR":4
 								},
-								"labelangles": {
-									"cg_id": 308
+								"labelangles":{
+									"cg_id":308
 								},
-								"visibleticks": {
-									"cg_id": 309,
-									"INTERMEDIATE": false,
-									"MINOR": true,
-									"EDGE": false
+								"visibleticks":{
+									"cg_id":309,
+									"INTERMEDIATE":false,
+									"MINOR":true,
+									"EDGE":false
 								},
-								"visiblelabels": {
-									"cg_id": 310,
-									"INTERMEDIATE": false,
-									"MINOR": false,
-									"EDGE": false,
-									"MAJOR": false
+								"visiblelabels":{
+									"cg_id":310,
+									"INTERMEDIATE":false,
+									"MINOR":false,
+									"EDGE":false,
+									"MAJOR":false
 								},
-								"labelanchortypes": {
-									"cg_id": 311
+								"labelanchortypes":{
+									"cg_id":311
 								},
-								"tag": null,
-								"transformer": null,
-								"formatlabelhandler": null,
-								"edge": {
-									"cg_id": 312,
-									"tickstyle": "#href(298)",
-									"tickvisible": false,
-									"ticksize": 6,
-									"labelstyle": "#href(305)",
-									"labelvisible": false
+								"tag":null,
+								"transformer":null,
+								"formatlabelhandler":null,
+								"edge":{
+									"cg_id":312,
+									"tickstyle":"#href(298)",
+									"tickvisible":false,
+									"ticksize":6,
+									"labelstyle":"#href(305)",
+									"labelvisible":false
 								},
-								"major": {
-									"cg_id": 313,
-									"tickstyle": "#href(296)",
-									"ticksize": 6,
-									"labelstyle": "#href(304)",
-									"labelvisible": false
+								"major":{
+									"cg_id":313,
+									"tickstyle":"#href(296)",
+									"ticksize":6,
+									"labelstyle":"#href(304)",
+									"labelvisible":false
 								},
-								"intermediate": {
-									"cg_id": 314,
-									"tickstyle": "#href(300)",
-									"tickvisible": false,
-									"ticksize": 5,
-									"labelstyle": "#href(306)",
-									"labelvisible": false
+								"intermediate":{
+									"cg_id":314,
+									"tickstyle":"#href(300)",
+									"tickvisible":false,
+									"ticksize":5,
+									"labelstyle":"#href(306)",
+									"labelvisible":false
 								},
-								"minor": {
-									"cg_id": 315,
-									"tickstyle": "#href(294)",
-									"tickvisible": true,
-									"ticksize": 4,
-									"labelstyle": "#href(303)",
-									"labelvisible": false
+								"minor":{
+									"cg_id":315,
+									"tickstyle":"#href(294)",
+									"tickvisible":true,
+									"ticksize":4,
+									"labelstyle":"#href(303)",
+									"labelvisible":false
 								},
-								"maxlabeleventhandler": null,
-								"MAJOR": {
-									"cg_id": 316,
-									"labelformat": {
-										"cg_type": "geotoolkit.util.NumberFormat",
-										"cg_id": 317,
-										"locale": "#href(44)",
-										"round": true,
-										"fulllocale": false,
-										"maximumfractiondigits": 2,
-										"minimumfractiondigits": 0,
-										"grouplength": 3
+								"maxlabeleventhandler":null,
+								"MAJOR":{
+									"cg_id":316,
+									"labelformat":{
+										"cg_type":"geotoolkit.util.NumberFormat",
+										"cg_id":317,
+										"locale":"#href(44)",
+										"round":true,
+										"fulllocale":false,
+										"maximumfractiondigits":2,
+										"minimumfractiondigits":0,
+										"grouplength":3
 									}
 								},
-								"MINOR": {
-									"cg_id": 318,
-									"labelformat": {
-										"cg_type": "geotoolkit.util.NumberFormat",
-										"cg_id": 319,
-										"locale": "#href(44)",
-										"round": true,
-										"fulllocale": false,
-										"maximumfractiondigits": 2,
-										"minimumfractiondigits": 0,
-										"grouplength": 3
+								"MINOR":{
+									"cg_id":318,
+									"labelformat":{
+										"cg_type":"geotoolkit.util.NumberFormat",
+										"cg_id":319,
+										"locale":"#href(44)",
+										"round":true,
+										"fulllocale":false,
+										"maximumfractiondigits":2,
+										"minimumfractiondigits":0,
+										"grouplength":3
 									}
 								},
-								"EDGE": {
-									"cg_id": 320,
-									"labelformat": {
-										"cg_type": "geotoolkit.util.NumberFormat",
-										"cg_id": 321,
-										"locale": "#href(44)",
-										"round": true,
-										"fulllocale": false,
-										"maximumfractiondigits": 2,
-										"minimumfractiondigits": 0,
-										"grouplength": 3
+								"EDGE":{
+									"cg_id":320,
+									"labelformat":{
+										"cg_type":"geotoolkit.util.NumberFormat",
+										"cg_id":321,
+										"locale":"#href(44)",
+										"round":true,
+										"fulllocale":false,
+										"maximumfractiondigits":2,
+										"minimumfractiondigits":0,
+										"grouplength":3
 									}
 								},
-								"INTERMEDIATE": {
-									"cg_id": 322,
-									"labelformat": {
-										"cg_type": "geotoolkit.util.NumberFormat",
-										"cg_id": 323,
-										"locale": "#href(44)",
-										"round": true,
-										"fulllocale": false,
-										"maximumfractiondigits": 2,
-										"minimumfractiondigits": 0,
-										"grouplength": 3
+								"INTERMEDIATE":{
+									"cg_id":322,
+									"labelformat":{
+										"cg_type":"geotoolkit.util.NumberFormat",
+										"cg_id":323,
+										"locale":"#href(44)",
+										"round":true,
+										"fulllocale":false,
+										"maximumfractiondigits":2,
+										"minimumfractiondigits":0,
+										"grouplength":3
 									}
 								},
-								"minspan": 15,
-								"minlabelspan": 5,
-								"modelorigin": 0,
-								"precision": 9,
-								"adaptivetype": "nice",
-								"minorticksamount": 5,
-								"minspangrade": "minor",
-								"hidelabelsonspantoosmall": false,
-								"gradespriority": [
+								"minspan":15,
+								"minlabelspan":5,
+								"modelorigin":0,
+								"precision":9,
+								"adaptivetype":"nice",
+								"minorticksamount":5,
+								"minspangrade":"minor",
+								"hidelabelsonspantoosmall":false,
+								"gradespriority":[
 									"major",
 									"intermediate",
 									"minor",
@@ -2510,489 +2614,505 @@
 							}
 						}
 					],
-					"value": [
+					"value":[
 						{
-							"cg_type": "linearvaluegrid",
-							"cg_id": 324,
-							"id": "LinearGrid1",
-							"name": "",
-							"cssclass": "verticalGrid",
-							"selectable": true,
-							"visible": true,
-							"tag": null,
-							"animationstyle": null,
-							"linestyle": {
-								"cg_type": "linestyle",
-								"cg_id": 325,
-								"color": "#dfe0e3ff",
-								"width": 1,
-								"pattern": [],
-								"pixelsnapmode": {
-									"cg_id": 326,
-									"x": true,
-									"y": false
+							"cg_type":"linearvaluegrid",
+							"cg_id":324,
+							"id":"LinearGrid1",
+							"name":"",
+							"cssclass":"verticalGrid",
+							"selectable":true,
+							"visible":true,
+							"tag":null,
+							"animationstyle":null,
+							"linestyle":{
+								"cg_type":"linestyle",
+								"cg_id":325,
+								"color":"#dfe0e3ff",
+								"width":1,
+								"pattern":[
+
+								],
+								"pixelsnapmode":{
+									"cg_id":326,
+									"x":true,
+									"y":false
 								},
-								"linejoin": "round",
-								"linecap": "butt"
+								"linejoin":"round",
+								"linecap":"butt"
 							},
-							"linescount": 11,
-							"edge": {
-								"cg_id": 327,
-								"visible": true
+							"linescount":11,
+							"edge":{
+								"cg_id":327,
+								"visible":true
 							}
 						},
 						{
-							"cg_type": "linearvaluegrid",
-							"cg_id": 328,
-							"id": "LinearGrid2",
-							"name": "",
-							"cssclass": "verticalGrid",
-							"selectable": true,
-							"visible": true,
-							"tag": null,
-							"animationstyle": null,
-							"linestyle": {
-								"cg_type": "linestyle",
-								"cg_id": 329,
-								"color": "#dfe0e3ff",
-								"width": 1,
-								"pattern": [],
-								"pixelsnapmode": {
-									"cg_id": 330,
-									"x": true,
-									"y": false
+							"cg_type":"linearvaluegrid",
+							"cg_id":328,
+							"id":"LinearGrid2",
+							"name":"",
+							"cssclass":"verticalGrid",
+							"selectable":true,
+							"visible":true,
+							"tag":null,
+							"animationstyle":null,
+							"linestyle":{
+								"cg_type":"linestyle",
+								"cg_id":329,
+								"color":"#dfe0e3ff",
+								"width":1,
+								"pattern":[
+
+								],
+								"pixelsnapmode":{
+									"cg_id":330,
+									"x":true,
+									"y":false
 								},
-								"linejoin": "round",
-								"linecap": "butt"
+								"linejoin":"round",
+								"linecap":"butt"
 							},
-							"linescount": 3,
-							"edge": {
-								"cg_id": 331,
-								"visible": true
+							"linescount":3,
+							"edge":{
+								"cg_id":331,
+								"visible":true
 							}
 						},
 						{
-							"cg_type": "log10valuegrid",
-							"cg_id": 332,
-							"id": "LogGrid1",
-							"name": "",
-							"cssclass": "verticalGrid",
-							"selectable": true,
-							"visible": true,
-							"tag": null,
-							"animationstyle": null,
-							"linestyle": {
-								"cg_type": "linestyle",
-								"cg_id": 333,
-								"color": "#dfe0e3ff",
-								"width": 1,
-								"pattern": [],
-								"pixelsnapmode": {
-									"cg_id": 334,
-									"x": true,
-									"y": false
+							"cg_type":"log10valuegrid",
+							"cg_id":332,
+							"id":"LogGrid1",
+							"name":"",
+							"cssclass":"verticalGrid",
+							"selectable":true,
+							"visible":true,
+							"tag":null,
+							"animationstyle":null,
+							"linestyle":{
+								"cg_type":"linestyle",
+								"cg_id":333,
+								"color":"#dfe0e3ff",
+								"width":1,
+								"pattern":[
+
+								],
+								"pixelsnapmode":{
+									"cg_id":334,
+									"x":true,
+									"y":false
 								},
-								"linejoin": "round",
-								"linecap": "butt"
+								"linejoin":"round",
+								"linecap":"butt"
 							},
-							"decadecount": 2,
-							"bounds": null,
-							"intermediate": true,
-							"logstart": null,
-							"logstop": null,
-							"logbase": 10,
-							"reverse": false
+							"decadecount":2,
+							"bounds":null,
+							"intermediate":true,
+							"logstart":null,
+							"logstop":null,
+							"logbase":10,
+							"reverse":false
 						},
 						{
-							"cg_type": "log10valuegrid",
-							"cg_id": 335,
-							"id": "LogGrid2",
-							"name": "",
-							"cssclass": "verticalGrid",
-							"selectable": true,
-							"visible": true,
-							"tag": null,
-							"animationstyle": null,
-							"linestyle": {
-								"cg_type": "linestyle",
-								"cg_id": 336,
-								"color": "#dfe0e3ff",
-								"width": 1,
-								"pattern": [],
-								"pixelsnapmode": {
-									"cg_id": 337,
-									"x": true,
-									"y": false
+							"cg_type":"log10valuegrid",
+							"cg_id":335,
+							"id":"LogGrid2",
+							"name":"",
+							"cssclass":"verticalGrid",
+							"selectable":true,
+							"visible":true,
+							"tag":null,
+							"animationstyle":null,
+							"linestyle":{
+								"cg_type":"linestyle",
+								"cg_id":336,
+								"color":"#dfe0e3ff",
+								"width":1,
+								"pattern":[
+
+								],
+								"pixelsnapmode":{
+									"cg_id":337,
+									"x":true,
+									"y":false
 								},
-								"linejoin": "round",
-								"linecap": "butt"
+								"linejoin":"round",
+								"linecap":"butt"
 							},
-							"decadecount": 2,
-							"bounds": null,
-							"intermediate": false,
-							"logstart": null,
-							"logstop": null,
-							"logbase": 10,
-							"reverse": false
+							"decadecount":2,
+							"bounds":null,
+							"intermediate":false,
+							"logstart":null,
+							"logstop":null,
+							"logbase":10,
+							"reverse":false
 						}
 					]
 				},
-				"visuals": [
+				"visuals":[
 					{
-						"cg_type": "curve",
-						"id": null,
-						"name": "ILD",
-						"display_mode": [
+						"cg_type":"curve",
+						"id":null,
+						"name":"ILD",
+						"display_mode":[
 							"line"
 						],
-						"limits_type": 2,
-						"custom_limits_minimum": 0,
-						"custom_limits_maximum": 200,
-						"valueformat": {
-							"cg_type": "geotoolkit.util.DecimalFormat",
-							"cg_id": 339,
-							"format": "#,###.00",
-							"locale": "us",
-							"decimalseparatoralwaysshown": false,
-							"round": true,
-							"overridegroupsep": null,
-							"overridedecsep": null,
-							"overridenegsign": null,
-							"ispercentage": false,
-							"autodetectpercentage": true,
-							"maximumfractiondigits": 2,
-							"minimumfractiondigits": 0
+						"limits_type":2,
+						"custom_limits_minimum":0.2,
+						"custom_limits_maximum":2000,
+						"valueformat":{
+							"cg_type":"geotoolkit.util.DecimalFormat",
+							"cg_id":339,
+							"format":"#,###.00",
+							"locale":"us",
+							"decimalseparatoralwaysshown":false,
+							"round":true,
+							"overridegroupsep":null,
+							"overridedecsep":null,
+							"overridenegsign":null,
+							"ispercentage":false,
+							"autodetectpercentage":true,
+							"maximumfractiondigits":2,
+							"minimumfractiondigits":0
 						},
-						"linestyle": {
-							"cg_type": "linestyle",
-							"cg_id": 340,
-							"color": "#2196f3ff",
-							"width": 1,
-							"pattern": [],
-							"pixelsnapmode": {
-								"cg_id": 341,
-								"x": false,
-								"y": false
+						"linestyle":{
+							"cg_type":"linestyle",
+							"cg_id":340,
+							"color":"#2196f3ff",
+							"width":1,
+							"pattern":[
+
+							],
+							"pixelsnapmode":{
+								"cg_id":341,
+								"x":false,
+								"y":false
 							},
-							"linejoin": "round",
-							"linecap": "butt"
+							"linejoin":"round",
+							"linecap":"butt"
 						},
-						"textstyle": {
-							"cg_type": "textstyle",
-							"cg_id": 342,
-							"color": "#757575ff",
-							"font": "12px Roboto"
+						"textstyle":{
+							"cg_type":"textstyle",
+							"cg_id":342,
+							"color":"#757575ff",
+							"font":"12px Roboto"
 						},
-						"header": {
-							"cssclass": null,
-							"visible": true,
-							"linestyle": {
-								"cg_type": "linestyle",
-								"cg_id": 344,
-								"color": "#000000ff",
-								"width": 1,
-								"pattern": [],
-								"pixelsnapmode": {
-									"cg_id": 345,
-									"x": true,
-									"y": true
+						"header":{
+							"cssclass":null,
+							"visible":true,
+							"linestyle":{
+								"cg_type":"linestyle",
+								"cg_id":344,
+								"color":"#000000ff",
+								"width":1,
+								"pattern":[
+
+								],
+								"pixelsnapmode":{
+									"cg_id":345,
+									"x":true,
+									"y":true
 								},
-								"linejoin": "round",
-								"linecap": "butt"
+								"linejoin":"round",
+								"linecap":"butt"
 							},
-							"textstyle": {
-								"cg_type": "textstyle",
-								"cg_id": 346,
-								"color": "#000000ff",
-								"font": "normal 11px Arial"
+							"textstyle":{
+								"cg_type":"textstyle",
+								"cg_id":346,
+								"color":"#000000ff",
+								"font":"normal 11px Arial"
 							},
-							"gap": 5,
-							"order": [
+							"gap":5,
+							"order":[
 								"Name",
 								"Tracking",
 								"Unit",
 								"Description"
 							],
-							"elements": [
+							"elements":[
 								{
-									"cg_id": 347,
-									"visible": true,
-									"text": "0",
-									"verticalpos": "bottom",
-									"horizontalpos": "left",
-									"textstyle": "#href(76)",
-									"name": "ScaleFrom"
+									"cg_id":347,
+									"name":"ScaleFrom",
+									"textstyle":"#href(76)",
+									"horizontalpos":"left",
+									"verticalpos":"top",
+									"text":"0.2",
+									"visible":true
 								},
 								{
-									"cg_id": 348,
-									"cut": "left-to-right",
-									"visible": true,
-									"text": "ILD",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(78)",
-									"name": "Name"
+									"cg_id":348,
+									"name":"Name",
+									"textstyle":"#href(78)",
+									"horizontalpos":"center",
+									"verticalpos":"top",
+									"text":"ILD",
+									"visible":true,
+									"cut":"left-to-right"
 								},
 								{
-									"cg_id": 349,
-									"cut": "left-to-right",
-									"visible": true,
-									"text": null,
-									"verticalpos": "bottom",
-									"horizontalpos": "center",
-									"textstyle": "#href(80)",
-									"name": "Description"
+									"cg_id":349,
+									"name":"Description",
+									"textstyle":"#href(80)",
+									"horizontalpos":"center",
+									"verticalpos":"bottom",
+									"text":null,
+									"visible":true,
+									"cut":"left-to-right"
 								},
 								{
-									"cg_id": 350,
-									"visible": true,
-									"text": null,
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(82)",
-									"name": "Tracking"
+									"cg_id":350,
+									"name":"Tracking",
+									"textstyle":"#href(82)",
+									"horizontalpos":"center",
+									"verticalpos":"bottom",
+									"text":null,
+									"visible":true
 								},
 								{
-									"cg_id": 351,
-									"visible": true,
-									"text": "ohm.m",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(84)",
-									"name": "Unit"
+									"cg_id":351,
+									"name":"Unit",
+									"textstyle":"#href(84)",
+									"horizontalpos":"center",
+									"verticalpos":"bottom",
+									"text":"ohm.m",
+									"visible":true
 								},
 								{
-									"cg_id": 352,
-									"visible": true,
-									"text": "200",
-									"verticalpos": "bottom",
-									"horizontalpos": "right",
-									"textstyle": "#href(86)",
-									"name": "ScaleTo"
+									"cg_id":352,
+									"name":"ScaleTo",
+									"textstyle":"#href(86)",
+									"horizontalpos":"right",
+									"verticalpos":"top",
+									"text":"2,000",
+									"visible":true
 								},
 								{
-									"cg_id": 353,
-									"options": {
-										"cg_id": 354,
-										"position": "bottom"
-									},
-									"visible": false,
-									"text": "",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(89)",
-									"name": "Axis"
+									"cg_id":353,
+									"name":"Axis",
+									"textstyle":"#href(88)",
+									"horizontalpos":"center",
+									"verticalpos":"top",
+									"text":"",
+									"visible":false,
+									"options":{
+										"cg_id":354,
+										"position":"bottom"
+									}
 								},
 								{
-									"cg_id": 355,
-									"visible": true,
-									"text": "",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(91)",
-									"name": "Fill"
+									"cg_id":355,
+									"name":"Fill",
+									"textstyle":"#href(91)",
+									"horizontalpos":"center",
+									"verticalpos":"top",
+									"text":"",
+									"visible":true
 								},
 								{
-									"cg_id": 356,
-									"visible": true,
-									"text": "",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(93)",
-									"name": "Line"
+									"cg_id":356,
+									"name":"Line",
+									"textstyle":"#href(93)",
+									"horizontalpos":"center",
+									"verticalpos":"center",
+									"text":"",
+									"visible":true
 								},
 								{
-									"cg_id": 357,
-									"visible": true,
-									"text": "",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(95)",
-									"name": "Symbol"
+									"cg_id":357,
+									"name":"Symbol",
+									"textstyle":"#href(95)",
+									"horizontalpos":"center",
+									"verticalpos":"top",
+									"text":"",
+									"visible":true
 								}
 							]
 						},
-						"cg_id": 338
+						"cg_id":338
 					},
 					{
-						"cg_type": "curve",
-						"id": null,
-						"name": "ILM",
-						"display_mode": [
+						"cg_type":"curve",
+						"id":null,
+						"name":"ILM",
+						"display_mode":[
 							"line"
 						],
-						"limits_type": 2,
-						"custom_limits_minimum": 0,
-						"custom_limits_maximum": 200,
-						"valueformat": {
-							"cg_type": "geotoolkit.util.DecimalFormat",
-							"cg_id": 359,
-							"format": "#,###.00",
-							"locale": "us",
-							"decimalseparatoralwaysshown": false,
-							"round": true,
-							"overridegroupsep": null,
-							"overridedecsep": null,
-							"overridenegsign": null,
-							"ispercentage": false,
-							"autodetectpercentage": true,
-							"maximumfractiondigits": 2,
-							"minimumfractiondigits": 0
+						"limits_type":2,
+						"custom_limits_minimum":0.2,
+						"custom_limits_maximum":2000,
+						"valueformat":{
+							"cg_type":"geotoolkit.util.DecimalFormat",
+							"cg_id":359,
+							"format":"#,###.00",
+							"locale":"us",
+							"decimalseparatoralwaysshown":false,
+							"round":true,
+							"overridegroupsep":null,
+							"overridedecsep":null,
+							"overridenegsign":null,
+							"ispercentage":false,
+							"autodetectpercentage":true,
+							"maximumfractiondigits":2,
+							"minimumfractiondigits":0
 						},
-						"linestyle": {
-							"cg_type": "linestyle",
-							"cg_id": 360,
-							"color": "#1565c0ff",
-							"width": 1,
-							"pattern": [],
-							"pixelsnapmode": {
-								"cg_id": 361,
-								"x": false,
-								"y": false
+						"linestyle":{
+							"cg_type":"linestyle",
+							"cg_id":360,
+							"color":"#1565c0ff",
+							"width":1,
+							"pattern":[
+
+							],
+							"pixelsnapmode":{
+								"cg_id":361,
+								"x":false,
+								"y":false
 							},
-							"linejoin": "round",
-							"linecap": "butt"
+							"linejoin":"round",
+							"linecap":"butt"
 						},
-						"textstyle": {
-							"cg_type": "textstyle",
-							"cg_id": 362,
-							"color": "#757575ff",
-							"font": "12px Roboto"
+						"textstyle":{
+							"cg_type":"textstyle",
+							"cg_id":362,
+							"color":"#757575ff",
+							"font":"12px Roboto"
 						},
-						"header": {
-							"cssclass": null,
-							"visible": true,
-							"linestyle": {
-								"cg_type": "linestyle",
-								"cg_id": 364,
-								"color": "#000000ff",
-								"width": 1,
-								"pattern": [],
-								"pixelsnapmode": {
-									"cg_id": 365,
-									"x": true,
-									"y": true
+						"header":{
+							"cssclass":null,
+							"visible":true,
+							"linestyle":{
+								"cg_type":"linestyle",
+								"cg_id":364,
+								"color":"#000000ff",
+								"width":1,
+								"pattern":[
+
+								],
+								"pixelsnapmode":{
+									"cg_id":365,
+									"x":true,
+									"y":true
 								},
-								"linejoin": "round",
-								"linecap": "butt"
+								"linejoin":"round",
+								"linecap":"butt"
 							},
-							"textstyle": {
-								"cg_type": "textstyle",
-								"cg_id": 366,
-								"color": "#000000ff",
-								"font": "normal 11px Arial"
+							"textstyle":{
+								"cg_type":"textstyle",
+								"cg_id":366,
+								"color":"#000000ff",
+								"font":"normal 11px Arial"
 							},
-							"gap": 5,
-							"order": [
+							"gap":5,
+							"order":[
 								"Name",
 								"Tracking",
 								"Unit",
 								"Description"
 							],
-							"elements": [
+							"elements":[
 								{
-									"cg_id": 367,
-									"visible": true,
-									"text": "0",
-									"verticalpos": "bottom",
-									"horizontalpos": "left",
-									"textstyle": "#href(76)",
-									"name": "ScaleFrom"
+									"cg_id":367,
+									"name":"ScaleFrom",
+									"textstyle":"#href(76)",
+									"horizontalpos":"left",
+									"verticalpos":"top",
+									"text":"0.2",
+									"visible":true
 								},
 								{
-									"cg_id": 368,
-									"cut": "left-to-right",
-									"visible": true,
-									"text": "ILM",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(78)",
-									"name": "Name"
+									"cg_id":368,
+									"name":"Name",
+									"textstyle":"#href(78)",
+									"horizontalpos":"center",
+									"verticalpos":"top",
+									"text":"ILM",
+									"visible":true,
+									"cut":"left-to-right"
 								},
 								{
-									"cg_id": 369,
-									"cut": "left-to-right",
-									"visible": true,
-									"text": null,
-									"verticalpos": "bottom",
-									"horizontalpos": "center",
-									"textstyle": "#href(80)",
-									"name": "Description"
+									"cg_id":369,
+									"name":"Description",
+									"textstyle":"#href(80)",
+									"horizontalpos":"center",
+									"verticalpos":"bottom",
+									"text":null,
+									"visible":true,
+									"cut":"left-to-right"
 								},
 								{
-									"cg_id": 370,
-									"visible": true,
-									"text": null,
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(82)",
-									"name": "Tracking"
+									"cg_id":370,
+									"name":"Tracking",
+									"textstyle":"#href(82)",
+									"horizontalpos":"center",
+									"verticalpos":"bottom",
+									"text":null,
+									"visible":true
 								},
 								{
-									"cg_id": 371,
-									"visible": true,
-									"text": "ohm.m",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(84)",
-									"name": "Unit"
+									"cg_id":371,
+									"name":"Unit",
+									"textstyle":"#href(84)",
+									"horizontalpos":"center",
+									"verticalpos":"bottom",
+									"text":"ohm.m",
+									"visible":true
 								},
 								{
-									"cg_id": 372,
-									"visible": true,
-									"text": "200",
-									"verticalpos": "bottom",
-									"horizontalpos": "right",
-									"textstyle": "#href(86)",
-									"name": "ScaleTo"
+									"cg_id":372,
+									"name":"ScaleTo",
+									"textstyle":"#href(86)",
+									"horizontalpos":"right",
+									"verticalpos":"top",
+									"text":"2,000",
+									"visible":true
 								},
 								{
-									"cg_id": 373,
-									"options": {
-										"cg_id": 374,
-										"position": "bottom"
-									},
-									"visible": false,
-									"text": "",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(89)",
-									"name": "Axis"
+									"cg_id":373,
+									"name":"Axis",
+									"textstyle":"#href(88)",
+									"horizontalpos":"center",
+									"verticalpos":"top",
+									"text":"",
+									"visible":false,
+									"options":{
+										"cg_id":374,
+										"position":"bottom"
+									}
 								},
 								{
-									"cg_id": 375,
-									"visible": true,
-									"text": "",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(91)",
-									"name": "Fill"
+									"cg_id":375,
+									"name":"Fill",
+									"textstyle":"#href(91)",
+									"horizontalpos":"center",
+									"verticalpos":"top",
+									"text":"",
+									"visible":true
 								},
 								{
-									"cg_id": 376,
-									"visible": true,
-									"text": "",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(93)",
-									"name": "Line"
+									"cg_id":376,
+									"name":"Line",
+									"textstyle":"#href(93)",
+									"horizontalpos":"center",
+									"verticalpos":"center",
+									"text":"",
+									"visible":true
 								},
 								{
-									"cg_id": 377,
-									"visible": true,
-									"text": "",
-									"verticalpos": "top",
-									"horizontalpos": "center",
-									"textstyle": "#href(95)",
-									"name": "Symbol"
+									"cg_id":377,
+									"name":"Symbol",
+									"textstyle":"#href(95)",
+									"horizontalpos":"center",
+									"verticalpos":"top",
+									"text":"",
+									"visible":true
 								}
 							]
 						},
-						"cg_id": 358
+						"cg_id":358
 					}
 				]
 			}
 		]
 	},
-	"version": "2021.1.0"
+	"version":"2021.1.0"
 }
