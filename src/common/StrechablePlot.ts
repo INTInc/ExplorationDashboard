@@ -1,31 +1,23 @@
-import { Node } from '@int/geotoolkit/scene/Node';
 import { Plot } from '@int/geotoolkit/plot/Plot';
 
 export class StretchablePlot extends Plot {
 
     constructor(
-        private parent: HTMLElement,
-        canvas: HTMLCanvasElement,
-        rootWidget: Node,
+        private reference: HTMLElement,
         options: object = {}
     ) {
-        super({
-            canvaselement: canvas,
-            root: rootWidget,
-            ...options
-        });
-
+        super(options);
         this.resize()
         this.addResizeListener();
     }
 
     resize() {
-        const cs = getComputedStyle(this.parent);
+        const cs = getComputedStyle(this.reference);
         const csVal = (property: keyof CSSStyleDeclaration): number => parseFloat(cs[property]?.toString() as string);
 
         this.setSize(
-          this.parent.clientWidth - csVal('paddingLeft') - csVal('paddingRight'),
-          this.parent.clientHeight - csVal('paddingTop') - csVal('paddingBottom')
+          this.reference.clientWidth - csVal('paddingLeft') - csVal('paddingRight'),
+          this.reference.clientHeight - csVal('paddingTop') - csVal('paddingBottom')
         );
     }
 

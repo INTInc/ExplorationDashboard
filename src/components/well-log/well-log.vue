@@ -9,7 +9,7 @@
 <script setup lang="ts">
 import { MeasurementsLogAdapter } from '@/data-sources/MeasurementsLogAdapter';
 import { MeasurementsTopsLogAdapter } from '@/data-sources/MeasurementsTopsLogAdapter';
-import { StretchablePlot } from '@/StrechablePlot';
+import { StretchablePlot } from '@/common/StrechablePlot';
 import { HeaderType } from '@int/geotoolkit/welllog/header/LogAxisVisualHeader';
 import { WellLogWidget } from '@int/geotoolkit/welllog/widgets/WellLogWidget';
 import { onMounted, defineProps, ref } from 'vue';
@@ -44,7 +44,10 @@ function createWidget(template: string) {
 }
 
 function createPlot(widget: WellLogWidget) {
-    return new StretchablePlot(container.value, canvas.value, widget)
+    return new StretchablePlot(container.value, {
+      canvaselement: canvas.value,
+      root: widget
+    })
 }
 
 /*function handleError() {
@@ -52,7 +55,7 @@ function createPlot(widget: WellLogWidget) {
 }*/
 
 function initialize() {
-  props.source.load()
+  props.source.loaded
     .then(fetchTemplate)
     .then(validateTemplate)
     .then(createWidget)

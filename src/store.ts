@@ -1,7 +1,7 @@
 import { inject } from 'vue';
 import { ExplorationMapAdapter } from './data-sources/ExplorationMapAdapter';
-import { MeasurementsLogAdapter } from './data-sources/MeasurementsLogAdapter';
-import { MeasurementsTopsLogAdapter } from './data-sources/MeasurementsTopsLogAdapter';
+import { MeasurementsTopsLogAdapter } from '@/data-sources/MeasurementsTopsLogAdapter';
+import { MeasurementsLogAdapter } from '@/data-sources/MeasurementsLogAdapter';
 
 interface State {
   wellB2: MeasurementsLogAdapter,

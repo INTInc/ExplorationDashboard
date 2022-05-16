@@ -15,9 +15,8 @@ import { Shape } from '@int/geotoolkit/scene/shapes/Shape';
 import { AnchorType } from '@int/geotoolkit/util/AnchorType';
 import { PointerMode } from '@int/geotoolkit/controls/tools/PointerMode';
 
-import { StretchablePlot } from '@/StrechablePlot';
+import { StretchablePlot } from '@/common/StrechablePlot';
 
-import { ExplorationMapDataAdapter } from '@/data-sources/ExplorationMapDataAdapter';
 import { ExplorationMapDrawer } from '@/drawers/ExplorationMapDrawer';
 import { Store, useStore } from '@/store';
 
@@ -73,7 +72,10 @@ function addExplorationLayer(map: Map) {
 }
 
 function createPlot(map: Map) {
-  return new StretchablePlot(container.value, canvas.value, map);
+  return new StretchablePlot(container.value, {
+    canvaselement: canvas.value,
+    root: map
+  });
 }
 
 onMounted(() => {

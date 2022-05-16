@@ -20,7 +20,7 @@
 import ThemeSwitcher from '@/components/theme-switcher.vue';
 import WellLog from '@/components/well-log/well-log.vue'; 
 import WellsMap from '@/components/wells-map/wells-map.vue';
-import WellsModel from '@/components/wells-model.vue';
+import WellsModel from '@/components/wells-model/wells-model.vue';
 
 import { Store, useStore } from '@/store';
 
@@ -28,11 +28,16 @@ const { state }: Store = useStore();
 
 //TODO add logic to switch between las files for different devices
 
-state.wellB2.url = '/data/wellB-2/logs_desktop.las';
-
-state.wellB32.url = '/data/wellB-32/logs_desktop.las';
-state.wellB32.topsUrl = '/data/wellB-32/tops.las';
-
+state.wellB2.setup(
+    '',
+    '/data/wellB-2/surveys.las',
+    '/data/wellB-2/logs_desktop.las'
+);
+state.wellB32.setup(
+    '/data/wellB-32/tops.las',
+    '/data/wellB-32/surveys.las',
+    '/data/wellB-32/logs_desktop.las'
+);
 state.explMap.url = '/data/fieldB.json';
 </script>
 
@@ -89,7 +94,6 @@ body {
     .wells-map,
     .wells-model {
       margin: 8px;
-      padding: 16px;
       overflow: hidden;
       border-radius: 8px;
 
@@ -102,12 +106,6 @@ body {
         grid-column-start: 1;
         grid-column-end: 4;
       }
-    }
-
-    .wells-map,
-    .vertical-log,
-    .horizontal-log {
-      padding: 0;
     }
 
     @media (max-width: 800px) {
