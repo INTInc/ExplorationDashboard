@@ -9,13 +9,10 @@
 <script setup lang="ts">
 import { MeasurementsLogAdapter } from '@/data-sources/MeasurementsLogAdapter';
 import { MeasurementsTopsLogAdapter } from '@/data-sources/MeasurementsTopsLogAdapter';
-import { useStore } from '@/store';
 import { StretchablePlot } from '@/StrechablePlot';
 import { HeaderType } from '@int/geotoolkit/welllog/header/LogAxisVisualHeader';
 import { WellLogWidget } from '@int/geotoolkit/welllog/widgets/WellLogWidget';
 import { onMounted, defineProps, ref } from 'vue';
-
-const {state} = useStore();
 
 const props = defineProps<{
   source: MeasurementsLogAdapter | MeasurementsTopsLogAdapter,
@@ -50,9 +47,9 @@ function createPlot(widget: WellLogWidget) {
     return new StretchablePlot(container.value, canvas.value, widget)
 }
 
-function handleError() {
+/*function handleError() {
   console.error(`Problem loading template from ${props.templateUrl}.`);
-}
+}*/
 
 function initialize() {
   props.source.load()

@@ -15,7 +15,7 @@
 			  "custom_limits_maximum": 992,
             "name": "TopH",
             "linestyle": {
-              "color": "orange",
+              "color": "#d9593dff",
               "width": 1
             }
           },
@@ -32,7 +32,7 @@
             "fillstyle": {
               "cg_type": "fillstyle",
               "cg_id": 700,
-              "color": "orange",
+              "color": "#d9593d5f",
               "evenoddmode": false
             },
             "negativefillstyle": "#href(700)",
@@ -46,7 +46,7 @@
               "custom_limits_maximum": 992,
             "name": "TopG",
             "linestyle": {
-              "color": "green",
+              "color": "#88d93dff",
               "width": 1
             }
           },
@@ -63,7 +63,7 @@
             "fillstyle": {
               "cg_type": "fillstyle",
               "cg_id": 600,
-              "color": "green",
+              "color": "#88d93d5f",
               "evenoddmode": false
             },
             "negativefillstyle": "#href(600)",
@@ -78,7 +78,7 @@
               "custom_limits_maximum": 992,
             "name": "TopF",
             "linestyle": {
-              "color": "yellow",
+              "color": "#d9d93dff",
               "width": 1
             }
           },
@@ -95,7 +95,7 @@
             "fillstyle": {
               "cg_type": "fillstyle",
               "cg_id": 600,
-              "color": "yellow",
+              "color": "#d9d93d5f",
               "evenoddmode": false
             },
             "negativefillstyle": "#href(600)",
@@ -110,7 +110,7 @@
               "custom_limits_maximum": 992,
             "name": "TopE",
             "linestyle": {
-              "color": "blue",
+              "color": "#3d79d9ff",
               "width": 1
             }
           },
@@ -127,7 +127,7 @@
             "fillstyle": {
               "cg_type": "fillstyle",
               "cg_id": 500,
-              "color": "blue",
+              "color": "#3d79d95f",
               "evenoddmode": false
             },
             "negativefillstyle": "#href(500)",
@@ -142,7 +142,7 @@
               "custom_limits_maximum": 992,
             "name": "TopD",
             "linestyle": {
-              "color": "green",
+              "color": "#3dd94aff",
               "width": 1
             }
           },
@@ -159,7 +159,7 @@
             "fillstyle": {
               "cg_type": "fillstyle",
               "cg_id": 400,
-              "color": "green",
+              "color": "#3dd94a5f",
               "evenoddmode": false
             },
             "negativefillstyle": "#href(400)",
@@ -174,7 +174,7 @@
               "custom_limits_maximum": 992,
             "name": "TopC",
             "linestyle": {
-              "color": "brown",
+              "color": "#ed7d31ff",
               "width": 1
             }
           },
@@ -191,7 +191,7 @@
             "fillstyle": {
               "cg_type": "fillstyle",
               "cg_id": 300,
-              "color": "brown",
+              "color": "#ed7d315f",
               "evenoddmode": false
             },
             "negativefillstyle": "#href(300)",
@@ -206,7 +206,7 @@
               "custom_limits_maximum": 992,
             "name": "TopB",
             "linestyle": {
-              "color": "blue",
+              "color": "#6e3dd9ff",
               "width": 1
             }
           },
@@ -223,7 +223,7 @@
             "fillstyle": {
               "cg_type": "fillstyle",
               "cg_id": 200,
-              "color": "blue",
+              "color": "#6e3dd95f",
               "evenoddmode": false
             },
             "negativefillstyle": "#href(200)",
@@ -238,7 +238,7 @@
               "custom_limits_maximum": 992,
             "name": "TopA",
             "linestyle": {
-              "color": "red",
+              "color": "#800000ff",
               "width": 1
             }
           },
@@ -255,7 +255,7 @@
             "fillstyle": {
               "cg_type": "fillstyle",
               "cg_id": 100,
-              "color": "red",
+              "color": "#8000005f",
               "evenoddmode": false
             },
             "negativefillstyle": "#href(100)",

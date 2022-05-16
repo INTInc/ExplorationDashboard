@@ -783,8 +783,8 @@
 							"color":"#fdd835ff",
 							"evenoddmode":false
 						},
-						"negativefillstyle":"#href(98)",
-						"positivefillstyle":"#href(98)",
+						"leftfillstyle":"#href(98)",
+						"rightfillstyle":"#href(98)",
 						"filltype":"right"
 					},
 					{
@@ -1984,15 +1984,6 @@
 									}
 								},
 								{
-									"cg_id":248,
-									"name":"Fill",
-									"textstyle":"#href(91)",
-									"horizontalpos":"center",
-									"verticalpos":"top",
-									"text":"",
-									"visible":true
-								},
-								{
 									"cg_id":249,
 									"name":"Line",
 									"textstyle":"#href(93)",
@@ -2013,6 +2004,29 @@
 							]
 						},
 						"cg_id":231
+					},
+					{
+						"cg_type":"logfill",
+						"cg_id":271,
+						"id":null,
+						"name":"",
+						"cssclass":null,
+						"selectable":true,
+						"visible":true,
+						"tag":null,
+						"animationstyle":null,
+						"linestyle":null,
+						"curve1":"#href(231)",
+						"curve2":"#href(251)",
+						"rightfillstyle": {
+							"cg_type":"fillstyle",
+							"color":"#fdd835ff"
+						},
+						"leftfillstyle": {
+							"cg_type":"fillstyle",
+							"color":"#7cb342ff"
+						},
+						"filltype":"leftandright"
 					},
 					{
 						"cg_type":"curve",
@@ -2164,15 +2178,6 @@
 									}
 								},
 								{
-									"cg_id":268,
-									"name":"Fill",
-									"textstyle":"#href(91)",
-									"horizontalpos":"center",
-									"verticalpos":"top",
-									"text":"",
-									"visible":true
-								},
-								{
 									"cg_id":269,
 									"name":"Line",
 									"textstyle":"#href(93)",
@@ -2193,52 +2198,6 @@
 							]
 						},
 						"cg_id":251
-					},
-					{
-						"cg_type":"logfill",
-						"cg_id":271,
-						"id":null,
-						"name":"",
-						"cssclass":null,
-						"selectable":true,
-						"visible":true,
-						"tag":null,
-						"animationstyle":null,
-						"linestyle":null,
-						"curve1":"#href(231)",
-						"curve2":"#href(251)",
-						"fillstyle":{
-							"cg_type":"fillstyle",
-							"cg_id":272,
-							"color":"#fdd835ff",
-							"evenoddmode":false
-						},
-						"negativefillstyle":"#href(272)",
-						"positivefillstyle":"#href(272)",
-						"filltype":"left"
-					},
-					{
-						"cg_type":"logfill",
-						"cg_id":273,
-						"id":null,
-						"name":"",
-						"cssclass":null,
-						"selectable":true,
-						"visible":true,
-						"tag":null,
-						"animationstyle":null,
-						"linestyle":null,
-						"curve1":"#href(251)",
-						"curve2":"#href(231)",
-						"fillstyle":{
-							"cg_type":"fillstyle",
-							"cg_id":274,
-							"color":"#7cb342ff",
-							"evenoddmode":false
-						},
-						"negativefillstyle":"#href(274)",
-						"positivefillstyle":"#href(274)",
-						"filltype":"left"
 					}
 				]
 			},

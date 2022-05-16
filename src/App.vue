@@ -105,7 +105,8 @@ body {
     }
 
     .wells-map,
-    .vertical-log {
+    .vertical-log,
+    .horizontal-log {
       padding: 0;
     }
 
