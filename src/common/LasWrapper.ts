@@ -31,10 +31,6 @@ export class LasWrapper {
     return this.properties.getData()[propertyIndex];
   }
 
-  private values(measure: Measure) {
-    return this.curves.getCurveData(measure)
-  }
-
   private info(measure: Measure) {
     return this.curves.getCurveInfo(measure)
   }
@@ -54,6 +50,10 @@ export class LasWrapper {
       values: this.values(valuesKey as Measure)
     })
       .setValueUnit(this.info(valuesKey as Measure).getUnit())
+  }
+
+  public values(measure: string) {
+    return this.curves.getCurveData(measure)
   }
 
   public get depthLimits(): Range {
