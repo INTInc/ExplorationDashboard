@@ -12,7 +12,10 @@
       :template-url="'/templates/horizontal-log.json'"
     ></well-log>
     <wells-map></wells-map>
-    <wells-model></wells-model>
+    <wells-model
+      :model-padding="500"
+      :camera-distance="6000"
+    ></wells-model>
   </div>
 </template>
 
