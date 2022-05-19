@@ -3,16 +3,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps } from 'vue';
+import { defineProps, ref } from 'vue';
 import { onMounted } from '@vue/runtime-core';
-import {
-  Line,
-  Line3,
-  LineBasicMaterial,
-  Object3D,
-  Plane,
-  Vector3
-} from '@int/geotoolkit3d/THREE';
+import { Group, Line, Line3, LineBasicMaterial, Object3D, Plane, Vector3 } from '@int/geotoolkit3d/THREE';
 import { Plot } from '@int/geotoolkit3d/Plot';
 import { useStore } from '@/store';
 import { Wells3DBox } from '@/components/wells-model/Wells3DBox';
@@ -21,10 +14,10 @@ import { Grid } from '@int/geotoolkit3d/scene/grid/Grid';
 import { LineGeometry } from '@int/geotoolkit3d/scene/well/LineGeometry';
 import { KnownColors } from '@int/geotoolkit/util/ColorUtil';
 import { AnnotationBase } from '@int/geotoolkit3d/scene/AnnotationBase';
-import { TextStyle } from '@int/geotoolkit/attributes/TextStyle';
-import { LineStyle } from '@int/geotoolkit/attributes/LineStyle';
-import { WellAnnotation } from '@/common/WellAnnotation';
+import { AnchorType, WellAnnotation } from '@/common/WellAnnotation';
 import { MathUtil } from '@int/geotoolkit/util/MathUtil';
+import { FillStyle } from '@int/geotoolkit/attributes/FillStyle';
+import { Sphere } from '@int/geotoolkit3d/scene/well/schematic/Sphere';
 
 const props = defineProps<{
   annotations: { [wellName: string]: WellAnnotation[] },
@@ -84,32 +77,41 @@ function createTrajectory(well: Well): Object3D {
   return new Line(createGeometry(well), createMaterial());
 }
 
-function createAnnotationByDepth(well: Well, annotation: WellAnnotation, depth: number): Object3D {
-  return createAnnotation(well, annotation, trajectoryPoint(well, depth));
-}
+function createAnnotation(well: Well, annotation: WellAnnotation): Object3D {
+  let anchor = new Vector3();
+  const object = new Group();
+  const origin = vectorByIndex(well, 0);
 
-function createAnnotationByIndex(well: Well, annotation: WellAnnotation, index: number): Object3D {
-  return createAnnotation(well, annotation, vectorByIndex(well, index));
-}
+  if (annotation.index) {
+    anchor = vectorByIndex(well, annotation.index);
+  } else if (annotation.depth) {
+    anchor = trajectoryPoint(well, annotation.depth);
+  } else {
+    return new Object3D();
+  }
 
-function createAnnotation(well: Well, annotation: WellAnnotation, vector: Vector3): Object3D {
   const annotationObject = new AnnotationBase({
-    title: well.surveys.wellName,
-    titlestyle: new TextStyle({
-      font: '12px Arial',
-      color: 'yellow'
-    }),
-    linestyle: new LineStyle({color: 'white'})
+    title: annotation.text,
+    titlestyle: annotation.textStyle,
+    linestyle: annotation.lineStyle
   });
 
-  annotationObject.setAnchorPoint(vector);
-  annotationObject.position.set(
-      well.surveys.values('DX')[0],
-      well.surveys.values('DY')[0],
-      well.surveys.values('Z')[0]
-  );
+  annotationObject.setAnchorPoint(anchor);
+  annotationObject.position.set(origin.x, origin.y, origin.z);
 
-  return annotationObject;
+  if (annotation.anchorType === AnchorType.Sphere) {
+    const sphere = new Sphere({
+      data: anchor,
+      fillstyle: new FillStyle({color: 'yellow'}),
+      radius: 30
+    });
+    sphere.position.set(origin.x, origin.y, origin.z); // Set casing origin, very important!!!
+    object.add(sphere);
+  }
+
+  object.add(annotationObject);
+
+  return object;
 }
 
 function trajectoryPoint(well: Well, depth: number): Vector3 {
@@ -156,14 +158,8 @@ async function createModel() {
   const plot: Plot = createPlot();
   const wellsBox = createWellsBox();
 
-  props.annotations['wellB-2'].forEach(top => {
-    const vector = trajectoryPoint(state.wellB2, top.TVD);
-    console.log(top.name);
-    console.log(vector.x);
-    console.log(vector.y);
-    console.log(vector.z);
-    console.log('----------------')
-  })
+  props.annotations['wellB-2'].forEach(annotation => plot.getRoot().add(createAnnotation(state.wellB2, annotation)));
+  props.annotations['wellB-32'].forEach(annotation => plot.getRoot().add(createAnnotation(state.wellB32, annotation)));
 
   //TODO when wells we be stored as array, make common function instead of calling each well
 

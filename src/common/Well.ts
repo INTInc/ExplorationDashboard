@@ -1,5 +1,5 @@
 import { LasWrapper } from '@/common/LasWrapper';
-import { WellAnnotation } from '@/common/WellAnnotation';
+import { WellAnnotation, AnchorType } from '@/common/WellAnnotation';
 
 export class Well {
 
@@ -53,11 +53,21 @@ export class Well {
 
 	private static mapAnnotations(json: object): WellAnnotation[] {
 		if (Array.isArray(json) && json[0].TVD && json[0].name) {
-			return json as WellAnnotation[];
+			return json.map(
+				item => new WellAnnotation({
+					text: item.name,
+					depth: item.TVD,
+					anchorType: AnchorType.Sphere,
+				})
+			);
 		} else {
 			console.error('Cannot load data as well model annotations');
 			return [];
 		}
+	}
+
+	public get name(): string {
+		return this.tops.wellName || this.surveys.wellName || this.measurements.wellName;
 	}
 
 	public get loaded(): Promise<Well> {
