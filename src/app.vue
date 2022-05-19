@@ -13,6 +13,7 @@
     ></well-log>
     <wells-map></wells-map>
     <wells-model
+      :annotations="annotations"
       :model-padding="500"
       :camera-distance="6000"
     ></wells-model>
@@ -34,7 +35,7 @@ const { state }: Store = useStore();
 state.wellB2
   .setSurveysLasUrl('/data/wellB-2/surveys.las')
   .setMeasurementsLasUrl('/data/wellB-2/logs_desktop.las')
-  .setAnnotationsUrl('/data/wellB-32/tops.json');
+  .setAnnotationsUrl('/data/wellB-2/tops.json');
 state.wellB32
   .setTopsLasUrl('/data/wellB-32/tops.las')
   .setSurveysLasUrl('/data/wellB-32/surveys.las')
@@ -42,6 +43,14 @@ state.wellB32
   .setAnnotationsUrl('/data/wellB-32/tops.json');
 
 state.explMap.url = '/data/fieldB.json';
+
+//TODO fix that
+
+const annotations = {
+  'wellB-2': state.wellB2.annotations,
+  'wellB-32': state.wellB32.annotations
+}
+
 </script>
 
 <style lang="scss">

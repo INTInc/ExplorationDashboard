@@ -1,13 +1,18 @@
 <template>
-  <div ref="container" class="wells-model">
-
-  </div>
+  <div ref="container" class="wells-model"></div>
 </template>
 
 <script setup lang="ts">
 import { ref, defineProps } from 'vue';
 import { onMounted } from '@vue/runtime-core';
-import { Group, Line, LineBasicMaterial, Object3D, Vector3 } from '@int/geotoolkit3d/THREE';
+import {
+  Line,
+  Line3,
+  LineBasicMaterial,
+  Object3D,
+  Plane,
+  Vector3
+} from '@int/geotoolkit3d/THREE';
 import { Plot } from '@int/geotoolkit3d/Plot';
 import { useStore } from '@/store';
 import { Wells3DBox } from '@/components/wells-model/Wells3DBox';
@@ -18,8 +23,11 @@ import { KnownColors } from '@int/geotoolkit/util/ColorUtil';
 import { AnnotationBase } from '@int/geotoolkit3d/scene/AnnotationBase';
 import { TextStyle } from '@int/geotoolkit/attributes/TextStyle';
 import { LineStyle } from '@int/geotoolkit/attributes/LineStyle';
+import { WellAnnotation } from '@/common/WellAnnotation';
+import { MathUtil } from '@int/geotoolkit/util/MathUtil';
 
 const props = defineProps<{
+  annotations: { [wellName: string]: WellAnnotation[] },
   modelPadding: number,
   cameraDistance: number
 }>();
@@ -29,8 +37,8 @@ const {state} = useStore();
 
 function wellsAreLoaded() {
   return Promise.all([
-      state.wellB2.loaded,
-      state.wellB32.loaded
+    state.wellB2.loaded,
+    state.wellB32.loaded
   ])
 }
 
@@ -40,56 +48,6 @@ function createPlot(): Plot {
 
 function createWellsBox(): Wells3DBox {
   return new Wells3DBox([state.wellB2, state.wellB32]);
-}
-
-function createGeometry(well: Well) {
-  return new LineGeometry({
-    data: {
-      x: well.surveys.values('DX'),
-      y: well.surveys.values('DY'),
-      z: well.surveys.values('Z')
-    }
-  })
-}
-
-function createMaterial() {
-  return new LineBasicMaterial({ color: KnownColors.Yellow })
-}
-
-function createAnnotation(well: Well) {
-  const index = well.surveys.values('DX').length - 1;
-
-  const annotation = new AnnotationBase({
-    title: well.surveys.wellName,
-    titlestyle: new TextStyle({
-      font: '12px Arial',
-      color: 'yellow'
-    }),
-    linestyle: new LineStyle({color: 'white'})
-  });
-
-  annotation.setAnchorPoint(new Vector3(
-      well.surveys.values('DX')[index],
-      well.surveys.values('DY')[index],
-      well.surveys.values('Z')[index]
-  ));
-  annotation.position.set(
-      well.surveys.values('DX')[0],
-      well.surveys.values('DY')[0],
-      well.surveys.values('Z')[0]
-  );
-
-  return annotation;
-}
-
-function createTrajectory(well: Well): Object3D {
-  return new Line(createGeometry(well), createMaterial());
-}
-
-function createNamedTrajectory(well: Well): Object3D {
-  return new Group()
-      .add(createTrajectory(well))
-      .add(createAnnotation(well))
 }
 
 function createBoxGrid(box: Wells3DBox, padding: number): Grid {
@@ -107,16 +65,112 @@ function setCamera(wellsBox: Wells3DBox, plot: Plot) {
       .setCameraLookAt(new Vector3(wellsBox.length / 2, wellsBox.width / 2, -wellsBox.height));
 }
 
+
+function createGeometry(well: Well) {
+  return new LineGeometry({
+    data: {
+      x: well.surveys.values('DX'),
+      y: well.surveys.values('DY'),
+      z: well.surveys.values('Z')
+    }
+  })
+}
+
+function createMaterial() {
+  return new LineBasicMaterial({ color: KnownColors.Yellow })
+}
+
+function createTrajectory(well: Well): Object3D {
+  return new Line(createGeometry(well), createMaterial());
+}
+
+function createAnnotationByDepth(well: Well, annotation: WellAnnotation, depth: number): Object3D {
+  return createAnnotation(well, annotation, trajectoryPoint(well, depth));
+}
+
+function createAnnotationByIndex(well: Well, annotation: WellAnnotation, index: number): Object3D {
+  return createAnnotation(well, annotation, vectorByIndex(well, index));
+}
+
+function createAnnotation(well: Well, annotation: WellAnnotation, vector: Vector3): Object3D {
+  const annotationObject = new AnnotationBase({
+    title: well.surveys.wellName,
+    titlestyle: new TextStyle({
+      font: '12px Arial',
+      color: 'yellow'
+    }),
+    linestyle: new LineStyle({color: 'white'})
+  });
+
+  annotationObject.setAnchorPoint(vector);
+  annotationObject.position.set(
+      well.surveys.values('DX')[0],
+      well.surveys.values('DY')[0],
+      well.surveys.values('Z')[0]
+  );
+
+  return annotationObject;
+}
+
+function trajectoryPoint(well: Well, depth: number): Vector3 {
+  const exactIndex: number =  well.surveys.values('TVD').indexOf(depth);
+  return (exactIndex > 0)
+      ? vectorByIndex(well, exactIndex)
+      : vectorByIntersection(well, depth);
+}
+
+function vectorByIndex(well: Well, index: number): Vector3 {
+  return new Vector3(
+      well.surveys.values('DX')[index],
+      well.surveys.values('DY')[index],
+      well.surveys.values('Z')[index]
+  );
+}
+
+function vectorByIntersection(well: Well, depth: number) {
+  const deviatedDepths = findDeviatedDepths(well, depth);
+
+  const planeRef = new Plane(new Vector3(0,0, -1), -depth);
+  const lineRef = new Line3(vectorByIndex(well, deviatedDepths[0]), vectorByIndex(well, deviatedDepths[1]));
+  const intersection = new Vector3();
+
+  planeRef.intersectLine(lineRef, intersection)
+
+  return intersection;
+}
+
+function findDeviatedDepths(well: Well, depth: number) {
+  //TODO improve this, there must be more performant algorithm
+  const values = well.surveys.values('Z');
+  const deviations = values.map(item => Math.abs(Math.abs(item) - depth));
+
+  const minDev = MathUtil.getMin(deviations);
+  const minDevIndex = deviations.indexOf(minDev);
+  const nearestDev = Math.min(deviations[minDevIndex - 1], deviations[minDevIndex + 1]);
+  const nearestDevIndex = deviations.indexOf(nearestDev);
+
+  return [minDevIndex, nearestDevIndex];
+}
+
 async function createModel() {
   const plot: Plot = createPlot();
   const wellsBox = createWellsBox();
 
+  props.annotations['wellB-2'].forEach(top => {
+    const vector = trajectoryPoint(state.wellB2, top.TVD);
+    console.log(top.name);
+    console.log(vector.x);
+    console.log(vector.y);
+    console.log(vector.z);
+    console.log('----------------')
+  })
+
   //TODO when wells we be stored as array, make common function instead of calling each well
 
   plot.getRoot()
-    .add(createBoxGrid(wellsBox, props.modelPadding))
-    .add(createNamedTrajectory(state.wellB2))
-    .add(createNamedTrajectory(state.wellB32));
+      .add(createBoxGrid(wellsBox, props.modelPadding))
+      .add(createTrajectory(state.wellB2))
+      .add(createTrajectory(state.wellB32));
 
   setCamera(wellsBox, plot);
 }

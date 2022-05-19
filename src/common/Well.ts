@@ -1,9 +1,5 @@
 import { LasWrapper } from '@/common/LasWrapper';
-
-interface WellAnnotation {
-	name: string
-	TVD: number
-}
+import { WellAnnotation } from '@/common/WellAnnotation';
 
 export class Well {
 
@@ -27,7 +23,7 @@ export class Well {
 	}
 
 	public setAnnotationsUrl(url: string) {
-		return this.addQuery(url, Well.loadJson(url).then(json => { this.annotations = Well.mapAnnotations(json) }));
+		return this.addQuery(url, Well.loadJson(url).then(json => { this.annotations.push(...Well.mapAnnotations(json)) }));
 	}
 
 	private addQuery(url: string, query: Promise<void>) {
@@ -65,9 +61,6 @@ export class Well {
 	}
 
 	public get loaded(): Promise<Well> {
-		return Promise.all(this.queries).then(() => {
-			console.log(this);
-			return this;
-		});
+		return Promise.all(this.queries).then(() => this);
 	}
 }
