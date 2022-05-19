@@ -51,8 +51,8 @@ async function createModel() {
 
   plot.getRoot()
     .add(drawer.createBoxGrid(wellsBox, props.modelPadding))
-    .add(drawer.createTrajectory(state.wellB2))
-    .add(drawer.createTrajectory(state.wellB32));
+    .add(drawer.createNamedTrajectory(state.wellB2))
+    .add(drawer.createNamedTrajectory(state.wellB32));
 
   setCamera(wellsBox, plot);
 }

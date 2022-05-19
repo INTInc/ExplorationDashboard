@@ -31,16 +31,16 @@ const { state }: Store = useStore();
 
 //TODO add logic to switch between las files for different devices
 
-state.wellB2.setup(
-    '',
-    '/data/wellB-2/surveys.las',
-    '/data/wellB-2/logs_desktop.las'
-);
-state.wellB32.setup(
-    '/data/wellB-32/tops.las',
-    '/data/wellB-32/surveys.las',
-    '/data/wellB-32/logs_desktop.las'
-);
+state.wellB2
+  .setSurveysLasUrl('/data/wellB-2/surveys.las')
+  .setMeasurementsLasUrl('/data/wellB-2/logs_desktop.las')
+  .setAnnotationsUrl('/data/wellB-32/tops.json');
+state.wellB32
+  .setTopsLasUrl('/data/wellB-32/tops.las')
+  .setSurveysLasUrl('/data/wellB-32/surveys.las')
+  .setMeasurementsLasUrl('/data/wellB-32/logs_desktop.las')
+  .setAnnotationsUrl('/data/wellB-32/tops.json');
+
 state.explMap.url = '/data/fieldB.json';
 </script>
 

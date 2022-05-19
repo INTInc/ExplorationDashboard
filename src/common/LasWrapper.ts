@@ -7,7 +7,8 @@ import { LogData } from "@int/geotoolkit/welllog/data/LogData";
 enum MeasureProperty {
   Start,
   Stop,
-  Step
+  Step,
+  Well = 5
 }
 
 enum Measure {
@@ -61,6 +62,10 @@ export class LasWrapper {
       parseFloat(this.property(MeasureProperty.Start).value),
       parseFloat(this.property(MeasureProperty.Stop).value)
     );
+  }
+
+  public get wellName(): string {
+    return this.property(MeasureProperty.Well).value;
   }
 
 }
