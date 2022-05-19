@@ -10,7 +10,7 @@ export class WellAnnotation {
 	public text = '';
 	public anchorType: AnchorType = AnchorType.Point;
 	public textStyle: TextStyle = new TextStyle({ color: '#ffffffff', font: '12px Arial' });
-	public lineStyle: LineStyle = new LineStyle({ color: '#ffffffff' });
+	public lineStyle: LineStyle = new LineStyle();
 	public depth?: number;
 	public index?: number;
 
