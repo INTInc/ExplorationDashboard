@@ -1,4 +1,4 @@
-import { Well } from '@/common/Well';
+import { Well } from '@/data-sources/Well';
 import { Range } from '@int/geotoolkit/util/Range';
 import { MathUtil } from '@int/geotoolkit/util/MathUtil';
 

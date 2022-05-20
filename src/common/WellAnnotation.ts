@@ -1,6 +1,6 @@
 import { LineStyle } from '@int/geotoolkit/attributes/LineStyle';
 import { TextStyle } from '@int/geotoolkit/attributes/TextStyle';
-import { Well } from '@/common/Well';
+import { Well } from '@/data-sources/Well';
 
 export enum AnchorType {
 	Point,

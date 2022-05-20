@@ -1,13 +1,13 @@
 import { inject } from 'vue';
-import { ExplorationMapAdapter } from './data-sources/ExplorationMapAdapter';
+import { Field } from './data-sources/Field';
 import { WellAnnotations } from '@/common/WellAnnotations';
-import { Well } from '@/common/Well';
+import { Well } from '@/data-sources/Well';
 import { WellAnnotation } from '@/common/WellAnnotation';
 
 interface State {
   wells: Well[],
   annotations: WellAnnotations[],
-  explMap: ExplorationMapAdapter
+  explMap: Field
 }
 
 export interface Store {
@@ -22,7 +22,7 @@ export const storeSymbol = Symbol('store');
 const state = {
   wells: [] as Well[],
   annotations: [] as WellAnnotations[],
-  explMap: new ExplorationMapAdapter()
+  explMap: new Field()
 }
 const addWell = (well?: Well) => state.wells[state.wells.push(well || new Well()) -1];
 const addAnnotations = () => state.annotations[state.annotations.push(new WellAnnotations()) -1];

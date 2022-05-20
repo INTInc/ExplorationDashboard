@@ -9,7 +9,7 @@ import { Group, Line, Line3, LineBasicMaterial, Object3D, Plane, Vector3 } from 
 import { Plot } from '@int/geotoolkit3d/Plot';
 import { useStore } from '@/store';
 import { Wells3DBox } from '@/components/wells-model/Wells3DBox';
-import { Well } from '@/common/Well';
+import { Well } from '@/data-sources/Well';
 import { Grid } from '@int/geotoolkit3d/scene/grid/Grid';
 import { LineGeometry } from '@int/geotoolkit3d/scene/well/LineGeometry';
 import { KnownColors } from '@int/geotoolkit/util/ColorUtil';

@@ -1,5 +1,5 @@
 import { AnchorType, WellAnnotation } from '@/common/WellAnnotation';
-import { Well } from '@/common/Well';
+import { Well } from '@/data-sources/Well';
 import { DataSource } from '@/common/DataSource';
 
 export class WellAnnotations extends DataSource<WellAnnotations> {

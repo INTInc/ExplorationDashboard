@@ -3,7 +3,7 @@ import { LogCurve } from '@int/geotoolkit/welllog/LogCurve';
 import { Range } from '@int/geotoolkit/util/Range';
 import { Node } from '@int/geotoolkit/scene/Node';
 import { LogData } from '@int/geotoolkit/welllog/data/LogData';
-import { Well } from '@/common/Well';
+import { Well } from '@/data-sources/Well';
 
 export class WellB32 extends Well {
 

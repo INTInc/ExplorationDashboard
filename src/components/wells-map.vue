@@ -17,8 +17,15 @@ import { PointerMode } from '@int/geotoolkit/controls/tools/PointerMode';
 
 import { StretchablePlot } from '@/common/StrechablePlot';
 
-import { ExplorationMapDrawer } from '@/drawers/ExplorationMapDrawer';
 import { Store, useStore } from '@/store';
+import { Polygon } from '@int/geotoolkit/scene/shapes/Polygon';
+import { Path } from '@int/geotoolkit/scene/shapes/Path';
+import { Field } from '@/data-sources/Field';
+import { RgbaColor } from '@int/geotoolkit/util/RgbaColor';
+
+//TODO temporary, all colors must be defined or redefined by css styles
+const PRIMARY_COLOR = new RgbaColor(140, 104, 205, 1);
+const PRIMARY_TRANSPARENT_COLOR = new RgbaColor(140, 104, 205, 0.5);
 
 const canvas = ref();
 const container = ref();
@@ -45,12 +52,39 @@ function addMapLayer(map: Map) {
   );
 }
 
+function createField(dataSource: Field): Polygon {
+  const {x, y, name} = dataSource.zoneCoordinates;
+  return new Polygon({ x, y })
+      .setFillStyle({
+        color: PRIMARY_TRANSPARENT_COLOR
+      })
+      .setLineStyle({
+        color: PRIMARY_COLOR,
+        width: 3
+      })
+      .setName(name)
+}
+
+function createWells(dataSource: Field): Path[] {
+  return dataSource.wellsCoordinates.map(({x, y, name}) => {
+    const path = new Path({})
+        .setLineStyle({
+          color: PRIMARY_COLOR,
+          width: 3
+        })
+        .setName(name)
+        .moveTo(x[0], y[0]);
+
+    for (let i = 1; i < x.length; i++) path.lineTo(x[i], y[i]);
+    return path;
+  });
+}
+
 function addExplorationLayer(map: Map) {
 
   const { state }: Store = useStore();
 
   const source = state.explMap;
-  const drawer = new ExplorationMapDrawer(source);
 
   source.load()
     .then(() => {
@@ -62,16 +96,16 @@ function addExplorationLayer(map: Map) {
             formatter: (shapes: Shape[]) => shapes[0] && shapes[0].getName() || null
           }
         })
-        .addShape(drawer.zone)
-        .addShape(drawer.wells[0])
-        .addShape(drawer.wells[1])
+        .addShape([createField(source), ...createWells(source)])
       )
+
+
       .setZoomLevel(5)
       .panTo(source.explorationCoordinates, GeodeticSystem.WGS84)
     })
 }
 
-function createPlot(map: Map) {
+function createPlot(map: Field) {
   return new StretchablePlot(container.value, {
     canvaselement: canvas.value,
     root: map
