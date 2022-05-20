@@ -21,8 +21,7 @@ import { Sphere } from '@int/geotoolkit3d/scene/well/schematic/Sphere';
 
 const props = defineProps<{
   modelPadding: number,
-  cameraDistance: number,
-  showAnnotations: boolean
+  cameraDistance: number
 }>();
 
 const container = ref();
@@ -153,15 +152,14 @@ function findDeviatedDepths(well: Well, depth: number) {
   return [minDevIndex, nearestDevIndex];
 }
 
-async function createModel() {
+function createModel() {
   const plot = createPlot();
   const root = plot.getRoot();
   const wellsBox = createWellsBox();
   root
       .add(createBoxGrid(wellsBox, props.modelPadding))
-      .add(...state.wells.map(well => createTrajectory(well)));
-
-  if (props.showAnnotations) getAnnotations().forEach(annotation => root.add(createAnnotation(annotation)));
+      .add(...state.wells.map(well => createTrajectory(well)))
+      .add(...getAnnotations().map(annotation => createAnnotation(annotation)))
 
   setCamera(wellsBox, plot);
 }

@@ -15,7 +15,6 @@
     <wells-model
       :model-padding="500"
       :camera-distance="6000"
-      :show-annotations="true"
     ></wells-model>
   </div>
 </template>
