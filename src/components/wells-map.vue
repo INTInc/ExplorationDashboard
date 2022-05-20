@@ -82,7 +82,7 @@ function createWells(dataSource: Field): Path[] {
 }
 
 function addExplorationLayer(map: Map) {
-  state.field.load()
+  state.field.loaded
     .then(() => {
       map.addLayer(
         new ShapeLayer({

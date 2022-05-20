@@ -1,6 +1,7 @@
 import { GeodeticSystem } from '@int/geotoolkit/map/GeodeticSystem';
 import { Transformer } from '@int/geotoolkit/map/coordinatesystems/Transformer';
 import { Point } from '@int/geotoolkit/util/Point';
+import { DataSource } from '@/common/DataSource';
 
 export interface Coordinates {
   x: number[],
@@ -11,9 +12,7 @@ export interface NamedCoordinates extends Coordinates {
   name: string
 }
 
-export class Field {
-  public url = '';
-  public data = null;
+export class Field extends DataSource<Field> {
 
   private rawData: any;
   private transformer: Transformer = new Transformer({
@@ -25,13 +24,14 @@ export class Field {
     if (!url.trim().length) throw new Error(`Url for data source ${this.constructor.name} is not specified`);
   }
 
-  public async load() {
-    this.checkUrl(this.url);
+  public async setUrl(url: string) {
+    this.checkUrl(url);
 
     try {
-      const response = await fetch(this.url);
+      const response = await fetch(url);
       const json = await response.json() as [][];
       this.rawData = Object.values(json[0])[0];
+      this.loading.resolve(this);
     } catch (e: unknown) {
       console.log(`Error loading exploration field data: ${e}`)
     }

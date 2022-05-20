@@ -30,7 +30,9 @@ import { Store, useStore } from '@/store';
 import { WellB2 } from '@/data-sources/WellB2';
 import { WellB32 } from '@/data-sources/WellB32';
 
-const { state, addWell, addAnnotations }: Store = useStore();
+const { addField, addWell, addAnnotations }: Store = useStore();
+
+addField().setUrl('/data/fieldB.json');
 
 //TODO add logic to switch between las files for different devices
 
@@ -48,10 +50,6 @@ addWell(wellB32).setUrls({
 });
 addAnnotations().setUrl('/data/wellB-2/tops.json').then(a => a.attachToWell(wellB2));
 addAnnotations().setUrl('/data/wellB-32/tops.json').then(a => a.attachToWell(wellB32));
-
-//TODO make store function to set map data
-
-state.explMap.url = '/data/fieldB.json';
 </script>
 
 <style lang="scss">
