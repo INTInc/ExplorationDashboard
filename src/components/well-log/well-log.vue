@@ -7,15 +7,15 @@
 </template>
 
 <script setup lang="ts">
-import { MeasurementsLogAdapter } from '@/data-sources/MeasurementsLogAdapter';
-import { MeasurementsTopsLogAdapter } from '@/data-sources/MeasurementsTopsLogAdapter';
+import { WellB2 } from '@/data-sources/WellB2';
+import { WellB32 } from '@/data-sources/WellB32';
 import { StretchablePlot } from '@/common/StrechablePlot';
 import { HeaderType } from '@int/geotoolkit/welllog/header/LogAxisVisualHeader';
 import { WellLogWidget } from '@int/geotoolkit/welllog/widgets/WellLogWidget';
 import { onMounted, defineProps, ref } from 'vue';
 
 const props = defineProps<{
-  source: MeasurementsLogAdapter | MeasurementsTopsLogAdapter,
+  source: WellB2 | WellB32,
   templateUrl: string
 }>();
 

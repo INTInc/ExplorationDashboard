@@ -1,76 +1,42 @@
 import { LasWrapper } from '@/common/LasWrapper';
-import { WellAnnotation, AnchorType } from '@/common/WellAnnotation';
+import { DataSource } from '@/common/DataSource';
 
-export class Well {
+interface WellOptions {
+	topsUrl?: string,
+	surveysUrl?: string,
+	measurementsUrl?: string
+}
+
+export class Well extends DataSource<Well> {
 
 	public tops: LasWrapper = new LasWrapper();
 	public surveys: LasWrapper = new LasWrapper();
 	public measurements: LasWrapper = new LasWrapper();
-	public annotations: WellAnnotation[] = [];
 
-	private queries: Promise<void>[] = [];
+	public setUrls(options: WellOptions): Promise<void> {
+		const promises: Promise<void>[] = [];
 
-	setTopsLasUrl(url: string): Well {
-		return this.addQuery(url, Well.loadLas(url, this.tops));
-	}
+		if (options.topsUrl) promises.push(Well.loadLas(options.topsUrl, this.tops));
+		if (options.surveysUrl) promises.push(Well.loadLas(options.surveysUrl, this.surveys));
+		if (options.measurementsUrl) promises.push(Well.loadLas(options.measurementsUrl, this.measurements));
 
-	public setSurveysLasUrl(url: string) {
-		return this.addQuery(url, Well.loadLas(url, this.surveys));
-	}
-
-	public setMeasurementsLasUrl(url: string) {
-		return this.addQuery(url, Well.loadLas(url, this.measurements));
-	}
-
-	public setAnnotationsUrl(url: string) {
-		return this.addQuery(url, Well.loadJson(url).then(json => { this.annotations.push(...Well.mapAnnotations(json)) }));
-	}
-
-	private addQuery(url: string, query: Promise<void>) {
-		if (Well.checkUrl(url)) {
-			this.queries.push(query.catch((e => console.error(`Error loading data part with url ${url}, ${e.toString()}`))));
-		} else {
-			console.error(`Invalid data part url ${url}`);
-		}
-		return this;
-	}
-
-	private static checkUrl(url: string) {
-		return url && url.toString().trim().length;
-	}
-
-	private static async loadJson(url: string): Promise<object> {
-		const response = await fetch(url);
-		return await response.json() as object;
+		return Promise.all(promises)
+			.then(() => this.loading.resolve(this))
+			.catch(() => this.loading.reject());
 	}
 
 	private static async loadLas(url: string, lasWrapper: LasWrapper): Promise<void> {
-		const response = await fetch(url);
-		const text = await response.text();
+		try {
+			const response = await fetch(url);
+			const text = await response.text();
 
-		lasWrapper.setSource(text);
-	}
-
-	private static mapAnnotations(json: object): WellAnnotation[] {
-		if (Array.isArray(json) && json[0].TVD && json[0].name) {
-			return json.map(
-				item => new WellAnnotation({
-					text: item.name,
-					depth: item.TVD,
-					anchorType: AnchorType.Sphere,
-				})
-			);
-		} else {
-			console.error('Cannot load data as well model annotations');
-			return [];
+			lasWrapper.setSource(text);
+		} catch (e: unknown) {
+			console.error(`Error loading data part with url ${url}, ${e}`);
 		}
 	}
 
 	public get name(): string {
 		return this.tops.wellName || this.surveys.wellName || this.measurements.wellName;
-	}
-
-	public get loaded(): Promise<Well> {
-		return Promise.all(this.queries).then(() => this);
 	}
 }

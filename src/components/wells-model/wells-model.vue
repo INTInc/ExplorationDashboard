@@ -20,18 +20,18 @@ import { FillStyle } from '@int/geotoolkit/attributes/FillStyle';
 import { Sphere } from '@int/geotoolkit3d/scene/well/schematic/Sphere';
 
 const props = defineProps<{
-  annotations: { [wellName: string]: WellAnnotation[] },
   modelPadding: number,
-  cameraDistance: number
+  cameraDistance: number,
+  showAnnotations: boolean
 }>();
 
 const container = ref();
-const {state} = useStore();
+const { state, getAnnotations } = useStore();
 
 function wellsAreLoaded() {
   return Promise.all([
-    state.wellB2.loaded,
-    state.wellB32.loaded
+    ...state.wells.map(well => well.loaded),
+    ...state.annotations.map(annotation => annotation.loaded)
   ])
 }
 
@@ -40,7 +40,7 @@ function createPlot(): Plot {
 }
 
 function createWellsBox(): Wells3DBox {
-  return new Wells3DBox([state.wellB2, state.wellB32]);
+  return new Wells3DBox(state.wells);
 }
 
 function createBoxGrid(box: Wells3DBox, padding: number): Grid {
@@ -57,7 +57,6 @@ function setCamera(wellsBox: Wells3DBox, plot: Plot) {
       .setCameraLocation(new Vector3(wellsBox.length / 2, -props.cameraDistance, wellsBox.height / 2))
       .setCameraLookAt(new Vector3(wellsBox.length / 2, wellsBox.width / 2, -wellsBox.height));
 }
-
 
 function createGeometry(well: Well) {
   return new LineGeometry({
@@ -77,15 +76,15 @@ function createTrajectory(well: Well): Object3D {
   return new Line(createGeometry(well), createMaterial());
 }
 
-function createAnnotation(well: Well, annotation: WellAnnotation): Object3D {
+function createAnnotation(annotation: WellAnnotation): Object3D {
   let anchor = new Vector3();
   const object = new Group();
-  const origin = vectorByIndex(well, 0);
+  const origin = vectorByIndex(annotation.well, 0);
 
   if (annotation.index) {
-    anchor = vectorByIndex(well, annotation.index);
+    anchor = vectorByIndex(annotation.well, annotation.index);
   } else if (annotation.depth) {
-    anchor = trajectoryPoint(well, annotation.depth);
+    anchor = trajectoryPoint(annotation.well, annotation.depth);
   } else {
     return new Object3D();
   }
@@ -155,18 +154,14 @@ function findDeviatedDepths(well: Well, depth: number) {
 }
 
 async function createModel() {
-  const plot: Plot = createPlot();
+  const plot = createPlot();
+  const root = plot.getRoot();
   const wellsBox = createWellsBox();
-
-  props.annotations['wellB-2'].forEach(annotation => plot.getRoot().add(createAnnotation(state.wellB2, annotation)));
-  props.annotations['wellB-32'].forEach(annotation => plot.getRoot().add(createAnnotation(state.wellB32, annotation)));
-
-  //TODO when wells we be stored as array, make common function instead of calling each well
-
-  plot.getRoot()
+  root
       .add(createBoxGrid(wellsBox, props.modelPadding))
-      .add(createTrajectory(state.wellB2))
-      .add(createTrajectory(state.wellB32));
+      .add(...state.wells.map(well => createTrajectory(well)));
+
+  if (props.showAnnotations) getAnnotations().forEach(annotation => root.add(createAnnotation(annotation)));
 
   setCamera(wellsBox, plot);
 }

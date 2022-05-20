@@ -3,19 +3,19 @@
   <div class="charts-container">
     <well-log
       class="vertical-log"
-      :source="state.wellB2"
+      :source="wellB2"
       :template-url="'/templates/vertical-log.json'"
     ></well-log>
     <well-log
       class="horizontal-log"
-      :source="state.wellB32"
+      :source="wellB32"
       :template-url="'/templates/horizontal-log.json'"
     ></well-log>
     <wells-map></wells-map>
     <wells-model
-      :annotations="annotations"
       :model-padding="500"
       :camera-distance="6000"
+      :show-annotations="true"
     ></wells-model>
   </div>
 </template>
@@ -27,30 +27,31 @@ import WellsMap from '@/components/wells-map/wells-map.vue';
 import WellsModel from '@/components/wells-model/wells-model.vue';
 
 import { Store, useStore } from '@/store';
+import { WellB2 } from '@/data-sources/WellB2';
+import { WellB32 } from '@/data-sources/WellB32';
 
-const { state }: Store = useStore();
+const { state, addWell, addAnnotations }: Store = useStore();
 
 //TODO add logic to switch between las files for different devices
 
-state.wellB2
-  .setSurveysLasUrl('/data/wellB-2/surveys.las')
-  .setMeasurementsLasUrl('/data/wellB-2/logs_desktop.las')
-  .setAnnotationsUrl('/data/wellB-2/tops.json');
-state.wellB32
-  .setTopsLasUrl('/data/wellB-32/tops.las')
-  .setSurveysLasUrl('/data/wellB-32/surveys.las')
-  .setMeasurementsLasUrl('/data/wellB-32/logs_desktop.las')
-  .setAnnotationsUrl('/data/wellB-32/tops.json');
+const wellB2 = new WellB2();
+const wellB32 = new WellB32();
+
+addWell(wellB2).setUrls({
+  surveysUrl: '/data/wellB-2/surveys.las',
+  measurementsUrl: '/data/wellB-2/logs_desktop.las'
+})
+addWell(wellB32).setUrls({
+  topsUrl: '/data/wellB-32/tops.las',
+  surveysUrl: '/data/wellB-32/surveys.las',
+  measurementsUrl: '/data/wellB-32/logs_desktop.las'
+});
+addAnnotations().setUrl('/data/wellB-2/tops.json').then(a => a.attachToWell(wellB2));
+addAnnotations().setUrl('/data/wellB-32/tops.json').then(a => a.attachToWell(wellB32));
+
+//TODO make store function to set map data
 
 state.explMap.url = '/data/fieldB.json';
-
-//TODO fix that
-
-const annotations = {
-  'wellB-2': state.wellB2.annotations,
-  'wellB-32': state.wellB32.annotations
-}
-
 </script>
 
 <style lang="scss">
