@@ -29,6 +29,7 @@ const PRIMARY_TRANSPARENT_COLOR = new RgbaColor(140, 104, 205, 0.5);
 
 const canvas = ref();
 const container = ref();
+const { state }: Store = useStore();
 
 function createMap() {    
   return new Map({
@@ -81,12 +82,7 @@ function createWells(dataSource: Field): Path[] {
 }
 
 function addExplorationLayer(map: Map) {
-
-  const { state }: Store = useStore();
-
-  const source = state.explMap;
-
-  source.load()
+  state.field.load()
     .then(() => {
       map.addLayer(
         new ShapeLayer({
@@ -96,16 +92,14 @@ function addExplorationLayer(map: Map) {
             formatter: (shapes: Shape[]) => shapes[0] && shapes[0].getName() || null
           }
         })
-        .addShape([createField(source), ...createWells(source)])
+        .addShape([createField(state.field), ...createWells(state.field)])
       )
-
-
       .setZoomLevel(5)
-      .panTo(source.explorationCoordinates, GeodeticSystem.WGS84)
+      .panTo(state.field.explorationCoordinates, GeodeticSystem.WGS84)
     })
 }
 
-function createPlot(map: Field) {
+function createPlot(map: Map) {
   return new StretchablePlot(container.value, {
     canvaselement: canvas.value,
     root: map

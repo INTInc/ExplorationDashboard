@@ -5,13 +5,15 @@ import { Well } from '@/data-sources/Well';
 import { WellAnnotation } from '@/common/WellAnnotation';
 
 interface State {
+  field: Field,
   wells: Well[],
   annotations: WellAnnotations[],
-  explMap: Field
 }
 
 export interface Store {
   readonly state: State,
+
+  addField: () => Field,
   addWell: (well?: Well) => Well,
   addAnnotations: (annotations?: WellAnnotations) => WellAnnotations,
   getAnnotations: () => WellAnnotation[]
@@ -20,10 +22,11 @@ export interface Store {
 export const storeSymbol = Symbol('store');
 
 const state = {
+  field: new Field(),
   wells: [] as Well[],
   annotations: [] as WellAnnotations[],
-  explMap: new Field()
 }
+const addField = () => { return state.field = new Field() }
 const addWell = (well?: Well) => state.wells[state.wells.push(well || new Well()) -1];
 const addAnnotations = () => state.annotations[state.annotations.push(new WellAnnotations()) -1];
 const getAnnotations = () => {
@@ -35,6 +38,7 @@ const getAnnotations = () => {
 export const createStore = (): Store => ({
   state,
   addWell,
+  addField,
   addAnnotations,
   getAnnotations
 });
