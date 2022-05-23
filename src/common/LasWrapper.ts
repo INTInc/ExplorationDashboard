@@ -27,6 +27,7 @@ export class LasWrapper {
   private las: Las20 = new Las20();
   private curves: LasSectionGroup = new LasSectionGroup();
   private properties: LasSection = new LasSection();
+  private sourceLoaded = false;
 
   private property(propertyIndex: MeasureProperty) {
     return this.properties.getData()[propertyIndex];
@@ -40,6 +41,7 @@ export class LasWrapper {
     this.las.parse(text);
     this.curves = this.las.getSectionGroups()[0];
     this.properties = this.las.getSections()[1];
+    this.sourceLoaded = true;
 
     return this;
   }
@@ -64,8 +66,12 @@ export class LasWrapper {
     );
   }
 
-  public get wellName(): string {
-    return this.property(MeasureProperty.Well).value;
+  public get wellName(): string | null {
+    return this.sourceLoaded ? this.property(MeasureProperty.Well).value : null;
+  }
+
+  public get length(): number {
+    return this.values(this.curves.getCurveMnemonics()[0]).length
   }
 
 }

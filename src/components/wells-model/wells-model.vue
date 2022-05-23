@@ -30,7 +30,9 @@ const TEXT_STYLE = new TextStyle({ color: KnownColors.Black, font: '12px Arial' 
 
 const props = defineProps<{
   modelPadding: number,
-  cameraDistance: number
+  cameraDistance: number,
+  showWellNames?: boolean,
+  showAnnotations?: boolean
 }>();
 
 const model = ref();
@@ -78,49 +80,6 @@ function createBoxGrid(box: Wells3DBox, padding: number): Grid {
 
   });
 }
-
-/*
-*
-* 'linestyles': {
-                    'x': new geotoolkit.attributes.LineStyle({
-                        'color': 'darkgrey',
-                        'pattern': geotoolkit.attributes.LineStyle.Patterns.Dash
-                    }),
-                    'y': new geotoolkit.attributes.LineStyle({
-                        'color': 'darkgrey',
-                        'pattern': geotoolkit.attributes.LineStyle.Patterns.Dash
-                    }),
-                    'z': new geotoolkit.attributes.LineStyle({
-                        'color': 'darkgrey',
-                        'pattern': geotoolkit.attributes.LineStyle.Patterns.Dash
-                    })
-                }
-            },
-            'axis': {
-                'linestyles': {
-                    'x': new geotoolkit.attributes.LineStyle({
-                        'color': 'black'
-                    }),
-                    'y': new geotoolkit.attributes.LineStyle({
-                        'color': 'black'
-                    }),
-                    'z': new geotoolkit.attributes.LineStyle({
-                        'color': 'black'
-                    })
-                },
-                'textstyles': {
-                    'x': new geotoolkit.attributes.TextStyle({
-                        'color': 'black'
-                    }),
-                    'y': new geotoolkit.attributes.TextStyle({
-                        'color': 'black'
-                    }),
-                    'z': new geotoolkit.attributes.TextStyle({
-                        'color': 'black'
-                    })
-                }
-*
-* */
 
 function setCamera(wellsBox: Wells3DBox, plot: Plot) {
   plot
@@ -223,14 +182,31 @@ function findDeviatedDepths(well: Well, depth: number) {
   return [minDevIndex, nearestDevIndex];
 }
 
+function createWellNamesAnnotations() {
+  return state.wells
+      .filter(well => well.surveys.wellName)
+      .map(well => createAnnotation(new WellAnnotation({
+        well,
+        text: well.surveys.wellName as string,
+        index: well.surveys.length - 1,
+        textStyle: TEXT_STYLE,
+      })));
+}
+
+function createCustomAnnotations() {
+  return getAnnotations().map(annotation => createAnnotation(annotation));
+}
+
 function createModel() {
   const plot = createPlot();
   const root = plot.getRoot();
   const wellsBox = createWellsBox();
   root
       .add(createBoxGrid(wellsBox, props.modelPadding))
-      .add(...state.wells.map(well => createTrajectory(well)))
-      .add(...getAnnotations().map(annotation => createAnnotation(annotation)))
+      .add(...state.wells.map(well => createTrajectory(well)));
+
+  if (props.showWellNames) root.add(...createWellNamesAnnotations());
+  if (props.showAnnotations) root.add(...createCustomAnnotations())
 
   setCamera(wellsBox, plot);
 }

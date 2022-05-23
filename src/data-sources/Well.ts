@@ -35,8 +35,4 @@ export class Well extends DataSource<Well> {
 			console.error(`Error loading data part with url ${url}, ${e}`);
 		}
 	}
-
-	public get name(): string {
-		return this.tops.wellName || this.surveys.wellName || this.measurements.wellName;
-	}
 }
