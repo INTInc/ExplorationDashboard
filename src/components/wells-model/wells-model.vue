@@ -1,5 +1,7 @@
 <template>
-  <div ref="container" class="wells-model"></div>
+  <div ref="container" class="wells-model">
+    <div ref="model"></div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -18,12 +20,20 @@ import { AnchorType, WellAnnotation } from '@/common/WellAnnotation';
 import { MathUtil } from '@int/geotoolkit/util/MathUtil';
 import { FillStyle } from '@int/geotoolkit/attributes/FillStyle';
 import { Sphere } from '@int/geotoolkit3d/scene/well/schematic/Sphere';
+import { StretchablePlot3 } from '@/common/layout/StretchablePlot3';
+import { LineStyle, Patterns } from '@int/geotoolkit/attributes/LineStyle';
+import { TextStyle } from '@int/geotoolkit/attributes/TextStyle';
+
+const AXIS_LINE_STYLE = new LineStyle({ color: KnownColors.Black, pattern: Patterns.Solid });
+const GRID_LINE_STYLE = new LineStyle({ color: KnownColors.DarkGrey, pattern: Patterns.Dash });
+const TEXT_STYLE = new TextStyle({ color: KnownColors.Black, font: '12px Arial' });
 
 const props = defineProps<{
   modelPadding: number,
   cameraDistance: number
 }>();
 
+const model = ref();
 const container = ref();
 const { state, getAnnotations } = useStore();
 
@@ -35,7 +45,14 @@ function wellsAreLoaded() {
 }
 
 function createPlot(): Plot {
-  return new Plot({ container: container.value });
+  const plot = new StretchablePlot3({
+    container: model.value,
+    renderer: {
+      clearcolor: 'white'
+    }
+  });
+  plot.setRefElement(container.value);
+  return plot;
 }
 
 function createWellsBox(): Wells3DBox {
@@ -47,9 +64,63 @@ function createBoxGrid(box: Wells3DBox, padding: number): Grid {
     start: new Vector3(-padding, - box.width / 2 - padding, 0),
     end: new Vector3(box.length + padding, box.width / 2 + padding, - box.height),
     modelstart: new Vector3(box.xLimits.getHigh() - padding,box.yLimits.getLow() - padding, box.zLimits.getLow()),
-    modelend: new Vector3(box.xLimits.getHigh() + padding, box.yLimits.getHigh() + padding, box.zLimits.getHigh())
+    modelend: new Vector3(box.xLimits.getHigh() + padding, box.yLimits.getHigh() + padding, box.zLimits.getHigh()),
+    grid: {
+      linestyles: { x: GRID_LINE_STYLE, y: GRID_LINE_STYLE, z: GRID_LINE_STYLE }
+    },
+    axis: {
+      linestyles: { x: AXIS_LINE_STYLE, y: AXIS_LINE_STYLE, z: AXIS_LINE_STYLE },
+      textstyles: { x: TEXT_STYLE,  y: TEXT_STYLE, z: TEXT_STYLE }
+    },
+    title: {
+      textstyles: { x: TEXT_STYLE,  y: TEXT_STYLE, z: TEXT_STYLE }
+    }
+
   });
 }
+
+/*
+*
+* 'linestyles': {
+                    'x': new geotoolkit.attributes.LineStyle({
+                        'color': 'darkgrey',
+                        'pattern': geotoolkit.attributes.LineStyle.Patterns.Dash
+                    }),
+                    'y': new geotoolkit.attributes.LineStyle({
+                        'color': 'darkgrey',
+                        'pattern': geotoolkit.attributes.LineStyle.Patterns.Dash
+                    }),
+                    'z': new geotoolkit.attributes.LineStyle({
+                        'color': 'darkgrey',
+                        'pattern': geotoolkit.attributes.LineStyle.Patterns.Dash
+                    })
+                }
+            },
+            'axis': {
+                'linestyles': {
+                    'x': new geotoolkit.attributes.LineStyle({
+                        'color': 'black'
+                    }),
+                    'y': new geotoolkit.attributes.LineStyle({
+                        'color': 'black'
+                    }),
+                    'z': new geotoolkit.attributes.LineStyle({
+                        'color': 'black'
+                    })
+                },
+                'textstyles': {
+                    'x': new geotoolkit.attributes.TextStyle({
+                        'color': 'black'
+                    }),
+                    'y': new geotoolkit.attributes.TextStyle({
+                        'color': 'black'
+                    }),
+                    'z': new geotoolkit.attributes.TextStyle({
+                        'color': 'black'
+                    })
+                }
+*
+* */
 
 function setCamera(wellsBox: Wells3DBox, plot: Plot) {
   plot
@@ -68,7 +139,7 @@ function createGeometry(well: Well) {
 }
 
 function createMaterial() {
-  return new LineBasicMaterial({ color: KnownColors.Yellow })
+  return new LineBasicMaterial({ color: KnownColors.Green })
 }
 
 function createTrajectory(well: Well): Object3D {
@@ -90,7 +161,7 @@ function createAnnotation(annotation: WellAnnotation): Object3D {
 
   const annotationObject = new AnnotationBase({
     title: annotation.text,
-    titlestyle: annotation.textStyle,
+    titlestyle: TEXT_STYLE || annotation.textStyle,
     linestyle: annotation.lineStyle
   });
 
@@ -100,7 +171,7 @@ function createAnnotation(annotation: WellAnnotation): Object3D {
   if (annotation.anchorType === AnchorType.Sphere) {
     const sphere = new Sphere({
       data: anchor,
-      fillstyle: new FillStyle({color: 'yellow'}),
+      fillstyle: new FillStyle({color: KnownColors.Green }),
       radius: 30
     });
     sphere.position.set(origin.x, origin.y, origin.z); // Set casing origin, very important!!!

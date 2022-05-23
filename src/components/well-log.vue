@@ -9,10 +9,10 @@
 <script setup lang="ts">
 import { WellB2 } from '@/data-sources/WellB2';
 import { WellB32 } from '@/data-sources/WellB32';
-import { StretchablePlot } from '@/common/StrechablePlot';
 import { HeaderType } from '@int/geotoolkit/welllog/header/LogAxisVisualHeader';
 import { WellLogWidget } from '@int/geotoolkit/welllog/widgets/WellLogWidget';
 import { onMounted, defineProps, ref } from 'vue';
+import { StretchablePlot } from '@/common/layout/StretchablePlot';
 
 const props = defineProps<{
   source: WellB2 | WellB32,
@@ -44,10 +44,11 @@ function createWidget(template: string) {
 }
 
 function createPlot(widget: WellLogWidget) {
-    return new StretchablePlot(container.value, {
+    return new StretchablePlot({
       canvaselement: canvas.value,
       root: widget
     })
+      .setRefElement(container.value)
 }
 
 /*function handleError() {
