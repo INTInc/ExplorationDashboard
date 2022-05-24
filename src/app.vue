@@ -5,11 +5,13 @@
       class="vertical-log"
       :source="wellB2"
       :template-url="'/templates/vertical-log.json'"
+      :fit-tracks="3"
     ></well-log>
     <well-log
       class="horizontal-log"
       :source="wellB32"
       :template-url="'/templates/horizontal-log.json'"
+      :fit-tracks="1"
     ></well-log>
     <wells-map></wells-map>
     <wells-model

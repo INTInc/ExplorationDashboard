@@ -7,41 +7,6 @@
 				"name":"Track # 0",
 				"id":"LOG_TRACK",
 				"type":"linear",
-				"width":200,
-				"block":{
-					"cg_type":"geotoolkit.welllog.LogBlock",
-					"cg_id":3,
-					"id":null,
-					"name":"",
-					"cssclass":null,
-					"selectable":false,
-					"visible":false,
-					"tag":null,
-					"animationstyle":null,
-					"linestyle":{
-						"cg_type":"linestyle",
-						"cg_id":4,
-						"color":"#9e9e9eff",
-						"width":1,
-						"pattern":[
-
-						],
-						"pixelsnapmode":{
-							"cg_id":5,
-							"x":true,
-							"y":true
-						},
-						"linejoin":"round",
-						"linecap":"butt"
-					},
-					"position":1,
-					"fillstyle":{
-						"cg_type":"fillstyle",
-						"cg_id":6,
-						"color":"#cc0066cc",
-						"evenoddmode":false
-					}
-				},
 				"header":{
 					"cg_type":"trackheader",
 					"visible":true,
@@ -974,41 +939,6 @@
 				"name":"Track # 1",
 				"id":"INDEX",
 				"type":"index",
-				"width":50,
-				"block":{
-					"cg_type":"geotoolkit.welllog.LogBlock",
-					"cg_id":121,
-					"id":null,
-					"name":"",
-					"cssclass":null,
-					"selectable":false,
-					"visible":false,
-					"tag":null,
-					"animationstyle":null,
-					"linestyle":{
-						"cg_type":"linestyle",
-						"cg_id":122,
-						"color":"#9e9e9eff",
-						"width":1,
-						"pattern":[
-
-						],
-						"pixelsnapmode":{
-							"cg_id":123,
-							"x":true,
-							"y":true
-						},
-						"linejoin":"round",
-						"linecap":"butt"
-					},
-					"position":1,
-					"fillstyle":{
-						"cg_type":"fillstyle",
-						"cg_id":124,
-						"color":"#cc0066cc",
-						"evenoddmode":false
-					}
-				},
 				"header":{
 					"cg_type":"trackheader",
 					"visible":true,
@@ -1331,41 +1261,6 @@
 				"name":"Track # 2",
 				"id":"LOG_TRACK",
 				"type":"linear",
-				"width":200,
-				"block":{
-					"cg_type":"geotoolkit.welllog.LogBlock",
-					"cg_id":170,
-					"id":null,
-					"name":"",
-					"cssclass":null,
-					"selectable":false,
-					"visible":false,
-					"tag":null,
-					"animationstyle":null,
-					"linestyle":{
-						"cg_type":"linestyle",
-						"cg_id":171,
-						"color":"#9e9e9eff",
-						"width":1,
-						"pattern":[
-
-						],
-						"pixelsnapmode":{
-							"cg_id":172,
-							"x":true,
-							"y":true
-						},
-						"linejoin":"round",
-						"linecap":"butt"
-					},
-					"position":1,
-					"fillstyle":{
-						"cg_type":"fillstyle",
-						"cg_id":173,
-						"color":"#cc0066cc",
-						"evenoddmode":false
-					}
-				},
 				"header":{
 					"cg_type":"trackheader",
 					"visible":true,
@@ -2205,42 +2100,7 @@
 				"cg_id":276,
 				"name":"Track # 3",
 				"id":"LOG_TRACK",
-				"type":"linear",
-				"width":200,
-				"block":{
-					"cg_type":"geotoolkit.welllog.LogBlock",
-					"cg_id":277,
-					"id":null,
-					"name":"",
-					"cssclass":null,
-					"selectable":false,
-					"visible":false,
-					"tag":null,
-					"animationstyle":null,
-					"linestyle":{
-						"cg_type":"linestyle",
-						"cg_id":278,
-						"color":"#9e9e9eff",
-						"width":1,
-						"pattern":[
-
-						],
-						"pixelsnapmode":{
-							"cg_id":279,
-							"x":true,
-							"y":true
-						},
-						"linejoin":"round",
-						"linecap":"butt"
-					},
-					"position":1,
-					"fillstyle":{
-						"cg_type":"fillstyle",
-						"cg_id":280,
-						"color":"#cc0066cc",
-						"evenoddmode":false
-					}
-				},
+				"type":"log",
 				"header":{
 					"cg_type":"trackheader",
 					"visible":true,
