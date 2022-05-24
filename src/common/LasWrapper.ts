@@ -8,7 +8,8 @@ enum MeasureProperty {
   Start,
   Stop,
   Step,
-  Well = 5
+  Null,
+  Well = 5,
 }
 
 enum Measure {
@@ -30,7 +31,7 @@ export class LasWrapper {
   private sourceLoaded = false;
 
   private property(propertyIndex: MeasureProperty) {
-    return this.properties.getData()[propertyIndex];
+    return this.sourceLoaded ? this.properties.getData()[propertyIndex] : null;
   }
 
   private info(measure: Measure) {
@@ -55,8 +56,17 @@ export class LasWrapper {
       .setValueUnit(this.info(valuesKey as Measure).getUnit())
   }
 
-  public values(measure: string) {
-    return this.curves.getCurveData(measure)
+  public values(measure: string): number[] {
+    if (this.containMeasure(measure)) {
+      return this.curves.getCurveData(measure);
+    } else {
+      console.warn(`Provided data not include measurement named ${measure}`);
+      return [];
+    }
+  }
+
+  public containMeasure(measure: string): boolean {
+    return this.curves.getCurveMnemonics().includes(measure);
   }
 
   public get depthLimits(): Range {
@@ -67,7 +77,11 @@ export class LasWrapper {
   }
 
   public get wellName(): string | null {
-    return this.sourceLoaded ? this.property(MeasureProperty.Well).value : null;
+    return this.property(MeasureProperty.Well).value;
+  }
+
+  public get nullValue(): number | null {
+    return this.property(MeasureProperty.Null).value;
   }
 
   public get length(): number {

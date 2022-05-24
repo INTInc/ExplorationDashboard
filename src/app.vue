@@ -17,6 +17,7 @@
       :camera-distance="6000"
       :show-annotations="true"
       :show-well-names="true"
+      :measurement="'DLS'"
     ></wells-model>
   </div>
 </template>

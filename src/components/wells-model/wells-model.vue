@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import { defineProps, ref } from 'vue';
 import { onMounted } from '@vue/runtime-core';
-import { Group, Line, Line3, LineBasicMaterial, Object3D, Plane, Vector3 } from '@int/geotoolkit3d/THREE';
+import { Color, Group, Line, Line3, LineBasicMaterial, Object3D, Plane, Vector3 } from '@int/geotoolkit3d/THREE';
 import { Plot } from '@int/geotoolkit3d/Plot';
 import { useStore } from '@/store';
 import { Wells3DBox } from '@/components/wells-model/Wells3DBox';
@@ -23,6 +23,9 @@ import { Sphere } from '@int/geotoolkit3d/scene/well/schematic/Sphere';
 import { StretchablePlot3 } from '@/common/layout/StretchablePlot3';
 import { LineStyle, Patterns } from '@int/geotoolkit/attributes/LineStyle';
 import { TextStyle } from '@int/geotoolkit/attributes/TextStyle';
+import { LogCurve2D } from '@int/geotoolkit3d/scene/well/LogCurve2D';
+import { LogFill2D } from '@int/geotoolkit3d/scene/well/LogFill2D';
+import { WellMeasurement } from '@/common/WellDataReference';
 
 const AXIS_LINE_STYLE = new LineStyle({ color: KnownColors.Black, pattern: Patterns.Solid });
 const GRID_LINE_STYLE = new LineStyle({ color: KnownColors.DarkGrey, pattern: Patterns.Dash });
@@ -32,7 +35,8 @@ const props = defineProps<{
   modelPadding: number,
   cameraDistance: number,
   showWellNames?: boolean,
-  showAnnotations?: boolean
+  showAnnotations?: boolean,
+  measurement?: string
 }>();
 
 const model = ref();
@@ -182,19 +186,60 @@ function findDeviatedDepths(well: Well, depth: number) {
   return [minDevIndex, nearestDevIndex];
 }
 
-function createWellNamesAnnotations() {
-  return state.wells
-      .filter(well => well.surveys.wellName)
-      .map(well => createAnnotation(new WellAnnotation({
-        well,
-        text: well.surveys.wellName as string,
-        index: well.surveys.length - 1,
-        textStyle: TEXT_STYLE,
-      })));
+function createWellNamesAnnotations(root: Object3D): void {
+  if (props.showWellNames)
+    root.add(
+      ...state.wells
+        .filter(well => well.surveys.wellName)
+        .map(well => createAnnotation(new WellAnnotation({
+          well,
+          text: well.surveys.wellName as string,
+          index: well.surveys.length - 1,
+          textStyle: TEXT_STYLE,
+        })))
+    )
 }
 
-function createCustomAnnotations() {
-  return getAnnotations().map(annotation => createAnnotation(annotation));
+function createCustomAnnotations(root: Object3D): void {
+  if (props.showAnnotations) root.add(...getAnnotations().map(createAnnotation));
+}
+
+function createMeasurementCurve(well: Well, measurement: string): Object3D {
+  const
+      curveCoordinates = {
+        x: well.surveys.values('DX'),
+        y: well.surveys.values('DY'),
+        z: well.surveys.values('Z')
+      },
+      curve = new LogCurve2D({
+        data: {
+          ...curveCoordinates,
+          values: well.surveys.values(measurement),
+          nullvalue: well.surveys.nullValue
+        },
+        color: '#c00000',
+        radius: 75
+      }),
+      fill = new LogFill2D({
+        data: {
+          ...curveCoordinates,
+          curvevalues1: well.surveys.values(measurement),
+        },
+        colorprovider: new Color('#ffc000'),
+        radius: 75
+      });
+
+  const origin = vectorByIndex(well, 0);
+  curve.position.set(origin.x, origin.y, origin.z);
+  fill.position.set(origin.x, origin.y, origin.z);
+
+  return new Group()
+      .add(curve)
+      .add(fill);
+}
+
+function createMeasurementLogs(root: Object3D): void {
+  if (props.measurement) root.add(...state.wells.map(well => createMeasurementCurve(well, props.measurement as string)));
 }
 
 function createModel() {
@@ -205,8 +250,9 @@ function createModel() {
       .add(createBoxGrid(wellsBox, props.modelPadding))
       .add(...state.wells.map(well => createTrajectory(well)));
 
-  if (props.showWellNames) root.add(...createWellNamesAnnotations());
-  if (props.showAnnotations) root.add(...createCustomAnnotations())
+  createWellNamesAnnotations(root);
+  createCustomAnnotations(root);
+  createMeasurementLogs(root);
 
   setCamera(wellsBox, plot);
 }
