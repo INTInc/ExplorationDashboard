@@ -129,7 +129,7 @@ function createAnnotation(annotation: WellAnnotation): Object3D {
   });
 
   annotationObject.setAnchorPoint(anchor);
-  annotationObject.position.set(origin.x, origin.y, origin.z);
+  annotationObject.position.copy(origin);
 
   if (annotation.anchorType === AnchorType.Sphere) {
     const sphere = new Sphere({
@@ -137,7 +137,7 @@ function createAnnotation(annotation: WellAnnotation): Object3D {
       fillstyle: new FillStyle({color: KnownColors.Green }),
       radius: 30
     });
-    sphere.position.set(origin.x, origin.y, origin.z); // Set casing origin, very important!!!
+    sphere.position.copy(origin);
     object.add(sphere);
   }
 
@@ -230,8 +230,8 @@ function createMeasurementCurve(well: Well, measurement: string): Object3D {
       });
 
   const origin = vectorByIndex(well, 0);
-  curve.position.set(origin.x, origin.y, origin.z);
-  fill.position.set(origin.x, origin.y, origin.z);
+  curve.position.copy(origin);
+  fill.position.copy(origin);
 
   return new Group()
       .add(curve)
