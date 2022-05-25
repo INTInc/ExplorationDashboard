@@ -21,8 +21,8 @@
       :camera-distance="6000"
       :show-annotations="true"
       :show-well-names="true"
+      :show-cursors="true"
       :measurement="'DLS'"
-      :cursor-depth="wellB32CursorDepth"
     ></wells-model>
   </div>
 </template>
@@ -38,7 +38,7 @@ import { WellB2 } from '@/data-sources/WellB2';
 import { WellB32 } from '@/data-sources/WellB32';
 import { ref } from '@vue/runtime-core';
 
-const { addField, addWell, addAnnotations }: Store = useStore();
+const { addField, addWell, addCursor, addAnnotations }: Store = useStore();
 
 addField().setUrl('/data/fieldB.json');
 
@@ -47,8 +47,8 @@ addField().setUrl('/data/fieldB.json');
 const wellB2 = new WellB2();
 const wellB32 = new WellB32();
 
-const wellB32CursorDepth = ref(0);
-const onWellB32CrossHairMoved = (depth: number) => wellB32CursorDepth.value = depth || 0;
+addCursor().attachToWell(wellB32);
+addCursor().attachToWell(wellB2);
 
 addWell(wellB2).setUrls({
   surveysUrl: '/data/wellB-2/surveys.las',
