@@ -155,11 +155,11 @@ function createAnnotation(annotation: WellAnnotation, well: Well): Object3D {
   return object;
 }
 
-function trajectoryPoint(well: Well, depth: number): Vector3 {
-  const exactIndex: number =  well.surveys.values('TVD').indexOf(depth);
+function trajectoryPoint(well: Well, value: number): Vector3 {
+  const exactIndex: number =  well.surveys.values('TVD').indexOf(value);
   return (exactIndex > 0)
       ? vectorByIndex(well, exactIndex)
-      : vectorByIndex(well, deviatedIndex(well, depth));
+      : vectorByIndex(well, deviatedIndex(well, 'DX', value));
 }
 
 function vectorByIndex(well: Well, index: number): Vector3 {
@@ -170,10 +170,10 @@ function vectorByIndex(well: Well, index: number): Vector3 {
   );
 }
 
-function deviatedIndex(well: Well, depth: number) {
+function deviatedIndex(well: Well, measurement: string, value: number) {
   //TODO improve this, there must be more performant algorithm
-  const values = well.surveys.values('Z');
-  const deviations = values.map(item => Math.abs(Math.abs(item) - depth));
+  const values = well.surveys.values(measurement);
+  const deviations = values.map(item => Math.abs(Math.abs(item) - value));
 
   const minDev = MathUtil.getMin(deviations);
   return deviations.indexOf(minDev);
@@ -273,9 +273,9 @@ function createCursors(root: Object3D) {
       sphere.position.copy(vectorByIndex(well, 0));
       root.add(sphere);
 
-      watch(depthRef, (_, depth) => {
-        const position = depth
-            ? vectorByIndex(well, deviatedIndex(well, depth))
+      watch(depthRef, (_, value) => {
+        const position = value
+            ? vectorByIndex(well, deviatedIndex(well, 'MD', value))
             : vectorByIndex(well, 0);
 
         sphere.position.copy(position);
