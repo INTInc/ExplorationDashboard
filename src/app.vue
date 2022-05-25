@@ -6,6 +6,8 @@
       :source="wellB2"
       :template-url="'/templates/vertical-log.json'"
       :fit-tracks="3"
+
+      @cross-hair-moved-to-depth="onWellB2CrossHairMoved"
     ></well-log>
     <well-log
       class="horizontal-log"
@@ -23,6 +25,7 @@
       :show-well-names="true"
       :show-cursors="true"
       :measurement="'DLS'"
+      :cursors="cursors"
     ></wells-model>
   </div>
 </template>
@@ -38,17 +41,21 @@ import { WellB2 } from '@/data-sources/WellB2';
 import { WellB32 } from '@/data-sources/WellB32';
 import { ref } from '@vue/runtime-core';
 
-const { addField, addWell, addCursor, addAnnotations }: Store = useStore();
+const { addField, addWell, addAnnotations }: Store = useStore();
 
 addField().setUrl('/data/fieldB.json');
-
-//TODO add logic to switch between las files for different devices
 
 const wellB2 = new WellB2();
 const wellB32 = new WellB32();
 
-addCursor().attachToWell(wellB32);
-addCursor().attachToWell(wellB2);
+const cursors = new Map()
+  .set(wellB2, ref(0))
+  .set(wellB32, ref(0))
+
+const onWellB2CrossHairMoved = (depth: number) => cursors.get(wellB2).value = depth;
+const onWellB32CrossHairMoved = (depth: number) => cursors.get(wellB32).value = depth;
+
+//TODO add logic to switch between las files for different devices
 
 addWell(wellB2).setUrls({
   surveysUrl: '/data/wellB-2/surveys.las',

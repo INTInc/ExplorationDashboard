@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, ref, watch } from 'vue';
+import { defineProps, Ref, ref, watch } from 'vue';
 import { onMounted } from '@vue/runtime-core';
 import {
   Color,
@@ -43,7 +43,7 @@ const props = defineProps<{
   showWellNames?: boolean,
   showAnnotations?: boolean,
   measurement?: string,
-  cursorDepth?: number
+  cursors?: Map<Well, Ref<number>>
 }>();
 
 const model = ref();
@@ -260,28 +260,26 @@ function createMeasurementLogs(root: Object3D): void {
   if (props.measurement) root.add(...state.wells.map(well => createMeasurementCurve(well, props.measurement as string)));
 }
 
-function createCursor(root: Object3D) {
-  const well = state.wells[1];
+function createCursors(root: Object3D) {
+  if (props.cursors)
+    props.cursors.forEach((depthRef: Ref<number>, well: Well) => {
+      const sphere = new Sphere({
+        data: vectorByIndex(well, 0),
+        fillstyle: new FillStyle({color: KnownColors.Red }),
+        radius: 200
+      });
+      sphere.position.copy(vectorByIndex(well, 0));
+      root.add(sphere);
 
-  if (props.cursorDepth !== undefined) {
+      watch(depthRef, (_, depth) => {
+        const position = depth
+            ? vectorByIndex(well, deviatedIndex(well, depth))
+            : vectorByIndex(well, 0);
 
-    const sphere = new Sphere({
-      data: vectorByIndex(well, 0),
-      fillstyle: new FillStyle({color: KnownColors.Red }),
-      radius: 30
+        sphere.position.copy(position);
+        sphere.invalidateObject();
+      })
     });
-    sphere.position.copy(vectorByIndex(well, 0));
-
-    root.add(sphere);
-
-    watch(() => props.cursorDepth, (_, depth) => {
-      const position = depth
-        ? vectorByIndex(well, deviatedIndex(well, depth))
-        : vectorByIndex(well, 0);
-      sphere.position.copy(position);
-      sphere.invalidateObject();
-    })
-  }
 }
 
 function createModel() {
@@ -295,7 +293,7 @@ function createModel() {
   createWellNamesAnnotations(root);
   createCustomAnnotations(root);
   createMeasurementLogs(root);
-  createCursor(root);
+  createCursors(root);
 
   setCamera(wellsBox, plot);
 }
