@@ -150,7 +150,7 @@ function trajectoryPoint(well: Well, depth: number): Vector3 {
   const exactIndex: number =  well.surveys.values('TVD').indexOf(depth);
   return (exactIndex > 0)
       ? vectorByIndex(well, exactIndex)
-      : vectorByIntersection(well, depth);
+      : vectorByIndex(well, deviatedIndex(well, depth));
 }
 
 function vectorByIndex(well: Well, index: number): Vector3 {
@@ -161,6 +161,16 @@ function vectorByIndex(well: Well, index: number): Vector3 {
   );
 }
 
+function deviatedIndex(well: Well, depth: number) {
+  //TODO improve this, there must be more performant algorithm
+  const values = well.surveys.values('Z');
+  const deviations = values.map(item => Math.abs(Math.abs(item) - depth));
+
+  const minDev = MathUtil.getMin(deviations);
+  return deviations.indexOf(minDev);
+}
+
+/*
 function vectorByIntersection(well: Well, depth: number) {
   const deviatedDepths = findDeviatedDepths(well, depth);
 
@@ -185,6 +195,7 @@ function findDeviatedDepths(well: Well, depth: number) {
 
   return [minDevIndex, nearestDevIndex];
 }
+*/
 
 function createWellNamesAnnotations(root: Object3D): void {
   if (props.showWellNames)
