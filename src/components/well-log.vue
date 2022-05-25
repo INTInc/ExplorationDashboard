@@ -102,7 +102,7 @@ function onContainerMouseLeave() {
   setCursorPosition(null);
 }
 
-function setCursorPosition(value: number) {
+function setCursorPosition(value: number | null) {
   const cursor = state.cursors.get(props.source);
   if (cursor) cursor.value = value;
 }

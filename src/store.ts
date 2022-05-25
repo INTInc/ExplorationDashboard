@@ -7,8 +7,8 @@ import { ref } from '@vue/runtime-core';
 interface State {
   field: Field,
   wells: Well[],
-  cursors: Map<Well, Ref<number>>
-  annotations: Map<Well, WellAnnotations>,
+  cursors: Map<Well, Ref<number | null>>
+  annotations: Map<Well, WellAnnotations>
 }
 
 export interface Store {
