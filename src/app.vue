@@ -12,6 +12,8 @@
       :source="wellB32"
       :template-url="'/templates/horizontal-log.json'"
       :fit-tracks="1"
+
+      @cross-hair-moved-to-depth="onWellB32CrossHairMoved"
     ></well-log>
     <wells-map></wells-map>
     <wells-model
@@ -20,6 +22,7 @@
       :show-annotations="true"
       :show-well-names="true"
       :measurement="'DLS'"
+      :cursor-depth="wellB32CursorDepth"
     ></wells-model>
   </div>
 </template>
@@ -33,6 +36,7 @@ import WellsModel from '@/components/wells-model/wells-model.vue';
 import { Store, useStore } from '@/store';
 import { WellB2 } from '@/data-sources/WellB2';
 import { WellB32 } from '@/data-sources/WellB32';
+import { ref } from '@vue/runtime-core';
 
 const { addField, addWell, addAnnotations }: Store = useStore();
 
@@ -42,6 +46,9 @@ addField().setUrl('/data/fieldB.json');
 
 const wellB2 = new WellB2();
 const wellB32 = new WellB32();
+
+const wellB32CursorDepth = ref(0);
+const onWellB32CrossHairMoved = (depth: number) => wellB32CursorDepth.value = depth || 0;
 
 addWell(wellB2).setUrls({
   surveysUrl: '/data/wellB-2/surveys.las',

@@ -11,11 +11,17 @@ import { WellB2 } from '@/data-sources/WellB2';
 import { WellB32 } from '@/data-sources/WellB32';
 import { HeaderType } from '@int/geotoolkit/welllog/header/LogAxisVisualHeader';
 import { WellLogWidget } from '@int/geotoolkit/welllog/widgets/WellLogWidget';
-import { defineProps, onMounted, ref } from 'vue';
+import { defineEmits, defineProps, onMounted, ref } from 'vue';
 import { StretchablePlot } from '@/common/layout/StretchablePlot';
-import { Plot } from '@int/geotoolkit/plot/Plot';
+import { Plot, Events as PlotEvents } from '@int/geotoolkit/plot/Plot';
 import { Orientation } from '@int/geotoolkit/util/Orientation';
 import { LogAxis } from '@int/geotoolkit/welllog/LogAxis';
+import { Events as CrossHairEvents } from '@int/geotoolkit/controls/tools/CrossHair';
+import { CrossHairEventArgs } from '@int/geotoolkit/controls/tools/CrossHairEventArgs';
+
+enum Emits {
+  CrossHairMovedToDepth = 'CrossHairMovedToDepth'
+}
 
 const props = defineProps<{
   source: WellB2 | WellB32,
@@ -24,6 +30,10 @@ const props = defineProps<{
   isScalable?: boolean,
   initialScale?: number
 }>();
+
+const emits = defineEmits<{
+  (e: Emits.CrossHairMovedToDepth, depth: number): void
+}>()
 
 const container = ref();
 const canvas = ref();
@@ -54,7 +64,7 @@ function createPlot(widget: WellLogWidget) {
       canvaselement: canvas.value,
       root: widget
     })
-      .on('resized', (_: never, plot: Plot) => resizeTracks(plot, widget))
+      .on(PlotEvents.Resized, (_: never, plot: Plot) => resizeTracks(plot, widget))
       .setRefElement(container.value)
 }
 
@@ -75,6 +85,15 @@ function resizeTracks(plot: Plot, widget: WellLogWidget) {
   }
 }
 
+function addCrossHairMoveListener(widget: WellLogWidget) {
+  const crossHair = widget.getToolByName('cross-hair');
+  if (crossHair !== null) crossHair.addListener(CrossHairEvents.onPositionChanged, onCrossHairPositionChanged)
+}
+
+function onCrossHairPositionChanged(_: never, event: CrossHairEventArgs) {
+  emits(Emits.CrossHairMovedToDepth, event.getPosition().getY());
+}
+
 /*function handleError() {
   console.error(`Problem loading template from ${props.templateUrl}.`);
 }*/
@@ -84,7 +103,10 @@ function initialize() {
     .then(fetchTemplate)
     .then(validateTemplate)
     .then(createWidget)
-    .then(createPlot)
+    .then(widget => {
+      createPlot(widget);
+      addCrossHairMoveListener(widget);
+    })
     //.catch(handleError)
 }
 

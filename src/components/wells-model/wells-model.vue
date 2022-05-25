@@ -5,9 +5,21 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, ref } from 'vue';
+import { defineProps, ref, watch } from 'vue';
 import { onMounted } from '@vue/runtime-core';
-import { Color, Group, Line, Line3, LineBasicMaterial, Object3D, Plane, Vector3 } from '@int/geotoolkit3d/THREE';
+import {
+  Camera,
+  Color, DoubleSide,
+  Group,
+  Line,
+  Line3,
+  LineBasicMaterial,
+  Mesh,
+  MeshBasicMaterial,
+  Object3D,
+  Plane,
+  Vector3, WebGLRenderer
+} from '@int/geotoolkit3d/THREE';
 import { Plot } from '@int/geotoolkit3d/Plot';
 import { useStore } from '@/store';
 import { Wells3DBox } from '@/components/wells-model/Wells3DBox';
@@ -26,6 +38,7 @@ import { TextStyle } from '@int/geotoolkit/attributes/TextStyle';
 import { LogCurve2D } from '@int/geotoolkit3d/scene/well/LogCurve2D';
 import { LogFill2D } from '@int/geotoolkit3d/scene/well/LogFill2D';
 import { WellMeasurement } from '@/common/WellDataReference';
+import { FilledEllipseGeometry } from '@int/geotoolkit3d/scene/ellipse/FilledEllipseGeometry';
 
 const AXIS_LINE_STYLE = new LineStyle({ color: KnownColors.Black, pattern: Patterns.Solid });
 const GRID_LINE_STYLE = new LineStyle({ color: KnownColors.DarkGrey, pattern: Patterns.Dash });
@@ -36,7 +49,8 @@ const props = defineProps<{
   cameraDistance: number,
   showWellNames?: boolean,
   showAnnotations?: boolean,
-  measurement?: string
+  measurement?: string,
+  cursorDepth?: number
 }>();
 
 const model = ref();
@@ -253,6 +267,30 @@ function createMeasurementLogs(root: Object3D): void {
   if (props.measurement) root.add(...state.wells.map(well => createMeasurementCurve(well, props.measurement as string)));
 }
 
+function createCursor(root: Object3D) {
+  const well = state.wells[1];
+
+  if (props.cursorDepth !== undefined) {
+
+    const sphere = new Sphere({
+      data: vectorByIndex(well, 0),
+      fillstyle: new FillStyle({color: KnownColors.Red }),
+      radius: 30
+    });
+    sphere.position.copy(vectorByIndex(well, 0));
+
+    root.add(sphere);
+
+    watch(() => props.cursorDepth, (_, depth) => {
+      const position = depth
+        ? vectorByIndex(well, deviatedIndex(well, depth))
+        : vectorByIndex(well, 0);
+      sphere.position.copy(position);
+      sphere.invalidateObject();
+    })
+  }
+}
+
 function createModel() {
   const plot = createPlot();
   const root = plot.getRoot();
@@ -264,6 +302,7 @@ function createModel() {
   createWellNamesAnnotations(root);
   createCustomAnnotations(root);
   createMeasurementLogs(root);
+  createCursor(root);
 
   setCamera(wellsBox, plot);
 }
