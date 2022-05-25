@@ -19,8 +19,6 @@ import { LogAxis } from '@int/geotoolkit/welllog/LogAxis';
 import { CrossHair, Events as CrossHairEvents } from '@int/geotoolkit/controls/tools/CrossHair';
 import { CrossHairEventArgs } from '@int/geotoolkit/controls/tools/CrossHairEventArgs';
 import { useStore } from '@/store';
-import { TextStyle } from '@int/geotoolkit/attributes/TextStyle';
-import { KnownColors } from '@int/geotoolkit/util/ColorUtil';
 
 const props = defineProps<{
   source: WellB2 | WellB32,
