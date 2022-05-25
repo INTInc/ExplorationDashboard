@@ -306,6 +306,14 @@ function createModel() {
 onMounted(() => wellsAreLoaded().then(createModel));
 </script>
 
-<style scoped>
+<style lang="scss">
+.__geotoolkit_compass {
+  transform: translate(-100%, -100%) !important;
+  position: relative !important;
+  left: 100% !important;
 
+  @media (max-width: 800px) {
+    transform: translate(-100%, 0) !important;
+  }
+}
 </style>
