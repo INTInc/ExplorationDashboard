@@ -8,17 +8,12 @@
 import { defineProps, ref, watch } from 'vue';
 import { onMounted } from '@vue/runtime-core';
 import {
-  Camera,
-  Color, DoubleSide,
+  Color,
   Group,
   Line,
-  Line3,
   LineBasicMaterial,
-  Mesh,
-  MeshBasicMaterial,
   Object3D,
-  Plane,
-  Vector3, WebGLRenderer
+  Vector3,
 } from '@int/geotoolkit3d/THREE';
 import { Plot } from '@int/geotoolkit3d/Plot';
 import { useStore } from '@/store';
@@ -37,8 +32,6 @@ import { LineStyle, Patterns } from '@int/geotoolkit/attributes/LineStyle';
 import { TextStyle } from '@int/geotoolkit/attributes/TextStyle';
 import { LogCurve2D } from '@int/geotoolkit3d/scene/well/LogCurve2D';
 import { LogFill2D } from '@int/geotoolkit3d/scene/well/LogFill2D';
-import { WellMeasurement } from '@/common/WellDataReference';
-import { FilledEllipseGeometry } from '@int/geotoolkit3d/scene/ellipse/FilledEllipseGeometry';
 
 const AXIS_LINE_STYLE = new LineStyle({ color: KnownColors.Black, pattern: Patterns.Solid });
 const GRID_LINE_STYLE = new LineStyle({ color: KnownColors.DarkGrey, pattern: Patterns.Dash });
