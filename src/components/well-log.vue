@@ -16,9 +16,11 @@ import { StretchablePlot } from '@/common/layout/StretchablePlot';
 import { Plot, Events as PlotEvents } from '@int/geotoolkit/plot/Plot';
 import { Orientation } from '@int/geotoolkit/util/Orientation';
 import { LogAxis } from '@int/geotoolkit/welllog/LogAxis';
-import { Events as CrossHairEvents } from '@int/geotoolkit/controls/tools/CrossHair';
+import { CrossHair, Events as CrossHairEvents } from '@int/geotoolkit/controls/tools/CrossHair';
 import { CrossHairEventArgs } from '@int/geotoolkit/controls/tools/CrossHairEventArgs';
 import { useStore } from '@/store';
+import { TextStyle } from '@int/geotoolkit/attributes/TextStyle';
+import { KnownColors } from '@int/geotoolkit/util/ColorUtil';
 
 const props = defineProps<{
   source: WellB2 | WellB32,
@@ -79,9 +81,19 @@ function resizeTracks(plot: Plot, widget: WellLogWidget) {
   }
 }
 
-function addCrossHairMoveListener(widget: WellLogWidget) {
+function configureCrossHairTool(widget: WellLogWidget) {
   const crossHair = widget.getToolByName('cross-hair');
-  if (crossHair !== null) crossHair.addListener(CrossHairEvents.onPositionChanged, onCrossHairPositionChanged)
+  if (crossHair !== null) {
+    (crossHair as CrossHair)
+      .setEnabled(true)
+      .setProperties({
+        east: {
+          visible: true
+        }
+      })
+      .addListener(CrossHairEvents.onPositionChanged, onCrossHairPositionChanged)
+
+  }
 }
 
 function onCrossHairPositionChanged(_: never, event: CrossHairEventArgs) {
@@ -100,7 +112,7 @@ function initialize() {
     .then(createWidget)
     .then(widget => {
       createPlot(widget);
-      addCrossHairMoveListener(widget);
+      configureCrossHairTool(widget);
     })
     //.catch(handleError)
 }
