@@ -6,16 +6,12 @@
       :source="wellB2"
       :template-url="'/templates/vertical-log.json'"
       :fit-tracks="3"
-
-      @cross-hair-moved-to-depth="onWellB2CrossHairMoved"
     ></well-log>
     <well-log
       class="horizontal-log"
       :source="wellB32"
       :template-url="'/templates/horizontal-log.json'"
       :fit-tracks="1"
-
-      @cross-hair-moved-to-depth="onWellB32CrossHairMoved"
     ></well-log>
     <wells-map></wells-map>
     <wells-model
@@ -39,21 +35,13 @@ import WellsModel from '@/components/wells-model/wells-model.vue';
 import { Store, useStore } from '@/store';
 import { WellB2 } from '@/data-sources/WellB2';
 import { WellB32 } from '@/data-sources/WellB32';
-import { ref } from '@vue/runtime-core';
 
-const { addField, addWell, addAnnotations }: Store = useStore();
+const { addField, addWell, addCursor, addAnnotations }: Store = useStore();
 
 addField().setUrl('/data/fieldB.json');
 
 const wellB2 = new WellB2();
 const wellB32 = new WellB32();
-
-const cursors = new Map()
-  .set(wellB2, ref(0))
-  .set(wellB32, ref(0))
-
-const onWellB2CrossHairMoved = (depth: number) => cursors.get(wellB2).value = depth;
-const onWellB32CrossHairMoved = (depth: number) => cursors.get(wellB32).value = depth;
 
 //TODO add logic to switch between las files for different devices
 
@@ -66,8 +54,11 @@ addWell(wellB32).setUrls({
   surveysUrl: '/data/wellB-32/surveys.las',
   measurementsUrl: '/data/wellB-32/logs_desktop.las'
 });
-addAnnotations().setUrl('/data/wellB-2/tops.json').then(a => a.attachToWell(wellB2));
-addAnnotations().setUrl('/data/wellB-32/tops.json').then(a => a.attachToWell(wellB32));
+addCursor(wellB2);
+addCursor(wellB32);
+addAnnotations(wellB2).setUrl('/data/wellB-2/tops.json');
+addAnnotations(wellB32).setUrl('/data/wellB-32/tops.json');
+
 </script>
 
 <style lang="scss">

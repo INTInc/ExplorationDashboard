@@ -40,21 +40,23 @@ const TEXT_STYLE = new TextStyle({ color: KnownColors.Black, font: '12px Arial' 
 const props = defineProps<{
   modelPadding: number,
   cameraDistance: number,
+  showCursors?: boolean,
   showWellNames?: boolean,
   showAnnotations?: boolean,
-  measurement?: string,
-  cursors?: Map<Well, Ref<number>>
+  measurement?: string
 }>();
 
 const model = ref();
 const container = ref();
-const { state, getAnnotations } = useStore();
+const { state } = useStore();
 
 function wellsAreLoaded() {
-  return Promise.all([
-    ...state.wells.map(well => well.loaded),
-    ...state.annotations.map(annotation => annotation.loaded)
-  ])
+  const promises: Array<Promise<unknown>> = [];
+
+  state.wells.forEach(well => promises.push(well.loaded));
+  state.annotations.forEach(annotations => promises.push(annotations.loaded));
+
+  return Promise.all(promises);
 }
 
 function createPlot(): Plot {
@@ -116,15 +118,15 @@ function createTrajectory(well: Well): Object3D {
   return new Line(createGeometry(well), createMaterial());
 }
 
-function createAnnotation(annotation: WellAnnotation): Object3D {
+function createAnnotation(annotation: WellAnnotation, well: Well): Object3D {
   let anchor = new Vector3();
   const object = new Group();
-  const origin = vectorByIndex(annotation.well, 0);
+  const origin = vectorByIndex(well, 0);
 
   if (annotation.index) {
-    anchor = vectorByIndex(annotation.well, annotation.index);
+    anchor = vectorByIndex(well, annotation.index);
   } else if (annotation.depth) {
-    anchor = trajectoryPoint(annotation.well, annotation.depth);
+    anchor = trajectoryPoint(well, annotation.depth);
   } else {
     return new Object3D();
   }
@@ -210,16 +212,17 @@ function createWellNamesAnnotations(root: Object3D): void {
       ...state.wells
         .filter(well => well.surveys.wellName)
         .map(well => createAnnotation(new WellAnnotation({
-          well,
           text: well.surveys.wellName as string,
           index: well.surveys.length - 1,
           textStyle: TEXT_STYLE,
-        })))
+        }), well))
     )
 }
 
 function createCustomAnnotations(root: Object3D): void {
-  if (props.showAnnotations) root.add(...getAnnotations().map(createAnnotation));
+  if (props.showAnnotations) state.annotations.forEach((annotations, well) =>
+    annotations.data.forEach(annotation => root.add(createAnnotation(annotation, well)))
+  );
 }
 
 function createMeasurementCurve(well: Well, measurement: string): Object3D {
@@ -261,8 +264,7 @@ function createMeasurementLogs(root: Object3D): void {
 }
 
 function createCursors(root: Object3D) {
-  if (props.cursors)
-    props.cursors.forEach((depthRef: Ref<number>, well: Well) => {
+    state.cursors.forEach((depthRef: Ref<number>, well: Well) => {
       const sphere = new Sphere({
         data: vectorByIndex(well, 0),
         fillstyle: new FillStyle({color: KnownColors.Red }),

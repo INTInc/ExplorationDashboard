@@ -1,14 +1,9 @@
 import { AnchorType, WellAnnotation } from '@/common/WellAnnotation';
-import { Well } from '@/data-sources/Well';
 import { DataSource } from '@/common/DataSource';
 
 export class WellAnnotations extends DataSource<WellAnnotations> {
 
 	public data: WellAnnotation[] = [];
-
-	public attachToWell(well: Well) {
-		this.data.forEach(item => item.well = well);
-	}
 
 	public async setUrl(url: string): Promise<WellAnnotations> {
 		const response = await fetch(url);

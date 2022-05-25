@@ -11,17 +11,14 @@ import { WellB2 } from '@/data-sources/WellB2';
 import { WellB32 } from '@/data-sources/WellB32';
 import { HeaderType } from '@int/geotoolkit/welllog/header/LogAxisVisualHeader';
 import { WellLogWidget } from '@int/geotoolkit/welllog/widgets/WellLogWidget';
-import { defineEmits, defineProps, onMounted, ref } from 'vue';
+import { defineProps, onMounted, ref } from 'vue';
 import { StretchablePlot } from '@/common/layout/StretchablePlot';
 import { Plot, Events as PlotEvents } from '@int/geotoolkit/plot/Plot';
 import { Orientation } from '@int/geotoolkit/util/Orientation';
 import { LogAxis } from '@int/geotoolkit/welllog/LogAxis';
 import { Events as CrossHairEvents } from '@int/geotoolkit/controls/tools/CrossHair';
 import { CrossHairEventArgs } from '@int/geotoolkit/controls/tools/CrossHairEventArgs';
-
-enum Emits {
-  CrossHairMovedToDepth = 'CrossHairMovedToDepth'
-}
+import { useStore } from '@/store';
 
 const props = defineProps<{
   source: WellB2 | WellB32,
@@ -31,12 +28,9 @@ const props = defineProps<{
   initialScale?: number
 }>();
 
-const emits = defineEmits<{
-  (e: Emits.CrossHairMovedToDepth, depth: number): void
-}>()
-
-const container = ref();
 const canvas = ref();
+const container = ref();
+const { state } = useStore();
 
 async function fetchTemplate(): Promise<string> {
   const response = await fetch(props.templateUrl);
@@ -91,7 +85,8 @@ function addCrossHairMoveListener(widget: WellLogWidget) {
 }
 
 function onCrossHairPositionChanged(_: never, event: CrossHairEventArgs) {
-  emits(Emits.CrossHairMovedToDepth, event.getPosition().getY());
+  const cursor = state.cursors.get(props.source);
+  if (cursor) cursor.value = event.getPosition().getY();
 }
 
 /*function handleError() {
