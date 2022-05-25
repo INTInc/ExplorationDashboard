@@ -16,7 +16,7 @@ export interface Store {
 
   addField: () => Field,
   addWell: (well: Well) => Well,
-  addCursor: (well: Well) => Ref<number>
+  addCursor: (well: Well) => Ref<number | null>
   addAnnotations: (well: Well) => WellAnnotations,
 }
 

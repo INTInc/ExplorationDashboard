@@ -264,23 +264,26 @@ function createMeasurementLogs(root: Object3D): void {
 }
 
 function createCursors(root: Object3D) {
-    state.cursors.forEach((depthRef: Ref<number>, well: Well) => {
+    state.cursors.forEach((depthRef: Ref<number | null>, well: Well) => {
       const sphere = new Sphere({
         data: vectorByIndex(well, 0),
         fillstyle: new FillStyle({color: KnownColors.Red }),
-        radius: 200
+        radius: 75
       });
       sphere.position.copy(vectorByIndex(well, 0));
+      sphere.visible = false;
+
       root.add(sphere);
 
       watch(depthRef, (_, value) => {
-        const position = value
-            ? vectorByIndex(well, deviatedIndex(well, 'MD', value))
-            : vectorByIndex(well, 0);
-
-        sphere.position.copy(position);
-        sphere.invalidateObject();
-      })
+        if (value === null || Number.isNaN(value)) {
+          sphere.visible = false;
+        } else {
+          sphere.visible = true;
+          sphere.position.copy(vectorByIndex(well, deviatedIndex(well, 'MD', value)));
+          sphere.invalidateObject();
+        }
+      });
     });
 }
 

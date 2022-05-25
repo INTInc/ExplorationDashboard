@@ -1,6 +1,6 @@
 <template>
     <div class="well-log">
-        <div ref="container" class="canvas-container">
+        <div ref="container" class="canvas-container" @mouseleave="onContainerMouseLeave">
             <canvas ref="canvas"/>
         </div>
     </div>
@@ -95,8 +95,16 @@ function configureCrossHairTool(widget: WellLogWidget) {
 }
 
 function onCrossHairPositionChanged(_: never, event: CrossHairEventArgs) {
+  setCursorPosition(event.getPosition().getY());
+}
+
+function onContainerMouseLeave() {
+  setCursorPosition(null);
+}
+
+function setCursorPosition(value: number) {
   const cursor = state.cursors.get(props.source);
-  if (cursor) cursor.value = event.getPosition().getY();
+  if (cursor) cursor.value = value;
 }
 
 /*function handleError() {
