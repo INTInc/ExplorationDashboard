@@ -1,5 +1,8 @@
 <template>
-  <theme-switcher></theme-switcher>
+  <header>
+    <h2>Exploration dashboard</h2>
+    <theme-switcher></theme-switcher>
+  </header>
   <div class="charts-container">
     <well-log
       class="vertical-log"
@@ -85,9 +88,17 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  .theme-switcher {
+  header {
     height: 5vh;
     min-height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--text-color);
+
+    h2 {
+      margin: 16px 16px 0 16px;
+    }
   }
 
   .charts-container {
@@ -115,7 +126,8 @@ body {
     .wells-model {
       margin: 8px;
       overflow: hidden;
-      border-radius: 8px;
+      border-radius: 4px;
+      border: 1px solid rgba(155, 155, 155, 0.5);
 
       color: var(--title-color);
       background: var(--card-color);

@@ -3,9 +3,21 @@
 }
 
 .geotoolkit.welllog.LogAxis {
-    tickgenerator-major-labelstyle-color: #C8C8C8;
+    tickgenerator-major-labelstyle-color: #9e9e9e;
+    tickgenerator-major-tickstyle-color: #dddddd;
+    tickgenerator-minor-tickstyle-color: #cccccc;
+    tickgenerator-edge-labelstyle-color: transparent;
+    tickgenerator-edge-tickstyle-color: #9e9e9e;
+}
+
+.geotoolkit.welllog.LogHorizontalGrid,
+.geotoolkit.welllog.LogLinearValueGrid,
+.geotoolkit.welllog.LogLog10ValueGrid {
     tickgenerator-major-tickstyle-color: #C8C8C8;
-    tickgenerator-minor-tickstyle-color: #505050;
-    tickgenerator-edge-labelstyle-color: #C8C8C8;
-    tickgenerator-edge-tickstyle-color: #EFFFFF;
+    tickgenerator-minor-tickstyle-color: #ecebeb;
+    linestyle-color: #C8C8C8;
+}
+
+geotoolkit.controls.tools.CrossHair {
+    textstyle-color: #505050;
 }

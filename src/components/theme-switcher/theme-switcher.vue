@@ -56,7 +56,6 @@ onMounted(() => {
     align-items: center;
     justify-content: right;
     padding: 16px 16px 0 16px;
-    color: var(--text-color);
 
     select {
         font-size: 16px;
