@@ -6,6 +6,7 @@
       :source="wellB2"
       :template-url="'/templates/vertical-log.json'"
       :fit-tracks="3"
+      :show-annotations="true"
     ></well-log>
     <well-log
       class="horizontal-log"
@@ -21,7 +22,6 @@
       :show-well-names="true"
       :show-cursors="true"
       :measurement="'DLS'"
-      :cursors="cursors"
     ></wells-model>
   </div>
 </template>

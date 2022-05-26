@@ -1,36 +1,42 @@
 [
   {
     "name": "TopA",
+    "color": "#800000ff",
     "MD": 1029.78,
     "TVD": 998.040,
     "HRZDISP": 170.509
   },
   {
     "name": "TopB",
+    "color": "#6e3dd9ff",
     "MD": 1419.80,
     "TVD": 1257.400,
     "HRZDISP": 457.600
   },
   {
     "name": "TopC",
+    "color": "#ed7d31ff",
     "MD": 2009.78,
     "TVD": 1491.140,
     "HRZDISP": 999.145
   },
   {
     "name": "TopD",
+    "color": "#3dd94aff",
     "MD": 2630.00,
     "TVD": 1737.920,
     "HRZDISP": 1567.875
   },
   {
     "name": "TopE",
+    "color": "#3d79d9ff",
     "MD": 2970.00,
     "TVD": 1819.030,
     "HRZDISP": 1897.869
   },
   {
     "name": "TopF",
+    "color": "#d9d93dff",
     "MD": 3333.45,
     "TVD": 1882.02,
     "HRZDISP": 2255.55

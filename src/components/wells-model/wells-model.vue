@@ -143,7 +143,7 @@ function createAnnotation(annotation: WellAnnotation, well: Well): Object3D {
   if (annotation.anchorType === AnchorType.Sphere) {
     const sphere = new Sphere({
       data: anchor,
-      fillstyle: new FillStyle({color: KnownColors.Green }),
+      fillstyle: new FillStyle({color: annotation.color }),
       radius: 30
     });
     sphere.position.copy(origin);

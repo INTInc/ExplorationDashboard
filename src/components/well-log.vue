@@ -13,19 +13,23 @@ import { HeaderType } from '@int/geotoolkit/welllog/header/LogAxisVisualHeader';
 import { WellLogWidget } from '@int/geotoolkit/welllog/widgets/WellLogWidget';
 import { defineProps, onMounted, ref } from 'vue';
 import { StretchablePlot } from '@/common/layout/StretchablePlot';
-import { Plot, Events as PlotEvents } from '@int/geotoolkit/plot/Plot';
+import { Events as PlotEvents, Plot } from '@int/geotoolkit/plot/Plot';
 import { Orientation } from '@int/geotoolkit/util/Orientation';
 import { LogAxis } from '@int/geotoolkit/welllog/LogAxis';
 import { CrossHair, Events as CrossHairEvents } from '@int/geotoolkit/controls/tools/CrossHair';
 import { CrossHairEventArgs } from '@int/geotoolkit/controls/tools/CrossHairEventArgs';
 import { useStore } from '@/store';
+import { LogMarker } from '@int/geotoolkit/welllog/LogMarker';
+import { TextStyle } from '@int/geotoolkit/attributes/TextStyle';
+import { AnchorType } from '@int/geotoolkit/util/AnchorType';
+import { CssStyle } from '@int/geotoolkit/css/CssStyle';
+import { LineStyle } from '@int/geotoolkit/attributes/LineStyle';
 
 const props = defineProps<{
   source: WellB2 | WellB32,
   templateUrl: string,
   fitTracks?: number,
-  isScalable?: boolean,
-  initialScale?: number
+  showAnnotations?: boolean
 }>();
 
 const canvas = ref();
@@ -51,6 +55,28 @@ function createWidget(template: string) {
     .setDataBinding(props.source.binding)
     .setAxisHeaderType(HeaderType.Simple)
     .loadTemplate(template)
+}
+
+function createAnnotations(widget: WellLogWidget) {
+  const annotations = state.annotations.get(props.source);
+  if (props.showAnnotations && annotations) {
+    annotations.data.forEach(annotation => {
+      const marker = new LogMarker(annotation.depth, annotation.text)
+        .setLineStyle(new LineStyle({ color: annotation.color, width: 2 }))
+        .setTextStyle(new TextStyle({ color: '#ffffffff', font: '14px Arial'}))
+        .setVerticalTextOffset(-5)
+        .setHorizontalTextOffset(5)
+        .setNameLabelPosition(AnchorType.RightTop)
+        .setDepthLabelPosition(AnchorType.RightBottom)
+        .setFillStyleDepth(annotation.color)
+        .setFillStyleName(annotation.color)
+        .setFillDepthLabel(true)
+        .setFillNameLabel(true);
+      widget
+        .getTrackContainer()
+        .addChild(marker);
+    });
+  }
 }
 
 function createPlot(widget: WellLogWidget) {
@@ -107,6 +133,12 @@ function setCursorPosition(value: number | null) {
   if (cursor) cursor.value = value;
 }
 
+function loadCss(widget: WellLogWidget, url: string) {
+  fetch(url)
+    .then(response => response.text())
+    .then(css => widget.setCss(new CssStyle({css})))
+}
+
 /*function handleError() {
   console.error(`Problem loading template from ${props.templateUrl}.`);
 }*/
@@ -119,6 +151,8 @@ function initialize() {
     .then(widget => {
       createPlot(widget);
       configureCrossHairTool(widget);
+      createAnnotations(widget);
+      //loadCss(widget, '/data/well-log.css');
     })
     //.catch(handleError)
 }

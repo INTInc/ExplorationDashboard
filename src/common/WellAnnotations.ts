@@ -18,6 +18,7 @@ export class WellAnnotations extends DataSource<WellAnnotations> {
 		if (Array.isArray(json) && json[0].TVD && json[0].name) {
 			return json.map(
 				item => new WellAnnotation({
+					color: item.color,
 					text: item.name,
 					depth: item.TVD,
 					anchorType: AnchorType.Sphere,

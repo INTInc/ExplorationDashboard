@@ -8,6 +8,7 @@ export enum AnchorType {
 
 export class WellAnnotation {
 	public text = '';
+	public color = '';
 	public anchorType: AnchorType = AnchorType.Point;
 	public textStyle: TextStyle = new TextStyle({ color: '#ffffffff', font: '12px Arial' });
 	public lineStyle: LineStyle = new LineStyle();
