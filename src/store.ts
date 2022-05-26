@@ -3,8 +3,10 @@ import { Field } from './data-sources/Field';
 import { WellAnnotations } from '@/common/WellAnnotations';
 import { Well } from '@/data-sources/Well';
 import { ref } from '@vue/runtime-core';
+import { Theme } from '@/components/theme-switcher/Theme';
 
 interface State {
+  theme: Ref<Theme>,
   field: Field,
   wells: Well[],
   cursors: Map<Well, Ref<number | null>>
@@ -18,11 +20,13 @@ export interface Store {
   addWell: (well: Well) => Well,
   addCursor: (well: Well) => Ref<number | null>
   addAnnotations: (well: Well) => WellAnnotations,
+  setTheme: (theme: Theme) => void
 }
 
 export const storeSymbol = Symbol('store');
 
 const state = {
+  theme: ref(Theme.Light),
   field: new Field(),
   wells: [] as Well[],
 
@@ -41,6 +45,7 @@ const addAnnotations = (well: Well) => {
   state.annotations.set(well, annotations);
   return annotations;
 }
+const setTheme = (theme: Theme) => state.theme.value = theme;
 
 
 export const createStore = (): Store => ({
@@ -48,7 +53,8 @@ export const createStore = (): Store => ({
   addWell,
   addField,
   addCursor,
-  addAnnotations
+  addAnnotations,
+  setTheme
 });
 
 export const useStore = () => inject(storeSymbol) as Store;

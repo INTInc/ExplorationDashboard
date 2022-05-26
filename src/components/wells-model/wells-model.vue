@@ -275,7 +275,7 @@ function createCursors(root: Object3D) {
 
       root.add(sphere);
 
-      watch(depthRef, (_, value) => {
+      watch(depthRef, (value: number | null) => {
         if (value === null || Number.isNaN(value)) {
           sphere.visible = false;
         } else {

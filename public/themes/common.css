@@ -1,0 +1,17 @@
+.geotoolkit.welllog.header.LogVisualHeader,
+.geotoolkit.welllog.LogMarker {
+    textstyle-font : bold 11px Arial;
+}
+
+.geotoolkit.welllog.LogMarker {
+    textstyle-color : #FFFFFF;
+}
+
+.geotoolkit.welllog.LogAxis {
+    tickgenerator-major-tickstyle-width: 1;
+    tickgenerator-major-tickstyle-pixelsnapmode-x: true;
+    tickgenerator-major-tickstyle-pixelsnapmode-y: true;
+    tickgenerator-edge-labelstyle-font:  bold 11px Arial;
+    tickgenerator-major-labelstyle-font: bold 11px Arial;
+}
+

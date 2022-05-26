@@ -11,7 +11,7 @@ import { WellB2 } from '@/data-sources/WellB2';
 import { WellB32 } from '@/data-sources/WellB32';
 import { HeaderType } from '@int/geotoolkit/welllog/header/LogAxisVisualHeader';
 import { WellLogWidget } from '@int/geotoolkit/welllog/widgets/WellLogWidget';
-import { defineProps, onMounted, ref } from 'vue';
+import { defineProps, onMounted, ref, watch } from 'vue';
 import { StretchablePlot } from '@/common/layout/StretchablePlot';
 import { Events as PlotEvents, Plot } from '@int/geotoolkit/plot/Plot';
 import { Orientation } from '@int/geotoolkit/util/Orientation';
@@ -20,10 +20,10 @@ import { CrossHair, Events as CrossHairEvents } from '@int/geotoolkit/controls/t
 import { CrossHairEventArgs } from '@int/geotoolkit/controls/tools/CrossHairEventArgs';
 import { useStore } from '@/store';
 import { LogMarker } from '@int/geotoolkit/welllog/LogMarker';
-import { TextStyle } from '@int/geotoolkit/attributes/TextStyle';
 import { AnchorType } from '@int/geotoolkit/util/AnchorType';
-import { CssStyle } from '@int/geotoolkit/css/CssStyle';
 import { LineStyle } from '@int/geotoolkit/attributes/LineStyle';
+import { CompositeNode } from '@int/geotoolkit/scene/CompositeNode';
+import { Theme } from '@/components/theme-switcher/Theme';
 
 const props = defineProps<{
   source: WellB2 | WellB32,
@@ -47,14 +47,36 @@ function validateTemplate(template: string) {
 }
 
 function createWidget(template: string) {
-  return new WellLogWidget({
+  const widget = new WellLogWidget({
     horizontalscrollable: false,
     verticalscrollable: false
   })
     .setDepthLimits(props.source.limits)
     .setDataBinding(props.source.binding)
     .setAxisHeaderType(HeaderType.Simple)
-    .loadTemplate(template)
+    .loadTemplate(template);
+
+
+
+  const iterateChildren = (node: CompositeNode, offset = 1) => {
+    for (let i = 0; i < node.getChildrenCount(); i++) {
+      const child = node.getChild(i);
+      const offsetString = new Array(offset).fill(' ').join('');
+      console.log(offsetString + child.getClassName());
+      if (child instanceof CompositeNode) iterateChildren(child, offset + 1);
+    }
+  }
+
+  console.log(widget.getHeaderContainer().getClassName());
+  iterateChildren(widget.getHeaderContainer());
+  console.log('-----------------------------------');
+
+  console.log(widget.getTrackContainer().getClassName());
+  iterateChildren(widget.getTrackContainer());
+  console.log('-----------------------------------');
+
+
+  return widget;
 }
 
 function createAnnotations(widget: WellLogWidget) {
@@ -63,7 +85,6 @@ function createAnnotations(widget: WellLogWidget) {
     annotations.data.forEach(annotation => {
       const marker = new LogMarker(annotation.depth, annotation.text)
         .setLineStyle(new LineStyle({ color: annotation.color, width: 2 }))
-        .setTextStyle(new TextStyle({ color: '#ffffffff', font: '14px Arial'}))
         .setVerticalTextOffset(-5)
         .setHorizontalTextOffset(5)
         .setNameLabelPosition(AnchorType.RightTop)
@@ -133,10 +154,20 @@ function setCursorPosition(value: number | null) {
   if (cursor) cursor.value = value;
 }
 
-function loadCss(widget: WellLogWidget, url: string) {
-  fetch(url)
-    .then(response => response.text())
-    .then(css => widget.setCss(new CssStyle({css})))
+async function loadCss(widget: WellLogWidget) {
+
+  const [commonRules, lightThemeRules, darkThemeRules] = await Promise.all([
+    fetch('/themes/common.css').then(response => response.text()),
+    fetch('/themes/theme-light.css').then(response => response.text()),
+    fetch('/themes/theme-dark.css').then(response => response.text())
+  ])
+
+  const lightTheme = commonRules + ' ' + lightThemeRules;
+  const darkTheme = commonRules + ' ' + darkThemeRules;
+  const applyTheme = (theme: Theme) => widget.setCss(theme === Theme.Dark ? darkTheme : lightTheme);
+
+  applyTheme(state.theme.value);
+  watch(state.theme, applyTheme);
 }
 
 /*function handleError() {
@@ -152,7 +183,7 @@ function initialize() {
       createPlot(widget);
       configureCrossHairTool(widget);
       createAnnotations(widget);
-      //loadCss(widget, '/data/well-log.css');
+      loadCss(widget, '/themes/theme-light.css');
     })
     //.catch(handleError)
 }

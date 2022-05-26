@@ -1,0 +1,11 @@
+.geotoolkit.welllog.header.LogVisualHeader {
+    textstyle-color : #505050;
+}
+
+.geotoolkit.welllog.LogAxis {
+    tickgenerator-major-labelstyle-color: #C8C8C8;
+    tickgenerator-major-tickstyle-color: #C8C8C8;
+    tickgenerator-minor-tickstyle-color: #505050;
+    tickgenerator-edge-labelstyle-color: #C8C8C8;
+    tickgenerator-edge-tickstyle-color: #EFFFFF;
+}
