@@ -11,7 +11,7 @@ import { WellB2 } from '@/data-sources/WellB2';
 import { WellB32 } from '@/data-sources/WellB32';
 import { HeaderType } from '@int/geotoolkit/welllog/header/LogAxisVisualHeader';
 import { WellLogWidget } from '@int/geotoolkit/welllog/widgets/WellLogWidget';
-import { defineProps, onMounted, ref, watch } from 'vue';
+import { defineProps, onMounted, ref } from 'vue';
 import { StretchablePlot } from '@/common/layout/StretchablePlot';
 import { Events as PlotEvents, Plot } from '@int/geotoolkit/plot/Plot';
 import { Orientation } from '@int/geotoolkit/util/Orientation';
@@ -22,8 +22,7 @@ import { useStore } from '@/store';
 import { LogMarker } from '@int/geotoolkit/welllog/LogMarker';
 import { AnchorType } from '@int/geotoolkit/util/AnchorType';
 import { LineStyle } from '@int/geotoolkit/attributes/LineStyle';
-import { CompositeNode } from '@int/geotoolkit/scene/CompositeNode';
-import { Theme } from '@/components/theme-switcher/Theme';
+import { StyleableWellLog } from '@/common/layout/StyleableWellLog';
 
 const props = defineProps<{
   source: WellB2 | WellB32,
@@ -47,14 +46,15 @@ function validateTemplate(template: string) {
 }
 
 function createWidget(template: string) {
-  return new WellLogWidget({
+  return new StyleableWellLog({
     horizontalscrollable: false,
     verticalscrollable: false
   })
     .setDepthLimits(props.source.limits)
     .setDataBinding(props.source.binding)
     .setAxisHeaderType(HeaderType.Simple)
-    .loadTemplate(template);
+    .loadTemplate(template)
+    .connectThemes(state) as unknown as WellLogWidget
 }
 
 function createAnnotations(widget: WellLogWidget) {
@@ -133,23 +133,6 @@ function setCursorPosition(value: number | null) {
   if (cursor) cursor.value = value;
 }
 
-async function loadCss(widget: WellLogWidget): Promise<WellLogWidget> {
-  const [commonRules, lightThemeRules, darkThemeRules] = await Promise.all([
-    fetch('/themes/common.css').then(response => response.text()),
-    fetch('/themes/theme-light.css').then(response => response.text()),
-    fetch('/themes/theme-dark.css').then(response => response.text())
-  ])
-
-  const lightTheme = commonRules + ' ' + lightThemeRules;
-  const darkTheme = commonRules + ' ' + darkThemeRules;
-  const applyTheme = (theme: Theme) => widget.setCss(theme === Theme.Dark ? darkTheme : lightTheme);
-
-  applyTheme(state.theme.value);
-  watch(state.theme, applyTheme);
-
-  return widget;
-}
-
 /*function handleError() {
   console.error(`Problem loading template from ${props.templateUrl}.`);
 }*/
@@ -159,7 +142,6 @@ function initialize() {
     .then(fetchTemplate)
     .then(validateTemplate)
     .then(createWidget)
-    .then(loadCss)
     .then(widget => {
       createPlot(widget);
       createAnnotations(widget);

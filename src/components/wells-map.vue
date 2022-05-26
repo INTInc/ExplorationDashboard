@@ -20,6 +20,7 @@ import { Polygon } from '@int/geotoolkit/scene/shapes/Polygon';
 import { Path } from '@int/geotoolkit/scene/shapes/Path';
 import { Field } from '@/data-sources/Field';
 import { RgbaColor } from '@int/geotoolkit/util/RgbaColor';
+import { StyleableMap } from '@/common/layout/StyleableMap';
 
 //TODO temporary, all colors must be defined or redefined by css styles
 const PRIMARY_COLOR = new RgbaColor(140, 104, 205, 1);
@@ -30,7 +31,7 @@ const container = ref();
 const { state }: Store = useStore();
 
 function createMap() {    
-  return new Map({
+  return new StyleableMap({
     system: GeodeticSystem.WGS84,
     tooltip: {
       alignment: AnchorType.BottomCenter,

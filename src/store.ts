@@ -5,7 +5,7 @@ import { Well } from '@/data-sources/Well';
 import { ref } from '@vue/runtime-core';
 import { Theme } from '@/components/theme-switcher/Theme';
 
-interface State {
+export interface State {
   theme: Ref<Theme>,
   field: Field,
   wells: Well[],
