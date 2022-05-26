@@ -47,7 +47,7 @@ function validateTemplate(template: string) {
 }
 
 function createWidget(template: string) {
-  const widget = new WellLogWidget({
+  return new WellLogWidget({
     horizontalscrollable: false,
     verticalscrollable: false
   })
@@ -55,28 +55,6 @@ function createWidget(template: string) {
     .setDataBinding(props.source.binding)
     .setAxisHeaderType(HeaderType.Simple)
     .loadTemplate(template);
-
-
-
-  const iterateChildren = (node: CompositeNode, offset = 1) => {
-    for (let i = 0; i < node.getChildrenCount(); i++) {
-      const child = node.getChild(i);
-      const offsetString = new Array(offset).fill(' ').join('');
-      console.log(offsetString + child.getClassName());
-      if (child instanceof CompositeNode) iterateChildren(child, offset + 1);
-    }
-  }
-
-  console.log(widget.getHeaderContainer().getClassName());
-  iterateChildren(widget.getHeaderContainer());
-  console.log('-----------------------------------');
-
-  console.log(widget.getTrackContainer().getClassName());
-  iterateChildren(widget.getTrackContainer());
-  console.log('-----------------------------------');
-
-
-  return widget;
 }
 
 function createAnnotations(widget: WellLogWidget) {
@@ -116,13 +94,14 @@ function resizeTracks(plot: Plot, widget: WellLogWidget) {
       ? plot.getWidth()
       : plot.getHeight();
 
-  const indexTrackWidth = 40;
+  const indexTrackWidth = 35;
   const curveTrackWidth = Math.floor((limit - indexTrackWidth) / props.fitTracks);
 
   for (let i = 0; i < widget.getTracksCount(); i++) {
     const track = widget.getTrackAt(i);
-    const isIndexTrack = track.getChild(0) && track.getChild(0) instanceof LogAxis;
-    widget.getTrackAt(i).setWidth(isIndexTrack ? indexTrackWidth : curveTrackWidth);
+    track.setWidth(track.getChild(0) && track.getChild(0) instanceof LogAxis
+        ? indexTrackWidth
+        : curveTrackWidth);
   }
 }
 
@@ -154,8 +133,7 @@ function setCursorPosition(value: number | null) {
   if (cursor) cursor.value = value;
 }
 
-async function loadCss(widget: WellLogWidget) {
-
+async function loadCss(widget: WellLogWidget): Promise<WellLogWidget> {
   const [commonRules, lightThemeRules, darkThemeRules] = await Promise.all([
     fetch('/themes/common.css').then(response => response.text()),
     fetch('/themes/theme-light.css').then(response => response.text()),
@@ -168,6 +146,8 @@ async function loadCss(widget: WellLogWidget) {
 
   applyTheme(state.theme.value);
   watch(state.theme, applyTheme);
+
+  return widget;
 }
 
 /*function handleError() {
@@ -179,11 +159,11 @@ function initialize() {
     .then(fetchTemplate)
     .then(validateTemplate)
     .then(createWidget)
+    .then(loadCss)
     .then(widget => {
       createPlot(widget);
-      configureCrossHairTool(widget);
       createAnnotations(widget);
-      loadCss(widget, '/themes/theme-light.css');
+      configureCrossHairTool(widget);
     })
     //.catch(handleError)
 }
