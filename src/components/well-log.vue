@@ -116,13 +116,14 @@ function resizeTracks(plot: Plot, widget: WellLogWidget) {
       ? plot.getWidth()
       : plot.getHeight();
 
-  const indexTrackWidth = 40;
+  const indexTrackWidth = 35;
   const curveTrackWidth = Math.floor((limit - indexTrackWidth) / props.fitTracks);
 
   for (let i = 0; i < widget.getTracksCount(); i++) {
     const track = widget.getTrackAt(i);
-    const isIndexTrack = track.getChild(0) && track.getChild(0) instanceof LogAxis;
-    widget.getTrackAt(i).setWidth(isIndexTrack ? indexTrackWidth : curveTrackWidth);
+    track.setWidth(track.getChild(0) && track.getChild(0) instanceof LogAxis
+        ? indexTrackWidth
+        : curveTrackWidth);
   }
 }
 
@@ -154,8 +155,7 @@ function setCursorPosition(value: number | null) {
   if (cursor) cursor.value = value;
 }
 
-async function loadCss(widget: WellLogWidget) {
-
+async function loadCss(widget: WellLogWidget): Promise<WellLogWidget> {
   const [commonRules, lightThemeRules, darkThemeRules] = await Promise.all([
     fetch('/themes/common.css').then(response => response.text()),
     fetch('/themes/theme-light.css').then(response => response.text()),
@@ -168,6 +168,8 @@ async function loadCss(widget: WellLogWidget) {
 
   applyTheme(state.theme.value);
   watch(state.theme, applyTheme);
+
+  return widget;
 }
 
 /*function handleError() {
@@ -179,11 +181,11 @@ function initialize() {
     .then(fetchTemplate)
     .then(validateTemplate)
     .then(createWidget)
+    .then(loadCss)
     .then(widget => {
       createPlot(widget);
-      configureCrossHairTool(widget);
       createAnnotations(widget);
-      loadCss(widget, '/themes/theme-light.css');
+      configureCrossHairTool(widget);
     })
     //.catch(handleError)
 }

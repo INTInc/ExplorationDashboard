@@ -9,3 +9,15 @@
     tickgenerator-edge-labelstyle-color: #C8C8C8;
     tickgenerator-edge-tickstyle-color: #EFFFFF;
 }
+
+.geotoolkit.welllog.LogHorizontalGrid,
+.geotoolkit.welllog.LogLinearValueGrid,
+.geotoolkit.welllog.LogLog10ValueGrid {
+   tickgenerator-major-tickstyle-color: #646464;
+   tickgenerator-minor-tickstyle-color: #525252;
+   linestyle-color: #525252;
+}
+
+geotoolkit.controls.tools.CrossHair {
+    textstyle-color: #FFFFFF;
+}

@@ -156,10 +156,10 @@ function createAnnotation(annotation: WellAnnotation, well: Well): Object3D {
 }
 
 function trajectoryPoint(well: Well, value: number): Vector3 {
-  const exactIndex: number =  well.surveys.values('TVD').indexOf(value);
+  const exactIndex: number =  well.surveys.values('MD').indexOf(value);
   return (exactIndex > 0)
       ? vectorByIndex(well, exactIndex)
-      : vectorByIndex(well, deviatedIndex(well, 'DX', value));
+      : vectorByIndex(well, deviatedIndex(well, 'MD', value));
 }
 
 function vectorByIndex(well: Well, index: number): Vector3 {
