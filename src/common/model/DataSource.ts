@@ -1,4 +1,4 @@
-import { Deferred } from '@/common/Deferred';
+import { Deferred } from '@/common/model/Deferred';
 
 export class DataSource<T> {
 

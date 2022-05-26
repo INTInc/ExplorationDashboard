@@ -1,5 +1,5 @@
-import { LasWrapper } from '@/common/LasWrapper';
-import { DataSource } from '@/common/DataSource';
+import { LasWrapper } from '@/common/model/LasWrapper';
+import { DataSource } from '@/common/model/DataSource';
 
 interface WellOptions {
 	topsUrl?: string,

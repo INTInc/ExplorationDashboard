@@ -33,3 +33,9 @@ geotoolkit.controls.tools.CrossHair
    linestyle-color: transparent
 }
 
+*[cssclass="ExplorationMapWell"],
+*[cssclass="ExplorationMapField"]
+{
+    linestyle-width: 3
+}
+

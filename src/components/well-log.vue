@@ -22,7 +22,7 @@ import { useStore } from '@/store';
 import { LogMarker } from '@int/geotoolkit/welllog/LogMarker';
 import { AnchorType } from '@int/geotoolkit/util/AnchorType';
 import { LineStyle } from '@int/geotoolkit/attributes/LineStyle';
-import { StyleableWellLog } from '@/common/layout/StyleableWellLog';
+import { StyleableWellLog } from '@/common/styling/StyleableWellLog';
 
 const props = defineProps<{
   source: WellB2 | WellB32,
@@ -54,7 +54,7 @@ function createWidget(template: string) {
     .setDataBinding(props.source.binding)
     .setAxisHeaderType(HeaderType.Simple)
     .loadTemplate(template)
-    .connectThemes(state) as unknown as WellLogWidget
+    .connectThemes(state) as unknown as Promise<WellLogWidget>
 }
 
 function createAnnotations(widget: WellLogWidget) {

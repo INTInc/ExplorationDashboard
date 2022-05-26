@@ -18,6 +18,15 @@
     linestyle-color: #C8C8C8;
 }
 
-geotoolkit.controls.tools.CrossHair {
+.geotoolkit.controls.tools.CrossHair {
     textstyle-color: #505050;
+}
+
+*[cssclass="ExplorationMapWell"] {
+    linestyle-color: #ff0000;
+}
+
+*[cssclass="ExplorationMapField"] {
+    linestyle-color: #ff0000ff;
+    fillstyle-color: #ff000080;
 }

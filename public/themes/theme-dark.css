@@ -21,3 +21,12 @@
 geotoolkit.controls.tools.CrossHair {
     textstyle-color: #FFFFFF;
 }
+
+*[cssclass="ExplorationMapWell"] {
+    linestyle-color: #0000ff;
+}
+
+*[cssclass="ExplorationMapField"] {
+    linestyle-color: #0000ffff;
+    fillstyle-color: #0000ff80;
+}

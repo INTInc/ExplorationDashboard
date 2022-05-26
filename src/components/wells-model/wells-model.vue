@@ -23,7 +23,7 @@ import { Grid } from '@int/geotoolkit3d/scene/grid/Grid';
 import { LineGeometry } from '@int/geotoolkit3d/scene/well/LineGeometry';
 import { KnownColors } from '@int/geotoolkit/util/ColorUtil';
 import { AnnotationBase } from '@int/geotoolkit3d/scene/AnnotationBase';
-import { AnchorType, WellAnnotation } from '@/common/WellAnnotation';
+import { AnchorType, WellAnnotation } from '@/common/model/WellAnnotation';
 import { MathUtil } from '@int/geotoolkit/util/MathUtil';
 import { FillStyle } from '@int/geotoolkit/attributes/FillStyle';
 import { Sphere } from '@int/geotoolkit3d/scene/well/schematic/Sphere';

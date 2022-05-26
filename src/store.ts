@@ -1,6 +1,6 @@
 import { inject, Ref } from 'vue';
 import { Field } from './data-sources/Field';
-import { WellAnnotations } from '@/common/WellAnnotations';
+import { WellAnnotations } from '@/common/model/WellAnnotations';
 import { Well } from '@/data-sources/Well';
 import { ref } from '@vue/runtime-core';
 import { Theme } from '@/components/theme-switcher/Theme';

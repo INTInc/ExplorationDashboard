@@ -1,7 +1,7 @@
 import { GeodeticSystem } from '@int/geotoolkit/map/GeodeticSystem';
 import { Transformer } from '@int/geotoolkit/map/coordinatesystems/Transformer';
 import { Point } from '@int/geotoolkit/util/Point';
-import { DataSource } from '@/common/DataSource';
+import { DataSource } from '@/common/model/DataSource';
 
 export interface Coordinates {
   x: number[],

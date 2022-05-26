@@ -26,6 +26,11 @@ export function Styleable<TBase extends Constructor>(Base: TBase) {
 			const applyTheme = (theme: Theme) => this.setCss(theme === Theme.Dark ? darkTheme : lightTheme);
 
 			applyTheme(state.theme.value);
+
+
+			console.log(this);
+			console.log((this as any).getCss());
+
 			watch(state.theme, applyTheme);
 
 			return this;
