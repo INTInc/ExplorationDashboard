@@ -15,12 +15,12 @@ export class WellAnnotations extends DataSource<WellAnnotations> {
 	}
 
 	private mapItems(json: object): Array<WellAnnotation> {
-		if (Array.isArray(json) && json[0].TVD && json[0].name) {
+		if (Array.isArray(json) && json[0].MD && json[0].name) {
 			return json.map(
 				item => new WellAnnotation({
 					color: item.color,
 					text: item.name,
-					depth: item.TVD,
+					depth: item.MD,
 					anchorType: AnchorType.Sphere,
 				})
 			);
