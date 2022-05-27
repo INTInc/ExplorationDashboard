@@ -1,6 +1,6 @@
 <template>
   <div ref="container" class="wells-map">
-  <canvas ref="canvas" />
+    <canvas ref="canvas" />
   </div>
 </template>
 
@@ -19,20 +19,14 @@ import { Store, useStore } from '@/store';
 import { Polygon } from '@int/geotoolkit/scene/shapes/Polygon';
 import { Path } from '@int/geotoolkit/scene/shapes/Path';
 import { Field } from '@/data-sources/Field';
-import { RgbaColor } from '@int/geotoolkit/util/RgbaColor';
-import { StyleableMap } from '@/common/styling/StyleableMap';
-import { ToolTipTool } from '@int/geotoolkit/controls/tools/ToolTipTool';
-
-//TODO temporary, all colors must be defined or redefined by css styles
-const PRIMARY_COLOR = new RgbaColor(140, 104, 205, 1);
-const PRIMARY_TRANSPARENT_COLOR = new RgbaColor(140, 104, 205, 0.5);
+import { Styleable } from '@/common/styling/Styleable';
 
 const canvas = ref();
 const container = ref();
 const { state }: Store = useStore();
 
 function createWidget() {
-  return new StyleableMap({
+  return new Map({
     system: GeodeticSystem.WGS84,
     tooltip: {
       alignment: AnchorType.BottomCenter,
@@ -41,7 +35,7 @@ function createWidget() {
       mode: PointerMode.Hover,
       autoupdate: false
     }
-  }).connectThemes(state) as unknown as Promise<Map>
+  })
 }
 
 function addMapLayer(map: Map) {
@@ -53,23 +47,24 @@ function addMapLayer(map: Map) {
   );
 }
 
-function createField(dataSource: Field): Polygon {
+function createField(dataSource: Field) {
   const {x, y, name} = dataSource.zoneCoordinates;
-  return new Polygon({ x, y })
+  return new (Styleable(Polygon))({ x, y })
     .setCssClass('ExplorationMapField')
     .setName(`Zone of exploration '${name}'`)
+    .connectThemesLoader(state) as unknown as Polygon
 }
 
 function createWells(dataSource: Field): Path[] {
-  console.log(new Path({}).getClassName());
   return dataSource.wellsCoordinates.map(({x, y, name}) => {
-    const path = new Path({})
+    const path = new (Styleable(Path))({})
       .setCssClass('ExplorationMapWell')
       .setName(`Trajectory of ${name}`)
       .moveTo(x[0], y[0]);
 
     for (let i = 1; i < x.length; i++) path.lineTo(x[i], y[i]);
-    return path;
+    path.connectThemesLoader(state);
+    return path as unknown as Path;
   });
 }
 
@@ -86,7 +81,7 @@ function addExplorationLayer(map: Map) {
         })
         .addShape([createField(state.field), ...createWells(state.field)])
       )
-      .setZoomLevel(5)
+      .setZoomLevel(7)
       .panTo(state.field.explorationCoordinates, GeodeticSystem.WGS84)
     })
 }
@@ -101,11 +96,10 @@ function createPlot(map: Map) {
 }
 
 onMounted(() => {
-  createWidget().then(widget => {
-    addMapLayer(widget);
-    addExplorationLayer(widget);
-    createPlot(widget);
-  });
+  const widget = createWidget();
+  addMapLayer(widget);
+  addExplorationLayer(widget);
+  createPlot(widget);
 })
 </script>
 

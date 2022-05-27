@@ -3,10 +3,12 @@ import { Field } from './data-sources/Field';
 import { WellAnnotations } from '@/common/model/WellAnnotations';
 import { Well } from '@/data-sources/Well';
 import { ref } from '@vue/runtime-core';
-import { Theme } from '@/components/theme-switcher/Theme';
+import { AppTheme } from '@/common/styling/AppTheme';
+import { ToolkitThemesLoader } from '@/common/styling/ToolkitThemesLoader';
 
 export interface State {
-  theme: Ref<Theme>,
+  appTheme: Ref<AppTheme>,
+  toolkitThemes: ToolkitThemesLoader,
   field: Field,
   wells: Well[],
   cursors: Map<Well, Ref<number | null>>
@@ -20,16 +22,17 @@ export interface Store {
   addWell: (well: Well) => Well,
   addCursor: (well: Well) => Ref<number | null>
   addAnnotations: (well: Well) => WellAnnotations,
-  setTheme: (theme: Theme) => void
+  setAppTheme: (theme: AppTheme) => void,
+  setupToolkitThemes: (commonUrl: string, lightUrl: string, darkUrl: string) => void
 }
 
 export const storeSymbol = Symbol('store');
 
 const state = {
-  theme: ref(Theme.Light),
+  appTheme: ref(AppTheme.Light),
+  toolkitThemes: new ToolkitThemesLoader(),
   field: new Field(),
   wells: [] as Well[],
-
   cursors: new Map(),
   annotations: new Map(),
 }
@@ -45,7 +48,8 @@ const addAnnotations = (well: Well) => {
   state.annotations.set(well, annotations);
   return annotations;
 }
-const setTheme = (theme: Theme) => state.theme.value = theme;
+const setAppTheme = (theme: AppTheme) => state.appTheme.value = theme;
+const setupToolkitThemes = (commonUrl: string, lightUrl: string, darkUrl: string) => state.toolkitThemes.setUrls(commonUrl, lightUrl, darkUrl)
 
 
 export const createStore = (): Store => ({
@@ -54,7 +58,8 @@ export const createStore = (): Store => ({
   addField,
   addCursor,
   addAnnotations,
-  setTheme
+  setAppTheme,
+  setupToolkitThemes
 });
 
 export const useStore = () => inject(storeSymbol) as Store;

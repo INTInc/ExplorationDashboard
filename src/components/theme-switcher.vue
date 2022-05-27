@@ -2,44 +2,44 @@
     <div class="theme-switcher">
         <span>Theme:</span>
         <select v-model="selectorValue" @change="onThemeChanged">
-            <option :value="Theme.Light">Light</option>
-            <option :value="Theme.Dark">Dark</option> 
+            <option :value="AppTheme.Light">Light</option>
+            <option :value="AppTheme.Dark">Dark</option>
         </select>
     </div>
 </template>
 
 <script setup lang="ts">
 import { useStore } from '@/store';
-import { Theme } from '@/components/theme-switcher/Theme';
+import { AppTheme } from '@/common/styling/AppTheme';
 import { onMounted, ref } from '@vue/runtime-core';
 import { computed, Ref } from 'vue';
 
 const STORAGE_ITEM_KEY = 'preferred-theme';
-const DEFAULT_THEME = Theme.Light;
+const DEFAULT_THEME = AppTheme.Light;
 
-const { setTheme } = useStore();
+const { setAppTheme } = useStore();
 
-const savedTheme = computed(() => localStorage.getItem(STORAGE_ITEM_KEY) as Theme);
+const savedTheme = computed(() => localStorage.getItem(STORAGE_ITEM_KEY) as AppTheme);
 const themeMediaQuery = computed(() => window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)'));
 
-const selectorValue: Ref<Theme> = ref(DEFAULT_THEME);
+const selectorValue: Ref<AppTheme> = ref(DEFAULT_THEME);
 
 function onSystemThemeChanged() {
-  selectorValue.value = themeMediaQuery.value.matches ? Theme.Dark : Theme.Light;
+  selectorValue.value = themeMediaQuery.value.matches ? AppTheme.Dark : AppTheme.Light;
   onThemeChanged();
 }
 
 function onThemeChanged() {
-  setTheme(selectorValue.value);
+  setAppTheme(selectorValue.value);
   saveTheme(selectorValue.value);
   applyTheme(selectorValue.value);
 }
 
-function applyTheme(theme: Theme) {
+function applyTheme(theme: AppTheme) {
   document.documentElement.setAttribute('theme', theme);
 }
 
-function saveTheme(theme: Theme) {
+function saveTheme(theme: AppTheme) {
   localStorage.setItem(STORAGE_ITEM_KEY, theme);
 }
 

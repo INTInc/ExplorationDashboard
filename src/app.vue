@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import ThemeSwitcher from '@/components/theme-switcher/theme-switcher.vue';
+import ThemeSwitcher from '@/components/theme-switcher.vue';
 import WellLog from '@/components/well-log.vue';
 import WellsMap from '@/components/wells-map.vue';
 import WellsModel from '@/components/wells-model/wells-model.vue';
@@ -39,7 +39,13 @@ import { Store, useStore } from '@/store';
 import { WellB2 } from '@/data-sources/WellB2';
 import { WellB32 } from '@/data-sources/WellB32';
 
-const { addField, addWell, addCursor, addAnnotations }: Store = useStore();
+const { setupToolkitThemes, addField, addWell, addCursor, addAnnotations }: Store = useStore();
+
+setupToolkitThemes(
+    '/themes/common.css',
+    '/themes/theme-light.css',
+    '/themes/theme-dark.css'
+);
 
 addField().setUrl('/data/fieldB.json');
 
