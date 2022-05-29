@@ -7,6 +7,7 @@
     <well-log
       class="vertical-log"
       :source="wellB2"
+      :limits="[2345, 2800]"
       :template-url="'/templates/vertical-log.json'"
       :fit-tracks="3"
       :show-annotations="true"
@@ -15,6 +16,7 @@
     <well-log
       class="horizontal-log"
       :source="wellB32"
+      :limits="[1050, 4000]"
       :template-url="'/templates/horizontal-log.json'"
       :fit-tracks="1"
       :header-scroll-to="'bottom'"

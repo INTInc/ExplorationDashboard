@@ -7,8 +7,6 @@
 </template>
 
 <script setup lang="ts">
-import { WellB2 } from '@/data-sources/WellB2';
-import { WellB32 } from '@/data-sources/WellB32';
 import { HeaderType } from '@int/geotoolkit/welllog/header/LogAxisVisualHeader';
 import { WellLogWidget } from '@int/geotoolkit/welllog/widgets/WellLogWidget';
 import { defineProps, onMounted, ref } from 'vue';
@@ -23,9 +21,11 @@ import { LogMarker } from '@int/geotoolkit/welllog/LogMarker';
 import { AnchorType } from '@int/geotoolkit/util/AnchorType';
 import { LineStyle } from '@int/geotoolkit/attributes/LineStyle';
 import { Styleable } from '@/common/styling/Styleable';
+import { WellLogSource } from '@/components/well-log/WellLogSource';
 
 const props = defineProps<{
-  source: WellB2 | WellB32,
+  source: WellLogSource,
+  limits: number[],
   templateUrl: string,
   fitTracks?: number,
   showAnnotations?: boolean,
@@ -51,7 +51,7 @@ function createWidget(template: string) {
     horizontalscrollable: false,
     verticalscrollable: false
   })
-    .setDepthLimits(props.source.limits)
+    .setDepthLimits(props.limits[0], props.limits[1])
     .setDataBinding(props.source.binding)
     .setAxisHeaderType(HeaderType.Simple)
     .loadTemplate(template)
@@ -156,6 +156,7 @@ function initialize() {
       createAnnotations(widget);
       configureCrossHairTool(widget);
       scrollHeader(widget);
+      widget.fitToHeight();
     })
     //.catch(handleError)
 }

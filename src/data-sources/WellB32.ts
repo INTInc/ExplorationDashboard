@@ -1,11 +1,11 @@
 import { DataBinding } from '@int/geotoolkit/data/DataBinding';
 import { LogCurve } from '@int/geotoolkit/welllog/LogCurve';
-import { Range } from '@int/geotoolkit/util/Range';
 import { Node } from '@int/geotoolkit/scene/Node';
 import { LogData } from '@int/geotoolkit/welllog/data/LogData';
 import { Well } from '@/data-sources/Well';
+import { WellLogSource } from '@/components/well-log/WellLogSource';
 
-export class WellB32 extends Well {
+export class WellB32 extends Well implements WellLogSource  {
 
   private curveData(curveName: string): LogData {
     return curveName === 'GR'
@@ -19,12 +19,6 @@ export class WellB32 extends Well {
       unbind: (curve: LogCurve) => curve.setData({}, false),
       bind: (curve: LogCurve) => curve.setData(this.curveData(curve.getName()), false)
     };
-  }
-
-  public get limits(): Range {
-    //return this.topsLas.depthLimits;
-    //TODO: FIX THAT
-    return new Range(1050, 4000);
   }
 
 }
