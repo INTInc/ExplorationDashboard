@@ -1,4 +1,4 @@
-import { AnchorType, WellAnnotation } from '@/common/model/WellAnnotation';
+import { WellAnnotation } from '@/common/model/WellAnnotation';
 import { DataSource } from '@/common/model/DataSource';
 
 export class WellAnnotations extends DataSource<WellAnnotations> {
@@ -21,7 +21,6 @@ export class WellAnnotations extends DataSource<WellAnnotations> {
 					color: item.color,
 					text: item.name,
 					depth: item.MD,
-					anchorType: AnchorType.Sphere,
 				})
 			);
 		} else {

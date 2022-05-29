@@ -7,14 +7,7 @@
 <script setup lang="ts">
 import { defineProps, Ref, ref, watch } from 'vue';
 import { onMounted } from '@vue/runtime-core';
-import {
-  Color,
-  Group,
-  Line,
-  LineBasicMaterial,
-  Object3D,
-  Vector3,
-} from '@int/geotoolkit3d/THREE';
+import { Color, Group, Line, LineBasicMaterial, Object3D, Vector3, } from '@int/geotoolkit3d/THREE';
 import { Plot } from '@int/geotoolkit3d/Plot';
 import { useStore } from '@/store';
 import { Wells3DBox } from '@/components/wells-model/Wells3DBox';
@@ -23,7 +16,7 @@ import { Grid } from '@int/geotoolkit3d/scene/grid/Grid';
 import { LineGeometry } from '@int/geotoolkit3d/scene/well/LineGeometry';
 import { KnownColors } from '@int/geotoolkit/util/ColorUtil';
 import { AnnotationBase } from '@int/geotoolkit3d/scene/AnnotationBase';
-import { AnchorType, WellAnnotation } from '@/common/model/WellAnnotation';
+import { WellAnnotation } from '@/common/model/WellAnnotation';
 import { MathUtil } from '@int/geotoolkit/util/MathUtil';
 import { FillStyle } from '@int/geotoolkit/attributes/FillStyle';
 import { Sphere } from '@int/geotoolkit3d/scene/well/schematic/Sphere';
@@ -32,10 +25,13 @@ import { LineStyle, Patterns } from '@int/geotoolkit/attributes/LineStyle';
 import { TextStyle } from '@int/geotoolkit/attributes/TextStyle';
 import { LogCurve2D } from '@int/geotoolkit3d/scene/well/LogCurve2D';
 import { LogFill2D } from '@int/geotoolkit3d/scene/well/LogFill2D';
+import { AppTheme } from '@/common/styling/AppTheme';
 
-const AXIS_LINE_STYLE = new LineStyle({ color: KnownColors.Black, pattern: Patterns.Solid });
-const GRID_LINE_STYLE = new LineStyle({ color: KnownColors.DarkGrey, pattern: Patterns.Dash });
-const TEXT_STYLE = new TextStyle({ color: KnownColors.Black, font: '12px Arial' });
+interface ModelTheme {
+  axisLineStyle: LineStyle,
+  gridLineStyle: LineStyle,
+  textStyle: TextStyle
+}
 
 const props = defineProps<{
   modelPadding: number,
@@ -45,10 +41,24 @@ const props = defineProps<{
   showAnnotations?: boolean,
   measurement?: string
 }>();
+const { state } = useStore();
+
+const FONT = 'bold 11px Arial';
+
+const THEME_DARK: ModelTheme = {
+  axisLineStyle: new LineStyle({ color: '#777777', pattern: Patterns.Solid }),
+  gridLineStyle: new LineStyle({ color: '#505050', pattern: Patterns.Dash }),
+  textStyle: new TextStyle({ color: '#ffffff', font: FONT }),
+}
+
+const THEME_LIGHT: ModelTheme = {
+  axisLineStyle: new LineStyle({ color: '#dddddd', pattern: Patterns.Solid }),
+  gridLineStyle: new LineStyle({ color: '#cccccc', pattern: Patterns.Dash }),
+  textStyle: new TextStyle({ color: '#505050', font: FONT }),
+}
 
 const model = ref();
 const container = ref();
-const { state } = useStore();
 
 function wellsAreLoaded() {
   const promises: Array<Promise<unknown>> = [];
@@ -63,9 +73,14 @@ function createPlot(): Plot {
   const plot = new StretchablePlot3({
     container: model.value,
     renderer: {
-      clearcolor: 'white'
+      parameters: {
+        alpha: true
+      },
+      clearcolor: 0x000000,
+      clearcoloralpha: 0
     }
   });
+
   plot.setRefElement(container.value);
   return plot;
 }
@@ -80,23 +95,12 @@ function createBoxGrid(box: Wells3DBox, padding: number): Grid {
     end: new Vector3(box.length + padding, box.width / 2 + padding, - box.height),
     modelstart: new Vector3(box.xLimits.getHigh() - padding,box.yLimits.getLow() - padding, box.zLimits.getLow()),
     modelend: new Vector3(box.xLimits.getHigh() + padding, box.yLimits.getHigh() + padding, box.zLimits.getHigh()),
-    grid: {
-      linestyles: { x: GRID_LINE_STYLE, y: GRID_LINE_STYLE, z: GRID_LINE_STYLE }
-    },
-    axis: {
-      linestyles: { x: AXIS_LINE_STYLE, y: AXIS_LINE_STYLE, z: AXIS_LINE_STYLE },
-      textstyles: { x: TEXT_STYLE,  y: TEXT_STYLE, z: TEXT_STYLE }
-    },
-    title: {
-      textstyles: { x: TEXT_STYLE,  y: TEXT_STYLE, z: TEXT_STYLE }
-    }
-
-  });
+  })
 }
 
 function setCamera(wellsBox: Wells3DBox, plot: Plot) {
   plot
-      .setCameraLocation(new Vector3(wellsBox.length / 2, -props.cameraDistance, wellsBox.height / 2))
+      .setCameraLocation(new Vector3(wellsBox.length * 2, -props.cameraDistance, wellsBox.height / 2))
       .setCameraLookAt(new Vector3(wellsBox.length / 2, wellsBox.width / 2, -wellsBox.height));
 }
 
@@ -111,48 +115,11 @@ function createGeometry(well: Well) {
 }
 
 function createMaterial() {
-  return new LineBasicMaterial({ color: KnownColors.Green })
+  return new LineBasicMaterial({ color: KnownColors.Green, linewidth: 5 })
 }
 
-function createTrajectory(well: Well): Object3D {
+function createTrajectory(well: Well): Line {
   return new Line(createGeometry(well), createMaterial());
-}
-
-function createAnnotation(annotation: WellAnnotation, well: Well): Object3D {
-  let anchor = new Vector3();
-  const object = new Group();
-  const origin = vectorByIndex(well, 0);
-
-  if (annotation.index) {
-    anchor = vectorByIndex(well, annotation.index);
-  } else if (annotation.depth) {
-    anchor = trajectoryPoint(well, annotation.depth);
-  } else {
-    return new Object3D();
-  }
-
-  const annotationObject = new AnnotationBase({
-    title: annotation.text,
-    titlestyle: TEXT_STYLE || annotation.textStyle,
-    linestyle: annotation.lineStyle
-  });
-
-  annotationObject.setAnchorPoint(anchor);
-  annotationObject.position.copy(origin);
-
-  if (annotation.anchorType === AnchorType.Sphere) {
-    const sphere = new Sphere({
-      data: anchor,
-      fillstyle: new FillStyle({color: annotation.color }),
-      radius: 30
-    });
-    sphere.position.copy(origin);
-    object.add(sphere);
-  }
-
-  object.add(annotationObject);
-
-  return object;
 }
 
 function trajectoryPoint(well: Well, value: number): Vector3 {
@@ -206,26 +173,68 @@ function findDeviatedDepths(well: Well, depth: number) {
 }
 */
 
-function createWellNamesAnnotations(root: Object3D): void {
+function createWellTrajectories(): Line[] {
+  return state.wells.map(well => createTrajectory(well));
+}
+
+function createWellNamesAnnotations(): Sphere[] {
   if (props.showWellNames)
-    root.add(
-      ...state.wells
-        .filter(well => well.surveys.wellName)
-        .map(well => createAnnotation(new WellAnnotation({
-          text: well.surveys.wellName as string,
-          index: well.surveys.length - 1,
-          textStyle: TEXT_STYLE,
-        }), well))
-    )
+    return state.wells
+      .filter(well => well.surveys.wellName)
+      .map(well => createAnnotation(new WellAnnotation({
+        text: well.surveys.wellName as string,
+        index: well.surveys.length - 1
+      }), well));
+  return [];
 }
 
-function createCustomAnnotations(root: Object3D): void {
+function createCustomAnnotations(): Sphere[] {
+  const annotationObjects = new Array<Sphere>();
   if (props.showAnnotations) state.annotations.forEach((annotations, well) =>
-    annotations.data.forEach(annotation => root.add(createAnnotation(annotation, well)))
+    annotations.data.forEach(annotation => annotationObjects.push(createAnnotation(annotation, well)))
   );
+  return annotationObjects;
 }
 
-function createMeasurementCurve(well: Well, measurement: string): Object3D {
+function createAnnotation(annotation: WellAnnotation, well: Well): Sphere {
+  let anchor = new Vector3();
+  const origin = vectorByIndex(well, 0);
+
+  if (annotation.index) {
+    anchor = vectorByIndex(well, annotation.index);
+  } else if (annotation.depth) {
+    anchor = trajectoryPoint(well, annotation.depth);
+  } else {
+    return new Sphere({});
+  }
+
+  const sphere = new Sphere({
+    data: anchor,
+    fillstyle: new FillStyle({color: annotation.color || 'transparent' }),
+    radius: 30
+  });
+
+  const titleStyle = new TextStyle({color: annotation.color, font: FONT});
+
+  sphere.position.copy(origin);
+  sphere.setAnnotation(createMarkerLabel(annotation.text, anchor, origin).setTitleStyle(titleStyle));
+
+  return sphere;
+}
+
+function createMarkerLabel(text: string, anchor: Vector3, origin: Vector3): AnnotationBase {
+  const annotationObject = new AnnotationBase({
+    title: text,
+    titlestyle: new TextStyle({font: FONT}),
+    linestyle: new LineStyle('transparent')
+  });
+  annotationObject.setAnchorPoint(anchor);
+  annotationObject.position.copy(origin);
+
+  return annotationObject;
+}
+
+function createMeasurementCurve(well: Well, measurement: string): Group {
   const
       curveCoordinates = {
         x: well.surveys.values('DX'),
@@ -259,47 +268,85 @@ function createMeasurementCurve(well: Well, measurement: string): Object3D {
       .add(fill);
 }
 
-function createMeasurementLogs(root: Object3D): void {
-  if (props.measurement) root.add(...state.wells.map(well => createMeasurementCurve(well, props.measurement as string)));
+function createMeasurementLogs(): Group[] {
+  if (props.measurement)
+    return state.wells.map(well => createMeasurementCurve(well, props.measurement as string));
+  return [];
 }
 
-function createCursors(root: Object3D) {
-    state.cursors.forEach((depthRef: Ref<number | null>, well: Well) => {
-      const sphere = new Sphere({
-        data: vectorByIndex(well, 0),
-        fillstyle: new FillStyle({color: KnownColors.Red }),
-        radius: 75
-      });
-      sphere.position.copy(vectorByIndex(well, 0));
+function createCursors(): Object3D[] {
+  const cursorObjects = new Array<Sphere>();
+  state.cursors.forEach((depthRef: Ref<number | null>, well: Well) => cursorObjects.push(createCursor(depthRef, well)))
+  return cursorObjects;
+}
+
+function createCursor(depthRef: Ref<number | null>, well: Well): Sphere {
+  const sphere = new Sphere({
+    data: vectorByIndex(well, 0),
+    fillstyle: new FillStyle({color: KnownColors.Red }),
+    radius: 75
+  });
+  sphere.position.copy(vectorByIndex(well, 0));
+  sphere.visible = false;
+  watch(depthRef, (value: number | null) => {
+    if (value === null || Number.isNaN(value)) {
       sphere.visible = false;
+    } else {
+      sphere.visible = true;
+      sphere.position.copy(vectorByIndex(well, deviatedIndex(well, 'MD', value)));
+      sphere.invalidateObject();
+    }
+  });
+  return sphere;
+}
 
-      root.add(sphere);
+function applyTheme(grid: Grid, annotations: Sphere[], appTheme: AppTheme) {
+  const modelTheme = appTheme === AppTheme.Dark ? THEME_DARK : THEME_LIGHT;
+  applyThemeToGrid(grid, modelTheme);
+  applyThemeToAnnotations(annotations, modelTheme);
+}
 
-      watch(depthRef, (value: number | null) => {
-        if (value === null || Number.isNaN(value)) {
-          sphere.visible = false;
-        } else {
-          sphere.visible = true;
-          sphere.position.copy(vectorByIndex(well, deviatedIndex(well, 'MD', value)));
-          sphere.invalidateObject();
-        }
-      });
-    });
+function applyThemeToGrid(grid: Grid, theme: ModelTheme) {
+  grid.setOptions({
+    grid: {
+      linestyles: { x: theme.gridLineStyle, y: theme.gridLineStyle, z: theme.gridLineStyle }
+    },
+    axis: {
+      linestyles: { x: theme.axisLineStyle, y: theme.axisLineStyle, z: theme.axisLineStyle },
+      textstyles: { x: theme.textStyle,  y: theme.textStyle, z: theme.textStyle }
+    },
+    title: {
+      textstyles: { x: theme.textStyle,  y: theme.textStyle, z: theme.textStyle }
+    }
+  })
+}
+
+function applyThemeToAnnotations(annotationSpheres: Sphere[], theme: ModelTheme) {
+  annotationSpheres.forEach(sphere => {
+    const label = sphere.getAnnotation();
+    if (label.getAnchorPoint()) {
+      const newLabel = createMarkerLabel(label.getTitle(), label.getAnchorPoint() as Vector3, label.position)
+      sphere.setAnnotation(newLabel.setTitleStyle(theme.textStyle));
+    }
+  });
 }
 
 function createModel() {
   const plot = createPlot();
   const root = plot.getRoot();
   const wellsBox = createWellsBox();
+  const grid = createBoxGrid(wellsBox, props.modelPadding);
+  const wellNamesAnnotations = createWellNamesAnnotations();
   root
-      .add(createBoxGrid(wellsBox, props.modelPadding))
-      .add(...state.wells.map(well => createTrajectory(well)));
+    .add(grid)
+    .add(...wellNamesAnnotations)
+    .add(...createCustomAnnotations())
+    .add(...createWellTrajectories())
+    .add(...createMeasurementLogs())
+    .add(...createCursors())
 
-  createWellNamesAnnotations(root);
-  createCustomAnnotations(root);
-  createMeasurementLogs(root);
-  createCursors(root);
-
+  watch(state.appTheme, appTheme => applyTheme(grid, wellNamesAnnotations, appTheme));
+  applyTheme(grid, wellNamesAnnotations, state.appTheme.value);
   setCamera(wellsBox, plot);
 }
 
