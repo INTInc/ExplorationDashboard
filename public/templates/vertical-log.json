@@ -2100,7 +2100,7 @@
 				"cg_id":276,
 				"name":"Track # 3",
 				"id":"LOG_TRACK",
-				"type":"log",
+				"type":"linear",
 				"header":{
 					"cg_type":"trackheader",
 					"visible":true,
@@ -2573,6 +2573,7 @@
 						"cg_type":"curve",
 						"id":null,
 						"name":"ILD",
+						"scale_type": "Logarithmic",
 						"display_mode":[
 							"line"
 						],
@@ -2753,6 +2754,7 @@
 						"cg_type":"curve",
 						"id":null,
 						"name":"ILM",
+						"scale_type": "Logarithmic",
 						"display_mode":[
 							"line"
 						],
