@@ -265,9 +265,8 @@
           {
             "cg_type": "curve",
             "name": "GR",
-            "limits_type": 2,
-              "custom_limits_minimum": -150,
-              "custom_limits_maximum": 150,
+            "micro_positon_left": 0.5,
+            "micro_positon_right": 1,
             "linestyle": {
               "color": "green",
               "width": 1
