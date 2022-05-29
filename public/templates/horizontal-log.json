@@ -263,6 +263,7 @@
             "filltype": "left"
           },
           {
+            "cg_id": 8,
             "cg_type": "curve",
             "name": "GR",
             "micro_positon_left": 0.5,
@@ -271,6 +272,22 @@
               "color": "green",
               "width": 1
             }
+          },
+          {
+            "cg_type":"logfill",
+            "curve1":"#href(8)",
+            "curve2":{
+              "cg_type":"referenceline",
+              "cg_id":800,
+              "value":0.6359918200408998
+            },
+            "fillstyle":{
+              "cg_type":"fillstyle",
+              "cg_id":8000,
+              "color":"#fdd835ff"
+            },
+            "leftfillstyle":"#href(8000)",
+            "filltype":"right"
           },
           {
             "cg_type": "curve",
