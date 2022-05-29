@@ -28,7 +28,8 @@ const props = defineProps<{
   source: WellB2 | WellB32,
   templateUrl: string,
   fitTracks?: number,
-  showAnnotations?: boolean
+  showAnnotations?: boolean,
+  headerScrollTo?: 'top' | 'bottom'
 }>();
 
 const canvas = ref();
@@ -133,6 +134,14 @@ function setCursorPosition(value: number | null) {
   if (cursor) cursor.value = value;
 }
 
+function scrollHeader(widget: WellLogWidget) {
+  switch (props.headerScrollTo) {
+    case 'top': return widget.getHeaderContainer().scrollToTop();
+    case 'bottom': return widget.getHeaderContainer().scrollToBottom();
+    default: return;
+  }
+}
+
 /*function handleError() {
   console.error(`Problem loading template from ${props.templateUrl}.`);
 }*/
@@ -146,6 +155,7 @@ function initialize() {
       createPlot(widget);
       createAnnotations(widget);
       configureCrossHairTool(widget);
+      scrollHeader(widget);
     })
     //.catch(handleError)
 }

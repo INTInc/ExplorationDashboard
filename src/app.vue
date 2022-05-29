@@ -10,12 +10,14 @@
       :template-url="'/templates/vertical-log.json'"
       :fit-tracks="3"
       :show-annotations="true"
+      :header-scroll-to="'top'"
     ></well-log>
     <well-log
       class="horizontal-log"
       :source="wellB32"
       :template-url="'/templates/horizontal-log.json'"
       :fit-tracks="1"
+      :header-scroll-to="'bottom'"
     ></well-log>
     <wells-map></wells-map>
     <wells-model
