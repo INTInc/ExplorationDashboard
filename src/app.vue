@@ -35,7 +35,7 @@
 
 <script setup lang="ts">
 import ThemeSwitcher from '@/components/theme-switcher.vue';
-import WellLog from '@/components/well-log.vue';
+import WellLog from '@/components/well-log/well-log.vue';
 import WellsMap from '@/components/wells-map.vue';
 import WellsModel from '@/components/wells-model/wells-model.vue';
 
