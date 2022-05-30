@@ -8,7 +8,7 @@
       class="vertical-log"
       :source="wellB2"
       :limits="[2345, 2800]"
-      :template-url="'/templates/vertical-log.json'"
+      :template-url="'/toolkit-wellog-templates/vertical-log.json'"
       :fit-tracks="3"
       :show-annotations="true"
       :header-scroll-to="'top'"
@@ -17,7 +17,7 @@
       class="horizontal-log"
       :source="wellB32"
       :limits="[1050, 4800]"
-      :template-url="'/templates/horizontal-log.json'"
+      :template-url="'/toolkit-wellog-templates/horizontal-log.json'"
       :fit-tracks="1"
       :header-scroll-to="'bottom'"
     ></well-log>
@@ -48,9 +48,9 @@ import { WellB32 } from '@/data-sources/WellB32';
 const { setupToolkitThemes, addField, addWell, addCursor, addAnnotations }: Store = useStore();
 
 setupToolkitThemes(
-    '/themes/common.css',
-    '/themes/theme-light.css',
-    '/themes/theme-dark.css'
+    '/toolkit-themes/common.css',
+    '/toolkit-themes/theme-light.css',
+    '/toolkit-themes/theme-dark.css'
 );
 
 addField().setUrl('/data/fieldB.json');
