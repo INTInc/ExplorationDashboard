@@ -84,8 +84,7 @@ function watchCursors(cursorObjects: Object3D[]) {
   });
 }
 
-function createModel() {
-  createWellsModel(
+onMounted(() => createWellsModel(
     model.value,
     container.value,
     state.wells,
@@ -97,14 +96,11 @@ function createModel() {
     props.showAnnotations || false,
     true,
     FONT
-  ).then(({grid, wellNamesAnnotations, cursorObjects}) => {
-    watchCursors(cursorObjects);
-    watchTheme(grid, wellNamesAnnotations);
-    applyTheme(grid, wellNamesAnnotations, state.appTheme.value);
-  })
-}
-
-onMounted(createModel);
+).then(({grid, wellNamesAnnotations, cursorObjects}) => {
+  watchCursors(cursorObjects);
+  watchTheme(grid, wellNamesAnnotations);
+  applyTheme(grid, wellNamesAnnotations, state.appTheme.value);
+}));
 </script>
 
 <style lang="scss">
