@@ -14,7 +14,8 @@ import { StretchablePlot } from '@/common/layout/StretchablePlot';
 export async function createWellsMapWidget(
 	canvasElement: HTMLCanvasElement,
 	referenceElement: HTMLElement,
-	field: Field
+	initialZoom: number,
+	field: Field,
 ) {
 	function createMap() {
 		return new Map({
@@ -88,7 +89,7 @@ export async function createWellsMapWidget(
 				.addShape(fieldShape)
 				.addShape(wellShapes)
 			)
-			.setZoomLevel(7)
+			.setZoomLevel(initialZoom)
 			.panTo(field.explorationCoordinates, GeodeticSystem.WGS84);
 
 		createPlot(map);
