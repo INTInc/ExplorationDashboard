@@ -1,6 +1,6 @@
 import { Plot } from '@int/geotoolkit3d/Plot';
 import { StretchablePlot3 } from '@/common/layout/StretchablePlot3';
-import { Wells3DBox } from '@/components/wells-model/Wells3DBox';
+import { Wells3DBox } from '@/components/wells-3d/Wells3DBox';
 import { Grid } from '@int/geotoolkit3d/scene/grid/Grid';
 import { Color, Group, Line, LineBasicMaterial, Object3D, Vector3 } from '@int/geotoolkit3d/THREE';
 import { Well } from '@/data-sources/Well';

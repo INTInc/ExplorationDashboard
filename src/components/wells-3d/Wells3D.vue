@@ -12,7 +12,7 @@ import { Grid } from '@int/geotoolkit3d/scene/grid/Grid';
 import { LineStyle, Patterns } from '@int/geotoolkit/attributes/LineStyle';
 import { TextStyle } from '@int/geotoolkit/attributes/TextStyle';
 import { AppTheme } from '@/common/styling/AppTheme';
-import { createWellsModel } from '@/components/wells-model/createWellsModel';
+import { createWellsModel } from '@/components/wells-3d/createWellsModel';
 import { Object3D } from '@int/geotoolkit3d/THREE';
 
 interface ModelTheme {
