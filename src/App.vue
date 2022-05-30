@@ -16,15 +16,17 @@
     <well-log
       class="horizontal-log"
       :source="wellB32"
-      :limits="[1050, 4000]"
+      :limits="[1050, 4800]"
       :template-url="'/templates/horizontal-log.json'"
       :fit-tracks="1"
       :header-scroll-to="'bottom'"
     ></well-log>
-    <wells-map></wells-map>
+    <wells-map
+      :initial-zoom="4"
+    ></wells-map>
     <wells-model
       :model-padding="500"
-      :camera-distance="2000"
+      :camera-distance="3000"
       :show-annotations="true"
       :show-well-names="true"
       :show-cursors="true"

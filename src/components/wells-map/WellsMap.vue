@@ -5,6 +5,7 @@
 </template>
 
 <script setup lang="ts">
+import { defineProps } from 'vue';
 import { Store, useStore } from '@/store';
 import { onMounted, ref } from '@vue/runtime-core';
 import { createWellsMapWidget } from '@/components/wells-map/createWellsMapWidget';
@@ -13,9 +14,14 @@ const canvas = ref();
 const container = ref();
 const { state }: Store = useStore();
 
+const props = defineProps<{
+  initialZoom: number
+}>()
+
 onMounted(() => createWellsMapWidget(
     canvas.value,
     container.value,
+    props.initialZoom,
     state.field
 ).then(({fieldShape, wellShapes}) => {
   fieldShape.connectThemesLoader(state);

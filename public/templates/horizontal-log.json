@@ -32,7 +32,7 @@
             "fillstyle": {
               "cg_type": "fillstyle",
               "cg_id": 700,
-              "color": "#d9593d5f",
+              "color": "#d9593d88",
               "evenoddmode": false
             },
             "negativefillstyle": "#href(700)",
@@ -63,7 +63,7 @@
             "fillstyle": {
               "cg_type": "fillstyle",
               "cg_id": 600,
-              "color": "#88d93d5f",
+              "color": "#88d93d88",
               "evenoddmode": false
             },
             "negativefillstyle": "#href(600)",
@@ -95,7 +95,7 @@
             "fillstyle": {
               "cg_type": "fillstyle",
               "cg_id": 600,
-              "color": "#d9d93d5f",
+              "color": "#d9d93d88",
               "evenoddmode": false
             },
             "negativefillstyle": "#href(600)",
@@ -127,7 +127,7 @@
             "fillstyle": {
               "cg_type": "fillstyle",
               "cg_id": 500,
-              "color": "#3d79d95f",
+              "color": "#3d79d988",
               "evenoddmode": false
             },
             "negativefillstyle": "#href(500)",
@@ -159,7 +159,7 @@
             "fillstyle": {
               "cg_type": "fillstyle",
               "cg_id": 400,
-              "color": "#3dd94a5f",
+              "color": "#3dd94a88",
               "evenoddmode": false
             },
             "negativefillstyle": "#href(400)",
@@ -191,7 +191,7 @@
             "fillstyle": {
               "cg_type": "fillstyle",
               "cg_id": 300,
-              "color": "#ed7d315f",
+              "color": "#ed7d3188",
               "evenoddmode": false
             },
             "negativefillstyle": "#href(300)",
@@ -223,7 +223,7 @@
             "fillstyle": {
               "cg_type": "fillstyle",
               "cg_id": 200,
-              "color": "#6e3dd95f",
+              "color": "#6e3dd988",
               "evenoddmode": false
             },
             "negativefillstyle": "#href(200)",
@@ -255,7 +255,7 @@
             "fillstyle": {
               "cg_type": "fillstyle",
               "cg_id": 100,
-              "color": "#8000005f",
+              "color": "#80000088",
               "evenoddmode": false
             },
             "negativefillstyle": "#href(100)",
