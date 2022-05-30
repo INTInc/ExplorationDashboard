@@ -1,10 +1,9 @@
 <template>
     <div class="theme-switcher">
-        <span>Theme:</span>
-        <select v-model="selectorValue" @change="onThemeChanged">
-            <option :value="AppTheme.Light">Light</option>
-            <option :value="AppTheme.Dark">Dark</option>
-        </select>
+      <button @click="toggleTheme">
+        <i v-if="selectorValue === AppTheme.Dark" class="icon-sun"></i>
+        <i v-if="selectorValue === AppTheme.Light" class="icon-moon"></i>
+      </button>
     </div>
 </template>
 
@@ -23,6 +22,11 @@ const savedTheme = computed(() => localStorage.getItem(STORAGE_ITEM_KEY) as AppT
 const themeMediaQuery = computed(() => window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)'));
 
 const selectorValue: Ref<AppTheme> = ref(DEFAULT_THEME);
+
+function toggleTheme() {
+  selectorValue.value = selectorValue.value === AppTheme.Dark ? AppTheme.Light : AppTheme.Dark;
+  onThemeChanged();
+}
 
 function onSystemThemeChanged() {
   selectorValue.value = themeMediaQuery.value.matches ? AppTheme.Dark : AppTheme.Light;
@@ -57,13 +61,17 @@ onMounted(() => {
     justify-content: right;
     padding: 16px 16px 0 16px;
 
-    select {
-        font-size: 16px;
-        margin-left: 8px;
-        color: var(--text-color);
-        background: transparent;
-        border: none;
-        outline: none;
+    button {
+      padding: 8px;
+      font-size: 14px;
+      border-radius: 4px;
+      border: 1px solid rgba(155, 155, 155, 0.5);
+      background: transparent;
+      color: var(--text-color);
+      
+      &:hover {
+        cursor: pointer;
+      }
     }
 }
 </style>
