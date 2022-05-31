@@ -1,10 +1,11 @@
-import { inject, Ref } from 'vue';
+import { inject, Ref, watch } from 'vue';
 import { Field } from './data-sources/Field';
 import { WellAnnotations } from '@/common/model/WellAnnotations';
 import { Well } from '@/data-sources/Well';
 import { ref } from '@vue/runtime-core';
 import { AppTheme } from '@/common/styling/AppTheme';
 import { ToolkitThemesLoader } from '@/common/styling/ToolkitThemesLoader';
+import { Styleable } from '@/common/styling/Styleable';
 
 export interface State {
   appTheme: Ref<AppTheme>,
@@ -23,7 +24,8 @@ export interface Store {
   addCursor: (well: Well) => Ref<number | null>
   addAnnotations: (well: Well) => WellAnnotations,
   setAppTheme: (theme: AppTheme) => void,
-  setupToolkitThemes: (commonUrl: string, lightUrl: string, darkUrl: string) => void
+  setupToolkitThemes: (commonUrl: string, lightUrl: string, darkUrl: string) => void,
+  registerStyleable: (component: Styleable) => void
 }
 
 export const storeSymbol = Symbol('store');
@@ -35,7 +37,10 @@ const state = {
   wells: [] as Well[],
   cursors: new Map(),
   annotations: new Map(),
-}
+};
+
+const styleableComponents = new Array<Styleable>();
+
 const addField = () => { return state.field = new Field() }
 const addWell = (well: Well) => state.wells[state.wells.push(well) -1];
 const addCursor = (well: Well) => {
@@ -49,8 +54,16 @@ const addAnnotations = (well: Well) => {
   return annotations;
 }
 const setAppTheme = (theme: AppTheme) => state.appTheme.value = theme;
-const setupToolkitThemes = (commonUrl: string, lightUrl: string, darkUrl: string) => state.toolkitThemes.setUrls(commonUrl, lightUrl, darkUrl)
-
+const setupToolkitThemes = (commonUrl: string, lightUrl: string, darkUrl: string) => {
+  state.toolkitThemes
+    .setUrls(commonUrl, lightUrl, darkUrl)
+    .then(() => watch(state.appTheme, theme => styleableComponents.forEach(c => c.applyTheme(theme))))
+}
+const registerStyleable = async (component: Styleable) => {
+  await component.initialized;
+  component.applyTheme(state.appTheme.value);
+  styleableComponents.push(component);
+}
 
 export const createStore = (): Store => ({
   state,
@@ -59,7 +72,8 @@ export const createStore = (): Store => ({
   addCursor,
   addAnnotations,
   setAppTheme,
-  setupToolkitThemes
+  setupToolkitThemes,
+  registerStyleable
 });
 
 export const useStore = () => inject(storeSymbol) as Store;

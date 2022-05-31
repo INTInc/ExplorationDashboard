@@ -2,7 +2,6 @@ import { Plot } from '@int/geotoolkit3d/Plot';
 import { StretchablePlot3 } from '@/common/layout/StretchablePlot3';
 import { Wells3DBox } from '@/components/wells-3d/Wells3DBox';
 import { Grid } from '@int/geotoolkit3d/scene/grid/Grid';
-import { Color, Group, Line, LineBasicMaterial, Object3D, Vector3 } from '@int/geotoolkit3d/THREE';
 import { Well } from '@/data-sources/Well';
 import { LineGeometry } from '@int/geotoolkit3d/scene/well/LineGeometry';
 import { KnownColors } from '@int/geotoolkit/util/ColorUtil';
@@ -39,7 +38,7 @@ export async function createWellsModel(
 		return Promise.all(promises);
 	}
 
-	function createPlot(): Plot {
+	/*function createPlot(): Plot {
 		const plot = new StretchablePlot3({
 			container: containerElement,
 			renderer: {
@@ -286,5 +285,7 @@ export async function createWellsModel(
 		}
 	}
 
-	return dataSourcesLoaded().then(createModel);
+	return dataSourcesLoaded().then(createModel);*/
+
+	return dataSourcesLoaded()
 }

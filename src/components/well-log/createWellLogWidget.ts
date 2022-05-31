@@ -35,7 +35,7 @@ export async function createWellLogWidget(
 	}
 
 	function createWidget(template: string) {
-		return new (Styleable(WellLogWidget))({
+		return new WellLogWidget({
 			horizontalscrollable: false,
 			verticalscrollable: false
 		})
@@ -47,19 +47,21 @@ export async function createWellLogWidget(
 
 	function createAnnotations(widget: WellLogWidget) {
 		annotations.data.forEach(annotation => {
-			const marker = new LogMarker(annotation.depth, annotation.text)
-				.setLineStyle(new LineStyle({ color: annotation.color, width: 2 }))
-				.setVerticalTextOffset(-5)
-				.setHorizontalTextOffset(5)
-				.setNameLabelPosition(AnchorType.RightTop)
-				.setDepthLabelPosition(AnchorType.RightBottom)
-				.setFillStyleDepth(annotation.color)
-				.setFillStyleName(annotation.color)
-				.setFillDepthLabel(true)
-				.setFillNameLabel(true);
-			widget
-				.getTrackContainer()
-				.addChild(marker);
+			if (annotation.depth) {
+				const marker = new LogMarker(annotation.depth, annotation.text)
+					.setLineStyle(new LineStyle({color: annotation.color, width: 2}))
+					.setVerticalTextOffset(-5)
+					.setHorizontalTextOffset(5)
+					.setNameLabelPosition(AnchorType.RightTop)
+					.setDepthLabelPosition(AnchorType.RightBottom)
+					.setFillStyleDepth(annotation.color)
+					.setFillStyleName(annotation.color)
+					.setFillDepthLabel(true)
+					.setFillNameLabel(true);
+				widget
+					.getTrackContainer()
+					.addChild(marker);
+			}
 		});
 	}
 

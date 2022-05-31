@@ -38,7 +38,7 @@ function createWidget() {
     getVisibleAnnotations(),
     setCursorPosition
   )
-    .then(widget => widget.connectThemesLoader(state))
+    //.then(widget => widget.connectThemesLoader(state))
 }
 
 function getVisibleAnnotations(): WellAnnotations {

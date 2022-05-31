@@ -96,11 +96,11 @@ onMounted(() => createWellsModel(
     props.showAnnotations || false,
     true,
     FONT
-).then(({grid, wellNamesAnnotations, cursorObjects}) => {
+)/*.then(({grid, wellNamesAnnotations, cursorObjects}) => {
   watchCursors(cursorObjects);
   watchTheme(grid, wellNamesAnnotations);
   applyTheme(grid, wellNamesAnnotations, state.appTheme.value);
-}));
+})*/);
 </script>
 
 <style lang="scss">

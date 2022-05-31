@@ -8,16 +8,27 @@
 import { defineProps } from 'vue';
 import { Store, useStore } from '@/store';
 import { onMounted, ref } from '@vue/runtime-core';
-import { createWellsMapWidget } from '@/components/wells-map/createWellsMapWidget';
+import { WellsMap } from '@/components/wells-map/WellsMap';
 
 const canvas = ref();
 const container = ref();
-const { state }: Store = useStore();
+const { state, registerStyleable }: Store = useStore();
 
 const props = defineProps<{
   initialZoom: number
 }>()
 
+onMounted(() => {
+  registerStyleable(new WellsMap(
+    canvas.value,
+    container.value,
+    state.toolkitThemes,
+    state.field,
+    props.initialZoom
+  ));
+});
+
+/*
 onMounted(() => createWellsMapWidget(
     canvas.value,
     container.value,
@@ -27,6 +38,7 @@ onMounted(() => createWellsMapWidget(
   fieldShape.connectThemesLoader(state);
   wellShapes.forEach(shape => shape.connectThemesLoader(state))
 }));
+*/
 
 </script>
 
