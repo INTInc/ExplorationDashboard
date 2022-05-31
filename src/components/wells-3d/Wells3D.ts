@@ -9,7 +9,6 @@ import { WellTrajectory } from '@/components/wells-3d/objects/WellTrajectory';
 import { WellLogCurve } from '@/components/wells-3d/objects/WellLogCurve';
 import { WellDepthMarker } from '@/components/wells-3d/objects/WellDepthMarker';
 import { MathUtil } from '@int/geotoolkit/util/MathUtil';
-import { Deferred } from '@/common/model/Deferred';
 
 export class Wells3D {
 
@@ -22,8 +21,6 @@ export class Wells3D {
 	protected cursors: Map<Well, WellDepthMarker> = new Map();
 	protected depthMarkers: WellDepthMarker[] = [];
 	protected wellNames: WellDepthMarker[] = [];
-
-	private initialization = new Deferred<Wells3D>();
 
 	constructor(
 		private containerElement: HTMLElement,
@@ -56,7 +53,6 @@ export class Wells3D {
 		});
 
 		this.setCamera();
-		this.initialization.resolve(this);
 	}
 
 	private createPlot(): Plot {
@@ -129,9 +125,5 @@ export class Wells3D {
 		this.plot
 			.setCameraLocation(new Vector3(this.box.length * 2, -this.cameraDistance, this.box.height / 2))
 			.setCameraLookAt(new Vector3(this.box.length / 2, this.box.width / 2, -this.box.height));
-	}
-
-	public get initialized(): Promise<unknown> {
-		return this.initialization.promise;
 	}
 }

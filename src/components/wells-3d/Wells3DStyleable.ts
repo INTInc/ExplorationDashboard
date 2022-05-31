@@ -3,6 +3,9 @@ import { AppTheme } from '@/common/styling/AppTheme';
 import { LineStyle, Patterns } from '@int/geotoolkit/attributes/LineStyle';
 import { TextStyle } from '@int/geotoolkit/attributes/TextStyle';
 import { Wells3D } from '@/components/wells-3d/Wells3D';
+import { Deferred } from '@/common/model/Deferred';
+import { Well } from '@/data-sources/Well';
+import { WellAnnotations } from '@/common/model/WellAnnotations';
 
 interface ModelTheme {
 	axisLineStyle: LineStyle,
@@ -25,6 +28,39 @@ const THEME_LIGHT: ModelTheme = {
 }
 
 export class Wells3DStyleable extends Wells3D implements Styleable {
+
+	private initialization = new Deferred<Wells3DStyleable>();
+
+	constructor(
+		containerElement: HTMLElement,
+		referenceElement: HTMLElement,
+		wells: Well[],
+		annotations: Map<Well, WellAnnotations>,
+		measurement: string | null,
+		cameraDistance: number,
+		modelPadding: number,
+		showWellNames: boolean,
+		showAnnotations: boolean,
+		transparentScene: boolean
+	) {
+		super(
+			containerElement,
+			referenceElement,
+			wells,
+			annotations,
+			measurement,
+			cameraDistance,
+			modelPadding,
+			showWellNames,
+			showAnnotations,
+			transparentScene,
+		);
+		this.initialization.resolve(this);
+	}
+
+	public get initialized(): Promise<Wells3DStyleable> {
+		return this.initialization.promise;
+	}
 
 	public applyTheme(appTheme: AppTheme): void {
 		const modelTheme = appTheme === AppTheme.Dark ? THEME_DARK : THEME_LIGHT;
