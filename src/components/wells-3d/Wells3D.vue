@@ -5,10 +5,11 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, ref } from 'vue';
+import { defineProps, ref, watch } from 'vue';
 import { onMounted } from '@vue/runtime-core';
 import { useStore } from '@/store';
 import { Wells3DStyleable } from '@/components/wells-3d/Wells3DStyleable';
+import { Wells3D } from '@/components/wells-3d/Wells3D';
 
 const props = defineProps<{
   modelPadding: number,
@@ -31,20 +32,24 @@ function dataLoaded(): Promise<unknown> {
 }
 
 function createWells3D() {
-  registerStyleable(
-    new Wells3DStyleable(
-      model.value,
-      container.value,
-      state.wells,
-      state.annotations,
-     props.measurement || null,
-      props.cameraDistance,
-      props.modelPadding,
-      props.showWellNames || false,
-      props.showAnnotations || false,
-      true
-    )
-  )
+  const wells3d = new Wells3DStyleable(
+    model.value,
+    container.value,
+    state.wells,
+    state.annotations,
+    props.measurement || null,
+    props.cameraDistance,
+    props.modelPadding,
+    props.showWellNames || false,
+    props.showAnnotations || false,
+    true
+  );
+  registerStyleable(wells3d);
+  watchCursors(wells3d);
+}
+
+function watchCursors(wells3d: Wells3D) {
+  state.cursors.forEach((depthRef, well) => watch(depthRef, depth => wells3d.moveCursor(well, depth)));
 }
 
 onMounted(() => dataLoaded().then(createWells3D));

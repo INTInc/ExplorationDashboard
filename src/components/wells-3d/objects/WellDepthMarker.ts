@@ -15,6 +15,7 @@ export class WellDepthMarker extends Object3D {
 	constructor(
 		private well: Well,
 		private depth: number,
+		public radius: number,
 		public color?: string,
 		public label?: string
 	) {
@@ -27,7 +28,7 @@ export class WellDepthMarker extends Object3D {
 		const sphere = new Sphere({
 			data: this.trajectoryPoint(this.depth),
 			fillstyle: new FillStyle(this.color),
-			radius: 30
+			radius: this.radius
 		});
 		sphere.position.copy(this.vectorByIndex(0));
 		this.add(sphere);

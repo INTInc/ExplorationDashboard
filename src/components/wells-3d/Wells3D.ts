@@ -98,7 +98,7 @@ export class Wells3D {
 	}
 
 	private createCursor(well: Well) {
-		const cursor = new WellDepthMarker(well, 0, '#c00000');
+		const cursor = new WellDepthMarker(well, 0, 50,'#c00000').setVisible(false);
 		this.cursors.set(well, cursor);
 		this.root.add(cursor);
 	}
@@ -107,7 +107,7 @@ export class Wells3D {
 		const annotations = this.annotations.get(well);
 		if (annotations) {
 			annotations.data.forEach(annotation => {
-				const marker = new WellDepthMarker(well, annotation.depth || 0, annotation.color, annotation.text);
+				const marker = new WellDepthMarker(well, annotation.depth, 30, annotation.color, annotation.text);
 				this.depthMarkers.push(marker);
 				this.root.add(marker);
 			})
@@ -116,7 +116,7 @@ export class Wells3D {
 
 	private createWellName(well: Well) {
 		const depth = MathUtil.getMax(well.surveys.values('MD'));
-		const marker = new WellDepthMarker(well, depth, 'transparent', well.surveys.wellName || '');
+		const marker = new WellDepthMarker(well, depth, 30,'transparent', well.surveys.wellName || '');
 		this.wellNames.push(marker);
 		this.root.add(marker);
 	}
@@ -125,5 +125,17 @@ export class Wells3D {
 		this.plot
 			.setCameraLocation(new Vector3(this.box.length * 2, -this.cameraDistance, this.box.height / 2))
 			.setCameraLookAt(new Vector3(this.box.length / 2, this.box.width / 2, -this.box.height));
+	}
+
+	public moveCursor(well: Well, depth: number | null) {
+		const cursor = this.cursors.get(well);
+		if (cursor) {
+			if (depth !== null && !isNaN(depth as number)) {
+				cursor.moveTo(depth as number);
+				cursor.setVisible(true);
+			} else {
+				cursor.setVisible(false);
+			}
+		}
 	}
 }
