@@ -5,21 +5,10 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, ref, watch } from 'vue';
+import { defineProps, ref } from 'vue';
 import { onMounted } from '@vue/runtime-core';
 import { useStore } from '@/store';
-import { Grid } from '@int/geotoolkit3d/scene/grid/Grid';
-import { LineStyle, Patterns } from '@int/geotoolkit/attributes/LineStyle';
-import { TextStyle } from '@int/geotoolkit/attributes/TextStyle';
-import { AppTheme } from '@/common/styling/AppTheme';
-import { createWellsModel } from '@/components/wells-3d/createWellsModel';
-import { Object3D } from '@int/geotoolkit3d/THREE';
-
-interface ModelTheme {
-  axisLineStyle: LineStyle,
-  gridLineStyle: LineStyle,
-  textStyle: TextStyle
-}
+import { Wells3DStyleable } from '@/components/wells-3d/Wells3DStyleable';
 
 const props = defineProps<{
   modelPadding: number,
@@ -29,78 +18,36 @@ const props = defineProps<{
   showAnnotations?: boolean,
   measurement?: string
 }>();
-const { state } = useStore();
-
-const FONT = 'bold 11px Arial';
-
-const THEME_DARK: ModelTheme = {
-  axisLineStyle: new LineStyle({ color: '#777777', pattern: Patterns.Solid }),
-  gridLineStyle: new LineStyle({ color: '#505050', pattern: Patterns.Dash }),
-  textStyle: new TextStyle({ color: '#ffffff', font: FONT }),
-}
-
-const THEME_LIGHT: ModelTheme = {
-  axisLineStyle: new LineStyle({ color: '#dddddd', pattern: Patterns.Solid }),
-  gridLineStyle: new LineStyle({ color: '#cccccc', pattern: Patterns.Dash }),
-  textStyle: new TextStyle({ color: '#505050', font: FONT }),
-}
+const { state, registerStyleable } = useStore();
 
 const model = ref();
 const container = ref();
 
-function applyTheme(grid: Grid, annotations: Object3D[], appTheme: AppTheme) {
-  const modelTheme = appTheme === AppTheme.Dark ? THEME_DARK : THEME_LIGHT;
-  applyThemeToGrid(grid, modelTheme);
-  applyThemeToAnnotations(annotations, modelTheme);
+function dataLoaded(): Promise<unknown> {
+  const promises: Array<Promise<unknown>> = [];
+  state.wells.forEach(well => promises.push(well.loaded));
+  state.annotations.forEach(annotations => promises.push(annotations.loaded));
+  return Promise.all(promises);
 }
 
-function applyThemeToGrid(grid: Grid, theme: ModelTheme) {
-  grid.setOptions({
-    grid: {
-      linestyles: { x: theme.gridLineStyle, y: theme.gridLineStyle, z: theme.gridLineStyle }
-    },
-    axis: {
-      linestyles: { x: theme.axisLineStyle, y: theme.axisLineStyle, z: theme.axisLineStyle },
-      textstyles: { x: theme.textStyle,  y: theme.textStyle, z: theme.textStyle }
-    },
-    title: {
-      textstyles: { x: theme.textStyle,  y: theme.textStyle, z: theme.textStyle }
-    }
-  })
+function createWells3D() {
+  registerStyleable(
+    new Wells3DStyleable(
+      model.value,
+      container.value,
+      state.wells,
+      state.annotations,
+     props.measurement || null,
+      props.cameraDistance,
+      props.modelPadding,
+      props.showWellNames || false,
+      props.showAnnotations || false,
+      true
+    )
+  )
 }
 
-function applyThemeToAnnotations(annotationSpheres: Object3D[], theme: ModelTheme) {
-  annotationSpheres.forEach(sphere => sphere.userData.setTitleStyle(theme.textStyle));
-}
-
-function watchTheme(grid: Grid, annotations: Object3D[]) {
-  watch(state.appTheme, appTheme => applyTheme(grid, annotations, appTheme));
-}
-
-function watchCursors(cursorObjects: Object3D[]) {
-  state.cursors.forEach((cursor, well) => {
-    const cursorObject = cursorObjects.find(sphere => sphere.userData.well === well);
-    if (cursorObject) watch(cursor, depth => cursorObject.userData.setDepth(depth));
-  });
-}
-
-onMounted(() => createWellsModel(
-    model.value,
-    container.value,
-    state.wells,
-    state.annotations,
-    props.measurement || null,
-    props.cameraDistance,
-    props.modelPadding,
-    props.showWellNames || false,
-    props.showAnnotations || false,
-    true,
-    FONT
-)/*.then(({grid, wellNamesAnnotations, cursorObjects}) => {
-  watchCursors(cursorObjects);
-  watchTheme(grid, wellNamesAnnotations);
-  applyTheme(grid, wellNamesAnnotations, state.appTheme.value);
-})*/);
+onMounted(() => dataLoaded().then(createWells3D));
 </script>
 
 <style lang="scss">
