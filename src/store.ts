@@ -4,12 +4,12 @@ import { WellAnnotations } from '@/common/model/WellAnnotations';
 import { Well } from '@/data-sources/Well';
 import { ref } from '@vue/runtime-core';
 import { AppTheme } from '@/common/styling/AppTheme';
-import { ToolkitThemesLoader } from '@/common/styling/ToolkitThemesLoader';
+import { ToolkitCssLoader } from '@/common/styling/ToolkitCssLoader';
 import { Styleable } from '@/common/styling/Styleable';
 
 export interface State {
   appTheme: Ref<AppTheme>,
-  toolkitThemes: ToolkitThemesLoader,
+  cssLoader: ToolkitCssLoader,
   field: Field,
   wells: Well[],
   cursors: Map<Well, Ref<number | null>>
@@ -24,7 +24,7 @@ export interface Store {
   addCursor: (well: Well) => Ref<number | null>
   addAnnotations: (well: Well) => WellAnnotations,
   setAppTheme: (theme: AppTheme) => void,
-  setupToolkitThemes: (commonUrl: string, lightUrl: string, darkUrl: string) => void,
+  setupCssLoader: (commonUrl: string, lightUrl: string, darkUrl: string) => void,
   registerStyleable: (component: Styleable) => void
 }
 
@@ -32,7 +32,7 @@ export const storeSymbol = Symbol('store');
 
 const state = {
   appTheme: ref(AppTheme.Light),
-  toolkitThemes: new ToolkitThemesLoader(),
+  cssLoader: new ToolkitCssLoader(),
   field: new Field(),
   wells: [] as Well[],
   cursors: new Map(),
@@ -54,8 +54,8 @@ const addAnnotations = (well: Well) => {
   return annotations;
 }
 const setAppTheme = (theme: AppTheme) => state.appTheme.value = theme;
-const setupToolkitThemes = (commonUrl: string, lightUrl: string, darkUrl: string) => {
-  state.toolkitThemes
+const setupCssLoader = (commonUrl: string, lightUrl: string, darkUrl: string) => {
+  state.cssLoader
     .setUrls(commonUrl, lightUrl, darkUrl)
     .then(() => watch(state.appTheme, theme => styleableComponents.forEach(c => c.applyTheme(theme))))
 }
@@ -72,7 +72,7 @@ export const createStore = (): Store => ({
   addCursor,
   addAnnotations,
   setAppTheme,
-  setupToolkitThemes,
+  setupCssLoader,
   registerStyleable
 });
 

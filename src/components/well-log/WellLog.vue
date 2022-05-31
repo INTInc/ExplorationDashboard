@@ -9,10 +9,12 @@
 <script setup lang="ts">
 import { defineProps, onMounted, ref } from 'vue';
 import { useStore } from '@/store';
-import { createWellLogWidget } from '@/components/well-log/createWellLogWidget';
+
+import { WellLog } from '@/components/well-log/WellLog';
 import { WellLogSource } from '@/components/well-log/WellLogSource';
 import { WellAnnotations } from '@/common/model/WellAnnotations';
 
+const { state, registerStyleable } = useStore();
 const props = defineProps<{
   source: WellLogSource,
   limits: number[],
@@ -21,28 +23,13 @@ const props = defineProps<{
   showAnnotations?: boolean,
   headerScrollTo?: 'top' | 'bottom'
 }>();
-
 const canvas = ref();
 const container = ref();
-const { state } = useStore();
-
-function createWidget() {
-  return createWellLogWidget(
-    canvas.value,
-    container.value,
-    props.source,
-    props.templateUrl,
-    props.limits,
-    props.fitTracks,
-    props.headerScrollTo,
-    getVisibleAnnotations(),
-    setCursorPosition
-  )
-    //.then(widget => widget.connectThemesLoader(state))
-}
 
 function getVisibleAnnotations(): WellAnnotations {
-  return props.showAnnotations ? state.annotations.get(props.source) || new WellAnnotations() : new WellAnnotations();
+  return props.showAnnotations
+    ? state.annotations.get(props.source) || new WellAnnotations()
+    : new WellAnnotations();
 }
 
 function setCursorPosition(value: number | null) {
@@ -50,7 +37,29 @@ function setCursorPosition(value: number | null) {
   if (cursor) cursor.value = value;
 }
 
-onMounted(createWidget);
+async function loadTemplate(): Promise<string> {
+  const response = await fetch(props.templateUrl);
+  return response.text();
+}
+
+function createWellLog(template: string) {
+  registerStyleable(
+    new WellLog(
+      canvas.value,
+      container.value,
+      props.source,
+      template,
+      props.limits,
+      props.fitTracks,
+      props.headerScrollTo,
+      getVisibleAnnotations(),
+      state.cssLoader,
+      setCursorPosition
+    )
+  )
+}
+
+onMounted(() => loadTemplate().then(createWellLog));
 </script>
 
 <style lang="scss" scoped>

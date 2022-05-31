@@ -22,9 +22,9 @@ onMounted(() => {
   registerStyleable(new WellsMap(
     canvas.value,
     container.value,
-    state.toolkitThemes,
     state.field,
-    props.initialZoom
+    props.initialZoom,
+    state.cssLoader
   ));
 });
 

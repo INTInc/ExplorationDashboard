@@ -9,27 +9,21 @@ import { Path } from '@int/geotoolkit/scene/shapes/Path';
 import { Shape as ShapeLayer } from '@int/geotoolkit/map/layers/Shape';
 import { Shape } from '@int/geotoolkit/scene/shapes/Shape';
 import { StretchablePlot } from '@/common/layout/StretchablePlot';
-import { Styleable } from '@/common/styling/Styleable';
 import { Group } from '@int/geotoolkit/scene/Group';
-import { ToolkitThemesLoader } from '@/common/styling/ToolkitThemesLoader';
-import { AppTheme } from '@/common/styling/AppTheme';
-import { Deferred } from '@/common/model/Deferred';
+import { ToolkitCssLoader } from '@/common/styling/ToolkitCssLoader';
+import { ToolkitCssStyleable } from '@/common/styling/ToolkitCssStyleable';
 
-export class WellsMap implements Styleable {
-
-	private initialization = new Deferred<WellsMap>();
-	private rootShape = new Group();
+export class WellsMap extends ToolkitCssStyleable<Group> {
 
 	constructor(
 		private canvasElement: HTMLCanvasElement,
 		private referenceElement: HTMLElement,
-		private themesLoader: ToolkitThemesLoader,
 		private field: Field,
-		private initialZoom: number
+		private initialZoom: number,
+		cssLoader: ToolkitCssLoader
 	) {
-		field.loaded
-			.then(() => this.initialize())
-			.then(() => this.initialization.resolve(this))
+		super(new Group(), cssLoader);
+		field.loaded.then(() => this.initialize())
 	}
 
 	private initialize() {
@@ -37,7 +31,7 @@ export class WellsMap implements Styleable {
 			WellsMap.createMap()
 				.addLayer(WellsMap.createTilesLayer())
 				.addLayer(WellsMap.createExplorationLayer()
-					.addShape(this.rootShape
+					.addShape(this.root
 						.addChild(this.createField())
 						.addChild(this.createWells())
 					)
@@ -45,6 +39,7 @@ export class WellsMap implements Styleable {
 				.setZoomLevel(this.initialZoom)
 				.panTo(this.field.explorationCoordinates, GeodeticSystem.WGS84)
 		);
+		this.initialization.resolve(this);
 	}
 
 	private createPlot(map: Map) {
@@ -56,7 +51,7 @@ export class WellsMap implements Styleable {
 		return plot;
 	}
 
-	static createMap() {
+	private static createMap() {
 		return new Map({
 			system: GeodeticSystem.WGS84,
 			tooltip: {
@@ -69,14 +64,14 @@ export class WellsMap implements Styleable {
 		})
 	}
 
-	static createTilesLayer() {
+	private static createTilesLayer() {
 		return new TileLayer({
 			url: 'https://demo.int.com/osm_tiles/',
 			formatterfunction: (z: number, y: number, x: number) => z + '/' + x + '/' + y + '.png'
 		})
 	}
 
-	static createExplorationLayer() {
+	private static createExplorationLayer() {
 		return new ShapeLayer({
 			alpha: 0.75,
 			tooltip: {
@@ -105,14 +100,6 @@ export class WellsMap implements Styleable {
 			for (let i = 1; i < x.length; i++) path.lineTo(x[i], y[i]);
 			return path;
 		});
-	}
-
-	public applyTheme(theme: AppTheme) {
-		this.rootShape.setCss(this.themesLoader.getThemeCss(theme));
-	}
-
-	public get initialized(): Promise<WellsMap> {
-		return this.initialization.promise;
 	}
 
 }

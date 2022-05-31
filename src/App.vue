@@ -45,9 +45,9 @@ import { Store, useStore } from '@/store';
 import { WellB2 } from '@/data-sources/WellB2';
 import { WellB32 } from '@/data-sources/WellB32';
 
-const { setupToolkitThemes, addField, addWell, addCursor, addAnnotations }: Store = useStore();
+const { setupCssLoader, addField, addWell, addCursor, addAnnotations }: Store = useStore();
 
-setupToolkitThemes(
+setupCssLoader(
     '/toolkit-themes/common.css',
     '/toolkit-themes/theme-light.css',
     '/toolkit-themes/theme-dark.css'

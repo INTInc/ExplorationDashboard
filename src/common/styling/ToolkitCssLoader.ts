@@ -2,13 +2,13 @@ import { CssStyle } from '@int/geotoolkit/css/CssStyle';
 import { Deferred } from '@/common/model/Deferred';
 import { AppTheme } from '@/common/styling/AppTheme';
 
-export class ToolkitThemesLoader {
+export class ToolkitCssLoader {
 
 	private common = '';
 	private light = '';
 	private dark = '';
 
-	public loaded: Deferred<ToolkitThemesLoader> = new Deferred<ToolkitThemesLoader>();
+	public loaded: Deferred<ToolkitCssLoader> = new Deferred<ToolkitCssLoader>();
 
 	private static async loadCssString(url: string) {
 		return await fetch(url).then(response => response.text())
@@ -16,9 +16,9 @@ export class ToolkitThemesLoader {
 
 	public async setUrls(commonUrl: string, lightThemeUrl: string, darkThemeUrl: string) {
 		[this.common, this.light, this.dark] = await Promise.all([
-			ToolkitThemesLoader.loadCssString(commonUrl),
-			ToolkitThemesLoader.loadCssString(lightThemeUrl),
-			ToolkitThemesLoader.loadCssString(darkThemeUrl)
+			ToolkitCssLoader.loadCssString(commonUrl),
+			ToolkitCssLoader.loadCssString(lightThemeUrl),
+			ToolkitCssLoader.loadCssString(darkThemeUrl)
 		]);
 		this.loaded.resolve(this);
 	}
