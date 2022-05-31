@@ -27,9 +27,6 @@
     <wells-model
       :model-padding="500"
       :camera-distance="3000"
-      :show-annotations="true"
-      :show-well-names="true"
-      :show-cursors="true"
       :measurement="'DLS'"
     ></wells-model>
   </div>

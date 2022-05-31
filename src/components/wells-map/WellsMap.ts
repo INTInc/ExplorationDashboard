@@ -23,10 +23,6 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
 		cssLoader: ToolkitCssLoader
 	) {
 		super(new Group(), cssLoader);
-		field.loaded.then(() => this.initialize())
-	}
-
-	private initialize() {
 		this.createPlot(
 			WellsMap.createMap()
 				.addLayer(WellsMap.createTilesLayer())

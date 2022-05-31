@@ -10,15 +10,15 @@ import { Store, useStore } from '@/store';
 import { onMounted, ref } from '@vue/runtime-core';
 import { WellsMap } from '@/components/wells-map/WellsMap';
 
-const canvas = ref();
-const container = ref();
 const { state, registerStyleable }: Store = useStore();
-
 const props = defineProps<{
   initialZoom: number
-}>()
+}>();
 
-onMounted(() => {
+const canvas = ref();
+const container = ref();
+
+function createMap() {
   registerStyleable(new WellsMap(
     canvas.value,
     container.value,
@@ -26,20 +26,9 @@ onMounted(() => {
     props.initialZoom,
     state.cssLoader
   ));
-});
+}
 
-/*
-onMounted(() => createWellsMapWidget(
-    canvas.value,
-    container.value,
-    props.initialZoom,
-    state.field
-).then(({fieldShape, wellShapes}) => {
-  fieldShape.connectThemesLoader(state);
-  wellShapes.forEach(shape => shape.connectThemesLoader(state))
-}));
-*/
-
+onMounted(() => state.field.loaded.then(createMap));
 </script>
 
 <style lang="scss">

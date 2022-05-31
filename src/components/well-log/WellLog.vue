@@ -43,23 +43,26 @@ async function loadTemplate(): Promise<string> {
 }
 
 function createWellLog(template: string) {
-  registerStyleable(
-    new WellLog(
-      canvas.value,
-      container.value,
-      props.source,
-      template,
-      props.limits,
-      props.fitTracks,
-      props.headerScrollTo,
-      getVisibleAnnotations(),
-      state.cssLoader,
-      setCursorPosition
-    )
-  )
+  const wellLog = new WellLog(
+    canvas.value,
+    container.value,
+    props.source,
+    template,
+    props.limits,
+    props.fitTracks,
+    props.headerScrollTo,
+    getVisibleAnnotations(),
+    state.cssLoader
+  );
+
+  registerStyleable(wellLog);
+  wellLog.onCrossHairMoved(setCursorPosition);
 }
 
-onMounted(() => loadTemplate().then(createWellLog));
+onMounted(() => props.source.loaded
+  .then(loadTemplate)
+  .then(createWellLog)
+);
 </script>
 
 <style lang="scss" scoped>

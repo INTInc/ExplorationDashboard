@@ -14,9 +14,6 @@ import { Wells3D } from '@/components/wells-3d/Wells3D';
 const props = defineProps<{
   modelPadding: number,
   cameraDistance: number,
-  showCursors?: boolean,
-  showWellNames?: boolean,
-  showAnnotations?: boolean,
   measurement?: string
 }>();
 const { state, registerStyleable } = useStore();
@@ -39,10 +36,7 @@ function createWells3D() {
     state.annotations,
     props.measurement || null,
     props.cameraDistance,
-    props.modelPadding,
-    props.showWellNames || false,
-    props.showAnnotations || false,
-    true
+    props.modelPadding
   );
   registerStyleable(wells3d);
   watchCursors(wells3d);

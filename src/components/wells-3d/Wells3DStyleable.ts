@@ -38,10 +38,7 @@ export class Wells3DStyleable extends Wells3D implements Styleable {
 		annotations: Map<Well, WellAnnotations>,
 		measurement: string | null,
 		cameraDistance: number,
-		modelPadding: number,
-		showWellNames: boolean,
-		showAnnotations: boolean,
-		transparentScene: boolean
+		modelPadding: number
 	) {
 		super(
 			containerElement,
@@ -50,10 +47,7 @@ export class Wells3DStyleable extends Wells3D implements Styleable {
 			annotations,
 			measurement,
 			cameraDistance,
-			modelPadding,
-			showWellNames,
-			showAnnotations,
-			transparentScene,
+			modelPadding
 		);
 		this.initialization.resolve(this);
 	}

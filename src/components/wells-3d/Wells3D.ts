@@ -29,10 +29,7 @@ export class Wells3D {
 		private annotations: Map<Well, WellAnnotations>,
 		private measurement: string | null,
 		private cameraDistance: number,
-		private modelPadding: number,
-		private showWellNames: boolean,
-		private showAnnotations: boolean,
-		private transparentScene: boolean
+		private modelPadding: number
 	) {
 		this.plot = this.createPlot();
 		this.root = this.plot.getRoot();
@@ -60,10 +57,10 @@ export class Wells3D {
 			container: this.containerElement,
 			renderer: {
 				parameters: {
-					alpha: this.transparentScene
+					alpha: true
 				},
 				clearcolor: 0x000000,
-				clearcoloralpha: this.transparentScene ? 0 : 1
+				clearcoloralpha: 0
 			}
 		});
 

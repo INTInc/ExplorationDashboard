@@ -14,10 +14,12 @@ import { WellAnnotations } from '@/common/model/WellAnnotations';
 import { ToolkitCssLoader } from '@/common/styling/ToolkitCssLoader';
 import { ToolkitCssStyleable } from '@/common/styling/ToolkitCssStyleable';
 
-type CrossHairMovedCallback = (y: number | null) => void;
+type CrossHairCallback = (y: number | null) => void;
 type HeaderScrollPosition = 'top' | 'bottom';
 
 export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
+
+	private crossHairCallback: CrossHairCallback | null = null;
 
 	constructor(
 		private canvasElement: HTMLCanvasElement,
@@ -28,14 +30,9 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 		private tracksCountToFit = 1,
 		private initialHeaderScrollPosition: HeaderScrollPosition = 'top',
 		private annotations: WellAnnotations,
-		themesLoader: ToolkitCssLoader,
-		private onCrossHairMoved: CrossHairMovedCallback
+		cssLoader: ToolkitCssLoader
 	) {
-		super(WellLog.createWidget(), themesLoader);
-		source.loaded.then(() => this.initialize());
-	}
-
-	private initialize() {
+		super(WellLog.createWidget(), cssLoader);
 		this.configureWidget();
 		this.createPlot();
 		this.createAnnotations();
@@ -128,11 +125,11 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 	}
 
 	private onCrossHairPositionChanged(event: CrossHairEventArgs) {
-		this.onCrossHairMoved(event.getPosition().getY());
+		if (this.crossHairCallback) this.crossHairCallback(event.getPosition().getY());
 	}
 
 	private onContainerMouseLeave() {
-		this.onCrossHairMoved(null);
+		if (this.crossHairCallback) this.crossHairCallback(null);
 	}
 
 	private scrollHeader() {
@@ -141,5 +138,9 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 			case 'bottom': return this.root.getHeaderContainer().scrollToBottom();
 			default: return;
 		}
+	}
+
+	public onCrossHairMoved(fn: CrossHairCallback) {
+		this.crossHairCallback = fn;
 	}
 }

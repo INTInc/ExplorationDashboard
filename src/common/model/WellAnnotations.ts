@@ -8,7 +8,7 @@ export class WellAnnotations extends DataSource<WellAnnotations> {
 	public async setUrl(url: string): Promise<WellAnnotations> {
 		const response = await fetch(url);
 		const json: object = await response.json();
-		this.data.push(...this.mapItems(json	));
+		this.data.push(...this.mapItems(json));
 		this.loading.resolve(this);
 
 		return this;
