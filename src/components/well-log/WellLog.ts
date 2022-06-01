@@ -5,7 +5,6 @@ import { LineStyle } from '@int/geotoolkit/attributes/LineStyle';
 import { AnchorType } from '@int/geotoolkit/util/AnchorType';
 import { Events as PlotEvents, Plot } from '@int/geotoolkit/plot/Plot';
 import { Orientation } from '@int/geotoolkit/util/Orientation';
-import { LogAxis } from '@int/geotoolkit/welllog/LogAxis';
 import { CrossHair, Events as CrossHairEvents } from '@int/geotoolkit/controls/tools/CrossHair';
 import { CrossHairEventArgs } from '@int/geotoolkit/controls/tools/CrossHairEventArgs';
 import { StretchablePlot } from '@/common/layout/StretchablePlot';
@@ -13,6 +12,7 @@ import { WellLogSource } from '@/components/well-log/WellLogSource';
 import { WellAnnotations } from '@/common/model/WellAnnotations';
 import { ToolkitCssLoader } from '@/common/styling/ToolkitCssLoader';
 import { ToolkitCssStyleable } from '@/common/styling/ToolkitCssStyleable';
+import { TrackType } from '@int/geotoolkit/welllog/TrackType';
 
 type CrossHairCallback = (y: number | null) => void;
 type HeaderScrollPosition = 'top' | 'bottom';
@@ -97,7 +97,7 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 
 		for (let i = 0; i < this.root.getTracksCount(); i++) {
 			const track = this.root.getTrackAt(i);
-			track.setWidth(track.getChild(0) && track.getChild(0) instanceof LogAxis
+			track.setWidth(track.getTag() && track.getTag().type === TrackType.IndexTrack
 				? indexTrackWidth
 				: curveTrackWidth);
 		}
