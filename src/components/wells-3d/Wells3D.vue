@@ -54,9 +54,5 @@ onMounted(() => dataLoaded().then(createWells3D));
   transform: translate(-100%, -100%) !important;
   position: relative !important;
   left: 100% !important;
-
-  @media (max-width: 800px) {
-    transform: translate(-100%, 0) !important;
-  }
 }
 </style>

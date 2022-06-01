@@ -69,8 +69,8 @@ body {
         grid-column-start: 1;
         grid-column-end: 4;
 
-        min-height: 95vh;
-        max-height: 95vh;
+        min-height: calc(100vh - 32px);
+        max-height: calc(100vh - 32px);
       }
     }
 
