@@ -2,55 +2,25 @@ import { Object3D } from '@int/geotoolkit3d/scene/Object3D';
 import { Well } from '@/data-sources/Well';
 import { Vector3 } from '@int/geotoolkit3d/THREE';
 import { MathUtil } from '@int/geotoolkit/util/MathUtil';
-import { Sphere } from '@int/geotoolkit3d/scene/well/schematic/Sphere';
-import { FillStyle } from '@int/geotoolkit/attributes/FillStyle';
-import { AnnotationBase } from '@int/geotoolkit3d/scene/AnnotationBase';
-import { LineStyle } from '@int/geotoolkit/attributes/LineStyle';
-import { TextStyle } from '@int/geotoolkit/attributes/TextStyle';
 
 export class WellDepthMarker extends Object3D {
 
-	private marker;
-
 	constructor(
-		private well: Well,
-		private depth: number,
-		public radius: number,
-		public color?: string,
-		public label?: string
+		protected well: Well,
+		protected depth?: number
 	) {
 		super();
-		this.marker = this.createMarker();
-		if (label) this.setAnnotation(label);
+		this.position.copy(this.vectorByIndex(depth ? this.indexByDepth(depth) : 0));
 	}
 
-	private createMarker() {
-		const sphere = new Sphere({
-			data: this.trajectoryPoint(this.depth),
-			fillstyle: new FillStyle(this.color),
-			radius: this.radius
-		});
-		sphere.position.copy(this.vectorByIndex(0));
-		this.add(sphere);
-		return sphere;
-	}
-
-	public setAnnotation(label: string, textStyle?: TextStyle, lineStyle?: LineStyle) {
-		this.marker.setAnnotation(new AnnotationBase({
-			title: this.label,
-			titlestyle: textStyle || new TextStyle({ color: this.color, font: 'bold 11px Arial' }),
-			linestyle: lineStyle || new LineStyle('transparent'),
-		}))
-	}
-
-	private trajectoryPoint(depth: number): Vector3 {
+	protected indexByDepth(depth: number) {
 		const exactIndex: number =  this.well.surveys.values('MD').indexOf(depth);
 		return (exactIndex > 0)
-			? this.vectorByIndex(exactIndex)
-			: this.vectorByIndex(this.deviatedIndex( 'MD', depth));
+			? exactIndex
+			: this.deviatedIndex( 'MD', depth);
 	}
 
-	private vectorByIndex(index: number): Vector3 {
+	protected vectorByIndex(index: number): Vector3 {
 		return new Vector3(
 			this.well.surveys.values('DX')[index],
 			this.well.surveys.values('DY')[index],
@@ -65,10 +35,5 @@ export class WellDepthMarker extends Object3D {
 
 		const minDev = MathUtil.getMin(deviations);
 		return deviations.indexOf(minDev);
-	}
-
-	public moveTo(depth: number) {
-		this.marker.position.copy(this.trajectoryPoint(depth));
-		this.marker.invalidateObject();
 	}
 }

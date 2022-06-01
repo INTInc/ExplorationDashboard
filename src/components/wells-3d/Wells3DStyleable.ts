@@ -6,6 +6,7 @@ import { Wells3D } from '@/components/wells-3d/Wells3D';
 import { Deferred } from '@/common/model/Deferred';
 import { Well } from '@/data-sources/Well';
 import { WellAnnotations } from '@/common/model/WellAnnotations';
+import { WellStaticPoint } from '@/components/wells-3d/objects/WellStaticPoint';
 
 interface ModelTheme {
 	axisLineStyle: LineStyle,
@@ -79,7 +80,7 @@ export class Wells3DStyleable extends Wells3D implements Styleable {
 	}
 
 	private applyThemeToWellNames(theme: ModelTheme) {
-		this.wellNames.forEach(marker => marker.setAnnotation(marker.label || '', theme.textStyle))
+		this.wellNames.forEach((point: WellStaticPoint) => point.setAnnotation(point.getLabel(), theme.textStyle))
 	}
 
 }

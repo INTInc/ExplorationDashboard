@@ -7,8 +7,9 @@ import { Object3D, Vector3 } from '@int/geotoolkit3d/THREE'
 import { WellAnnotations } from '@/common/model/WellAnnotations';
 import { WellTrajectory } from '@/components/wells-3d/objects/WellTrajectory';
 import { WellLogCurve } from '@/components/wells-3d/objects/WellLogCurve';
-import { WellDepthMarker } from '@/components/wells-3d/objects/WellDepthMarker';
 import { MathUtil } from '@int/geotoolkit/util/MathUtil';
+import { WellStaticPoint } from '@/components/wells-3d/objects/WellStaticPoint';
+import { WellCursor } from '@/components/wells-3d/objects/WellCursor';
 
 export class Wells3D {
 
@@ -18,9 +19,9 @@ export class Wells3D {
 	protected grid: Grid;
 	protected logs: WellLogCurve[];
 	protected trajectories: WellTrajectory[];
-	protected cursors: Map<Well, WellDepthMarker> = new Map();
-	protected depthMarkers: WellDepthMarker[] = [];
-	protected wellNames: WellDepthMarker[] = [];
+	protected cursors: Map<Well, WellCursor> = new Map();
+	protected depthMarkers: WellStaticPoint[] = [];
+	protected wellNames: WellStaticPoint[] = [];
 
 	constructor(
 		private containerElement: HTMLElement,
@@ -95,7 +96,7 @@ export class Wells3D {
 	}
 
 	private createCursor(well: Well) {
-		const cursor = new WellDepthMarker(well, 0, 50,'#c00000').setVisible(false);
+		const cursor = new WellCursor(well, 'darkred', 150);
 		this.cursors.set(well, cursor);
 		this.root.add(cursor);
 	}
@@ -104,7 +105,7 @@ export class Wells3D {
 		const annotations = this.annotations.get(well);
 		if (annotations) {
 			annotations.data.forEach(annotation => {
-				const marker = new WellDepthMarker(well, annotation.depth, 30, annotation.color, annotation.text);
+				const marker = new WellStaticPoint(well, annotation.depth, 30, annotation.color, annotation.text);
 				this.depthMarkers.push(marker);
 				this.root.add(marker);
 			})
@@ -113,7 +114,7 @@ export class Wells3D {
 
 	private createWellName(well: Well) {
 		const depth = MathUtil.getMax(well.surveys.values('MD'));
-		const marker = new WellDepthMarker(well, depth, 30,'transparent', well.surveys.wellName || '');
+		const marker = new WellStaticPoint(well, depth, 30,'transparent', well.surveys.wellName || '');
 		this.wellNames.push(marker);
 		this.root.add(marker);
 	}
@@ -126,13 +127,6 @@ export class Wells3D {
 
 	public moveCursor(well: Well, depth: number | null) {
 		const cursor = this.cursors.get(well);
-		if (cursor) {
-			if (depth !== null && !isNaN(depth as number)) {
-				cursor.moveTo(depth as number);
-				cursor.setVisible(true);
-			} else {
-				cursor.setVisible(false);
-			}
-		}
+		if (cursor) cursor.setDepth(depth || 0);
 	}
 }
