@@ -11,7 +11,6 @@
       :template-url="'/toolkit-wellog-templates/vertical-log.json'"
       :fit-tracks="3"
       :show-annotations="true"
-      :header-scroll-to="'top'"
     ></well-log>
     <well-log
       class="horizontal-log"
@@ -19,7 +18,6 @@
       :limits="[1050, 4800]"
       :template-url="'/toolkit-wellog-templates/horizontal-log.json'"
       :fit-tracks="1"
-      :header-scroll-to="'bottom'"
     ></well-log>
     <wells-map
       :initial-zoom="4"

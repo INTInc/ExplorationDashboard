@@ -23,9 +23,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-sun:before {
+.icon-day:before {
   content: "\e901";
 }
-.icon-moon:before {
+.icon-night:before {
   content: "\e900";
+}
+.icon-location:before {
+  content: "\e947";
 }

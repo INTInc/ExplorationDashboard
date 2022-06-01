@@ -28,7 +28,7 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 		private template: string,
 		private limits: number[],
 		private tracksCountToFit = 1,
-		private initialHeaderScrollPosition: HeaderScrollPosition = 'top',
+		private initialHeaderScrollPosition: HeaderScrollPosition = 'bottom',
 		private annotations: WellAnnotations,
 		cssLoader: ToolkitCssLoader
 	) {
