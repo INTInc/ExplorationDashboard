@@ -76,7 +76,6 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
 		return new ShapeLayer({
 			alpha: 0.75,
 			tooltip: {
-
 				visible: true,
 				formatter: (shapes: Shape[]) => shapes[0] && shapes[0].getName() || null
 			}
@@ -118,7 +117,7 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
 				.setSizeIsInDeviceSpace(true)
 				.setLineStyle(new LineStyle({color: 'darkred', width: 2}))
 				.setFillStyle(new FillStyle('red'))
-				.setAnchor(x[x.length - 1], y[y.length - 1])
+				.setAnchor(x[0], y[0])
 		})
 	}
 
