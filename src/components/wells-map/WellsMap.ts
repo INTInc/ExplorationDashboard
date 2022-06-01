@@ -12,6 +12,10 @@ import { StretchablePlot } from '@/common/layout/StretchablePlot';
 import { Group } from '@int/geotoolkit/scene/Group';
 import { ToolkitCssLoader } from '@/common/styling/ToolkitCssLoader';
 import { ToolkitCssStyleable } from '@/common/styling/ToolkitCssStyleable';
+import { SymbolShape } from '@int/geotoolkit/scene/shapes/SymbolShape';
+import { FontPainter } from '@int/geotoolkit/scene/shapes/painters/FontPainter';
+import { FillStyle } from '@int/geotoolkit/attributes/FillStyle';
+import { LineStyle } from '@int/geotoolkit/attributes/LineStyle';
 
 export class WellsMap extends ToolkitCssStyleable<Group> {
 
@@ -31,6 +35,7 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
 						.addChild(this.createField())
 						.addChild(this.createWells())
 					)
+					.addShape(this.createMarkers())
 				)
 				.setZoomLevel(this.initialZoom)
 				.panTo(this.field.explorationCoordinates, GeodeticSystem.WGS84)
@@ -71,6 +76,7 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
 		return new ShapeLayer({
 			alpha: 0.75,
 			tooltip: {
+
 				visible: true,
 				formatter: (shapes: Shape[]) => shapes[0] && shapes[0].getName() || null
 			}
@@ -78,24 +84,42 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
 	}
 
 	private  createField() {
-		const {x, y, name} = this.field.zoneCoordinates;
+		const {x, y} = this.field.zoneCoordinates;
 		return new Polygon({ x, y })
 			.setLineStyle('red')
 			.setCssClass('ExplorationMapField')
-			.setName(`Zone of exploration '${name}'`)
+			.setName('field')
 	}
 
 	private createWells() {
-		return this.field.wellsCoordinates.map(({x, y, name}) => {
+		return this.field.wellsCoordinates.map(({x, y}, index) => {
 			const path = new Path()
 				.setCssClass('ExplorationMapWell')
 				.setLineStyle('red')
-				.setName(`Trajectory of ${name}`)
-				.moveTo(x[0], y[0]);
+				.moveTo(x[0], y[0])
+				.setName('well ' + index);
 
 			for (let i = 1; i < x.length; i++) path.lineTo(x[i], y[i]);
 			return path;
 		});
+	}
+
+	private createMarkers() {
+		return this.field.wellsCoordinates.map(({x, y, name}) => {
+			return new SymbolShape({
+				cssclass: 'pin',
+				alignment: AnchorType.TopCenter
+			})
+				.setName(name)
+				.setWidth(32)
+				.setHeight(32)
+				.setPainter(new FontPainter('', 'icomoon', '\u{e947}'))
+				.setIsPointingUp(true)
+				.setSizeIsInDeviceSpace(true)
+				.setLineStyle(new LineStyle({color: 'darkred', width: 2}))
+				.setFillStyle(new FillStyle('red'))
+				.setAnchor(x[x.length - 1], y[y.length - 1])
+		})
 	}
 
 }

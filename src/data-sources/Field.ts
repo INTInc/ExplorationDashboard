@@ -38,7 +38,7 @@ export class Field extends DataSource<Field> {
   }
 
   private parsePointCoordinates(rawPoint: string): number[] {
-    return rawPoint.split(', ').map(str => parseFloat(str)).reverse();
+    return rawPoint.split(',').map(str => str.trim()).map(str => parseFloat(str)).reverse();
   }
 
   private transformPoint(rawPoint: string) {

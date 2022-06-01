@@ -36,10 +36,10 @@ geotoolkit.controls.tools.CrossHair
 *[cssclass="ExplorationMapWell"],
 *[cssclass="ExplorationMapField"]
 {
-    linestyle-width: 3;
+    linestyle-width: 2;
     linestyle-color: #6e3dd9ff;
 }
 
 *[cssclass="ExplorationMapField"] {
-    fillstyle-color: #6e3dd980;
+    fillstyle-color: #6e3dd920;
 }

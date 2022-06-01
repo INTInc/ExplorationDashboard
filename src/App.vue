@@ -20,7 +20,7 @@
       :fit-tracks="1"
     ></well-log>
     <wells-map
-      :initial-zoom="4"
+      :initial-zoom="1"
     ></wells-map>
     <wells-model
       :model-padding="500"
