@@ -2100,7 +2100,7 @@
 				"cg_id":276,
 				"name":"Track # 3",
 				"id":"LOG_TRACK",
-				"type":"linear",
+				"type":"log",
 				"header":{
 					"cg_type":"trackheader",
 					"visible":true,
@@ -2524,11 +2524,11 @@
 								"linejoin":"round",
 								"linecap":"butt"
 							},
-							"decadecount":2,
+							"decadecount":4,
 							"bounds":null,
 							"intermediate":true,
-							"logstart":null,
-							"logstop":null,
+							"logstart":0.2,
+							"logstop":2000,
 							"logbase":10,
 							"reverse":false
 						},
@@ -2558,11 +2558,11 @@
 								"linejoin":"round",
 								"linecap":"butt"
 							},
-							"decadecount":2,
+							"decadecount":4,
 							"bounds":null,
-							"intermediate":false,
-							"logstart":null,
-							"logstop":null,
+							"intermediate":true,
+							"logstart":0.2,
+							"logstop":2000,
 							"logbase":10,
 							"reverse":false
 						}
