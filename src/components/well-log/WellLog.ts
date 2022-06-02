@@ -117,19 +117,11 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 					CrossHairEvents.onPositionChanged,
 					(_: never, e: CrossHairEventArgs) => this.onCrossHairPositionChanged(e)
 				);
-			this.canvasElement.addEventListener(
-				'mouseleave',
-				() => this.onContainerMouseLeave()
-			);
 		}
 	}
 
 	private onCrossHairPositionChanged(event: CrossHairEventArgs) {
 		if (this.crossHairCallback) this.crossHairCallback(event.getPosition().getY());
-	}
-
-	private onContainerMouseLeave() {
-		if (this.crossHairCallback) this.crossHairCallback(null);
 	}
 
 	private scrollHeader() {
