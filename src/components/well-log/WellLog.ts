@@ -14,6 +14,7 @@ import { ToolkitCssLoader } from '@/common/styling/ToolkitCssLoader';
 import { ToolkitCssStyleable } from '@/common/styling/ToolkitCssStyleable';
 import { TrackType } from '@int/geotoolkit/welllog/TrackType';
 import { Toolbar } from '@int/geotoolkit/controls/toolbar/Toolbar';
+import { Button } from '@int/geotoolkit/controls/toolbar/Button';
 
 type CrossHairCallback = (y: number | null) => void;
 type HeaderScrollPosition = 'top' | 'bottom';
@@ -132,8 +133,21 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 			tools: this.plot.getTool(),
 			alignment: AnchorType.RightBottom,
 			buttons: [
-				'zoom-in',
-				'zoom-out'
+				new Button({
+					icon: 'fa fa-magnifying-glass-plus',
+					title: 'Zoom in',
+					action: () => this.root.scale(5 / 4)
+				}),
+				new Button({
+					icon: 'fa fa-magnifying-glass-minus',
+					title: 'Zoom out',
+					action: () => this.root.scale(4 / 5)
+				}),
+				new Button({
+					icon: 'fa fa-expand',
+					title: 'Fit to bounds',
+					action: () => this.root.fitToHeight()
+				})
 			]
 		})
 	}
