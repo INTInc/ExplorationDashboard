@@ -1,0 +1,23 @@
+.cg-toolbar-group,
+.cg-toolbar-button {
+  color: var(--card-color) !important;
+  background-color: var(--text-color) !important;
+}
+
+.cg-toolbar-group {
+  margin-bottom: 8px;
+  border: 1px solid rgba(155, 155, 155, 0.5);
+  border-radius: 4px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.cg-toolbar-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
