@@ -17,14 +17,12 @@ import { FontPainter } from '@int/geotoolkit/scene/shapes/painters/FontPainter';
 import { FillStyle } from '@int/geotoolkit/attributes/FillStyle';
 import { LineStyle } from '@int/geotoolkit/attributes/LineStyle';
 import { Plot } from '@int/geotoolkit/plot/Plot';
-import { Toolbar } from '@int/geotoolkit/controls/toolbar/Toolbar';
-import { Orientation } from '@int/geotoolkit/util/Orientation';
+import { ToolbarFactory } from '@/common/layout/ToolbarFactory';
 
 export class WellsMap extends ToolkitCssStyleable<Group> {
 
 	private readonly map = WellsMap.createMap();
 	private readonly plot: Plot;
-	private readonly toolbar: Toolbar;
 
 	constructor(
 		private canvasElement: HTMLCanvasElement,
@@ -34,8 +32,7 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
 	) {
 		super(new Group(), cssLoader);
 		this.plot = this.createPlot();
-		this.toolbar = this.createToolbar();
-
+		this.createToolbar();
 		this.configureMap();
 		this.initialization.resolve(this);
 	}
@@ -115,21 +112,31 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
 		})
 	}
 
-	private createToolbar() {
-		return new Toolbar({
-			size: 30,
-			fontsize: 12,
-			gap: 0,
-			orientation: Orientation.Vertical,
-			alignment: AnchorType.LeftTop,
-			tools: this.plot.getTool(),
-			buttons: [
-				'map-home',
-				'-',
-				'zoom-in',
-				'zoom-out'
-			]
+	private flyToExploration(zoomLevel?: number) {
+		this.map.flyTo({
+			level: zoomLevel || this.map.getZoomLevel(),
+			location: this.field.explorationCoordinates,
+			system: GeodeticSystem.WGS84
 		})
+	}
+
+	private createToolbar() {
+		ToolbarFactory.create(
+			this.plot.getTool(),
+			[{
+				title: 'Zoom in',
+				icon: 'fa fa-magnifying-glass-plus',
+				action: () => this.flyToExploration(7)
+			}, {
+				title: 'Fit to bounds',
+				icon: 'fa fa-expand',
+				action: () => this.flyToExploration(1)
+			}, {
+				title: 'Center map',
+				icon: 'fa fa-crosshairs',
+				action: () => this.flyToExploration()
+			}]
+		)
 	}
 
 	private static createMap() {
