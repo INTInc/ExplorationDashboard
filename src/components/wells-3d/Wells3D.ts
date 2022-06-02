@@ -5,7 +5,7 @@ import { Grid } from '@int/geotoolkit3d/scene/grid/Grid';
 import { Well } from '@/data-sources/Well';
 import { Object3D, Vector3 } from '@int/geotoolkit3d/THREE'
 import { WellAnnotations } from '@/common/model/WellAnnotations';
-import { WellTrajectory } from '@/components/wells-3d/objects/WellTrajectory';
+import { TrajectoryMode, WellTrajectory } from '@/components/wells-3d/objects/WellTrajectory';
 import { WellLogCurve } from '@/components/wells-3d/objects/WellLogCurve';
 import { MathUtil } from '@int/geotoolkit/util/MathUtil';
 import { WellStaticPoint } from '@/components/wells-3d/objects/WellStaticPoint';
@@ -51,6 +51,16 @@ export class Wells3D {
 		});
 
 		this.setCamera();
+	}
+
+	public moveCursor(well: Well, depth: number | null) {
+		const cursor = this.cursors.get(well);
+		if (cursor) cursor.setDepth(depth || 0);
+	}
+
+	public setTrajectoriesMode(mode: TrajectoryMode) {
+		this.trajectories.forEach(t => t.setMode(mode));
+		this.depthMarkers.forEach(m => m.setVisible(mode === TrajectoryMode.Line));
 	}
 
 	private createPlot(): Plot {
@@ -123,10 +133,5 @@ export class Wells3D {
 		this.plot
 			.setCameraLocation(new Vector3(this.box.length * 2, -this.cameraDistance, this.box.height / 2))
 			.setCameraLookAt(new Vector3(this.box.length / 2, this.box.width / 2, -this.box.height));
-	}
-
-	public moveCursor(well: Well, depth: number | null) {
-		const cursor = this.cursors.get(well);
-		if (cursor) cursor.setDepth(depth || 0);
 	}
 }

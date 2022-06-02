@@ -1,8 +1,7 @@
 <template>
     <div class="theme-switcher">
-      <button @click="toggleTheme">
-        <i v-if="selectorValue === AppTheme.Dark" class="fa fa-sun"></i>
-        <i v-if="selectorValue === AppTheme.Light" class="fa fa-moon"></i>
+      <button class="button" @click="toggleTheme">
+        <i class="fa" :class="selectorValue === AppTheme.Dark ? 'fa-sun' : 'fa-moon'"/>
       </button>
     </div>
 </template>
@@ -60,18 +59,5 @@ onMounted(() => {
     align-items: center;
     justify-content: right;
     padding: 16px 16px 0 16px;
-
-    button {
-      padding: 8px;
-      font-size: 16px;
-      border-radius: 4px;
-      border: 1px solid rgba(155, 155, 155, 0.5);
-      background: transparent;
-      color: var(--text-color);
-      
-      &:hover {
-        cursor: pointer;
-      }
-    }
 }
 </style>

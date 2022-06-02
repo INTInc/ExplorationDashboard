@@ -16,6 +16,19 @@ body {
   }
 }
 
+.button {
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid rgba(155, 155, 155, 0.5);
+  background: transparent;
+  color: var(--text-color);
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
