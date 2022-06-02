@@ -44,6 +44,5 @@ onMounted(() => state.field.loaded.then(createMap));
   font-family: Arial, sans-serif;
   background-color: var(--card-color);
   color: var(--text-color);
-  transform: translate(calc(50% + 8px), calc(100% + 8px)) !important;
 }
 </style>

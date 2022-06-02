@@ -31,10 +31,13 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
 			WellsMap.createMap()
 				.addLayer(WellsMap.createTilesLayer())
 				.addLayer(WellsMap.createExplorationLayer()
-					.addShape(this.root
-						.addChild(this.createField())
-						.addChild(this.createWells())
+					.addShape(
+						this.root
+							.addChild(this.createField())
+							.addChild(this.createWells())
+						)
 					)
+				.addLayer(WellsMap.createMarkersLayer()
 					.addShape(this.createMarkers())
 				)
 				.setZoomLevel(this.initialZoom)
@@ -54,13 +57,14 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
 
 	private static createMap() {
 		return new Map({
+			wrapped: false,
 			system: GeodeticSystem.WGS84,
 			tooltip: {
-				alignment: AnchorType.BottomCenter,
-				offsetx: 0,
-				offsety: 0,
+				alignment: AnchorType.LeftTop,
+				offsetx: 8,
+				offsety: -8,
 				mode: PointerMode.Hover,
-				autoupdate: false
+				autoupdate: true
 			}
 		})
 	}
@@ -72,14 +76,18 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
 		})
 	}
 
-	private static createExplorationLayer() {
+	private static createMarkersLayer() {
 		return new ShapeLayer({
-			alpha: 0.75,
 			tooltip: {
 				visible: true,
 				formatter: (shapes: Shape[]) => shapes[0] && shapes[0].getName() || null
 			}
-		});
+		})
+			.clearCache();
+	}
+
+	private static createExplorationLayer() {
+		return new ShapeLayer();
 	}
 
 	private  createField() {
@@ -106,7 +114,6 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
 	private createMarkers() {
 		return this.field.wellsCoordinates.map(({x, y, name}) => {
 			return new SymbolShape({
-				cssclass: 'pin',
 				alignment: AnchorType.TopCenter
 			})
 				.setName(name)
