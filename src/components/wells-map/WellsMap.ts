@@ -41,20 +41,6 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
 		this.initialization.resolve(this);
 	}
 
-	private static createMap() {
-		return new Map({
-			wrapped: false,
-			system: GeodeticSystem.WGS84,
-			tooltip: {
-				alignment: AnchorType.LeftTop,
-				offsetx: 8,
-				offsety: -8,
-				mode: PointerMode.Hover,
-				autoupdate: true
-			}
-		})
-	}
-
 	private createPlot() {
 		const plot = new StretchablePlot({
 			canvaselement: this.canvasElement,
@@ -71,13 +57,6 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
 			.addLayer(this.createMarkersLayer())
 			.setZoomLevel(this.initialZoom)
 			.panTo(this.field.explorationCoordinates, GeodeticSystem.WGS84)
-	}
-
-	private static createTilesLayer() {
-		return new TileLayer({
-			url: 'https://demo.int.com/osm_tiles/',
-			formatterfunction: (z: number, y: number, x: number) => z + '/' + x + '/' + y + '.png'
-		})
 	}
 
 	private createMarkersLayer() {
@@ -152,6 +131,27 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
 				'zoom-in',
 				'zoom-out'
 			]
+		})
+	}
+
+	private static createMap() {
+		return new Map({
+			wrapped: false,
+			system: GeodeticSystem.WGS84,
+			tooltip: {
+				alignment: AnchorType.LeftTop,
+				offsetx: 8,
+				offsety: -8,
+				mode: PointerMode.Hover,
+				autoupdate: true
+			}
+		})
+	}
+
+	private static createTilesLayer() {
+		return new TileLayer({
+			url: 'https://demo.int.com/osm_tiles/',
+			formatterfunction: (z: number, y: number, x: number) => z + '/' + x + '/' + y + '.png'
 		})
 	}
 
