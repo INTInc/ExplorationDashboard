@@ -30,7 +30,6 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
 		private canvasElement: HTMLCanvasElement,
 		private referenceElement: HTMLElement,
 		private field: Field,
-		private initialZoom: number = 1,
 		cssLoader: ToolkitCssLoader
 	) {
 		super(new Group(), cssLoader);
@@ -55,7 +54,6 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
 			.addLayer(WellsMap.createTilesLayer())
 			.addLayer(this.createExplorationLayer())
 			.addLayer(this.createMarkersLayer())
-			.setZoomLevel(this.initialZoom)
 			.panTo(this.field.explorationCoordinates, GeodeticSystem.WGS84)
 	}
 

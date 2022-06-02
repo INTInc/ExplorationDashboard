@@ -21,7 +21,6 @@
     ></well-log>
     <wells-map
       class="card"
-      :initial-zoom="1"
     ></wells-map>
     <wells-model
       class="card"
@@ -74,7 +73,7 @@ addAnnotations(wellB32).setUrl('/data/wellB-32/tops.json');
 </script>
 
 <style lang="scss">
-@import '/src/assets/theme-dark';
-@import '/src/assets/theme-light';
+@import '/src/assets/themes/theme-dark';
+@import '/src/assets/themes/theme-light';
 @import '/src/assets/app';
 </style>
