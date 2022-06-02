@@ -74,7 +74,7 @@ addAnnotations(wellB32).setUrl('/data/wellB-32/tops.json');
 </script>
 
 <style lang="scss">
-@import '/src/assets/styles/theme-dark';
-@import '/src/assets/styles/theme-light';
-@import '/src/assets/styles/app';
+@import '/src/assets/theme-dark';
+@import '/src/assets/theme-light';
+@import '/src/assets/app';
 </style>
