@@ -1,8 +1,8 @@
 <template>
     <div class="theme-switcher">
       <button @click="toggleTheme">
-        <i v-if="selectorValue === AppTheme.Dark" class="icon-day"></i>
-        <i v-if="selectorValue === AppTheme.Light" class="icon-night"></i>
+        <i v-if="selectorValue === AppTheme.Dark" class="fa fa-sun"></i>
+        <i v-if="selectorValue === AppTheme.Light" class="fa fa-moon"></i>
       </button>
     </div>
 </template>

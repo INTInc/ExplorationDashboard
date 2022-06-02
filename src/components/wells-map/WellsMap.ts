@@ -117,7 +117,7 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
 				.setName(name)
 				.setWidth(32)
 				.setHeight(32)
-				.setPainter(new FontPainter('', 'icomoon', '\u{e947}'))
+				.setPainter(new FontPainter('', 'icomoon', '\u{f3c5}'))
 				.setIsPointingUp(true)
 				.setSizeIsInDeviceSpace(true)
 				.setLineStyle(new LineStyle({color: 'darkred', width: 2}))
