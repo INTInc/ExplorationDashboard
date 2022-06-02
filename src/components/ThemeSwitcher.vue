@@ -63,7 +63,7 @@ onMounted(() => {
 
     button {
       padding: 8px;
-      font-size: 14px;
+      font-size: 16px;
       border-radius: 4px;
       border: 1px solid rgba(155, 155, 155, 0.5);
       background: transparent;
