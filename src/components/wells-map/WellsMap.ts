@@ -23,24 +23,16 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
 		private canvasElement: HTMLCanvasElement,
 		private referenceElement: HTMLElement,
 		private field: Field,
-		private initialZoom: number,
+		initialZoom: number,
 		cssLoader: ToolkitCssLoader
 	) {
 		super(new Group(), cssLoader);
 		this.createPlot(
 			WellsMap.createMap()
 				.addLayer(WellsMap.createTilesLayer())
-				.addLayer(WellsMap.createExplorationLayer()
-					.addShape(
-						this.root
-							.addChild(this.createField())
-							.addChild(this.createWells())
-						)
-					)
-				.addLayer(WellsMap.createMarkersLayer()
-					.addShape(this.createMarkers())
-				)
-				.setZoomLevel(this.initialZoom)
+				.addLayer(this.createExplorationLayer())
+				.addLayer(this.createMarkersLayer())
+				.setZoomLevel(initialZoom)
 				.panTo(this.field.explorationCoordinates, GeodeticSystem.WGS84)
 		);
 		this.initialization.resolve(this);
@@ -76,18 +68,24 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
 		})
 	}
 
-	private static createMarkersLayer() {
+	private createMarkersLayer() {
 		return new ShapeLayer({
 			tooltip: {
 				visible: true,
 				formatter: (shapes: Shape[]) => shapes[0] && shapes[0].getName() || null
 			}
 		})
-			.clearCache();
+			.clearCache()
+			.addShape(this.createMarkers())
 	}
 
-	private static createExplorationLayer() {
-		return new ShapeLayer();
+	private createExplorationLayer() {
+		return new ShapeLayer()
+			.addShape(
+				this.root
+					.addChild(this.createField())
+					.addChild(this.createWells())
+			)
 	}
 
 	private  createField() {
