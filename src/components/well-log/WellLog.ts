@@ -43,11 +43,8 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 		this.initialization.resolve(this);
 	}
 
-	private static createWidget(): WellLogWidget {
-		return new WellLogWidget({
-			horizontalscrollable: false,
-			verticalscrollable: false
-		})
+	public onCrossHairMoved(fn: CrossHairCallback) {
+		this.crossHairCallback = fn;
 	}
 
 	private configureWidget() {
@@ -132,7 +129,10 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 		}
 	}
 
-	public onCrossHairMoved(fn: CrossHairCallback) {
-		this.crossHairCallback = fn;
+	private static createWidget(): WellLogWidget {
+		return new WellLogWidget({
+			horizontalscrollable: false,
+			verticalscrollable: false
+		})
 	}
 }
