@@ -5,7 +5,7 @@
   </header>
   <div class="charts-container">
     <well-log
-      class="vertical-log"
+      class="card vertical-log"
       :source="wellB2"
       :limits="[2345, 2800]"
       :template-url="'/toolkit-wellog-templates/vertical-log.json'"
@@ -13,16 +13,18 @@
       :show-annotations="true"
     ></well-log>
     <well-log
-      class="horizontal-log"
+      class="card horizontal-log"
       :source="wellB32"
       :limits="[1050, 4800]"
       :template-url="'/toolkit-wellog-templates/horizontal-log.json'"
       :fit-tracks="1"
     ></well-log>
     <wells-map
+      class="card"
       :initial-zoom="1"
     ></wells-map>
     <wells-model
+      class="card"
       :model-padding="500"
       :camera-distance="3000"
       :measurement="'DLS'"

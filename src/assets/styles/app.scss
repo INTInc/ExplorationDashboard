@@ -51,14 +51,12 @@ body {
       grid-row-end: 5;
     }
 
-    .horizontal-log,
-    .vertical-log,
-    .wells-map,
-    .wells-model {
+    .card {
       margin: 8px;
       overflow: hidden;
       border-radius: 4px;
       border: 1px solid rgba(155, 155, 155, 0.5);
+      box-sizing: border-box;
 
       color: var(--title-color);
       background: var(--card-color);
