@@ -17,7 +17,8 @@ import { FontPainter } from '@int/geotoolkit/scene/shapes/painters/FontPainter';
 import { FillStyle } from '@int/geotoolkit/attributes/FillStyle';
 import { LineStyle } from '@int/geotoolkit/attributes/LineStyle';
 import { Plot } from '@int/geotoolkit/plot/Plot';
-import { ToolbarFactory } from '@/common/layout/ToolbarFactory';
+import { Toolbar } from '@int/geotoolkit/controls/toolbar/Toolbar';
+import { Button } from '@int/geotoolkit/controls/toolbar/Button';
 
 export class WellsMap extends ToolkitCssStyleable<Group> {
 
@@ -121,22 +122,26 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
 	}
 
 	private createToolbar() {
-		ToolbarFactory.create(
-			this.plot.getTool(),
-			[{
-				title: 'Zoom in',
-				icon: 'fa fa-magnifying-glass-plus',
-				action: () => this.flyToExploration(7)
-			}, {
-				title: 'Fit to bounds',
-				icon: 'fa fa-expand',
-				action: () => this.flyToExploration(1)
-			}, {
-				title: 'Center map',
-				icon: 'fa fa-crosshairs',
-				action: () => this.flyToExploration()
-			}]
-		)
+		new Toolbar({
+			tools: this.plot.getTool(),
+			alignment: AnchorType.LeftTop,
+			buttons: [
+				new Button({
+					title: 'Zoom in',
+					icon: 'fa fa-magnifying-glass-plus',
+					action: () => this.flyToExploration(7)
+				}),
+				new Button({
+					title: 'Fit to bounds',
+					icon: 'fa fa-expand',
+					action: () => this.flyToExploration(1)
+				}),
+				new Button({
+					title: 'Center map',
+					icon: 'fa fa-crosshairs',
+					action: () => this.flyToExploration()
+				})]
+		})
 	}
 
 	private static createMap() {

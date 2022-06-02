@@ -13,6 +13,7 @@ import { WellAnnotations } from '@/common/model/WellAnnotations';
 import { ToolkitCssLoader } from '@/common/styling/ToolkitCssLoader';
 import { ToolkitCssStyleable } from '@/common/styling/ToolkitCssStyleable';
 import { TrackType } from '@int/geotoolkit/welllog/TrackType';
+import { Toolbar } from '@int/geotoolkit/controls/toolbar/Toolbar';
 
 type CrossHairCallback = (y: number | null) => void;
 type HeaderScrollPosition = 'top' | 'bottom';
@@ -20,6 +21,7 @@ type HeaderScrollPosition = 'top' | 'bottom';
 export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 
 	private crossHairCallback: CrossHairCallback | null = null;
+	private plot: any;
 
 	constructor(
 		private canvasElement: HTMLCanvasElement,
@@ -34,9 +36,10 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 	) {
 		super(WellLog.createWidget(), cssLoader);
 		this.configureWidget();
-		this.createPlot();
+		this.plot = this.createPlot();
 		this.createAnnotations();
 		this.configureCrossHairTool();
+		this.createToolbar();
 		this.scrollHeader();
 
 		this.root.fitToHeight();
@@ -76,12 +79,15 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 	}
 
 	private createPlot() {
-		return new StretchablePlot({
+		const plot = new StretchablePlot({
 			canvaselement: this.canvasElement,
 			root: this.root
-		})
+		});
+		plot
 			.on(PlotEvents.Resized, (_: never, plot: Plot) => this.resizeTracks(plot))
-			.setRefElement(this.referenceElement)
+			.setRefElement(this.referenceElement);
+
+		return plot;
 	}
 
 	private resizeTracks(plot: Plot) {
@@ -119,6 +125,17 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 
 	private onCrossHairPositionChanged(event: CrossHairEventArgs) {
 		if (this.crossHairCallback) this.crossHairCallback(event.getPosition().getY());
+	}
+
+	private createToolbar() {
+		new Toolbar({
+			tools: this.plot.getTool(),
+			alignment: AnchorType.RightBottom,
+			buttons: [
+				'zoom-in',
+				'zoom-out'
+			]
+		})
 	}
 
 	private scrollHeader() {
