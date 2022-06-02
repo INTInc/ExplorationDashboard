@@ -45,4 +45,27 @@ onMounted(() => state.field.loaded.then(createMap));
   background-color: var(--card-color);
   color: var(--text-color);
 }
+
+.cg-toolbar-group,
+.cg-toolbar-button {
+  color: var(--text-color) !important;
+  background-color: var(--card-color) !important;
+}
+
+.cg-toolbar-group {
+  margin-bottom: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.cg-toolbar-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 </style>

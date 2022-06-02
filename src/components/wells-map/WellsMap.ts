@@ -16,35 +16,29 @@ import { SymbolShape } from '@int/geotoolkit/scene/shapes/SymbolShape';
 import { FontPainter } from '@int/geotoolkit/scene/shapes/painters/FontPainter';
 import { FillStyle } from '@int/geotoolkit/attributes/FillStyle';
 import { LineStyle } from '@int/geotoolkit/attributes/LineStyle';
+import { Plot } from '@int/geotoolkit/plot/Plot';
+import { Toolbar } from '@int/geotoolkit/controls/toolbar/Toolbar';
+import { Orientation } from '@int/geotoolkit/util/Orientation';
 
 export class WellsMap extends ToolkitCssStyleable<Group> {
+
+	private readonly map = WellsMap.createMap();
+	private readonly plot: Plot;
+	private readonly toolbar: Toolbar;
 
 	constructor(
 		private canvasElement: HTMLCanvasElement,
 		private referenceElement: HTMLElement,
 		private field: Field,
-		initialZoom: number,
+		private initialZoom: number = 1,
 		cssLoader: ToolkitCssLoader
 	) {
 		super(new Group(), cssLoader);
-		this.createPlot(
-			WellsMap.createMap()
-				.addLayer(WellsMap.createTilesLayer())
-				.addLayer(this.createExplorationLayer())
-				.addLayer(this.createMarkersLayer())
-				.setZoomLevel(initialZoom)
-				.panTo(this.field.explorationCoordinates, GeodeticSystem.WGS84)
-		);
-		this.initialization.resolve(this);
-	}
+		this.plot = this.createPlot();
+		this.toolbar = this.createToolbar();
 
-	private createPlot(map: Map) {
-		const plot = new StretchablePlot({
-			canvaselement: this.canvasElement,
-			root: map
-		});
-		plot.setRefElement(this.referenceElement);
-		return plot;
+		this.configureMap();
+		this.initialization.resolve(this);
 	}
 
 	private static createMap() {
@@ -59,6 +53,24 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
 				autoupdate: true
 			}
 		})
+	}
+
+	private createPlot() {
+		const plot = new StretchablePlot({
+			canvaselement: this.canvasElement,
+			root: this.map
+		});
+		plot.setRefElement(this.referenceElement);
+		return plot;
+	}
+
+	private configureMap() {
+		this.map
+			.addLayer(WellsMap.createTilesLayer())
+			.addLayer(this.createExplorationLayer())
+			.addLayer(this.createMarkersLayer())
+			.setZoomLevel(this.initialZoom)
+			.panTo(this.field.explorationCoordinates, GeodeticSystem.WGS84)
 	}
 
 	private static createTilesLayer() {
@@ -115,14 +127,31 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
 				alignment: AnchorType.TopCenter
 			})
 				.setName(name)
-				.setWidth(32)
-				.setHeight(32)
-				.setPainter(new FontPainter('', 'icomoon', '\u{f3c5}'))
+				.setWidth(18)
+				.setHeight(24)
+				.setPainter(new FontPainter('', '"Font Awesome 6 Free"', '\u{f3c5}'))
 				.setIsPointingUp(true)
 				.setSizeIsInDeviceSpace(true)
 				.setLineStyle(new LineStyle({color: 'darkred', width: 2}))
 				.setFillStyle(new FillStyle('red'))
 				.setAnchor(x[0], y[0])
+		})
+	}
+
+	private createToolbar() {
+		return new Toolbar({
+			size: 30,
+			fontsize: 12,
+			gap: 0,
+			orientation: Orientation.Vertical,
+			alignment: AnchorType.LeftTop,
+			tools: this.plot.getTool(),
+			buttons: [
+				'map-home',
+				'-',
+				'zoom-in',
+				'zoom-out'
+			]
 		})
 	}
 
