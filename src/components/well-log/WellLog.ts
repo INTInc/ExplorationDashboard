@@ -44,7 +44,6 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 		this.scrollHeader();
 
 		this.root.fitToHeight();
-		this.initialization.resolve(this);
 	}
 
 	public onCrossHairMoved(fn: CrossHairCallback) {

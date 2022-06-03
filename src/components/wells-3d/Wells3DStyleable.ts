@@ -3,7 +3,6 @@ import { AppTheme } from '@/common/styling/AppTheme';
 import { LineStyle, Patterns } from '@int/geotoolkit/attributes/LineStyle';
 import { TextStyle } from '@int/geotoolkit/attributes/TextStyle';
 import { Wells3D } from '@/components/wells-3d/Wells3D';
-import { Deferred } from '@/common/model/Deferred';
 import { Well } from '@/data-sources/Well';
 import { WellAnnotations } from '@/common/model/WellAnnotations';
 import { WellStaticPoint } from '@/components/wells-3d/objects/WellStaticPoint';
@@ -30,8 +29,6 @@ const THEME_LIGHT: ModelTheme = {
 
 export class Wells3DStyleable extends Wells3D implements Styleable {
 
-	private initialization = new Deferred<Wells3DStyleable>();
-
 	constructor(
 		containerElement: HTMLElement,
 		referenceElement: HTMLElement,
@@ -50,11 +47,6 @@ export class Wells3DStyleable extends Wells3D implements Styleable {
 			cameraDistance,
 			modelPadding
 		);
-		this.initialization.resolve(this);
-	}
-
-	public get initialized(): Promise<Wells3DStyleable> {
-		return this.initialization.promise;
 	}
 
 	public applyTheme(appTheme: AppTheme): void {

@@ -35,7 +35,6 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
 		this.plot = this.createPlot();
 		this.createToolbar();
 		this.configureMap();
-		this.initialization.resolve(this);
 	}
 
 	private createPlot() {

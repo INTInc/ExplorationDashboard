@@ -59,8 +59,7 @@ const setupCssLoader = (commonUrl: string, lightUrl: string, darkUrl: string) =>
     .setUrls(commonUrl, lightUrl, darkUrl)
     .then(() => watch(state.appTheme, theme => styleableComponents.forEach(c => c.applyTheme(theme))))
 }
-const registerStyleable = async (component: Styleable) => {
-  await component.initialized;
+const registerStyleable = (component: Styleable) => {
   component.applyTheme(state.appTheme.value);
   styleableComponents.push(component);
 }
