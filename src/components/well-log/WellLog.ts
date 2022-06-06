@@ -15,13 +15,15 @@ import { ToolkitCssStyleable } from '@/common/styling/ToolkitCssStyleable';
 import { TrackType } from '@int/geotoolkit/welllog/TrackType';
 import { Toolbar } from '@int/geotoolkit/controls/toolbar/Toolbar';
 import { Button } from '@int/geotoolkit/controls/toolbar/Button';
-
+import { from } from '@int/geotoolkit/selection/from';
+import { Node } from '@int/geotoolkit/scene/Node';
 type CrossHairCallback = (y: number | null) => void;
 type HeaderScrollPosition = 'top' | 'bottom';
 
 export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 
 	private crossHairCallback: CrossHairCallback | null = null;
+	private initialHeaderHeight = 90;
 	private plot: any;
 
 	constructor(
@@ -41,9 +43,6 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 		this.createAnnotations();
 		this.configureCrossHairTool();
 		this.createToolbar();
-		this.scrollHeader();
-
-		this.root.fitToHeight();
 	}
 
 	public onCrossHairMoved(fn: CrossHairCallback) {
@@ -127,6 +126,23 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 		if (this.crossHairCallback) this.crossHairCallback(event.getPosition().getY());
 	}
 
+	private toggleHeader(visible: boolean) {
+		const tracks = from(this.root).where((node: Node) => node.getName() === 'TrackControlGroup').selectFirst();
+		const header = from(this.root).where((node: Node) => node.getName() === 'HeaderControlGroup').selectFirst().getParent();
+		const headerHeight = visible ? this.initialHeaderHeight : 0;
+
+		tracks.setLayoutStyle({ left: 0, right: 0, bottom: 0, top: headerHeight });
+		header.setLayoutStyle({ left: 0, top: 0, right: 0, height: headerHeight });
+
+		this.root.updateLayout();
+		this.root.fitToHeight();
+
+		switch (this.initialHeaderScrollPosition) {
+			case 'top': this.root.getHeaderContainer().scrollToTop(); break;
+			case 'bottom': this.root.getHeaderContainer().scrollToBottom(); break;
+		}
+	}
+
 	private createToolbar() {
 		new Toolbar({
 			tools: this.plot.getTool(),
@@ -146,17 +162,18 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 					icon: 'fa fa-expand',
 					title: 'Fit to bounds',
 					action: () => this.root.fitToHeight()
+				}),
+				new Button({
+					icon: 'fa-solid fa-window-maximize',
+					title: 'Show/hide header',
+					checkbox: {
+						enabled: true,
+						checked: true
+					},
+					action: (_: never, checked: boolean) => this.toggleHeader(checked)
 				})
 			]
 		})
-	}
-
-	private scrollHeader() {
-		switch (this.initialHeaderScrollPosition) {
-			case 'top': return this.root.getHeaderContainer().scrollToTop();
-			case 'bottom': return this.root.getHeaderContainer().scrollToBottom();
-			default: return;
-		}
 	}
 
 	private static createWidget(): WellLogWidget {
