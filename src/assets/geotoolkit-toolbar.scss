@@ -16,6 +16,10 @@
   align-items: center;
   justify-content: center;
 
+  &.cg-toolbar-checked {
+    background-color: rgba(155, 155, 155, 0.3) !important;
+  }
+
   &:hover {
     cursor: pointer;
   }
