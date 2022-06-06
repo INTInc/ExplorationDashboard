@@ -20,6 +20,12 @@
     background-color: rgba(155, 155, 155, 0.3) !important;
   }
 
+  &.cg-toolbar-text-button {
+    font-family: Arial;
+    font-weight: bolder;
+    font-size: 11px;
+  }
+
   &:hover {
     cursor: pointer;
   }

@@ -13,18 +13,13 @@ import { WellAnnotations } from '@/common/model/WellAnnotations';
 import { ToolkitCssLoader } from '@/common/styling/ToolkitCssLoader';
 import { ToolkitCssStyleable } from '@/common/styling/ToolkitCssStyleable';
 import { TrackType } from '@int/geotoolkit/welllog/TrackType';
-import { Toolbar } from '@int/geotoolkit/controls/toolbar/Toolbar';
-import { Button } from '@int/geotoolkit/controls/toolbar/Button';
-import { from } from '@int/geotoolkit/selection/from';
-import { Node } from '@int/geotoolkit/scene/Node';
+
 type CrossHairCallback = (y: number | null) => void;
-type HeaderScrollPosition = 'top' | 'bottom';
 
 export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 
 	private crossHairCallback: CrossHairCallback | null = null;
-	private initialHeaderHeight = 90;
-	private plot: any;
+	protected plot: any;
 
 	constructor(
 		private canvasElement: HTMLCanvasElement,
@@ -33,8 +28,8 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 		private template: string,
 		private limits: number[],
 		private tracksCountToFit = 1,
-		private initialHeaderScrollPosition: HeaderScrollPosition = 'bottom',
 		private annotations: WellAnnotations,
+		protected indexMeasurements: string[],
 		cssLoader: ToolkitCssLoader
 	) {
 		super(WellLog.createWidget(), cssLoader);
@@ -42,7 +37,6 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 		this.plot = this.createPlot();
 		this.createAnnotations();
 		this.configureCrossHairTool();
-		this.createToolbar();
 	}
 
 	public onCrossHairMoved(fn: CrossHairCallback) {
@@ -124,56 +118,6 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 
 	private onCrossHairPositionChanged(event: CrossHairEventArgs) {
 		if (this.crossHairCallback) this.crossHairCallback(event.getPosition().getY());
-	}
-
-	private toggleHeader(visible: boolean) {
-		const tracks = from(this.root).where((node: Node) => node.getName() === 'TrackControlGroup').selectFirst();
-		const header = from(this.root).where((node: Node) => node.getName() === 'HeaderControlGroup').selectFirst().getParent();
-		const headerHeight = visible ? this.initialHeaderHeight : 0;
-
-		tracks.setLayoutStyle({ left: 0, right: 0, bottom: 0, top: headerHeight });
-		header.setLayoutStyle({ left: 0, top: 0, right: 0, height: headerHeight });
-
-		this.root.updateLayout();
-		this.root.fitToHeight();
-
-		switch (this.initialHeaderScrollPosition) {
-			case 'top': this.root.getHeaderContainer().scrollToTop(); break;
-			case 'bottom': this.root.getHeaderContainer().scrollToBottom(); break;
-		}
-	}
-
-	private createToolbar() {
-		new Toolbar({
-			tools: this.plot.getTool(),
-			alignment: AnchorType.RightBottom,
-			buttons: [
-				new Button({
-					icon: 'fa fa-magnifying-glass-plus',
-					title: 'Zoom in',
-					action: () => this.root.scale(5 / 4)
-				}),
-				new Button({
-					icon: 'fa fa-magnifying-glass-minus',
-					title: 'Zoom out',
-					action: () => this.root.scale(4 / 5)
-				}),
-				new Button({
-					icon: 'fa fa-expand',
-					title: 'Fit to bounds',
-					action: () => this.root.fitToHeight()
-				}),
-				new Button({
-					icon: 'fa-solid fa-window-maximize',
-					title: 'Show/hide header',
-					checkbox: {
-						enabled: true,
-						checked: true
-					},
-					action: (_: never, checked: boolean) => this.toggleHeader(checked)
-				})
-			]
-		})
 	}
 
 	private static createWidget(): WellLogWidget {

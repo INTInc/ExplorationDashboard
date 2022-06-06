@@ -10,15 +10,16 @@
 import { defineProps, onMounted, ref } from 'vue';
 import { useStore } from '@/store';
 
-import { WellLog } from '@/components/well-log/WellLog';
 import { WellLogSource } from '@/components/well-log/WellLogSource';
 import { WellAnnotations } from '@/common/model/WellAnnotations';
+import { WellLogWithTools } from '@/components/well-log/WellLogWithTools';
 
 const { state, registerStyleable } = useStore();
 const props = defineProps<{
   source: WellLogSource,
   limits: number[],
   templateUrl: string,
+  indexMeasurements: string[],
   fitTracks?: number,
   showAnnotations?: boolean,
   headerScrollTo?: 'top' | 'bottom'
@@ -43,15 +44,17 @@ async function loadTemplate(): Promise<string> {
 }
 
 function createWellLog(template: string) {
-  const wellLog = new WellLog(
+  const wellLog = new WellLogWithTools(
+      90,
+      props.headerScrollTo,
     canvas.value,
     container.value,
     props.source,
     template,
     props.limits,
     props.fitTracks,
-    props.headerScrollTo,
     getVisibleAnnotations(),
+    props.indexMeasurements,
     state.cssLoader
   );
 

@@ -8,6 +8,7 @@
       class="card vertical-log"
       :source="wellB2"
       :limits="[2345, 2800]"
+      :index-measurements="['MD','TVD','HZD']"
       :template-url="'/toolkit-welllog-templates/vertical-log.json'"
       :fit-tracks="3"
       :show-annotations="true"
@@ -16,6 +17,7 @@
       class="card horizontal-log"
       :source="wellB32"
       :limits="[1050, 4800]"
+      :index-measurements="['MD','HZD']"
       :template-url="'/toolkit-welllog-templates/horizontal-log.json'"
       :fit-tracks="1"
     ></well-log>
