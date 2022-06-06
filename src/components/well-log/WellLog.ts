@@ -37,6 +37,15 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 		this.plot = this.createPlot();
 		this.createAnnotations();
 		this.configureCrossHairTool();
+		this.setIndexMeasurement(this.indexMeasurements[0]);
+	}
+
+	public setIndexMeasurement(measurement: string) {
+		this.source.setIndexMeasurement(measurement);
+		this.root
+			.setDataBinding(this.source.getBinding())
+			.setDepthLimits(this.source.getLimits())
+			.fitToHeight();
 	}
 
 	public onCrossHairMoved(fn: CrossHairCallback) {
@@ -45,8 +54,6 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 
 	private configureWidget() {
 		this.root
-			.setDataBinding(this.source.binding)
-			.setDepthLimits(this.limits[0], this.limits[1])
 			.setAxisHeaderType(HeaderType.Simple)
 			.loadTemplate(this.template)
 	}

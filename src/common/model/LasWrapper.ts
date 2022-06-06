@@ -12,17 +12,6 @@ enum MeasureProperty {
   Well = 5,
 }
 
-enum Measure {
-  MD = 'MD',
-  GR = 'GR',
-  CALI = 'CALI',
-  NPHI = 'NPHI',
-  RHOB = 'RHOB',
-  ILD = 'ILD',
-  ILM = 'ILM',
-  DEPT = 'DEPT',
-}
-
 export class LasWrapper {
 
   private las: Las20 = new Las20();
@@ -34,8 +23,8 @@ export class LasWrapper {
     return this.sourceLoaded ? this.properties.getData()[propertyIndex] : null;
   }
 
-  private info(measure: Measure) {
-    return this.curves.getCurveInfo(measure)
+  private info(measurement: string) {
+    return this.curves.getCurveInfo(measurement)
   }
 
   public setSource(text: string): LasWrapper {
@@ -50,10 +39,10 @@ export class LasWrapper {
   public logData(valuesKey: string, depthsKey = 'DEPT'): LogData {
     return new LogData({
       name: valuesKey,
-      depths: this.values(depthsKey as Measure),
-      values: this.values(valuesKey as Measure)
+      depths: this.values(depthsKey),
+      values: this.values(valuesKey)
     })
-      .setValueUnit(this.info(valuesKey as Measure).getUnit())
+      .setValueUnit(this.info(valuesKey).getUnit())
   }
 
   public values(measure: string): number[] {

@@ -65,9 +65,10 @@ export class WellLogWithTools extends WellLog {
 				title: measurement,
 				checkbox: {
 					enabled: true,
-					checked: false
+					name: 'index-measurement',
+					checked: measurement === this.indexMeasurements[0],
 				},
-				action: () => console.log(measurement)
+				action: () => this.setIndexMeasurement(measurement)
 			}));
 		})
 		return buttons;
