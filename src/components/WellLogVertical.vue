@@ -19,8 +19,9 @@ const props = defineProps<{
 }>();
 
 const templateUrl = '/toolkit-welllog-templates/vertical-log.json';
-const indexMeasurements = new Set()
-    .add(new IndexMeasurement( 'DEPT', 'MD'))
-    .add(new IndexMeasurement('TVD'))
-    .add(new IndexMeasurement('HRZDISP', 'HRZ'));
+const indexMeasurements = [
+  new IndexMeasurement( 'DEPT', 'MD'),
+  new IndexMeasurement('TVD'),
+  new IndexMeasurement('HRZDISP', 'HRZ')
+];
 </script>

@@ -19,7 +19,7 @@ const { state, registerStyleable } = useStore();
 const props = defineProps<{
   source: WellLogSource,
   templateUrl: string,
-  indexMeasurements: Set<IndexMeasurement>,
+  indexMeasurements: IndexMeasurement[],
   fitTracks?: number,
   showAnnotations?: boolean,
   headerScrollTo?: 'top' | 'bottom'

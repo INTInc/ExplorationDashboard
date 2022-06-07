@@ -14,4 +14,6 @@ export abstract class WellLogSource extends Well {
 
 	public abstract getLimits(): Range
 
+	public abstract mapPoint(sourceMeasurement: string, targetMeasurement: string, value: number): number
+
 }

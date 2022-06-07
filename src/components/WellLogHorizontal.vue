@@ -18,7 +18,8 @@ const props = defineProps<{
 }>();
 
 const templateUrl = '/toolkit-welllog-templates/horizontal-log.json';
-const indexMeasurements = new Set()
-    .add(new IndexMeasurement('MD'))
-    .add(new IndexMeasurement('HRZDISP', 'HRZ'));
+const indexMeasurements = [
+  new IndexMeasurement('MD'),
+  new IndexMeasurement('HRZDISP', 'HRZ')
+];
 </script>

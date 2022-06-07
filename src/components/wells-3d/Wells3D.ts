@@ -115,7 +115,7 @@ export class Wells3D {
 		const annotations = this.annotations.get(well);
 		if (annotations) {
 			annotations.data.forEach(annotation => {
-				const marker = new WellStaticPoint(well, annotation.depth, 30, annotation.color, annotation.text);
+				const marker = new WellStaticPoint(well, annotation.getDepth('DEPT') || 0, 30, annotation.getColor(), annotation.getText());
 				this.depthMarkers.push(marker);
 				this.root.add(marker);
 			})

@@ -31,6 +31,13 @@ export class WellB32 extends WellLogSource  {
     return new Range(indexLimits[0], indexLimits[1]);
   }
 
+  public mapPoint(sourceMeasurement: string, targetMeasurement: string, value: number): number {
+    const source = this.measurements.values(sourceMeasurement);
+    const target = this.measurements.values(targetMeasurement);
+    const pointIndex = source.indexOf(value);
+    return pointIndex > -1 ? target[pointIndex] : 0;
+  }
+
   private curveData(curveName: string): LogData {
     const topsIndex = this.indexMeasurement;
     const measurementsIndex = this.indexMeasurement === 'MD' ? 'DEPT' : this.indexMeasurement;

@@ -56,7 +56,7 @@ export class WellLogWithTools extends WellLog {
 				action: (_: never, checked: boolean) => this.toggleHeader(checked)
 			})
 		];
-		Array.from(this.indexMeasurements).forEach((measurement: IndexMeasurement, index: number) => {
+		this.indexMeasurements.forEach((measurement: IndexMeasurement, index: number) => {
 			const buttonElement = document.createElement('div')
 			buttonElement.innerText = measurement.getName();
 			buttonElement.className = 'cg-toolbar-button cg-toolbar-text-button'

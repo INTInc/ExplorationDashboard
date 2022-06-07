@@ -1,8 +1,5 @@
 import { WellLogWidget } from '@int/geotoolkit/welllog/widgets/WellLogWidget';
 import { HeaderType } from '@int/geotoolkit/welllog/header/LogAxisVisualHeader';
-import { LogMarker } from '@int/geotoolkit/welllog/LogMarker';
-import { LineStyle } from '@int/geotoolkit/attributes/LineStyle';
-import { AnchorType } from '@int/geotoolkit/util/AnchorType';
 import { Events as PlotEvents, Plot } from '@int/geotoolkit/plot/Plot';
 import { Orientation } from '@int/geotoolkit/util/Orientation';
 import { CrossHair, Events as CrossHairEvents } from '@int/geotoolkit/controls/tools/CrossHair';
@@ -17,13 +14,16 @@ import { from } from '@int/geotoolkit/selection/from';
 import { Node } from '@int/geotoolkit/scene/Node';
 import { LogAxis } from '@int/geotoolkit/welllog/LogAxis';
 import { IndexMeasurement } from '@/common/model/IndexMeasurement';
+import { WellLogMarker } from '@/components/well-log/WellLogMarker';
 type CrossHairCallback = (y: number | null) => void;
 
 export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 
 	private crossHairCallback: CrossHairCallback | null = null;
+	private indexMeasurement: IndexMeasurement;
+
 	protected plot: any;
-	protected markers: LogMarker[] = [];
+	protected markers: WellLogMarker[] = [];
 
 	constructor(
 		private canvasElement: HTMLCanvasElement,
@@ -32,12 +32,15 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 		private template: string,
 		private tracksCountToFit = 1,
 		private annotations: WellAnnotations,
-		protected indexMeasurements: Set<IndexMeasurement>,
+		protected indexMeasurements: IndexMeasurement[],
 		cssLoader: ToolkitCssLoader
 	) {
 		super(WellLog.createWidget(), cssLoader);
-		this.configureWidget();
+		this.root
+			.setAxisHeaderType(HeaderType.Simple)
+			.loadTemplate(this.template)
 		this.plot = this.createPlot();
+		this.indexMeasurement = this.indexMeasurements[0];
 		this.createAnnotations();
 		this.configureCrossHairTool();
 	}
@@ -48,48 +51,31 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 			.setDataBinding(this.source.getBinding())
 			.setDepthLimits(this.source.getLimits())
 			.fitToHeight();
-		this.updateIndexAxis(measurement.getName());
+		this.updateIndexAxis(measurement);
+		this.updateAnnotations(measurement);
+		this.indexMeasurement = measurement;
 	}
 
 	public onCrossHairMoved(fn: CrossHairCallback) {
 		this.crossHairCallback = fn;
 	}
 
-	private configureWidget() {
-		this.root
-			.setAxisHeaderType(HeaderType.Simple)
-			.loadTemplate(this.template)
-	}
-
 	private createAnnotations() {
 		this.annotations.data.forEach(annotation => {
-			if (annotation.depth) {
-				const marker = new LogMarker(annotation.depth, annotation.text)
-					.setLineStyle(new LineStyle({color: annotation.color, width: 2}))
-					.setVerticalTextOffset(-5)
-					.setHorizontalTextOffset(5)
-					.setNameLabelPosition(AnchorType.RightTop)
-					.setDepthLabelPosition(AnchorType.RightBottom)
-					.setFillStyleDepth(annotation.color)
-					.setFillStyleName(annotation.color)
-					.setFillDepthLabel(true)
-					.setFillNameLabel(true);
-				this.root
-					.getTrackContainer()
-					.addChild(marker);
-				this.markers
-					.push(marker);
-			}
-		});
+			const marker = new WellLogMarker(annotation, this.indexMeasurement);
+			this.root.getTrackContainer().addChild(marker);
+			this.markers.push(marker);
+	});
 	}
 
-	private updateIndexAxis(measurement: string) {
+	private updateIndexAxis(measurement: IndexMeasurement) {
 		from(this.root.getTrackContainer())
 			.where((node: Node) => node instanceof LogAxis)
-			.select((logAxis: LogAxis) => {
-				logAxis.setName(measurement);
-				logAxis.setProperties()
-			});
+			.select((logAxis: LogAxis) => logAxis.setName(measurement.getName()));
+	}
+
+	private updateAnnotations(measurement: IndexMeasurement) {
+		this.markers.forEach(marker => marker.setIndexMeasurement(measurement));
 	}
 
 	private createPlot() {

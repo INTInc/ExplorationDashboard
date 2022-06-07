@@ -29,4 +29,8 @@ export class WellB2 extends WellLogSource {
     return new Range(indexLimits[0], indexLimits[1]);
   }
 
+  public mapPoint(): number {
+    return 0;
+  }
+
 } 
