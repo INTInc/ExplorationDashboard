@@ -25,12 +25,15 @@ export class WellLogWithTools extends WellLog {
 			tools: this.plot.getTool(),
 			alignment: AnchorType.RightBottom,
 			orientation: Orientation.Horizontal,
-			buttons: this.createToolbarButtons()
+			buttons: [
+				...this.createToolsButtons(),
+				...this.createIndexMeasurementsButtons()
+			]
 		})
 	}
 
-	private createToolbarButtons(): Button[] {
-		const buttons = [
+	private createToolsButtons(): Button[] {
+		return [
 			new Button({
 				icon: 'fa fa-magnifying-glass-plus',
 				title: 'Zoom in',
@@ -56,23 +59,6 @@ export class WellLogWithTools extends WellLog {
 				action: (_: never, checked: boolean) => this.toggleHeader(checked)
 			})
 		];
-		this.source.getIndexMeasurements().forEach((measurement: IndexMeasurement, index: number) => {
-			const buttonElement = document.createElement('div')
-			buttonElement.innerText = measurement.getName();
-			buttonElement.className = 'cg-toolbar-button cg-toolbar-text-button'
-
-			buttons.push(new Button({
-				element: buttonElement,
-				title: measurement,
-				checkbox: {
-					enabled: true,
-					name: 'index-measurement',
-					checked: index === 0
-				},
-				action: () => this.setIndexMeasurement(measurement)
-			}));
-		})
-		return buttons;
 	}
 
 	private toggleHeader(visible: boolean) {
@@ -90,6 +76,25 @@ export class WellLogWithTools extends WellLog {
 			case 'top': this.root.getHeaderContainer().scrollToTop(); break;
 			case 'bottom': this.root.getHeaderContainer().scrollToBottom(); break;
 		}
+	}
+
+	private createIndexMeasurementsButtons(): Button[] {
+		return this.source.getIndexMeasurements().map((measurement: IndexMeasurement, index: number) => {
+			const buttonElement = document.createElement('div')
+			buttonElement.innerText = measurement.getName();
+			buttonElement.className = 'cg-toolbar-button cg-toolbar-text-button'
+
+			return new Button({
+				element: buttonElement,
+				title: measurement,
+				checkbox: {
+					enabled: true,
+					name: 'index-measurement',
+					checked: index === 0
+				},
+				action: () => this.setIndexMeasurement(measurement)
+			});
+		})
 	}
 
 }
