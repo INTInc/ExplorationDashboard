@@ -28,11 +28,10 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 	constructor(
 		private canvasElement: HTMLCanvasElement,
 		private referenceElement: HTMLElement,
-		private source: WellLogSource,
+		protected source: WellLogSource,
 		private template: string,
 		private tracksCountToFit = 1,
 		private annotations: WellAnnotations,
-		protected indexMeasurements: IndexMeasurement[],
 		cssLoader: ToolkitCssLoader
 	) {
 		super(WellLog.createWidget(), cssLoader);
@@ -40,7 +39,7 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 			.setAxisHeaderType(HeaderType.Simple)
 			.loadTemplate(this.template)
 		this.plot = this.createPlot();
-		this.indexMeasurement = this.indexMeasurements[0];
+		this.indexMeasurement = this.source.getDefaultIndexMeasurement();
 		this.createAnnotations();
 		this.configureCrossHairTool();
 	}

@@ -4,6 +4,7 @@ import { WellLogSource } from '@/components/well-log/WellLogSource';
 import { CompositeLogCurve } from '@int/geotoolkit/welllog/CompositeLogCurve';
 import { Range } from '@int/geotoolkit/util/Range';
 import { MathUtil } from '@int/geotoolkit/util/MathUtil';
+import { IndexMeasurement } from '@/common/model/IndexMeasurement';
 
 export class WellB2 extends WellLogSource {
 
@@ -29,8 +30,12 @@ export class WellB2 extends WellLogSource {
     return new Range(indexLimits[0], indexLimits[1]);
   }
 
-  public mapPoint(): number {
-    return 0;
+  public getIndexMeasurements(): IndexMeasurement[] {
+    return [
+      new IndexMeasurement( 'DEPT', 'MD'),
+      new IndexMeasurement('TVD'),
+      new IndexMeasurement('HRZDISP', 'HRZ')
+    ];
   }
 
 } 

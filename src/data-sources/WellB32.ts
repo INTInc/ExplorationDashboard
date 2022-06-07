@@ -5,6 +5,7 @@ import { LogData } from '@int/geotoolkit/welllog/data/LogData';
 import { WellLogSource } from '@/components/well-log/WellLogSource';
 import { MathUtil } from '@int/geotoolkit/util/MathUtil';
 import { Range } from '@int/geotoolkit/util/Range';
+import { IndexMeasurement } from '@/common/model/IndexMeasurement';
 
 export class WellB32 extends WellLogSource  {
 
@@ -31,11 +32,11 @@ export class WellB32 extends WellLogSource  {
     return new Range(indexLimits[0], indexLimits[1]);
   }
 
-  public mapPoint(sourceMeasurement: string, targetMeasurement: string, value: number): number {
-    const source = this.measurements.values(sourceMeasurement);
-    const target = this.measurements.values(targetMeasurement);
-    const pointIndex = source.indexOf(value);
-    return pointIndex > -1 ? target[pointIndex] : 0;
+  public getIndexMeasurements(): IndexMeasurement[] {
+    return [
+      new IndexMeasurement('MD'),
+      new IndexMeasurement('HRZDISP', 'HRZ')
+    ];
   }
 
   private curveData(curveName: string): LogData {
