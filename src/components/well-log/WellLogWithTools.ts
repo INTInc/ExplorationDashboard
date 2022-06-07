@@ -6,6 +6,8 @@ import { from } from '@int/geotoolkit/selection/from';
 import { Node } from '@int/geotoolkit/scene/Node';
 import { Orientation } from '@int/geotoolkit/util/Orientation';
 import { IndexMeasurement } from '@/common/model/IndexMeasurement';
+import { RubberBandRenderMode } from '@int/geotoolkit/controls/tools/RubberBandRenderMode';
+import { AxisRubberBand } from '@/components/well-log/tools/AxisRubberBand';
 
 type HeaderScrollPosition = 'top' | 'bottom';
 
@@ -17,7 +19,15 @@ export class WellLogWithTools extends WellLog {
 		...props: ConstructorParameters<typeof WellLog>
 	) {
 		super(...props);
+		this.connectTools();
 		this.createToolbar()
+	}
+
+	private connectTools() {
+		this.root.connectTool(new AxisRubberBand(
+			this.root.getTrackManipulatorLayer(),
+			'customRubberBand',
+		));
 	}
 
 	private createToolbar() {
@@ -57,6 +67,11 @@ export class WellLogWithTools extends WellLog {
 					checked: true
 				},
 				action: (_: never, checked: boolean) => this.toggleHeader(checked)
+			}),
+			new Button({
+				icon: 'fa-solid fa-arrows-left-right-to-line',
+				title: 'Select area',
+				action: () => this.setAxisRubberBandEnabled(true)
 			})
 		];
 	}
@@ -76,6 +91,11 @@ export class WellLogWithTools extends WellLog {
 			case 'top': this.root.getHeaderContainer().scrollToTop(); break;
 			case 'bottom': this.root.getHeaderContainer().scrollToBottom(); break;
 		}
+	}
+
+	private setAxisRubberBandEnabled(enabled: boolean) {
+		this.root.getToolByName('trackPanning')?.setEnabled(!enabled);
+		this.root.getToolByName('customRubberBand')?.setEnabled(enabled);
 	}
 
 	private createIndexMeasurementsButtons(): Button[] {
