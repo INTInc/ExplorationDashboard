@@ -16,6 +16,7 @@ import { TrackType } from '@int/geotoolkit/welllog/TrackType';
 import { from } from '@int/geotoolkit/selection/from';
 import { Node } from '@int/geotoolkit/scene/Node';
 import { LogAxis } from '@int/geotoolkit/welllog/LogAxis';
+import { IndexMeasurement } from '@/common/model/IndexMeasurement';
 type CrossHairCallback = (y: number | null) => void;
 
 export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
@@ -32,7 +33,7 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 		private limits: number[],
 		private tracksCountToFit = 1,
 		private annotations: WellAnnotations,
-		protected indexMeasurements: string[],
+		protected indexMeasurements: Set<IndexMeasurement>,
 		cssLoader: ToolkitCssLoader
 	) {
 		super(WellLog.createWidget(), cssLoader);
@@ -42,13 +43,13 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 		this.configureCrossHairTool();
 	}
 
-	public setIndexMeasurement(measurement: string) {
-		this.source.setIndexMeasurement(measurement);
+	public setIndexMeasurement(measurement: IndexMeasurement) {
+		this.source.setIndexMeasurement(measurement.getKey());
 		this.root
 			.setDataBinding(this.source.getBinding())
 			.setDepthLimits(this.source.getLimits())
 			.fitToHeight();
-		this.updateIndexAxis(measurement);
+		this.updateIndexAxis(measurement.getName());
 	}
 
 	public onCrossHairMoved(fn: CrossHairCallback) {

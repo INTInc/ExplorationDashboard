@@ -13,13 +13,14 @@ import { useStore } from '@/store';
 import { WellLogSource } from '@/components/well-log/WellLogSource';
 import { WellAnnotations } from '@/common/model/WellAnnotations';
 import { WellLogWithTools } from '@/components/well-log/WellLogWithTools';
+import { IndexMeasurement } from '@/common/model/IndexMeasurement';
 
 const { state, registerStyleable } = useStore();
 const props = defineProps<{
   source: WellLogSource,
   limits: number[],
   templateUrl: string,
-  indexMeasurements: string[],
+  indexMeasurements: Set<IndexMeasurement>,
   fitTracks?: number,
   showAnnotations?: boolean,
   headerScrollTo?: 'top' | 'bottom'

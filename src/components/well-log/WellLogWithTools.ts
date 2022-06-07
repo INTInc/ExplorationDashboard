@@ -5,6 +5,7 @@ import { AnchorType } from '@int/geotoolkit/util/AnchorType';
 import { from } from '@int/geotoolkit/selection/from';
 import { Node } from '@int/geotoolkit/scene/Node';
 import { Orientation } from '@int/geotoolkit/util/Orientation';
+import { IndexMeasurement } from '@/common/model/IndexMeasurement';
 
 type HeaderScrollPosition = 'top' | 'bottom';
 
@@ -55,9 +56,9 @@ export class WellLogWithTools extends WellLog {
 				action: (_: never, checked: boolean) => this.toggleHeader(checked)
 			})
 		];
-		this.indexMeasurements.forEach(measurement => {
+		Array.from(this.indexMeasurements).forEach((measurement: IndexMeasurement, index: number) => {
 			const buttonElement = document.createElement('div')
-			buttonElement.innerText = measurement;
+			buttonElement.innerText = measurement.getName();
 			buttonElement.className = 'cg-toolbar-button cg-toolbar-text-button'
 
 			buttons.push(new Button({
@@ -66,7 +67,7 @@ export class WellLogWithTools extends WellLog {
 				checkbox: {
 					enabled: true,
 					name: 'index-measurement',
-					checked: measurement === this.indexMeasurements[0],
+					checked: index === 0
 				},
 				action: () => this.setIndexMeasurement(measurement)
 			}));
