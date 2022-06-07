@@ -116,7 +116,8 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 			const track = this.root.getTrackAt(i);
 			track.setWidth(track.getTag() && track.getTag().type === TrackType.IndexTrack
 				? indexTrackWidth
-				: curveTrackWidth);
+				: curveTrackWidth
+			);
 		}
 	}
 
@@ -143,6 +144,7 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 
 	private static createWidget(): WellLogWidget {
 		return new WellLogWidget({
+			indexunit: 'm',
 			horizontalscrollable: false,
 			verticalscrollable: false
 		})
