@@ -13,13 +13,16 @@ import { WellAnnotations } from '@/common/model/WellAnnotations';
 import { ToolkitCssLoader } from '@/common/styling/ToolkitCssLoader';
 import { ToolkitCssStyleable } from '@/common/styling/ToolkitCssStyleable';
 import { TrackType } from '@int/geotoolkit/welllog/TrackType';
-
+import { from } from '@int/geotoolkit/selection/from';
+import { Node } from '@int/geotoolkit/scene/Node';
+import { LogAxis } from '@int/geotoolkit/welllog/LogAxis';
 type CrossHairCallback = (y: number | null) => void;
 
 export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 
 	private crossHairCallback: CrossHairCallback | null = null;
 	protected plot: any;
+	protected markers: LogMarker[] = [];
 
 	constructor(
 		private canvasElement: HTMLCanvasElement,
@@ -37,7 +40,6 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 		this.plot = this.createPlot();
 		this.createAnnotations();
 		this.configureCrossHairTool();
-		this.setIndexMeasurement(this.indexMeasurements[0]);
 	}
 
 	public setIndexMeasurement(measurement: string) {
@@ -46,6 +48,7 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 			.setDataBinding(this.source.getBinding())
 			.setDepthLimits(this.source.getLimits())
 			.fitToHeight();
+		this.updateIndexAxis(measurement);
 	}
 
 	public onCrossHairMoved(fn: CrossHairCallback) {
@@ -74,8 +77,19 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 				this.root
 					.getTrackContainer()
 					.addChild(marker);
+				this.markers
+					.push(marker);
 			}
 		});
+	}
+
+	private updateIndexAxis(measurement: string) {
+		from(this.root.getTrackContainer())
+			.where((node: Node) => node instanceof LogAxis)
+			.select((logAxis: LogAxis) => {
+				logAxis.setName(measurement);
+				logAxis.setProperties()
+			});
 	}
 
 	private createPlot() {

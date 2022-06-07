@@ -3,6 +3,7 @@ import { LogCurve } from '@int/geotoolkit/welllog/LogCurve';
 import { Node } from '@int/geotoolkit/scene/Node';
 import { LogData } from '@int/geotoolkit/welllog/data/LogData';
 import { WellLogSource } from '@/components/well-log/WellLogSource';
+import { MathUtil } from '@int/geotoolkit/util/MathUtil';
 import { Range } from '@int/geotoolkit/util/Range';
 
 export class WellB32 extends WellLogSource  {
@@ -12,26 +13,30 @@ export class WellB32 extends WellLogSource  {
       accept: (node: Node) => node instanceof LogCurve,
       unbind: (node) => {
         if (node instanceof LogCurve) {
-          const curve = node as LogCurve;
-          curve.setData({}, false)
+          node.setData({}, false)
         }
       },
       bind: (node: Node) => {
         if (node instanceof LogCurve) {
-          const curve = node as LogCurve;
-          curve.setData(this.curveData(curve.getName()), false)
+          const logData = this.curveData(node.getName());
+          node.setData(logData, false);
         }
       }
     };
   }
 
   public getLimits(): Range {
-    return new Range(2050, 4500);
+    const indexValues = this.tops.values(this.indexMeasurement || '');
+    const indexLimits = MathUtil.getLimits(indexValues);
+    return new Range(indexLimits[0], indexLimits[1]);
   }
 
   private curveData(curveName: string): LogData {
+    const topsIndex = this.indexMeasurement;
+    const measurementsIndex = this.indexMeasurement === 'MD' ? 'DEPT' : this.indexMeasurement;
+
     return curveName === 'GR'
-      ? this.measurements.logData(curveName, this.indexMeasurement)
-      : this.tops.logData(curveName, this.indexMeasurement)
+      ? this.measurements.logData(curveName, measurementsIndex)
+      : this.tops.logData(curveName, topsIndex)
   }
 }

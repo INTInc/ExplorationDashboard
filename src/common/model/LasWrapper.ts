@@ -36,19 +36,25 @@ export class LasWrapper {
     return this;
   }
 
-  public logData(valuesKey: string, depthsKey = 'DEPT'): LogData {
+  public logData(
+    measurement: string,
+    indexMeasurement = this.curves.getCurveMnemonics()[0]
+  ): LogData {
     return new LogData({
-      name: valuesKey,
-      depths: this.values(depthsKey),
-      values: this.values(valuesKey)
+      name: measurement,
+      depths: this.values(indexMeasurement),
+      values: this.values(measurement)
     })
-      .setValueUnit(this.info(valuesKey).getUnit())
+      .setValueUnit(this.info(measurement).getUnit())
   }
 
   public values(measure: string): number[] {
     if (this.containMeasure(measure)) {
       return this.curves.getCurveData(measure);
     } else {
+      console.log(measure);
+      console.log(this.curves.getCurveMnemonics());
+      console.trace();
       console.warn(`Provided data not include measurement named ${measure}`);
       return [];
     }

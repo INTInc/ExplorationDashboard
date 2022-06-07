@@ -10,8 +10,8 @@ export abstract class WellLogSource extends Well {
 		this.indexMeasurement = measurement;
 	}
 
-	abstract getBinding(): DataBinding
+	public abstract getBinding(): DataBinding
 
-	abstract getLimits(): Range
+	public abstract getLimits(): Range
 
 }

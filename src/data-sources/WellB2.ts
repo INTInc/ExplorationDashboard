@@ -1,31 +1,32 @@
 import { DataBinding } from '@int/geotoolkit/data/DataBinding';
-import { LogCurve } from '@int/geotoolkit/welllog/LogCurve';
 import { Node } from '@int/geotoolkit/scene/Node';
 import { WellLogSource } from '@/components/well-log/WellLogSource';
+import { CompositeLogCurve } from '@int/geotoolkit/welllog/CompositeLogCurve';
 import { Range } from '@int/geotoolkit/util/Range';
+import { MathUtil } from '@int/geotoolkit/util/MathUtil';
 
 export class WellB2 extends WellLogSource {
 
   public getBinding(): DataBinding {
     return {
-      accept: (node: Node) => node instanceof LogCurve,
+      accept: (node: Node) => node instanceof CompositeLogCurve,
       unbind: (node) => {
-        if (node instanceof LogCurve) {
-          const curve = node as LogCurve;
-          curve.setData({}, false)
+        if (node instanceof CompositeLogCurve) {
+          node.setData({}, false);
         }
       },
       bind: (node: Node) => {
-        if (node instanceof LogCurve) {
-          const curve = node as LogCurve;curve.setData(this.measurements.logData(curve.getName(), this.indexMeasurement), false)
+        if (node instanceof CompositeLogCurve) {
+          node.setData(this.measurements.logData(node.getName(), this.indexMeasurement), false);
         }
       }
     };
   }
 
   public getLimits(): Range {
-    const indexMeasurements = this.measurements.logData(this.indexMeasurement as string);
-    return new Range(indexMeasurements.getMinDepth(), indexMeasurements.getMaxDepth());
+    const indexValues = this.measurements.values(this.indexMeasurement || '');
+    const indexLimits = MathUtil.getLimits(indexValues);
+    return new Range(indexLimits[0], indexLimits[1]);
   }
 
 } 
