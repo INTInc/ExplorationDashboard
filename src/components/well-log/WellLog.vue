@@ -18,7 +18,6 @@ import { IndexMeasurement } from '@/common/model/IndexMeasurement';
 const { state, registerStyleable } = useStore();
 const props = defineProps<{
   source: WellLogSource,
-  limits: number[],
   templateUrl: string,
   indexMeasurements: Set<IndexMeasurement>,
   fitTracks?: number,
@@ -52,7 +51,6 @@ function createWellLog(template: string) {
     container.value,
     props.source,
     template,
-    props.limits,
     props.fitTracks,
     getVisibleAnnotations(),
     props.indexMeasurements,

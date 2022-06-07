@@ -30,7 +30,6 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 		private referenceElement: HTMLElement,
 		private source: WellLogSource,
 		private template: string,
-		private limits: number[],
 		private tracksCountToFit = 1,
 		private annotations: WellAnnotations,
 		protected indexMeasurements: Set<IndexMeasurement>,
