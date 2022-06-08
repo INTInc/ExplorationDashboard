@@ -43,8 +43,6 @@ async function loadTemplate(): Promise<string> {
 
 function createWellLog(template: string) {
   const wellLog = new WellLogWithTools(
-      90,
-      props.headerScrollTo,
     canvas.value,
     container.value,
     props.source,
