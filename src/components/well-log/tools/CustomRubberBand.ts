@@ -1,10 +1,11 @@
 import { RubberBand, Events as RubberBandEvents } from '@int/geotoolkit/controls/tools/RubberBand';
 import { ToolWithButtons } from '@/common/ToolWithButtons';
 import { Button } from '@int/geotoolkit/controls/toolbar/Button';
+import { MathUtil } from '@int/geotoolkit/util/MathUtil';
 
 export abstract class CustomRubberBand extends ToolWithButtons {
 
-	protected readonly toolName = `customRubberBand-${new Date().getMilliseconds()}`;
+	protected readonly toolName = `customRubberBand-${Math.floor(MathUtil.getSeededRandom(0, 1000))}`;
 	protected readonly rubberBand: RubberBand;
 
 	constructor(
@@ -31,7 +32,6 @@ export abstract class CustomRubberBand extends ToolWithButtons {
 	protected abstract configureRubberBand(): void;
 
 	private createRubberBand() {
-		console.log(this.toolName);
 		return new RubberBand(this.widget.getTrackManipulatorLayer())
 			.setName(this.toolName)
 			.setEnabled(false)
