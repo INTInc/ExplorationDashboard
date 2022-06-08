@@ -18,7 +18,7 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 
 	private indexMeasurement: IndexMeasurement;
 
-	protected plot: any;
+	protected plot: Plot;
 	protected markers: WellLogMarker[] = [];
 
 	constructor(
@@ -76,7 +76,6 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 		plot
 			.on(PlotEvents.Resized, (_: never, plot: Plot) => this.resizeTracks(plot))
 			.setRefElement(this.referenceElement);
-
 		return plot;
 	}
 
