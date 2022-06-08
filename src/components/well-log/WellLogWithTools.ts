@@ -7,7 +7,7 @@ import { TrackType } from '@int/geotoolkit/welllog/TrackType';
 import { LogTrack } from '@int/geotoolkit/welllog/LogTrack';
 import { LimitsSelectionTool } from '@/components/well-log/tools/LimitsSelectionTool';
 import { DepthsSelectionTool } from '@/components/well-log/tools/DepthsSelectionTool';
-import { IndexMeasurementSwitcher } from '@/components/well-log/tools/IndexMeasurementSwitcher';
+import { IndexMeasurementSelector } from '@/components/well-log/tools/IndexMeasurementSelector';
 import { IndexMeasurement } from '@/common/model/IndexMeasurement';
 import { ToolWithButtons } from '@/common/ToolWithButtons';
 import { ZoomControlTool } from '@/components/well-log/tools/ZoomControlTool';
@@ -78,7 +78,7 @@ export class WellLogWithTools extends WellLog {
 	}
 
 	private addIndexMeasurementsSwitcher() {
-		this.tools.push(new IndexMeasurementSwitcher(
+		this.tools.push(new IndexMeasurementSelector(
 			this.source.getIndexMeasurements(),
 			(m: IndexMeasurement) => this.setIndexMeasurement(m),
 			this.root

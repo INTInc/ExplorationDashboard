@@ -2,19 +2,21 @@ import { ToolWithButtons } from '@/common/ToolWithButtons';
 import { Button } from '@int/geotoolkit/controls/toolbar/Button';
 import { IndexMeasurement } from '@/common/model/IndexMeasurement';
 
-export class IndexMeasurementSwitcher extends ToolWithButtons {
+export type OnSelectCallback = (m: IndexMeasurement) => void
+
+export class IndexMeasurementSelector extends ToolWithButtons {
 
 	constructor(
 		private indexMeasurements: IndexMeasurement[],
-		private onSelected: (m: IndexMeasurement) => void,
+		private onSelect: OnSelectCallback,
 		...props: ConstructorParameters<typeof ToolWithButtons>
 	) {
 		super(...props);
 	}
 
-	getButtons(): Button[] {
+	public getButtons(): Button[] {
 		return this.indexMeasurements.map((measurement: IndexMeasurement, index: number) => {
-			const buttonElement = document.createElement('div')
+			const buttonElement = document.createElement('button')
 			buttonElement.innerText = measurement.getName();
 			buttonElement.className = 'cg-toolbar-button cg-toolbar-text-button'
 
@@ -26,8 +28,11 @@ export class IndexMeasurementSwitcher extends ToolWithButtons {
 					name: 'index-measurement',
 					checked: index === 0
 				},
-				action: () => this.onSelected(measurement)
-			});
+				action: (_: never, checked: boolean) => {
+					buttonElement.disabled = checked;
+					this.onSelect(measurement);
+				}
+			})
 		})
 	}
 
