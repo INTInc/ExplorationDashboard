@@ -32,3 +32,9 @@ onMounted(() => state.field.loaded.then(createMap));
   overflow: hidden;
 }
 </style>
+
+<style lang="scss">
+.wells-map .cg-toolbar-left {
+  margin-left: 6px;
+}
+</style>
