@@ -6,8 +6,12 @@ import { from } from '@int/geotoolkit/selection/from';
 import { Node } from '@int/geotoolkit/scene/Node';
 import { Orientation } from '@int/geotoolkit/util/Orientation';
 import { IndexMeasurement } from '@/common/model/IndexMeasurement';
+import { RubberBandTool } from '@/components/well-log/tools/RubberBandTool';
+import { TrackType } from '@int/geotoolkit/welllog/TrackType';
+import { LogTrack } from '@int/geotoolkit/welllog/LogTrack';
 import { RubberBandRenderMode } from '@int/geotoolkit/controls/tools/RubberBandRenderMode';
-import { AxisRubberBand } from '@/components/well-log/tools/AxisRubberBand';
+import { LogCurve } from '@int/geotoolkit/welllog/LogCurve';
+import { MathUtil } from '@int/geotoolkit/util/MathUtil';
 
 type HeaderScrollPosition = 'top' | 'bottom';
 
@@ -19,15 +23,56 @@ export class WellLogWithTools extends WellLog {
 		...props: ConstructorParameters<typeof WellLog>
 	) {
 		super(...props);
-		this.connectTools();
-		this.createToolbar()
+		this.createDepthsSelectionTool();
+		this.createLimitsSelectionToolIfPossible();
+		this.createToolbar();
 	}
 
-	private connectTools() {
-		this.root.connectTool(new AxisRubberBand(
+	private createLimitsSelectionToolIfPossible() {
+		const nonIndexTracks = this.root
+			.getTrackContainer()
+			.getChildren((t: Node) => t instanceof LogTrack && t.getTag().type !== TrackType.IndexTrack)
+			.toArray();
+
+				if (nonIndexTracks.length === 1) {
+					const track = nonIndexTracks[0];
+					const limitsSelection = new RubberBandTool(
+						'limitsSelection',
+						this.root.getTrackManipulatorLayer(),
+						RubberBandRenderMode.Horizontal
+					);
+					limitsSelection.onSelected((range) => {
+						const trackWidth = track.getBounds().getWidth();
+						(from(track)
+							.where((node: Node) => node instanceof LogCurve)
+							.selectToArray() as LogCurve[])
+							.forEach((c: LogCurve) => {
+								const minimum = c.getMinimumNormalizationLimit();
+								const maximum = c.getMaximumNormalizationLimit();
+								const multiplier = Math.abs(maximum - minimum) / trackWidth;
+								c.setNormalizationLimits(
+									minimum + MathUtil.sign(maximum - minimum) * range.getLow() * multiplier,
+									minimum + MathUtil.sign(maximum - minimum) * range.getHigh() * multiplier
+								);
+							})
+					});
+					this.root.connectTool(limitsSelection);
+				}
+	}
+
+	private createDepthsSelectionTool() {
+		const depthsSelection = new RubberBandTool(
+			'depthsSelection',
 			this.root.getTrackManipulatorLayer(),
-			'customRubberBand',
-		));
+			RubberBandRenderMode.Vertical
+		);
+		depthsSelection.onSelected((range) => {
+			this.root.setVisibleDepthLimits(range);
+			this.root.getToolByName('trackPanning')?.setEnabled(true);
+			this.root.getToolByName('limitsSelection')?.setEnabled(false);
+			this.root.getToolByName('depthsSelection')?.setEnabled(false);
+		});
+		this.root.connectTool(depthsSelection);
 	}
 
 	private createToolbar() {
@@ -69,9 +114,20 @@ export class WellLogWithTools extends WellLog {
 				action: (_: never, checked: boolean) => this.toggleHeader(checked)
 			}),
 			new Button({
+				icon: 'fa-solid fa-arrows-left-right-to-line fa-rotate-90',
+				title: 'Select limits',
+				action: () => {
+					this.root.getToolByName('trackPanning')?.setEnabled(false);
+					this.root.getToolByName('limitsSelection')?.setEnabled(true);
+				}
+			}),
+			new Button({
 				icon: 'fa-solid fa-arrows-left-right-to-line',
-				title: 'Select area',
-				action: () => this.setAxisRubberBandEnabled(true)
+				title: 'Select depths',
+				action: () => {
+					this.root.getToolByName('trackPanning')?.setEnabled(false);
+					this.root.getToolByName('depthsSelection')?.setEnabled(true);
+				}
 			})
 		];
 	}
@@ -91,11 +147,6 @@ export class WellLogWithTools extends WellLog {
 			case 'top': this.root.getHeaderContainer().scrollToTop(); break;
 			case 'bottom': this.root.getHeaderContainer().scrollToBottom(); break;
 		}
-	}
-
-	private setAxisRubberBandEnabled(enabled: boolean) {
-		this.root.getToolByName('trackPanning')?.setEnabled(!enabled);
-		this.root.getToolByName('customRubberBand')?.setEnabled(enabled);
 	}
 
 	private createIndexMeasurementsButtons(): Button[] {
