@@ -4,14 +4,19 @@
     <theme-switcher></theme-switcher>
   </header>
   <div class="charts-container">
-    <well-log-vertical
+    <well-log
       class="card vertical-log"
       :source="wellB2"
-    ></well-log-vertical>
-    <well-log-horizontal
+      :template-url="'/toolkit-welllog-templates/vertical-log.json'"
+      :show-annotations="true"
+      :fit-tracks="3"
+    ></well-log>
+    <well-log
       class="card horizontal-log"
       :source="wellB32"
-    ></well-log-horizontal>
+      :template-url="'/toolkit-welllog-templates/horizontal-log.json'"
+      :fit-tracks="1"
+    ></well-log>
     <wells-map
       class="card"
     ></wells-map>
@@ -26,14 +31,14 @@
 
 <script setup lang="ts">
 import ThemeSwitcher from '@/components/ThemeSwitcher.vue';
+import WellLog from '@/components/well-log/WellLog.vue';
 import WellsMap from '@/components/wells-map/WellsMap.vue';
 import WellsModel from '@/components/wells-3d/Wells3D.vue';
-import WellLogVertical from '@/components/WellLogVertical.vue';
-import WellLogHorizontal from '@/components/WellLogHorizontal.vue';
 
 import { Store, useStore } from '@/store';
 import { WellB2 } from '@/data-sources/WellB2';
 import { WellB32 } from '@/data-sources/WellB32';
+import { MediaQueryHelper } from '@/common/layout/MediaQueryHelper';
 
 const { setupCssLoader, addField, addWell, addCursor, addAnnotations }: Store = useStore();
 
@@ -47,17 +52,16 @@ addField().setUrl('/data/fieldB.json');
 
 const wellB2 = new WellB2();
 const wellB32 = new WellB32();
-
-//TODO add logic to switch between las files for different devices
+const deviceType = MediaQueryHelper.deviceType();
 
 addWell(wellB2).setUrls({
   surveysUrl: '/data/wellB-2/surveys.las',
-  measurementsUrl: '/data/wellB-2/logs_desktop.las'
+  measurementsUrl: `/data/wellB-2/logs_${deviceType}_decimated.las`
 });
 addWell(wellB32).setUrls({
   topsUrl: '/data/wellB-32/tops.las',
   surveysUrl: '/data/wellB-32/surveys.las',
-  measurementsUrl: '/data/wellB-32/logs_desktop.las'
+  measurementsUrl: `/data/wellB-32/logs_${deviceType}.las`
 });
 addCursor(wellB2);
 addCursor(wellB32);

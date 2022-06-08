@@ -11,6 +11,7 @@ import { useStore } from '@/store';
 import { AppTheme } from '@/common/styling/AppTheme';
 import { onMounted, ref } from '@vue/runtime-core';
 import { computed, Ref } from 'vue';
+import { MediaQueryHelper } from '@/common/layout/MediaQueryHelper';
 
 const STORAGE_ITEM_KEY = 'preferred-theme';
 const DEFAULT_THEME = AppTheme.Light;
@@ -18,7 +19,7 @@ const DEFAULT_THEME = AppTheme.Light;
 const { setAppTheme } = useStore();
 
 const savedTheme = computed(() => localStorage.getItem(STORAGE_ITEM_KEY) as AppTheme);
-const themeMediaQuery = computed(() => window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)'));
+const themeMediaQuery = computed(() => MediaQueryHelper.preferredTheme());
 
 const selectorValue: Ref<AppTheme> = ref(DEFAULT_THEME);
 
