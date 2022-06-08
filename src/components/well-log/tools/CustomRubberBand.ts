@@ -7,22 +7,20 @@ export abstract class CustomRubberBand extends ToolWithButtons {
 
 	protected readonly toolName = `customRubberBand-${Math.floor(MathUtil.getSeededRandom(0, 1000))}`;
 	protected readonly rubberBand: RubberBand;
+	private readonly button: Button;
 
 	constructor(
 		...props: ConstructorParameters<typeof ToolWithButtons>
 	) {
 		super(...props);
 		this.rubberBand = this.createRubberBand();
+		this.button = this.createButton();
 		this.configureRubberBand();
 		this.widget.connectTool(this.rubberBand);
 	}
 
 	public getButtons(): Button[] {
-		return [new Button({
-			icon: this.getButtonIcon(),
-			title: this.getButtonTitle(),
-			action: () => this.setRubberBandEnabled(true)
-		})];
+		return [this.button];
 	}
 
 	protected abstract getButtonIcon(): string;
@@ -44,13 +42,28 @@ export abstract class CustomRubberBand extends ToolWithButtons {
 			})
 			.addListener(
 				RubberBandEvents.onZoomEnd,
-				() => this.setRubberBandEnabled(false)
+				() => {
+					this.setRubberBandEnabled(false);
+					this.button.setChecked(false);
+				}
 			)
 	}
 
 	private setRubberBandEnabled(enabled: boolean) {
 		this.widget.getToolByName('trackPanning')?.setEnabled(!enabled);
 		this.widget.getToolByName(this.toolName)?.setEnabled(enabled);
+	}
+
+	private createButton(): Button {
+		return new Button({
+			icon: this.getButtonIcon(),
+			title: this.getButtonTitle(),
+			checkbox: {
+				enabled: true,
+				checked: false
+			},
+			action: (_: never, checked: boolean) => this.setRubberBandEnabled(checked)
+		})
 	}
 
 }
