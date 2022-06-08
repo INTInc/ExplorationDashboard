@@ -137,7 +137,7 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
 				}),
 				new Button({
 					title: 'Center map',
-					icon: 'fa fa-crosshairs',
+					icon: 'fa fa-location-crosshairs',
 					action: () => this.flyToExploration()
 				})]
 		})
