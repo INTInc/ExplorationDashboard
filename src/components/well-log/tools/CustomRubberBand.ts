@@ -1,5 +1,5 @@
 import { RubberBand, Events as RubberBandEvents } from '@int/geotoolkit/controls/tools/RubberBand';
-import { ToolWithButtons } from '@/common/ToolWithButtons';
+import { ToolWithButtons } from '@/components/well-log/tools/ToolWithButtons';
 import { Button } from '@int/geotoolkit/controls/toolbar/Button';
 import { MathUtil } from '@int/geotoolkit/util/MathUtil';
 

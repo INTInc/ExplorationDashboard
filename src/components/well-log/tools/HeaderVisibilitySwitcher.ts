@@ -1,4 +1,4 @@
-import { ToolWithButtons } from '@/common/ToolWithButtons';
+import { ToolWithButtons } from '@/components/well-log/tools/ToolWithButtons';
 import { Button } from '@int/geotoolkit/controls/toolbar/Button';
 import { from } from '@int/geotoolkit/selection/from';
 import { Node } from '@int/geotoolkit/scene/Node';

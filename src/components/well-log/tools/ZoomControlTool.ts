@@ -1,4 +1,4 @@
-import { ToolWithButtons } from '@/common/ToolWithButtons';
+import { ToolWithButtons } from '@/components/well-log/tools/ToolWithButtons';
 import { Button } from '@int/geotoolkit/controls/toolbar/Button';
 
 export class ZoomControlTool extends ToolWithButtons {

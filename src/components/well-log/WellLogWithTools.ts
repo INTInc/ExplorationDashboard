@@ -8,7 +8,7 @@ import { LimitsSelectionTool } from '@/components/well-log/tools/LimitsSelection
 import { DepthsSelectionTool } from '@/components/well-log/tools/DepthsSelectionTool';
 import { IndexMeasurementSelector } from '@/components/well-log/tools/IndexMeasurementSelector';
 import { IndexMeasurement } from '@/common/model/IndexMeasurement';
-import { ToolWithButtons } from '@/common/ToolWithButtons';
+import { ToolWithButtons } from '@/components/well-log/tools/ToolWithButtons';
 import { ZoomControlTool } from '@/components/well-log/tools/ZoomControlTool';
 import { Button } from '@int/geotoolkit/controls/toolbar/Button';
 import { HeaderVisibilitySwitcher } from '@/components/well-log/tools/HeaderVisibilitySwitcher';

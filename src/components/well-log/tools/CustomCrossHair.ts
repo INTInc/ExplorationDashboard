@@ -1,4 +1,4 @@
-import { ToolWithButtons } from '@/common/ToolWithButtons';
+import { ToolWithButtons } from '@/components/well-log/tools/ToolWithButtons';
 import { Button } from '@int/geotoolkit/controls/toolbar/Button';
 import { CrossHair, Events as CrossHairEvents } from '@int/geotoolkit/controls/tools/CrossHair';
 import { CrossHairEventArgs } from '@int/geotoolkit/controls/tools/CrossHairEventArgs';
