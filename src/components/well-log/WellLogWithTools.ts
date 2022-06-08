@@ -2,7 +2,6 @@ import { WellLog } from '@/components/well-log/WellLog';
 import { Toolbar } from '@int/geotoolkit/controls/toolbar/Toolbar';
 import { AnchorType } from '@int/geotoolkit/util/AnchorType';
 import { Node } from '@int/geotoolkit/scene/Node';
-import { Orientation } from '@int/geotoolkit/util/Orientation';
 import { TrackType } from '@int/geotoolkit/welllog/TrackType';
 import { LogTrack } from '@int/geotoolkit/welllog/LogTrack';
 import { LimitsSelectionTool } from '@/components/well-log/tools/LimitsSelectionTool';
@@ -89,7 +88,6 @@ export class WellLogWithTools extends WellLog {
 		new Toolbar({
 			tools: this.plot.getTool(),
 			alignment: AnchorType.RightBottom,
-			orientation: Orientation.Horizontal,
 			buttons: new Array<Button>().concat(...this.tools.map(t => t.getButtons()))
 		})
 	}

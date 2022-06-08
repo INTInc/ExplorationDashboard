@@ -68,3 +68,9 @@ onMounted(() => props.source.loaded
     height: 100%;
 }
 </style>
+
+<style lang="scss">
+.well-log .cg-toolbar-group {
+  display: flex;
+}
+</style>
