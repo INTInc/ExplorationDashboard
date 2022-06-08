@@ -2,8 +2,6 @@ import { WellLogWidget } from '@int/geotoolkit/welllog/widgets/WellLogWidget';
 import { HeaderType } from '@int/geotoolkit/welllog/header/LogAxisVisualHeader';
 import { Events as PlotEvents, Plot } from '@int/geotoolkit/plot/Plot';
 import { Orientation } from '@int/geotoolkit/util/Orientation';
-import { CrossHair, Events as CrossHairEvents } from '@int/geotoolkit/controls/tools/CrossHair';
-import { CrossHairEventArgs } from '@int/geotoolkit/controls/tools/CrossHairEventArgs';
 import { StretchablePlot } from '@/common/layout/StretchablePlot';
 import { WellLogSource } from '@/components/well-log/WellLogSource';
 import { WellAnnotations } from '@/common/model/WellAnnotations';
@@ -15,11 +13,9 @@ import { Node } from '@int/geotoolkit/scene/Node';
 import { LogAxis } from '@int/geotoolkit/welllog/LogAxis';
 import { IndexMeasurement } from '@/common/model/IndexMeasurement';
 import { WellLogMarker } from '@/components/well-log/WellLogMarker';
-type CrossHairCallback = (y: number | null) => void;
 
 export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 
-	private crossHairCallback: CrossHairCallback | null = null;
 	private indexMeasurement: IndexMeasurement;
 
 	protected plot: any;
@@ -41,7 +37,6 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 		this.plot = this.createPlot();
 		this.indexMeasurement = this.source.getDefaultIndexMeasurement();
 		this.createAnnotations();
-		this.configureCrossHairTool();
 	}
 
 	public setIndexMeasurement(measurement: IndexMeasurement) {
@@ -53,10 +48,6 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 		this.updateIndexAxis(measurement);
 		this.updateAnnotations(measurement);
 		this.indexMeasurement = measurement;
-	}
-
-	public onCrossHairMoved(fn: CrossHairCallback) {
-		this.crossHairCallback = fn;
 	}
 
 	private createAnnotations() {
@@ -104,27 +95,6 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 				: curveTrackWidth
 			);
 		}
-	}
-
-	private configureCrossHairTool() {
-		const crossHair = this.root.getToolByName('cross-hair');
-		if (crossHair !== null) {
-			(crossHair as CrossHair)
-				.setEnabled(true)
-				.setProperties({
-					east: {
-						visible: true
-					}
-				})
-				.addListener(
-					CrossHairEvents.onPositionChanged,
-					(_: never, e: CrossHairEventArgs) => this.onCrossHairPositionChanged(e)
-				);
-		}
-	}
-
-	private onCrossHairPositionChanged(event: CrossHairEventArgs) {
-		if (this.crossHairCallback) this.crossHairCallback(event.getPosition().getY());
 	}
 
 	private static createWidget(): WellLogWidget {

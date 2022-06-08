@@ -13,15 +13,20 @@ import { ToolWithButtons } from '@/common/ToolWithButtons';
 import { ZoomControlTool } from '@/components/well-log/tools/ZoomControlTool';
 import { Button } from '@int/geotoolkit/controls/toolbar/Button';
 import { HeaderVisibilitySwitcher } from '@/components/well-log/tools/HeaderVisibilitySwitcher';
+import { CustomCrossHair } from '@/components/well-log/tools/CustomCrossHair';
+
+type CrossHairCallback = (depth: number | null) => void;
 
 export class WellLogWithTools extends WellLog {
 
 	private tools = new Array<ToolWithButtons>();
 	private limitsSelectionTool?: LimitsSelectionTool;
+	private crossHairCallback?: CrossHairCallback;
 
 	constructor(...props: ConstructorParameters<typeof WellLog>) {
 		super(...props);
 		this.addZoomControlTool();
+		this.addCrossHairSwitcher();
 		this.addDepthsSelectionTool();
 		this.addLimitsSelectionToolIfPossible();
 		this.addHeaderVisibilitySwitcher();
@@ -29,10 +34,21 @@ export class WellLogWithTools extends WellLog {
 		this.createToolbar();
 	}
 
+	public onCrossHairMoved(fn: CrossHairCallback) {
+		this.crossHairCallback = fn;
+	}
+
 	private addZoomControlTool() {
 		this.tools.push(new ZoomControlTool(
 			5 / 4,
 			() => this.onFitToBounds(),
+			this.root
+		));
+	}
+
+	private addCrossHairSwitcher() {
+		this.tools.push(new CustomCrossHair(
+			depth => { if (this.crossHairCallback) this.crossHairCallback(depth) },
 			this.root
 		));
 	}
