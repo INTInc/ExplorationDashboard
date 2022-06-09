@@ -73,7 +73,7 @@ export class WellLogWithTools extends WellLog {
 	}
 
 	private addHeaderVisibilitySwitcher() {
-		this.tools.push(new HeaderVisibilitySwitcher(this.root));
+		this.tools.push(new HeaderVisibilitySwitcher(90, this.root));
 	}
 
 	private addIndexMeasurementsSwitcher() {
