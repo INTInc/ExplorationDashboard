@@ -17,7 +17,7 @@ export class CustomCrossHair extends ToolWithButtons {
 
 	public getButtons(): Button[] {
 		return [new Button({
-			icon: 'fa-solid fa-crosshairs',
+			icon: 'fa fa-crosshairs',
 			title: 'Enable/disable CrossHair',
 			checkbox: {
 				enabled: true,

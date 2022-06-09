@@ -42,7 +42,7 @@ export class LimitsSelectionTool extends CustomRubberBand {
 
 	protected getButtonIcon(): string {
 		const rotationClass = this.widget.getOrientation() === Orientation.Horizontal ? 'fa-rotate-90' : '';
-		return `fa-solid fa-arrows-left-right-to-line ${rotationClass}`;
+		return `fa fa-arrows-left-right-to-line ${rotationClass}`;
 	}
 
 	protected getButtonTitle(): string {
