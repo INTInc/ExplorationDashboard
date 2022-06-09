@@ -2182,22 +2182,6 @@
           },
           {
             "cg_type": "referenceline",
-            "cg_id": 253,
-            "id": null,
-            "name": "",
-            "cssclass": null,
-            "selectable": true,
-            "visible": true,
-            "tag": null,
-            "animationstyle": null,
-            "linestyle": null,
-            "microposleft": 0,
-            "microposright": 1,
-            "value": 0.7,
-            "level": null
-          },
-          {
-            "cg_type": "referenceline",
             "cg_id": 251,
             "id": null,
             "name": "",
@@ -2215,6 +2199,201 @@
           {
             "cg_type": "compositecurve",
             "id": null,
+            "name": "TVD",
+            "display_mode": [
+              "line",
+              "fill"
+            ],
+            "limits_type": 2,
+            "custom_limits_minimum": 2109,
+            "custom_limits_maximum": 992,
+            "valueformat": {
+              "cg_type": "geotoolkit.util.DecimalFormat",
+              "cg_id": 254,
+              "format": "#,###.00",
+              "locale": "us",
+              "decimalseparatoralwaysshown": false,
+              "round": true,
+              "overridegroupsep": null,
+              "overridedecsep": null,
+              "overridenegsign": null,
+              "ispercentage": false,
+              "autodetectpercentage": true,
+              "maximumfractiondigits": 2,
+              "minimumfractiondigits": 0
+            },
+            "linestyle": {
+              "cg_type": "linestyle",
+              "cg_id": 255,
+              "color": "#000000ff",
+              "width": 5,
+              "pattern": [],
+              "pixelsnapmode": {
+                "cg_id": 256,
+                "x": false,
+                "y": false
+              },
+              "linejoin": "round",
+              "linecap": "butt"
+            },
+            "textstyle": {
+              "cg_type": "textstyle",
+              "cg_id": 257,
+              "color": "#757575ff",
+              "font": "12px Roboto"
+            },
+            "header": {
+              "cssclass": null,
+              "visible": true,
+              "linestyle": {
+                "cg_type": "linestyle",
+                "cg_id": 259,
+                "color": "#000000ff",
+                "width": 1,
+                "pattern": [],
+                "pixelsnapmode": {
+                  "cg_id": 260,
+                  "x": true,
+                  "y": true
+                },
+                "linejoin": "round",
+                "linecap": "butt"
+              },
+              "textstyle": {
+                "cg_type": "textstyle",
+                "cg_id": 261,
+                "color": "#000000ff",
+                "font": "normal 11px Arial"
+              },
+              "gap": 5,
+              "order": [
+                "Name",
+                "Tracking",
+                "Unit",
+                "Description"
+              ],
+              "elements": [
+                {
+                  "cg_id": 262,
+                  "name": "ScaleFrom",
+                  "textstyle": "#href(76)",
+                  "horizontalpos": "left",
+                  "verticalpos": "top",
+                  "text": "2,109",
+                  "visible": true
+                },
+                {
+                  "cg_id": 263,
+                  "name": "Name",
+                  "textstyle": "#href(78)",
+                  "horizontalpos": "center",
+                  "verticalpos": "top",
+                  "text": "TVD",
+                  "visible": true,
+                  "cut": "left-to-right"
+                },
+                {
+                  "cg_id": 264,
+                  "name": "Description",
+                  "textstyle": "#href(80)",
+                  "horizontalpos": "center",
+                  "verticalpos": "bottom",
+                  "text": null,
+                  "visible": true,
+                  "cut": "left-to-right"
+                },
+                {
+                  "cg_id": 265,
+                  "name": "Tracking",
+                  "textstyle": "#href(82)",
+                  "horizontalpos": "center",
+                  "verticalpos": "bottom",
+                  "text": null,
+                  "visible": true
+                },
+                {
+                  "cg_id": 266,
+                  "name": "Unit",
+                  "textstyle": "#href(84)",
+                  "horizontalpos": "center",
+                  "verticalpos": "bottom",
+                  "text": "m",
+                  "visible": true
+                },
+                {
+                  "cg_id": 267,
+                  "name": "ScaleTo",
+                  "textstyle": "#href(86)",
+                  "horizontalpos": "right",
+                  "verticalpos": "top",
+                  "text": "992",
+                  "visible": true
+                },
+                {
+                  "cg_id": 268,
+                  "name": "Axis",
+                  "textstyle": "#href(88)",
+                  "horizontalpos": "center",
+                  "verticalpos": "top",
+                  "text": "",
+                  "visible": false,
+                  "options": {
+                    "cg_id": 269,
+                    "position": "bottom"
+                  }
+                },
+                {
+                  "cg_id": 270,
+                  "name": "Fill",
+                  "textstyle": "#href(91)",
+                  "horizontalpos": "center",
+                  "verticalpos": "top",
+                  "text": "",
+                  "visible": true
+                },
+                {
+                  "cg_id": 271,
+                  "name": "Line",
+                  "textstyle": "#href(93)",
+                  "horizontalpos": "center",
+                  "verticalpos": "center",
+                  "text": "",
+                  "visible": true
+                },
+                {
+                  "cg_id": 272,
+                  "name": "Symbol",
+                  "textstyle": "#href(95)",
+                  "horizontalpos": "center",
+                  "verticalpos": "top",
+                  "text": "",
+                  "visible": true
+                }
+              ]
+            },
+            "left_filltype": "positive",
+            "right_filltype": "negative",
+            "cg_id": 253
+          },
+          {
+            "cg_type": "referenceline",
+            "cg_id": 273,
+            "id": null,
+            "name": "",
+            "cssclass": null,
+            "selectable": true,
+            "visible": true,
+            "tag": null,
+            "animationstyle": null,
+            "linestyle": null,
+            "microposleft": 0,
+            "microposright": 1,
+            "value": 0.7,
+            "level": null
+          },
+          {
+            "cg_type": "compositecurve",
+            "id": null,
             "name": "GR",
             "display_mode": [
               "line",
@@ -2226,7 +2405,7 @@
             "custom_limits_maximum": 150,
             "valueformat": {
               "cg_type": "geotoolkit.util.DecimalFormat",
-              "cg_id": 255,
+              "cg_id": 275,
               "format": "#,###.00",
               "locale": "us",
               "decimalseparatoralwaysshown": false,
@@ -2241,12 +2420,12 @@
             },
             "linestyle": {
               "cg_type": "linestyle",
-              "cg_id": 256,
+              "cg_id": 276,
               "color": "#7cb342ff",
               "width": 1,
               "pattern": [],
               "pixelsnapmode": {
-                "cg_id": 257,
+                "cg_id": 277,
                 "x": false,
                 "y": false
               },
@@ -2255,7 +2434,7 @@
             },
             "textstyle": {
               "cg_type": "textstyle",
-              "cg_id": 258,
+              "cg_id": 278,
               "color": "#757575ff",
               "font": "12px Roboto"
             },
@@ -2264,12 +2443,12 @@
               "visible": true,
               "linestyle": {
                 "cg_type": "linestyle",
-                "cg_id": 260,
+                "cg_id": 280,
                 "color": "#000000ff",
                 "width": 1,
                 "pattern": [],
                 "pixelsnapmode": {
-                  "cg_id": 261,
+                  "cg_id": 281,
                   "x": true,
                   "y": true
                 },
@@ -2278,7 +2457,7 @@
               },
               "textstyle": {
                 "cg_type": "textstyle",
-                "cg_id": 262,
+                "cg_id": 282,
                 "color": "#000000ff",
                 "font": "normal 11px Arial"
               },
@@ -2291,7 +2470,7 @@
               ],
               "elements": [
                 {
-                  "cg_id": 263,
+                  "cg_id": 283,
                   "name": "ScaleFrom",
                   "textstyle": "#href(76)",
                   "horizontalpos": "left",
@@ -2300,7 +2479,7 @@
                   "visible": true
                 },
                 {
-                  "cg_id": 264,
+                  "cg_id": 284,
                   "name": "Name",
                   "textstyle": "#href(78)",
                   "horizontalpos": "center",
@@ -2310,7 +2489,7 @@
                   "cut": "left-to-right"
                 },
                 {
-                  "cg_id": 265,
+                  "cg_id": 285,
                   "name": "Description",
                   "textstyle": "#href(80)",
                   "horizontalpos": "center",
@@ -2320,7 +2499,7 @@
                   "cut": "left-to-right"
                 },
                 {
-                  "cg_id": 266,
+                  "cg_id": 286,
                   "name": "Tracking",
                   "textstyle": "#href(82)",
                   "horizontalpos": "center",
@@ -2329,7 +2508,7 @@
                   "visible": true
                 },
                 {
-                  "cg_id": 267,
+                  "cg_id": 287,
                   "name": "Unit",
                   "textstyle": "#href(84)",
                   "horizontalpos": "center",
@@ -2338,7 +2517,7 @@
                   "visible": true
                 },
                 {
-                  "cg_id": 268,
+                  "cg_id": 288,
                   "name": "ScaleTo",
                   "textstyle": "#href(86)",
                   "horizontalpos": "right",
@@ -2347,7 +2526,7 @@
                   "visible": true
                 },
                 {
-                  "cg_id": 269,
+                  "cg_id": 289,
                   "name": "Axis",
                   "textstyle": "#href(88)",
                   "horizontalpos": "center",
@@ -2355,12 +2534,12 @@
                   "text": "",
                   "visible": false,
                   "options": {
-                    "cg_id": 270,
+                    "cg_id": 290,
                     "position": "bottom"
                   }
                 },
                 {
-                  "cg_id": 271,
+                  "cg_id": 291,
                   "name": "Fill",
                   "textstyle": "#href(91)",
                   "horizontalpos": "center",
@@ -2369,7 +2548,7 @@
                   "visible": true
                 },
                 {
-                  "cg_id": 272,
+                  "cg_id": 292,
                   "name": "Line",
                   "textstyle": "#href(93)",
                   "horizontalpos": "center",
@@ -2378,7 +2557,7 @@
                   "visible": true
                 },
                 {
-                  "cg_id": 273,
+                  "cg_id": 293,
                   "name": "Symbol",
                   "textstyle": "#href(95)",
                   "horizontalpos": "center",
@@ -2390,10 +2569,10 @@
             },
             "left_filltype": "positive",
             "right_filltype": "negative",
-            "right_reference": "#href(253)",
+            "right_reference": "#href(273)",
             "right_fill": {
               "cg_type": "logfill",
-              "cg_id": 274,
+              "cg_id": 294,
               "id": null,
               "name": "",
               "cssclass": null,
@@ -2404,217 +2583,38 @@
               "linestyle": null,
               "microposleft": 0,
               "microposright": 1,
-              "curve1": "#href(253)",
-              "curve2": "#href(254)",
+              "curve1": "#href(273)",
+              "curve2": "#href(274)",
               "fillstyle": {
                 "cg_type": "fillstyle",
-                "cg_id": 275,
+                "cg_id": 295,
                 "color": "#fdd835ff",
                 "evenoddmode": false
               },
               "negativefillstyle": {
                 "cg_type": "fillstyle",
-                "cg_id": 276,
+                "cg_id": 296,
                 "color": "#fdd835ff",
                 "evenoddmode": false
               },
               "positivefillstyle": {
                 "cg_type": "fillstyle",
-                "cg_id": 277,
-                "color": "#a8a3e0b2",
+                "cg_id": 297,
+                "color": "#9d91dfb2",
                 "evenoddmode": false
               },
               "filltype": "left"
             },
-            "cg_id": 254
-          },
-          {
-            "cg_type": "compositecurve",
-            "id": null,
-            "name": "TVD",
-            "display_mode": [
-              "line",
-              "fill"
-            ],
-            "limits_type": 2,
-            "custom_limits_minimum": 2109,
-            "custom_limits_maximum": 992,
-            "valueformat": {
-              "cg_type": "geotoolkit.util.DecimalFormat",
-              "cg_id": 279,
-              "format": "#,###.00",
-              "locale": "us",
-              "decimalseparatoralwaysshown": false,
-              "round": true,
-              "overridegroupsep": null,
-              "overridedecsep": null,
-              "overridenegsign": null,
-              "ispercentage": false,
-              "autodetectpercentage": true,
-              "maximumfractiondigits": 2,
-              "minimumfractiondigits": 0
-            },
-            "linestyle": {
-              "cg_type": "linestyle",
-              "cg_id": 280,
-              "color": "#000000ff",
-              "width": 5,
-              "pattern": [],
-              "pixelsnapmode": {
-                "cg_id": 281,
-                "x": false,
-                "y": false
-              },
-              "linejoin": "round",
-              "linecap": "butt"
-            },
-            "textstyle": {
-              "cg_type": "textstyle",
-              "cg_id": 282,
-              "color": "#757575ff",
-              "font": "12px Roboto"
-            },
-            "header": {
-              "cssclass": null,
-              "visible": true,
-              "linestyle": {
-                "cg_type": "linestyle",
-                "cg_id": 284,
-                "color": "#000000ff",
-                "width": 1,
-                "pattern": [],
-                "pixelsnapmode": {
-                  "cg_id": 285,
-                  "x": true,
-                  "y": true
-                },
-                "linejoin": "round",
-                "linecap": "butt"
-              },
-              "textstyle": {
-                "cg_type": "textstyle",
-                "cg_id": 286,
-                "color": "#000000ff",
-                "font": "normal 11px Arial"
-              },
-              "gap": 5,
-              "order": [
-                "Name",
-                "Tracking",
-                "Unit",
-                "Description"
-              ],
-              "elements": [
-                {
-                  "cg_id": 287,
-                  "name": "ScaleFrom",
-                  "textstyle": "#href(76)",
-                  "horizontalpos": "left",
-                  "verticalpos": "top",
-                  "text": "2,109",
-                  "visible": true
-                },
-                {
-                  "cg_id": 288,
-                  "name": "Name",
-                  "textstyle": "#href(78)",
-                  "horizontalpos": "center",
-                  "verticalpos": "top",
-                  "text": "TVD",
-                  "visible": true,
-                  "cut": "left-to-right"
-                },
-                {
-                  "cg_id": 289,
-                  "name": "Description",
-                  "textstyle": "#href(80)",
-                  "horizontalpos": "center",
-                  "verticalpos": "bottom",
-                  "text": null,
-                  "visible": true,
-                  "cut": "left-to-right"
-                },
-                {
-                  "cg_id": 290,
-                  "name": "Tracking",
-                  "textstyle": "#href(82)",
-                  "horizontalpos": "center",
-                  "verticalpos": "bottom",
-                  "text": null,
-                  "visible": true
-                },
-                {
-                  "cg_id": 291,
-                  "name": "Unit",
-                  "textstyle": "#href(84)",
-                  "horizontalpos": "center",
-                  "verticalpos": "bottom",
-                  "text": "m",
-                  "visible": true
-                },
-                {
-                  "cg_id": 292,
-                  "name": "ScaleTo",
-                  "textstyle": "#href(86)",
-                  "horizontalpos": "right",
-                  "verticalpos": "top",
-                  "text": "992",
-                  "visible": true
-                },
-                {
-                  "cg_id": 293,
-                  "name": "Axis",
-                  "textstyle": "#href(88)",
-                  "horizontalpos": "center",
-                  "verticalpos": "top",
-                  "text": "",
-                  "visible": false,
-                  "options": {
-                    "cg_id": 294,
-                    "position": "bottom"
-                  }
-                },
-                {
-                  "cg_id": 295,
-                  "name": "Fill",
-                  "textstyle": "#href(91)",
-                  "horizontalpos": "center",
-                  "verticalpos": "top",
-                  "text": "",
-                  "visible": true
-                },
-                {
-                  "cg_id": 296,
-                  "name": "Line",
-                  "textstyle": "#href(93)",
-                  "horizontalpos": "center",
-                  "verticalpos": "center",
-                  "text": "",
-                  "visible": true
-                },
-                {
-                  "cg_id": 297,
-                  "name": "Symbol",
-                  "textstyle": "#href(95)",
-                  "horizontalpos": "center",
-                  "verticalpos": "top",
-                  "text": "",
-                  "visible": true
-                }
-              ]
-            },
-            "left_filltype": "positive",
-            "right_filltype": "negative",
-            "cg_id": 278
+            "cg_id": 274
           }
         ]
       },
       {
         "cg_id": 299,
-        "name": "Track2",
+        "name": null,
         "id": "INDEX",
         "type": "index",
-        "width": 50,
+        "width": 250,
         "block": {
           "cg_type": "geotoolkit.welllog.LogBlock",
           "cg_id": 300,

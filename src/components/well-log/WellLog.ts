@@ -13,6 +13,10 @@ import { Node } from '@int/geotoolkit/scene/Node';
 import { LogAxis } from '@int/geotoolkit/welllog/LogAxis';
 import { IndexMeasurement } from '@/common/model/IndexMeasurement';
 import { WellLogMarker } from '@/components/well-log/WellLogMarker';
+import { AdaptiveLogCurveVisualHeader } from '@int/geotoolkit/welllog/header/AdaptiveLogCurveVisualHeader';
+import { CompositeLogCurve } from '@int/geotoolkit/welllog/CompositeLogCurve';
+import { LogFill } from '@int/geotoolkit/welllog/LogFill';
+import { LogCurve } from '@int/geotoolkit/welllog/LogCurve';
 
 export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 
@@ -31,6 +35,7 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 		cssLoader: ToolkitCssLoader
 	) {
 		super(WellLog.createWidget(), cssLoader);
+		this.updateHeaderProviders();
 		this.root
 			.setAxisHeaderType(HeaderType.Simple)
 			.loadTemplate(this.template)
@@ -48,6 +53,23 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 		this.updateIndexAxis(measurement);
 		this.updateAnnotations(measurement);
 		this.indexMeasurement = measurement;
+	}
+
+	private updateHeaderProviders() {
+		//FIXME: check template deserialization: empty LogFill headers now resets to default
+		const curveHeader = new AdaptiveLogCurveVisualHeader()
+			.setElement('ScaleFrom', {'horizontalpos': 'left', 'verticalpos': 'top'})
+			.setElement('ScaleTo', {'horizontalpos': 'right', 'verticalpos': 'top'})
+			.setElement('Line', {'horizontalpos': 'center', 'verticalpos': 'center'})
+			.setElement('Name', {'horizontalpos': 'center', 'verticalpos': 'top'})
+			.setElement('Unit', {'horizontalpos': 'center', 'verticalpos': 'bottom'})
+			.setElement('Tracking', {'horizontalpos': 'center', 'verticalpos': 'bottom'});
+		this.root
+			.getHeaderContainer()
+			.getHeaderProvider()
+			.registerHeaderProvider(new CompositeLogCurve().getClassName(), curveHeader)
+			.registerHeaderProvider(new LogCurve().getClassName(), curveHeader)
+			.registerHeaderProvider(new LogFill().getClassName(), undefined);
 	}
 
 	private createAnnotations() {
