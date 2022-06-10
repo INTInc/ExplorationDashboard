@@ -27,14 +27,7 @@ onMounted(() => state.field.loaded.then(createMap));
 </script>
 
 <style scoped lang="scss">
-.wells-map {
-  padding: 0;
-  overflow: hidden;
-}
-</style>
-
-<style lang="scss">
-.wells-map .cg-toolbar-bottom {
-  margin-left: 8px;
+.wells-map canvas {
+  transform: scale(1.05);
 }
 </style>
