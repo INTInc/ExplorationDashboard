@@ -3,8 +3,6 @@ import { AppTheme } from '@/common/styling/AppTheme';
 import { LineStyle, Patterns } from '@int/geotoolkit/attributes/LineStyle';
 import { TextStyle } from '@int/geotoolkit/attributes/TextStyle';
 import { Wells3D } from '@/components/wells-3d/Wells3D';
-import { Well } from '@/data-sources/Well';
-import { WellAnnotations } from '@/common/model/WellAnnotations';
 import { WellStaticPoint } from '@/components/wells-3d/objects/WellStaticPoint';
 
 interface ModelTheme {
@@ -28,26 +26,6 @@ const THEME_LIGHT: ModelTheme = {
 }
 
 export class Wells3DStyleable extends Wells3D implements Styleable {
-
-	constructor(
-		containerElement: HTMLElement,
-		referenceElement: HTMLElement,
-		wells: Well[],
-		annotations: Map<Well, WellAnnotations>,
-		measurement: string | null,
-		cameraDistance: number,
-		modelPadding: number
-	) {
-		super(
-			containerElement,
-			referenceElement,
-			wells,
-			annotations,
-			measurement,
-			cameraDistance,
-			modelPadding
-		);
-	}
 
 	public applyTheme(appTheme: AppTheme): void {
 		const modelTheme = appTheme === AppTheme.Dark ? THEME_DARK : THEME_LIGHT;

@@ -3,6 +3,7 @@
     <button class="button" title="Switch well trajectories mode" @click="toggleTrajectoriesMode()">
       <i class="fa" :class="trajectoriesMode === TrajectoryMode.Line ? 'fa-cube' : 'fa-chart-line'"/>
     </button>
+    <div ref="compassContainer" class="compass-container"></div>
     <div ref="model"></div>
   </div>
 </template>
@@ -24,6 +25,7 @@ const { state, registerStyleable } = useStore();
 
 const model = ref();
 const container = ref();
+const compassContainer = ref();
 const trajectoriesMode = ref(TrajectoryMode.Line);
 
 function dataLoaded(): Promise<unknown> {
@@ -37,6 +39,7 @@ function createWells3D() {
   const wells3d = new Wells3DStyleable(
     model.value,
     container.value,
+    compassContainer.value,
     state.wells,
     state.annotations,
     props.measurement || null,
@@ -65,18 +68,25 @@ function toggleTrajectoriesMode() {
 onMounted(() => dataLoaded().then(createWells3D));
 </script>
 
-<style lang="scss">
-.__geotoolkit_compass {
-  transform: translate(-100%, -100%) !important;
-  position: relative !important;
-  left: 100% !important;
-}
-</style>
-
 <style scoped lang="scss">
-.button {
-  position: absolute;
-  margin: 8px;
-  z-index: 2;
+.wells-model {
+  position: relative;
+
+  .button,
+  .compass-container {
+    position: absolute;
+    margin: 16px;
+    z-index: 2;
+  }
+
+  .button {
+    bottom: 0;
+    right: 0;
+  }
+
+  .compass-container {
+    bottom: 0;
+    left: 0;
+  }
 }
 </style>

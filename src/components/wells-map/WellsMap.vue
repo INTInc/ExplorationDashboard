@@ -34,7 +34,7 @@ onMounted(() => state.field.loaded.then(createMap));
 </style>
 
 <style lang="scss">
-.wells-map .cg-toolbar-left {
-  margin-left: 6px;
+.wells-map .cg-toolbar-bottom {
+  margin-left: 8px;
 }
 </style>

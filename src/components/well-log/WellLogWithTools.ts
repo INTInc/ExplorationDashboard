@@ -13,6 +13,7 @@ import { ZoomControlTool } from '@/components/well-log/tools/ZoomControlTool';
 import { Button } from '@int/geotoolkit/controls/toolbar/Button';
 import { HeaderVisibilitySwitcher } from '@/components/well-log/tools/HeaderVisibilitySwitcher';
 import { CustomCrossHair } from '@/components/well-log/tools/CustomCrossHair';
+import { Orientation } from '@int/geotoolkit/util/Orientation';
 
 type CrossHairCallback = (depth: number | null) => void;
 
@@ -88,6 +89,7 @@ export class WellLogWithTools extends WellLog {
 		new Toolbar({
 			tools: this.plot.getTool(),
 			alignment: AnchorType.RightBottom,
+			orientation: Orientation.Horizontal,
 			buttons: new Array<Button>().concat(...this.tools.map(t => t.getButtons()))
 		})
 	}

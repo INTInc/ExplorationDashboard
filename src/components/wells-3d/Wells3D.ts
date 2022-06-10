@@ -26,6 +26,7 @@ export class Wells3D {
 	constructor(
 		private containerElement: HTMLElement,
 		private referenceElement: HTMLElement,
+		private compassContainerElement: HTMLElement,
 		private wells: Well[],
 		private annotations: Map<Well, WellAnnotations>,
 		private measurement: string | null,
@@ -72,6 +73,9 @@ export class Wells3D {
 				},
 				clearcolor: 0x000000,
 				clearcoloralpha: 0
+			},
+			compass: {
+				container: this.compassContainerElement
 			}
 		});
 

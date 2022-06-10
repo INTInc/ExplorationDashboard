@@ -19,6 +19,7 @@ import { LineStyle } from '@int/geotoolkit/attributes/LineStyle';
 import { Plot } from '@int/geotoolkit/plot/Plot';
 import { Toolbar } from '@int/geotoolkit/controls/toolbar/Toolbar';
 import { Button } from '@int/geotoolkit/controls/toolbar/Button';
+import { Orientation } from '@int/geotoolkit/util/Orientation';
 
 export class WellsMap extends ToolkitCssStyleable<Group> {
 
@@ -122,8 +123,10 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
 
 	private createToolbar() {
 		new Toolbar({
+			offset: 16,
 			tools: this.plot.getTool(),
-			alignment: AnchorType.LeftTop,
+			alignment: AnchorType.RightBottom,
+			orientation: Orientation.Horizontal,
 			buttons: [
 				new Button({
 					title: 'Zoom in',

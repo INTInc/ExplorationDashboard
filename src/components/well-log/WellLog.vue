@@ -64,13 +64,7 @@ onMounted(() => props.source.loaded
 
 <style lang="scss" scoped>
 .canvas-container {
-    padding: 10px;
-    height: 100%;
-}
-</style>
-
-<style lang="scss">
-.well-log .cg-toolbar-group {
-  display: flex;
+  padding: 8px;
+  height: 100%;
 }
 </style>
