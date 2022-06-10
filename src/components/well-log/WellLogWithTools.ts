@@ -1,3 +1,4 @@
+import { Events as PlotEvents } from '@int/geotoolkit/plot/Plot';
 import { WellLog } from '@/components/well-log/WellLog';
 import { Toolbar } from '@int/geotoolkit/controls/toolbar/Toolbar';
 import { AnchorType } from '@int/geotoolkit/util/AnchorType';
@@ -19,12 +20,14 @@ type CrossHairCallback = (depth: number | null) => void;
 
 export class WellLogWithTools extends WellLog {
 
+	private zoom = 1;
 	private tools = new Array<ToolWithButtons>();
 	private limitsSelectionTool?: LimitsSelectionTool;
 	private crossHairCallback?: CrossHairCallback;
 
 	constructor(...props: ConstructorParameters<typeof WellLog>) {
 		super(...props);
+		this.initFitHeightListener();
 		this.addZoomControlTool();
 		this.addCrossHairSwitcher();
 		this.addDepthsSelectionTool();
@@ -38,10 +41,16 @@ export class WellLogWithTools extends WellLog {
 		this.crossHairCallback = fn;
 	}
 
+	private initFitHeightListener() {
+		this.plot.on(PlotEvents.Resized, () => {
+			if (this.zoom === 1) this.root.fitToHeight();
+		})
+	}
+
 	private addZoomControlTool() {
 		this.tools.push(new ZoomControlTool(
 			5 / 4,
-			() => this.onFitToBounds(),
+			zoom => this.onZoomChanged(zoom),
 			this.root
 		));
 	}
@@ -53,9 +62,9 @@ export class WellLogWithTools extends WellLog {
 		));
 	}
 
-	private onFitToBounds() {
-		this.root.fitToHeight();
-		if (this.limitsSelectionTool) this.limitsSelectionTool.restoreInitialLimits();
+	private onZoomChanged(zoom: number) {
+		this.zoom = zoom;
+		if (this.zoom === 1 && this.limitsSelectionTool) this.limitsSelectionTool.restoreInitialLimits();
 	}
 
 	private addLimitsSelectionToolIfPossible() {

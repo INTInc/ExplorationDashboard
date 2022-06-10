@@ -17,6 +17,7 @@ import { AdaptiveLogCurveVisualHeader } from '@int/geotoolkit/welllog/header/Ada
 import { CompositeLogCurve } from '@int/geotoolkit/welllog/CompositeLogCurve';
 import { LogFill } from '@int/geotoolkit/welllog/LogFill';
 import { LogCurve } from '@int/geotoolkit/welllog/LogCurve';
+import { LogTrack } from '@int/geotoolkit/welllog/LogTrack';
 
 export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 
@@ -30,7 +31,6 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 		private referenceElement: HTMLElement,
 		protected source: WellLogSource,
 		private template: string,
-		private tracksCountToFit = 1,
 		private annotations: WellAnnotations,
 		cssLoader: ToolkitCssLoader
 	) {
@@ -53,6 +53,12 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 		this.updateIndexAxis(measurement);
 		this.updateAnnotations(measurement);
 		this.indexMeasurement = measurement;
+	}
+
+	protected findTracksBy(filter: (t: LogTrack) => boolean): LogTrack[] {
+		return from(this.root.getTrackContainer())
+			.where((n: Node) => n instanceof LogTrack && filter(n))
+			.selectToArray() as LogTrack[]
 	}
 
 	private updateHeaderProviders() {
@@ -106,16 +112,12 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
 			? plot.getWidth()
 			: plot.getHeight();
 
+		const indexTracks = this.findTracksBy(t => t.getTag().type === TrackType.IndexTrack);
+		const dataTracks = this.findTracksBy(t => t.getTag().type !== TrackType.IndexTrack);
 		const indexTrackWidth = 35;
-		const curveTrackWidth = Math.floor((limit - indexTrackWidth) / this.tracksCountToFit);
-
-		for (let i = 0; i < this.root.getTracksCount(); i++) {
-			const track = this.root.getTrackAt(i);
-			track.setWidth(track.getTag() && track.getTag().type === TrackType.IndexTrack
-				? indexTrackWidth
-				: curveTrackWidth
-			);
-		}
+		const dataTrackWidth = Math.floor((limit - indexTrackWidth) / dataTracks.length);
+		indexTracks.forEach(t => t.setWidth(35));
+		dataTracks.forEach(t => t.setWidth(dataTrackWidth));
 	}
 
 	private static createWidget(): WellLogWidget {

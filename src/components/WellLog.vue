@@ -18,7 +18,6 @@ const { state, registerStyleable } = useStore();
 const props = defineProps<{
   source: WellLogSource,
   templateUrl: string,
-  fitTracks?: number,
   showAnnotations?: boolean,
   headerScrollTo?: 'top' | 'bottom'
 }>();
@@ -47,7 +46,6 @@ function createWellLog(template: string) {
     container.value,
     props.source,
     template,
-    props.fitTracks,
     getVisibleAnnotations(),
     state.cssLoader
   );

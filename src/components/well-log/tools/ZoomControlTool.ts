@@ -3,9 +3,11 @@ import { Button } from '@int/geotoolkit/controls/toolbar/Button';
 
 export class ZoomControlTool extends ToolWithButtons {
 
+	private scale = 1;
+
 	constructor(
 		private scaleFactor: number,
-		private onFitToBounds: () => void,
+		private onScaleChanged: (scale: number) => void,
 		...props: ConstructorParameters<typeof ToolWithButtons>
 	) {
 		super(...props);
@@ -16,17 +18,26 @@ export class ZoomControlTool extends ToolWithButtons {
 			new Button({
 				icon: 'fa fa-magnifying-glass-plus',
 				title: 'Zoom in',
-				action: () => this.widget.scale(this.scaleFactor)
+				action: () => {
+					this.widget.scale(this.scaleFactor);
+					this.onScaleChanged(this.scale *= this.scaleFactor);
+				}
 			}),
 			new Button({
 				icon: 'fa fa-magnifying-glass-minus',
 				title: 'Zoom out',
-				action: () => this.widget.scale(1 / this.scaleFactor)
+				action: () => {
+					this.widget.scale(1 / this.scaleFactor);
+					this.onScaleChanged(this.scale /= this.scaleFactor);
+				}
 			}),
 			new Button({
 				icon: 'fa fa-expand',
 				title: 'Fit to bounds',
-				action: () => this.onFitToBounds()
+				action: () => {
+					this.widget.fitToHeight();
+					this.onScaleChanged(1)
+				}
 			}),
 		];
 	}

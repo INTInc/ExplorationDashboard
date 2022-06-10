@@ -9,13 +9,11 @@
       :source="wellB2"
       :template-url="'/toolkit-welllog-templates/vertical-log.json'"
       :show-annotations="true"
-      :fit-tracks="3"
     ></well-log>
     <well-log
       class="card horizontal-log"
       :source="wellB32"
       :template-url="'/toolkit-welllog-templates/horizontal-log.json'"
-      :fit-tracks="1"
     ></well-log>
     <wells-map
       class="card"
