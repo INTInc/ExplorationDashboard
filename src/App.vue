@@ -31,9 +31,9 @@
 
 <script setup lang="ts">
 import ThemeSwitcher from '@/components/ThemeSwitcher.vue';
-import WellLog from '@/components/well-log/WellLog.vue';
-import WellsMap from '@/components/wells-map/WellsMap.vue';
-import WellsModel from '@/components/wells-3d/Wells3D.vue';
+import WellLog from '@/components/WellLog.vue';
+import WellsMap from '@/components/WellsMap.vue';
+import WellsModel from '@/components/Wells3D.vue';
 
 import { Store, useStore } from '@/store';
 import { WellB2 } from '@/data-sources/WellB2';
