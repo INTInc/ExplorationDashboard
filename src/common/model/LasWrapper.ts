@@ -62,10 +62,7 @@ export class LasWrapper {
     if (this.containMeasure(measure)) {
       return this.curves.getCurveData(measure);
     } else {
-      console.log(measure);
-      console.log(this.curves.getCurveMnemonics());
-      console.trace();
-      console.warn(`Provided data not include measurement named ${measure}`);
+      console.error(`Provided data not include measurement named ${measure}`);
       return [];
     }
   }

@@ -33,7 +33,7 @@ export class Field extends DataSource<Field> {
       this.rawData = Object.values(json[0])[0];
       this.loading.resolve(this);
     } catch (e: unknown) {
-      console.log(`Error loading exploration field data: ${e}`)
+      console.error(`Error loading exploration field data: ${e}`)
     }
   }
 
