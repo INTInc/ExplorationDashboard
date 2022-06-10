@@ -40,10 +40,20 @@ export class LasWrapper {
     measurement: string,
     indexMeasurement = this.curves.getCurveMnemonics()[0]
   ): LogData {
+    const d = this.values(indexMeasurement);
+    const v = this.values(measurement);
+    let prev = d[0];
+    for (let i = 1; i < d.length; i++) {
+      if (prev > d[i]) {
+        d.splice(i, 1);
+        v.splice(i, 1)
+      }
+      prev = d[i];
+    }
     return new LogData({
       name: measurement,
-      depths: this.values(indexMeasurement),
-      values: this.values(measurement)
+      depths: d,
+      values: v
     })
       .setValueUnit(this.info(measurement).getUnit())
   }
