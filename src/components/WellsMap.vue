@@ -5,12 +5,15 @@
 </template>
 
 <script lang="ts" setup>
+import {defineProps} from 'vue';
 import {Store, useStore} from '@/store';
 import {onMounted, ref} from '@vue/runtime-core';
 import {WellsMap} from '@/components/wells-map/WellsMap';
 
 const {state, registerStyleable}: Store = useStore();
-
+const props = defineProps<{
+  wellNames: Array<string>
+}>()
 const canvas = ref();
 const container = ref();
 
@@ -18,6 +21,7 @@ function createMap () {
     registerStyleable(new WellsMap(
         canvas.value,
         container.value,
+        props.wellNames,
         state.field,
         state.cssLoader
     ));

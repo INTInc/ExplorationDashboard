@@ -17,6 +17,7 @@
     ></well-log>
     <wells-map
         class="card"
+        :well-names="['Field B Well 1', 'Field B Well 2']"
     ></wells-map>
     <wells-model
         :camera-distance="3000"

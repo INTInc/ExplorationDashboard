@@ -29,6 +29,7 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
     constructor (
         private canvasElement: HTMLCanvasElement,
         private referenceElement: HTMLElement,
+        private wellNames: Array<string>,
         private field: Field,
         cssLoader: ToolkitCssLoader
     ) {
@@ -104,8 +105,12 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
             .setName('field');
     }
 
+    private getWells () {
+        return this.field.wellsCoordinates.filter(({name}) => this.wellNames.includes(name));
+    }
+
     private createWells () {
-        return this.field.wellsCoordinates.map(({x, y}, index) => {
+        return this.getWells().map(({x, y}, index) => {
             const path = new Path()
                 .setCssClass('ExplorationMapWell')
                 .setLineStyle('red')
@@ -118,7 +123,7 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
     }
 
     private createMarkers () {
-        return this.field.wellsCoordinates.map(({x, y, name}) => {
+        return this.getWells().map(({x, y, name}) => {
             return new SymbolShape({
                 alignment: AnchorType.TopCenter
             })
