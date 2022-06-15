@@ -74,15 +74,6 @@ module.exports = {
             ignorePattern: 'geotoolkit.'
         }],
         'guard-for-in': 0,
-        'valid-jsdoc': [2, {
-            requireParamDescription: true,
-            requireReturnDescription: false,
-            requireReturn: false,
-            prefer: {
-                'return': 'returns',
-                'inheritDoc': 'inheritdoc'
-            }
-        }],
         'new-cap': 2,
         'no-loop-func': 2,
         'no-console': process.env.NODE_ENV === 'production' ? 2 : 0

@@ -13,14 +13,15 @@ import {WellCursor} from '@/components/wells-3d/objects/WellCursor';
 
 export class Wells3D {
 
-    protected plot: Plot;
-    protected root: Object3D;
-    protected box: Wells3DBox;
+    private plot: Plot;
+    private root: Object3D;
+    private box: Wells3DBox;
+    private logs: WellLogCurve[];
+    private trajectories: WellTrajectory[];
+    private cursors: Map<Well, WellCursor> = new Map();
+    private depthMarkers: WellStaticPoint[] = [];
+
     protected grid: Grid;
-    protected logs: WellLogCurve[];
-    protected trajectories: WellTrajectory[];
-    protected cursors: Map<Well, WellCursor> = new Map();
-    protected depthMarkers: WellStaticPoint[] = [];
     protected wellNames: WellStaticPoint[] = [];
 
     constructor (
