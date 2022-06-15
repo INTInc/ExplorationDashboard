@@ -35,7 +35,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   header {
-    height: 5vh;
+    height: 8vh;
     min-height: 42px;
     display: flex;
     align-items: center;
@@ -48,9 +48,7 @@ body {
   }
 
   .charts-container {
-    height: 95vh;
-    min-height: 800px;
-
+    height: 92vh;
     padding: 8px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
