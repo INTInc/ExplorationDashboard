@@ -1,6 +1,6 @@
 <template>
-  <div ref="container" class="wells-model">
-    <button class="button" title="Switch well trajectories mode" @click="toggleTrajectoriesMode()">
+  <div ref="container" class="wells-model cg-toolbar-container">
+    <button class="button cg-toolbar-bottom" title="Switch well trajectories mode" @click="toggleTrajectoriesMode()">
       <i :class="trajectoriesMode === TrajectoryMode.Line ? 'fa-cube' : 'fa-chart-line'" class="fa"/>
     </button>
     <div ref="compassContainer" class="compass-container"></div>

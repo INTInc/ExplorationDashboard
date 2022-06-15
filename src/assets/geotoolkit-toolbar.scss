@@ -1,38 +1,51 @@
-.cg-toolbar-bottom .cg-toolbar-group {
-  display: flex;
-}
+.cg-toolbar-container {
 
-.cg-toolbar-group,
-.cg-toolbar-button {
-  color: var(--text-color) !important;
-  background-color: var(--card-color) !important;
-}
-
-.cg-toolbar-group {
-  border: 1px solid rgba(155, 155, 155, 0.5);
-  border-radius: 4px;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-.cg-toolbar-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  outline: none;
-  border: none;
-
-  &.cg-toolbar-checked {
-    background-color: rgba(155, 155, 155, 0.3) !important;
+  &:hover .cg-toolbar-bottom {
+    opacity: 1;
   }
 
-  &.cg-toolbar-text-button {
-    font-family: Arial, sans-serif;
-    font-weight: bolder;
-    font-size: 11px;
+  .cg-toolbar-bottom {
+    opacity: 0;
+    transition: opacity 0.5s;
+
+    .cg-toolbar-group {
+      display: flex;
+    }
+
+    .cg-toolbar-group,
+    .cg-toolbar-button {
+      color: var(--text-color) !important;
+      background-color: var(--card-color) !important;
+    }
+
+    .cg-toolbar-group {
+      border: 1px solid rgba(155, 155, 155, 0.5);
+      border-radius: 4px;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .cg-toolbar-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      outline: none;
+      border: none;
+
+      &.cg-toolbar-checked {
+        background-color: rgba(155, 155, 155, 0.3) !important;
+      }
+
+      &.cg-toolbar-text-button {
+        font-family: Arial, sans-serif;
+        font-weight: bolder;
+        font-size: 11px;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
 
-  &:hover {
-    cursor: pointer;
-  }
 }
