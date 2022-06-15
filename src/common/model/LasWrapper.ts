@@ -70,9 +70,9 @@ export class LasWrapper {
     }
 
     public values (measure: string): number[] {
-        const values = new Array<number>();
+        let values = new Array<number>();
         if (this.containMeasure(measure)) {
-            values.concat(this.curves.getCurveData(measure));
+            values = this.curves.getCurveData(measure);
         } else {
             console.error(`Provided data not include measurement named ${measure}`);
         }

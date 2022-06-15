@@ -15,15 +15,15 @@ export class WellAnnotations extends DataSource<WellAnnotations> {
     }
 
     private mapItems (json: object): Array<WellAnnotation> {
-        const items = new Array<WellAnnotation>();
+        let items = new Array<WellAnnotation>();
         if (Array.isArray(json) && json[0].MD && json[0].name) {
-            items.concat(json.map(item => {
+            items = json.map(item => {
                 const depths = new Map<string, number>()
                     .set('DEPT', parseInt(item.MD))
                     .set('TVD', parseInt(item.TVD))
                     .set('HRZDISP', parseInt(item.HRZDISP));
                 return new WellAnnotation(item.name, item.color, depths);
-            }));
+            });
         } else {
             console.error('Cannot load data as well model annotations');
         }
