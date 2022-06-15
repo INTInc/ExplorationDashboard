@@ -21,6 +21,9 @@ import {Toolbar} from '@int/geotoolkit/controls/toolbar/Toolbar';
 import {Button} from '@int/geotoolkit/controls/toolbar/Button';
 import {Orientation} from '@int/geotoolkit/util/Orientation';
 
+const ZOOM_IN_LEVEL = 12;
+const ZOOM_OUT_LEVEL = 1;
+
 export class WellsMap extends ToolkitCssStyleable<Group> {
 
     private readonly map = WellsMap.createMap();
@@ -157,12 +160,12 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
                 new Button({
                     title: 'Zoom in',
                     icon: 'fa fa-magnifying-glass-plus',
-                    action: () => this.flyToExploration(7)
+                    action: () => this.flyToExploration(ZOOM_IN_LEVEL)
                 }),
                 new Button({
                     title: 'Fit to bounds',
                     icon: 'fa fa-expand',
-                    action: () => this.flyToExploration(1)
+                    action: () => this.flyToExploration(ZOOM_OUT_LEVEL)
                 }),
                 new Button({
                     title: 'Center map',
