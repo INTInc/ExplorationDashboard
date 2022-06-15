@@ -1,7 +1,7 @@
-import { AppTheme } from '@/common/styling/AppTheme';
+import {AppTheme} from '@/common/styling/AppTheme';
 
 export interface Styleable {
 
-	applyTheme: (theme: AppTheme) => void;
+    applyTheme: (theme: AppTheme) => void;
 
 }

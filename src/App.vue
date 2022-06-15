@@ -5,40 +5,40 @@
   </header>
   <div class="charts-container">
     <well-log
-      class="card vertical-log"
-      :source="wellB2"
-      :template-url="'/toolkit-welllog-templates/vertical-log.json'"
-      :show-annotations="true"
+        :show-annotations="true"
+        :source="wellB2"
+        :template-url="'/toolkit-welllog-templates/vertical-log.json'"
+        class="card vertical-log"
     ></well-log>
     <well-log
-      class="card horizontal-log"
-      :source="wellB32"
-      :template-url="'/toolkit-welllog-templates/horizontal-log.json'"
+        :source="wellB32"
+        :template-url="'/toolkit-welllog-templates/horizontal-log.json'"
+        class="card horizontal-log"
     ></well-log>
     <wells-map
-      class="card"
+        class="card"
     ></wells-map>
     <wells-model
-      class="card"
-      :model-padding="500"
-      :camera-distance="3000"
-      :measurement="'DLS'"
+        :camera-distance="3000"
+        :measurement="'DLS'"
+        :model-padding="500"
+        class="card"
     ></wells-model>
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import ThemeSwitcher from '@/components/ThemeSwitcher.vue';
 import WellLog from '@/components/WellLog.vue';
 import WellsMap from '@/components/WellsMap.vue';
 import WellsModel from '@/components/Wells3D.vue';
 
-import { Store, useStore } from '@/store';
-import { WellB2 } from '@/data-sources/WellB2';
-import { WellB32 } from '@/data-sources/WellB32';
-import { MediaQueryHelper } from '@/common/layout/MediaQueryHelper';
+import {Store, useStore} from '@/store';
+import {WellB2} from '@/data-sources/WellB2';
+import {WellB32} from '@/data-sources/WellB32';
+import {MediaQueryHelper} from '@/common/layout/MediaQueryHelper';
 
-const { setupCssLoader, addField, addWell, addCursor, addAnnotations }: Store = useStore();
+const {setupCssLoader, addField, addWell, addCursor, addAnnotations}: Store = useStore();
 
 setupCssLoader(
     '/toolkit-themes/common.css',
@@ -53,13 +53,13 @@ const wellB32 = new WellB32();
 const deviceType = MediaQueryHelper.deviceType();
 
 addWell(wellB2).setUrls({
-  surveysUrl: '/data/wellB-2/surveys.las',
-  measurementsUrl: `/data/wellB-2/logs_${deviceType}_decimated.las`
+    surveysUrl: '/data/wellB-2/surveys.las',
+    measurementsUrl: `/data/wellB-2/logs_${deviceType}_decimated.las`
 });
 addWell(wellB32).setUrls({
-  topsUrl: '/data/wellB-32/tops.las',
-  surveysUrl: '/data/wellB-32/surveys.las',
-  measurementsUrl: `/data/wellB-32/logs_${deviceType}.las`
+    topsUrl: '/data/wellB-32/tops.las',
+    surveysUrl: '/data/wellB-32/surveys.las',
+    measurementsUrl: `/data/wellB-32/logs_${deviceType}.las`
 });
 addCursor(wellB2);
 addCursor(wellB32);

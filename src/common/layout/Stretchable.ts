@@ -1,41 +1,41 @@
 interface Resizable {
-	setSize: (width: number, height: number) => void;
+    setSize: (width: number, height: number) => void;
 }
 
 type Constructor = new (...args: any[]) => Resizable;
 
-export function Stretchable<TBase extends Constructor>(Base: TBase) {
+export function stretchable<TBase extends Constructor> (Base: TBase) {
 
-	return class StretchableBase extends Base {
+    return class StretchableBase extends Base {
 
-		private refElement: HTMLElement | null = null;
+        private refElement: HTMLElement | null = null;
 
-		public setRefElement(element: HTMLElement): void {
-			this.refElement = element;
+        public setRefElement (element: HTMLElement): void {
+            this.refElement = element;
 
-			this.resize();
-			this.initAutoResizing();
-		}
+            this.resize();
+            this.initAutoResizing();
+        }
 
-		private resize() {
-			if (!this.refElement) return;
+        private resize () {
+            if (!this.refElement) return;
 
-			const cs = getComputedStyle(this.refElement);
-			const csVal = (property: keyof CSSStyleDeclaration): number => parseFloat(cs[property]?.toString() as string);
+            const cs = getComputedStyle(this.refElement);
+            const csVal = (property: keyof CSSStyleDeclaration): number => parseFloat(cs[property]?.toString() as string);
 
-			this.setSize(
-				this.refElement.clientWidth - csVal('paddingLeft') - csVal('paddingRight'),
-				this.refElement.clientHeight - csVal('paddingTop') - csVal('paddingBottom')
-			);
-		}
+            this.setSize(
+                this.refElement.clientWidth - csVal('paddingLeft') - csVal('paddingRight'),
+                this.refElement.clientHeight - csVal('paddingTop') - csVal('paddingBottom')
+            );
+        }
 
-		private  initAutoResizing() {
-			if (!this.refElement) return;
+        private initAutoResizing () {
+            if (!this.refElement) return;
 
-			//TODO check why ResizeObserver here gives infinity loop
-			//new ResizeObserver(() => this.resize()).observe(this.refElement);
+            // TODO check why ResizeObserver here gives infinity loop
+            // new ResizeObserver(() => this.resize()).observe(this.refElement);
 
-			window.addEventListener('resize', () => this.resize());
-		}
-	}
+            window.addEventListener('resize', () => this.resize());
+        }
+    };
 }
