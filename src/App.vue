@@ -7,12 +7,12 @@
     <well-log
         :show-annotations="true"
         :source="wellB2"
-        :template-url="'/toolkit-welllog-templates/vertical-log.json'"
+        :template-url="'./toolkit-welllog-templates/vertical-log.json'"
         class="card vertical-log"
     ></well-log>
     <well-log
         :source="wellB32"
-        :template-url="'/toolkit-welllog-templates/horizontal-log.json'"
+        :template-url="'./toolkit-welllog-templates/horizontal-log.json'"
         class="card horizontal-log"
     ></well-log>
     <wells-map
@@ -42,30 +42,30 @@ import {MediaQueryHelper} from '@/common/layout/MediaQueryHelper';
 const {setupCssLoader, addField, addWell, addCursor, addAnnotations}: Store = useStore();
 
 setupCssLoader(
-    '/toolkit-themes/common.css',
-    '/toolkit-themes/theme-light.css',
-    '/toolkit-themes/theme-dark.css'
+    './toolkit-themes/common.css',
+    './toolkit-themes/theme-light.css',
+    './toolkit-themes/theme-dark.css'
 );
 
-addField().setUrl('/data/fieldB.json');
+addField().setUrl('./data/fieldB.json');
 
 const wellB2 = new WellB2();
 const wellB32 = new WellB32();
 const deviceType = MediaQueryHelper.deviceType();
 
 addWell(wellB2).setUrls({
-    surveysUrl: '/data/wellB-2/surveys.las',
-    measurementsUrl: `/data/wellB-2/logs_${deviceType}_decimated.las`
+    surveysUrl: './data/wellB-2/surveys.las',
+    measurementsUrl: `./data/wellB-2/logs_${deviceType}_decimated.las`
 });
 addWell(wellB32).setUrls({
-    topsUrl: '/data/wellB-32/tops.las',
-    surveysUrl: '/data/wellB-32/surveys.las',
-    measurementsUrl: `/data/wellB-32/logs_${deviceType}.las`
+    topsUrl: './data/wellB-32/tops.las',
+    surveysUrl: './data/wellB-32/surveys.las',
+    measurementsUrl: `./data/wellB-32/logs_${deviceType}.las`
 });
 addCursor(wellB2);
 addCursor(wellB32);
-addAnnotations(wellB2).setUrl('/data/wellB-2/tops.json');
-addAnnotations(wellB32).setUrl('/data/wellB-32/tops.json');
+addAnnotations(wellB2).setUrl('./data/wellB-2/tops.json');
+addAnnotations(wellB32).setUrl('./data/wellB-32/tops.json');
 
 </script>
 
