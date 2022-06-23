@@ -60,6 +60,7 @@ export abstract class CustomRubberBand extends ToolWithButtons {
             title: this.getButtonTitle(),
             checkbox: {
                 enabled: true,
+                name: 'custom-rubberband',
                 checked: false
             },
             action: (_: never, checked: boolean) => this.setRubberBandEnabled(checked)
