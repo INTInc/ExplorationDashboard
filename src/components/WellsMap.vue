@@ -8,7 +8,7 @@
 import {defineProps} from 'vue';
 import {Store, useStore} from '@/store';
 import {onMounted, ref} from '@vue/runtime-core';
-import {WellsMap} from '@/components/wells-map/WellsMap';
+import {WellsMapDynamicTiles} from '@/components/wells-map/WellsMapDynamicTiles';
 
 const {state, registerStyleable}: Store = useStore();
 const props = defineProps<{
@@ -18,7 +18,7 @@ const canvas = ref();
 const container = ref();
 
 function createMap () {
-    registerStyleable(new WellsMap(
+    registerStyleable(new WellsMapDynamicTiles(
         canvas.value,
         container.value,
         props.wellNames,

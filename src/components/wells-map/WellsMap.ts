@@ -2,7 +2,7 @@ import {Map} from '@int/geotoolkit/map/Map';
 import {GeodeticSystem} from '@int/geotoolkit/map/GeodeticSystem';
 import {AnchorType} from '@int/geotoolkit/util/AnchorType';
 import {PointerMode} from '@int/geotoolkit/controls/tools/PointerMode';
-import {Tile as TileLayer} from '@int/geotoolkit/map/layers/Tile';
+import {VectorTile as VectorTileLayer} from '@int/geotoolkit/map/layers/VectorTile';
 import {Field} from '@/data-sources/Field';
 import {Polygon} from '@int/geotoolkit/scene/shapes/Polygon';
 import {Path} from '@int/geotoolkit/scene/shapes/Path';
@@ -27,8 +27,8 @@ const DEFAULT_ZOOM_LEVEL = 6.5;
 
 export class WellsMap extends ToolkitCssStyleable<Group> {
 
-    private readonly map = WellsMap.createMap();
     private readonly plot: Plot;
+    protected readonly map = WellsMap.createMap();
 
     constructor (
         private canvasElement: HTMLCanvasElement,
@@ -57,11 +57,10 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
         });
     }
 
-    private static createTilesLayer () {
-        return new TileLayer({
-            url: 'https://demo.int.com/osm_tiles/',
-            formatterfunction: (z: number, y: number, x: number) => z + '/' + x + '/' + y + '.png'
-        });
+    protected static createTilesLayer (options?: object) {
+        return new VectorTileLayer(Object.assign(options || {}, {
+            url: 'https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer'
+        }));
     }
 
     private createPlot () {
@@ -82,6 +81,15 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
             .panTo(this.field.explorationCoordinates, GeodeticSystem.WGS84);
     }
 
+    private createExplorationLayer () {
+        return new ShapeLayer()
+            .addShape(
+                this.root
+                    .addChild(this.createField())
+                    .addChild(this.createWells())
+            );
+    }
+
     private createMarkersLayer () {
         return new ShapeLayer({
             tooltip: {
@@ -91,15 +99,6 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
         })
             .clearCache()
             .addShape(this.createMarkers());
-    }
-
-    private createExplorationLayer () {
-        return new ShapeLayer()
-            .addShape(
-                this.root
-                    .addChild(this.createField())
-                    .addChild(this.createWells())
-            );
     }
 
     private createField () {
