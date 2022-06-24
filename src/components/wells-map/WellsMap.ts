@@ -23,6 +23,7 @@ import {Orientation} from '@int/geotoolkit/util/Orientation';
 
 const ZOOM_IN_LEVEL = 12;
 const ZOOM_OUT_LEVEL = 1;
+const DEFAULT_ZOOM_LEVEL = 6.5;
 
 export class WellsMap extends ToolkitCssStyleable<Group> {
 
@@ -77,6 +78,7 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
             .addLayer(WellsMap.createTilesLayer())
             .addLayer(this.createExplorationLayer())
             .addLayer(this.createMarkersLayer())
+            .setZoomLevel(DEFAULT_ZOOM_LEVEL)
             .panTo(this.field.explorationCoordinates, GeodeticSystem.WGS84);
     }
 
