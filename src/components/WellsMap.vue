@@ -8,7 +8,7 @@
 import {defineProps} from 'vue';
 import {Store, useStore} from '@/store';
 import {onMounted, ref} from '@vue/runtime-core';
-import {ArcGisDynamicWellsMap} from '@/components/arc-gis-wells-map/ArcGisDynamicWellsMap';
+import {ArcGisDynamicWellsMap} from '@/components/wells-map/ArcGisDynamicWellsMap';
 
 const {state, registerStyleable}: Store = useStore();
 const props = defineProps<{

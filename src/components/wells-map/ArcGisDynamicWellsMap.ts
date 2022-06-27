@@ -1,5 +1,5 @@
 import {AppTheme} from '@/common/styling/AppTheme';
-import {ArcGisWellsMap} from '@/components/arc-gis-wells-map/ArcGisWellsMap';
+import {ArcGisWellsMap} from '@/components/wells-map/ArcGisWellsMap';
 import {VectorTile as VectorTileLayer} from '@int/geotoolkit/map/layers/VectorTile';
 import {Deferred} from '@/common/model/Deferred';
 
