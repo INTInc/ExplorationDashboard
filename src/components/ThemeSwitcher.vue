@@ -14,7 +14,7 @@ import {computed, Ref} from 'vue';
 import {MediaQueryHelper} from '@/common/layout/MediaQueryHelper';
 
 const STORAGE_ITEM_KEY = 'preferred-theme';
-const DEFAULT_THEME = AppTheme.Light;
+const DEFAULT_THEME = AppTheme.Dark;
 
 const {setAppTheme} = useStore();
 
