@@ -20,15 +20,17 @@ import {Plot} from '@int/geotoolkit/plot/Plot';
 import {Toolbar} from '@int/geotoolkit/controls/toolbar/Toolbar';
 import {Button} from '@int/geotoolkit/controls/toolbar/Button';
 import {Orientation} from '@int/geotoolkit/util/Orientation';
+import {loadFont} from '@int/geotoolkit/util/fontloader';
 
 const ZOOM_IN_LEVEL = 12;
 const ZOOM_OUT_LEVEL = 1;
 const DEFAULT_ZOOM_LEVEL = 6.5;
+const FONTS_DIRECTORY = '/fonts';
 
-export class WellsMap extends ToolkitCssStyleable<Group> {
+export class ArcGisWellsMap extends ToolkitCssStyleable<Group> {
 
     private readonly plot: Plot;
-    protected readonly map = WellsMap.createMap();
+    protected readonly map = ArcGisWellsMap.createMap();
 
     constructor (
         private canvasElement: HTMLCanvasElement,
@@ -41,6 +43,7 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
         this.plot = this.createPlot();
         this.createToolbar();
         this.configureMap();
+        this.addTilesLayer();
     }
 
     private static createMap () {
@@ -57,10 +60,18 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
         });
     }
 
-    protected static createTilesLayer (options?: object) {
-        return new VectorTileLayer(Object.assign(options || {}, {
+    protected createTilesLayer (options?: object): Promise<VectorTileLayer> {
+        const layer =  new VectorTileLayer(Object.assign(options || {}, {
             url: 'https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer'
         }));
+        return layer.getDataSource()
+            .loadServerData()
+            .then(() => Promise.all(layer.getFonts().map(f => loadFont(FONTS_DIRECTORY, f))))
+            .then(() => layer);
+    }
+
+    protected addTilesLayer () {
+        this.createTilesLayer().then(tilesLayer => this.map.insertLayer(tilesLayer, 0));
     }
 
     private createPlot () {
@@ -74,7 +85,6 @@ export class WellsMap extends ToolkitCssStyleable<Group> {
 
     private configureMap () {
         this.map
-            .addLayer(WellsMap.createTilesLayer())
             .addLayer(this.createExplorationLayer())
             .addLayer(this.createMarkersLayer())
             .setZoomLevel(DEFAULT_ZOOM_LEVEL)

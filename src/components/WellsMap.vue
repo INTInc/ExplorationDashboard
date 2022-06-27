@@ -8,7 +8,7 @@
 import {defineProps} from 'vue';
 import {Store, useStore} from '@/store';
 import {onMounted, ref} from '@vue/runtime-core';
-import {WellsMapDynamicTiles} from '@/components/wells-map/WellsMapDynamicTiles';
+import {ArcGisDynamicWellsMap} from '@/components/arc-gis-wells-map/ArcGisDynamicWellsMap';
 
 const {state, registerStyleable}: Store = useStore();
 const props = defineProps<{
@@ -18,7 +18,7 @@ const canvas = ref();
 const container = ref();
 
 function createMap () {
-    registerStyleable(new WellsMapDynamicTiles(
+    registerStyleable(new ArcGisDynamicWellsMap(
         canvas.value,
         container.value,
         props.wellNames,
