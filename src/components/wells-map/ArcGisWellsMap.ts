@@ -21,16 +21,20 @@ import {Toolbar} from '@int/geotoolkit/controls/toolbar/Toolbar';
 import {Button} from '@int/geotoolkit/controls/toolbar/Button';
 import {Orientation} from '@int/geotoolkit/util/Orientation';
 import {loadFont} from '@int/geotoolkit/util/fontloader';
+import {Styleable} from '@/common/styling/Styleable';
+import {AppTheme} from '@/common/styling/AppTheme';
 
 const ZOOM_IN_LEVEL = 12;
 const ZOOM_OUT_LEVEL = 1;
 const DEFAULT_ZOOM_LEVEL = 6.5;
 const FONTS_DIRECTORY = '/fonts';
 
-export class ArcGisWellsMap extends ToolkitCssStyleable<Group> {
+export class ArcGisWellsMap implements Styleable {
 
     private readonly plot: Plot;
     protected readonly map = ArcGisWellsMap.createMap();
+    private readonly shapesRoot = new Group();
+    private readonly styleables: Array<ToolkitCssStyleable<Group>>;
 
     constructor (
         private canvasElement: HTMLCanvasElement,
@@ -39,8 +43,11 @@ export class ArcGisWellsMap extends ToolkitCssStyleable<Group> {
         private field: Field,
         cssLoader: ToolkitCssLoader
     ) {
-        super(new Group(), cssLoader);
         this.plot = this.createPlot();
+        this.styleables = [
+            new ToolkitCssStyleable(this.map, cssLoader),
+            new ToolkitCssStyleable(this.shapesRoot, cssLoader)
+        ];
         this.createToolbar();
         this.configureMap();
         this.addTilesLayer();
@@ -49,6 +56,7 @@ export class ArcGisWellsMap extends ToolkitCssStyleable<Group> {
     private static createMap () {
         return new Map({
             wrapped: false,
+            cssclass: 'ExplorationMap',
             system: GeodeticSystem.WGS84,
             tooltip: {
                 alignment: AnchorType.LeftTop,
@@ -58,6 +66,10 @@ export class ArcGisWellsMap extends ToolkitCssStyleable<Group> {
                 autoupdate: true
             }
         });
+    }
+
+    public applyTheme (theme: AppTheme) {
+        this.styleables.forEach(s => s.applyTheme(theme));
     }
 
     protected createTilesLayer (options?: object): Promise<VectorTileLayer> {
@@ -93,8 +105,9 @@ export class ArcGisWellsMap extends ToolkitCssStyleable<Group> {
 
     private createExplorationLayer () {
         return new ShapeLayer()
+            .clearCache()
             .addShape(
-                this.root
+                this.shapesRoot
                     .addChild(this.createField())
                     .addChild(this.createWells())
             );
@@ -108,7 +121,7 @@ export class ArcGisWellsMap extends ToolkitCssStyleable<Group> {
             }
         })
             .clearCache()
-            .addShape(this.createMarkers());
+            .addShape(this.createMarkers())
     }
 
     private createField () {
