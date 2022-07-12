@@ -17,11 +17,11 @@ export class Wells3D {
     private root: Object3D;
     private box: Wells3DBox;
     private logs: WellLogCurve[];
-    private trajectories: WellTrajectory[];
     private cursors: Map<Well, WellCursor> = new Map();
     private depthMarkers: WellStaticPoint[] = [];
 
     protected grid: Grid;
+    protected trajectories: WellTrajectory[];
     protected wellNames: WellStaticPoint[] = [];
 
     constructor (

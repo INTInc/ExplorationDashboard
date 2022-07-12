@@ -11,25 +11,42 @@ export enum TrajectoryMode {
 
 export class WellTrajectory extends Object3D {
 
-    private line: Line;
-    private tube: TrajectoryTube;
+    private line?: Line;
+    private tube?: TrajectoryTube;
+    private mode: TrajectoryMode = TrajectoryMode.Line;
 
     constructor (
         private well: Well,
-        private color: string = '#00aa00'
+        private color: string = '#5dd95d'
     ) {
         super();
-        this.line = this.createTrajectoryLine();
-        this.tube = this.createTrajectoryTube();
-        this.setMode(TrajectoryMode.Line);
-        this
-            .add(this.line)
-            .add(this.tube);
+        this.createChildren();
     }
 
     public setMode (mode: TrajectoryMode) {
-        this.line.visible = mode === TrajectoryMode.Line;
-        this.tube.visible = mode === TrajectoryMode.Tube;
+        this.mode = mode;
+        (this.line as Line).visible = mode === TrajectoryMode.Line;
+        (this.tube as TrajectoryTube).visible = mode === TrajectoryMode.Tube;
+    }
+
+    public setColor (color: string) {
+        this.color = color;
+        this.removeChildren();
+        this.createChildren();
+    }
+
+    private removeChildren () {
+        if (this.line) this.remove(this.line);
+        if (this.tube) this.remove(this.tube);
+    }
+
+    private createChildren () {
+        this.line = this.createTrajectoryLine();
+        this.tube = this.createTrajectoryTube();
+        this.setMode(this.mode);
+        this
+            .add(this.line)
+            .add(this.tube);
     }
 
     private createTrajectoryLine () {

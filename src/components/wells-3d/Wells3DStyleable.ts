@@ -4,8 +4,10 @@ import {LineStyle, Patterns} from '@int/geotoolkit/attributes/LineStyle';
 import {TextStyle} from '@int/geotoolkit/attributes/TextStyle';
 import {Wells3D} from '@/components/wells-3d/Wells3D';
 import {WellStaticPoint} from '@/components/wells-3d/objects/WellStaticPoint';
+import {WellTrajectory} from '@/components/wells-3d/objects/WellTrajectory';
 
 interface ModelTheme {
+    trajectoryColor: string,
     axisLineStyle: LineStyle,
     gridLineStyle: LineStyle,
     textStyle: TextStyle
@@ -16,13 +18,15 @@ const FONT = 'bold 11px Arial';
 const THEME_DARK: ModelTheme = {
     axisLineStyle: new LineStyle({color: '#777777', pattern: Patterns.Solid}),
     gridLineStyle: new LineStyle({color: '#505050', pattern: Patterns.Dash}),
-    textStyle: new TextStyle({color: '#ffffff', font: FONT})
+    textStyle: new TextStyle({color: '#ffffff', font: FONT}),
+    trajectoryColor: '#71ccff'
 };
 
 const THEME_LIGHT: ModelTheme = {
     axisLineStyle: new LineStyle({color: '#dddddd', pattern: Patterns.Solid}),
     gridLineStyle: new LineStyle({color: '#cccccc', pattern: Patterns.Dash}),
-    textStyle: new TextStyle({color: '#505050', font: FONT})
+    textStyle: new TextStyle({color: '#505050', font: FONT}),
+    trajectoryColor: '#5dd95d'
 };
 
 export class Wells3DStyleable extends Wells3D implements Styleable {
@@ -32,6 +36,7 @@ export class Wells3DStyleable extends Wells3D implements Styleable {
 
         this.applyThemeToGrid(modelTheme);
         this.applyThemeToWellNames(modelTheme);
+        this.applyThemeToWellTrajectories(modelTheme);
     }
 
     private applyThemeToGrid (theme: ModelTheme) {
@@ -51,6 +56,10 @@ export class Wells3DStyleable extends Wells3D implements Styleable {
 
     private applyThemeToWellNames (theme: ModelTheme) {
         this.wellNames.forEach((point: WellStaticPoint) => point.setAnnotation(point.getLabel(), theme.textStyle));
+    }
+
+    private applyThemeToWellTrajectories (theme: ModelTheme) {
+        this.trajectories.forEach((traj: WellTrajectory) => traj.setColor(theme.trajectoryColor));
     }
 
 }
