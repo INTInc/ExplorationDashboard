@@ -35,3 +35,7 @@ geotoolkit.controls.tools.CrossHair {
 *[cssclass="ExplorationMapField"] {
     fillstyle-color: #5ca18420;
 }
+
+*[name="TVD"] {
+    linestyle-color: #71ccffff;
+}

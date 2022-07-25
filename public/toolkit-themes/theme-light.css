@@ -35,3 +35,7 @@
 *[cssclass="ExplorationMapField"] {
     fillstyle-color: #6e3dd920;
 }
+
+*[name="TVD"] {
+    linestyle-color: #000000;
+}
