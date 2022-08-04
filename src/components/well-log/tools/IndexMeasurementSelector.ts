@@ -22,7 +22,7 @@ export class IndexMeasurementSelector extends ToolWithButtons {
 
             return new Button({
                 element: buttonElement,
-                title: measurement,
+                title: `Select ${measurement.getName()} as index`,
                 checkbox: {
                     enabled: true,
                     name: 'index-measurement',
