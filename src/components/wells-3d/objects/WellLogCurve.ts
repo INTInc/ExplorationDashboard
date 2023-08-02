@@ -2,7 +2,7 @@ import {Object3D} from '@int/geotoolkit3d/scene/Object3D';
 import {Well} from '@/data-sources/Well';
 import {LogCurve2D} from '@int/geotoolkit3d/scene/well/LogCurve2D';
 import {LogFill2D} from '@int/geotoolkit3d/scene/well/LogFill2D';
-import {Color} from '@int/geotoolkit3d/THREE';
+import {Color} from 'three';
 
 type CurveCoordinates = {
     x: number[],

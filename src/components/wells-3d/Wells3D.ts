@@ -3,7 +3,7 @@ import {StretchablePlot3} from '@/common/layout/StretchablePlot3';
 import {Wells3DBox} from '@/components/wells-3d/Wells3DBox';
 import {Grid} from '@int/geotoolkit3d/scene/grid/Grid';
 import {Well} from '@/data-sources/Well';
-import {Object3D, Vector3} from '@int/geotoolkit3d/THREE';
+import {Object3D, Vector3} from 'three';
 import {WellAnnotations} from '@/common/model/WellAnnotations';
 import {TrajectoryMode, WellTrajectory} from '@/components/wells-3d/objects/WellTrajectory';
 import {WellLogCurve} from '@/components/wells-3d/objects/WellLogCurve';

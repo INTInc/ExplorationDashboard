@@ -28,7 +28,7 @@ export class IndexMeasurementSelector extends ToolWithButtons {
                     name: 'index-measurement',
                     checked: index === 0
                 },
-                action: (_: never, checked: boolean) => {
+                action: (_, checked) => {
                     buttonElement.disabled = checked;
                     this.onSelect(measurement);
                 }

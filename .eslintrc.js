@@ -58,7 +58,7 @@ module.exports = {
         'no-unreachable': 2,
         'no-redeclare': 2,
         'no-return-assign': [2, 'except-parens'],
-        'no-undef': 2,
+        'no-undef': 0,
         'no-use-before-define': [2, 'nofunc'],
         'consistent-this': [2, 'self'],
         'consistent-return': [2, {

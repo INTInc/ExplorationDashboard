@@ -5,7 +5,6 @@
 </template>
 
 <script lang="ts" setup>
-import {defineProps} from 'vue';
 import {Store, useStore} from '@/store';
 import {onMounted, ref} from '@vue/runtime-core';
 import {ArcGisDynamicWellsMap} from '@/components/wells-map/ArcGisDynamicWellsMap';

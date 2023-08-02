@@ -40,7 +40,7 @@ export abstract class CustomRubberBand extends ToolWithButtons {
             .setFillStyle({
                 color: 'rgba(204, 0, 102, 0.2)'
             })
-            .addListener(
+            .on(
                 RubberBandEvents.onZoomEnd,
                 () => {
                     this.setRubberBandEnabled(false);
@@ -63,7 +63,7 @@ export abstract class CustomRubberBand extends ToolWithButtons {
                 name: 'custom-rubberband',
                 checked: false
             },
-            action: (_: never, checked: boolean) => this.setRubberBandEnabled(checked)
+            action: (_, checked) => this.setRubberBandEnabled(checked)
         });
     }
 

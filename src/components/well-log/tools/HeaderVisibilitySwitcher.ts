@@ -19,7 +19,7 @@ export class HeaderVisibilitySwitcher extends ToolWithButtons {
     ) {
         super(...props);
         this.tracksGroup = this.findGroup('TrackControlGroup').setDesiredHeight('100%');
-        this.headerGroup = this.findGroup('HeaderControlGroup').setDesiredHeight('100%').getParent();
+        this.headerGroup = this.findGroup('HeaderControlGroup').setDesiredHeight('100%').getParent() as Group;
         this.storedHeight = defaultHeight;
         this.initSplitter();
     }
@@ -32,7 +32,7 @@ export class HeaderVisibilitySwitcher extends ToolWithButtons {
                 enabled: true,
                 checked: true
             },
-            action: (_: never, checked: boolean) => {
+            action: (_, checked) => {
                 if (!checked) {
                     this.storeHeaderHeight();
                     this.setHeaderHeight(0);
@@ -54,7 +54,7 @@ export class HeaderVisibilitySwitcher extends ToolWithButtons {
     }
 
     private storeHeaderHeight () {
-        this.storedHeight = this.headerGroup.getBounds().getHeight();
+        this.storedHeight = this.headerGroup.getBounds()?.getHeight() || 0;
     }
 
     private restoreHeaderHeight () {
@@ -66,9 +66,9 @@ export class HeaderVisibilitySwitcher extends ToolWithButtons {
     }
 
     private initSplitter () {
-        this.splitter = this.widget.getToolByName('horizontal-splitter') as Splitter | null;
-        this.splitter?.addListener(SplitterEvents.onPlotSizeChanged, () => {
-            this.setHeaderHeight(this.headerGroup.getBounds().getHeight());
+        this.splitter = this.widget.getToolByName('horizontal-splitter');
+        this.splitter?.on(SplitterEvents.onPlotSizeChanged, () => {
+            this.setHeaderHeight(this.headerGroup.getBounds()?.getHeight() || 0);
         });
     }
 

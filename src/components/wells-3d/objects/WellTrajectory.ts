@@ -1,7 +1,7 @@
 import {Well} from '@/data-sources/Well';
 import {TrajectoryTube} from '@int/geotoolkit3d/scene/well/TrajectoryTube';
 import {Object3D} from '@int/geotoolkit3d/scene/Object3D';
-import {Line, LineBasicMaterial} from '@int/geotoolkit3d/THREE';
+import {Line, LineBasicMaterial} from 'three';
 import {LineGeometry} from '@int/geotoolkit3d/scene/well/LineGeometry';
 
 export enum TrajectoryMode {

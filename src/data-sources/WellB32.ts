@@ -22,7 +22,8 @@ export class WellB32 extends WellLogSource {
                     const logData = this.curveData(node.getName());
                     node.setData(logData, false);
                 }
-            }
+            },
+            getClassName: () => ''
         };
     }
 
