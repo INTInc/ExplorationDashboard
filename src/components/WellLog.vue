@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts" setup>
-import {defineProps, onMounted, ref} from 'vue';
+import {onMounted, ref} from 'vue';
 import {useStore} from '@/store';
 
 import {WellLogSource} from '@/components/well-log/WellLogSource';

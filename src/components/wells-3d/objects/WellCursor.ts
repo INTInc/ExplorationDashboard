@@ -1,7 +1,7 @@
 import {WellDepthMarker} from '@/components/wells-3d/objects/WellDepthMarker';
 import {Well} from '@/data-sources/Well';
 import {FilledEllipseGeometry} from '@int/geotoolkit3d/scene/ellipse/FilledEllipseGeometry';
-import {DoubleSide, Line, LineBasicMaterial, Mesh, MeshBasicMaterial} from '@int/geotoolkit3d/THREE';
+import {DoubleSide, Line, LineBasicMaterial, Mesh, MeshBasicMaterial} from 'three';
 import {EllipseGeometry} from '@int/geotoolkit3d/scene/ellipse/EllipseGeometry';
 
 export class WellCursor extends WellDepthMarker {

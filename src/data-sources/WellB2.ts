@@ -20,7 +20,8 @@ export class WellB2 extends WellLogSource {
                 if (node instanceof CompositeLogCurve) {
                     node.setData(this.measurements.logData(node.getName(), this.indexMeasurement), false);
                 }
-            }
+            },
+            getClassName: () => ''
         };
     }
 

@@ -21,10 +21,12 @@ export class Wells3DBox {
             yLimits.push(...getLimits(well, 'Y'));
             zLimits.push(...getLimits(well, 'Z'));
         });
-
-        this.xLimits = new Range(...MathUtil.getLimits(xLimits));
-        this.yLimits = new Range(...MathUtil.getLimits(yLimits));
-        this.zLimits = new Range(...MathUtil.getLimits(zLimits));
+        let limits = MathUtil.getLimits(xLimits);
+        this.xLimits = new Range(limits[0], limits[1]);
+        limits = MathUtil.getLimits(yLimits);
+        this.yLimits = new Range(limits[0], limits[1]);
+        limits = MathUtil.getLimits(zLimits);
+        this.zLimits = new Range(limits[0], limits[1]);
     }
 
     public get length (): number {

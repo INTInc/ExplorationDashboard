@@ -2,7 +2,6 @@ import {WellLogWidget} from '@int/geotoolkit/welllog/widgets/WellLogWidget';
 import {HeaderType} from '@int/geotoolkit/welllog/header/LogAxisVisualHeader';
 import {Events as PlotEvents, Plot} from '@int/geotoolkit/plot/Plot';
 import {Orientation} from '@int/geotoolkit/util/Orientation';
-import {StretchablePlot} from '@/common/layout/StretchablePlot';
 import {WellLogSource} from '@/components/well-log/WellLogSource';
 import {WellAnnotations} from '@/common/model/WellAnnotations';
 import {ToolkitCssLoader} from '@/common/styling/ToolkitCssLoader';
@@ -104,13 +103,12 @@ export class WellLog extends ToolkitCssStyleable<WellLogWidget> {
     }
 
     private createPlot () {
-        const plot = new StretchablePlot({
+        const plot = new Plot({
             canvaselement: this.canvasElement,
+            autosize: true,
             root: this.root
         });
-        plot
-            .on(PlotEvents.Resized, (_: never, plot: Plot) => this.resizeTracks(plot))
-            .setRefElement(this.referenceElement);
+        plot.on(PlotEvents.Resized, () => this.resizeTracks(plot));
         return plot;
     }
 

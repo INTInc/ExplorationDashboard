@@ -8,7 +8,6 @@ import {Polygon} from '@int/geotoolkit/scene/shapes/Polygon';
 import {Path} from '@int/geotoolkit/scene/shapes/Path';
 import {Shape as ShapeLayer} from '@int/geotoolkit/map/layers/Shape';
 import {Shape} from '@int/geotoolkit/scene/shapes/Shape';
-import {StretchablePlot} from '@/common/layout/StretchablePlot';
 import {Group} from '@int/geotoolkit/scene/Group';
 import {ToolkitCssLoader} from '@/common/styling/ToolkitCssLoader';
 import {ToolkitCssStyleable} from '@/common/styling/ToolkitCssStyleable';
@@ -17,6 +16,7 @@ import {FontPainter} from '@int/geotoolkit/scene/shapes/painters/FontPainter';
 import {FillStyle} from '@int/geotoolkit/attributes/FillStyle';
 import {LineStyle} from '@int/geotoolkit/attributes/LineStyle';
 import {Plot} from '@int/geotoolkit/plot/Plot';
+import {Node} from '@int/geotoolkit/scene/Node';
 import {Toolbar} from '@int/geotoolkit/controls/toolbar/Toolbar';
 import {Button} from '@int/geotoolkit/controls/toolbar/Button';
 import {Orientation} from '@int/geotoolkit/util/Orientation';
@@ -27,7 +27,7 @@ import {AppTheme} from '@/common/styling/AppTheme';
 const ZOOM_IN_LEVEL = 12;
 const ZOOM_OUT_LEVEL = 1;
 const DEFAULT_ZOOM_LEVEL = 6.5;
-const FONTS_DIRECTORY = '/fonts';
+const FONTS_DIRECTORY = './fonts';
 
 export class ArcGisWellsMap implements Styleable {
 
@@ -87,11 +87,11 @@ export class ArcGisWellsMap implements Styleable {
     }
 
     private createPlot () {
-        const plot = new StretchablePlot({
+        const plot = new Plot({
             canvaselement: this.canvasElement,
+            autosize: true,
             root: this.map
         });
-        plot.setRefElement(this.referenceElement);
         return plot;
     }
 
@@ -117,7 +117,7 @@ export class ArcGisWellsMap implements Styleable {
         return new ShapeLayer({
             tooltip: {
                 visible: true,
-                formatter: (shapes: Shape[]) => shapes[0] && shapes[0].getName() || null
+                formatter: (shapes: Node[]) => shapes[0] instanceof Shape ? shapes[0].getName() : ''
             }
         })
             .clearCache()

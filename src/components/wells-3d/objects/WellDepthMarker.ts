@@ -1,6 +1,6 @@
 import {Object3D} from '@int/geotoolkit3d/scene/Object3D';
 import {Well} from '@/data-sources/Well';
-import {Vector3} from '@int/geotoolkit3d/THREE';
+import {Vector3} from 'three';
 import {MathUtil} from '@int/geotoolkit/util/MathUtil';
 
 export class WellDepthMarker extends Object3D {

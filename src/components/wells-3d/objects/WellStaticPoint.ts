@@ -5,7 +5,7 @@ import {Well} from '@/data-sources/Well';
 import {TextStyle} from '@int/geotoolkit/attributes/TextStyle';
 import {LineStyle} from '@int/geotoolkit/attributes/LineStyle';
 import {AnnotationBase} from '@int/geotoolkit3d/scene/AnnotationBase';
-import {Vector3} from '@int/geotoolkit3d/THREE';
+import {Vector3} from 'three';
 
 export class WellStaticPoint extends WellDepthMarker {
 

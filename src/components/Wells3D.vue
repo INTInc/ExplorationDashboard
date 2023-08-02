@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts" setup>
-import {defineProps, ref, watch} from 'vue';
+import {ref, watch} from 'vue';
 import {onMounted} from '@vue/runtime-core';
 import {useStore} from '@/store';
 import {Wells3DStyleable} from '@/components/wells-3d/Wells3DStyleable';

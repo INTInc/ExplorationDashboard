@@ -64,7 +64,8 @@ export class Field extends DataSource<Field> {
     }
 
     private transformPoint (rawPoint: string) {
-        return this.transformer.transformPoint(new Point(...this.parsePointCoordinates(rawPoint)));
+        const p = this.parsePointCoordinates(rawPoint)
+        return this.transformer.transformPoint(new Point(p[0], p[1]));
     }
 
     private transformPath (rawPath: string[]): Coordinates {

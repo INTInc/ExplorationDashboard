@@ -1,7 +1,6 @@
 import {ToolWithButtons} from '@/components/well-log/tools/ToolWithButtons';
 import {Button} from '@int/geotoolkit/controls/toolbar/Button';
 import {CrossHair, Events as CrossHairEvents} from '@int/geotoolkit/controls/tools/CrossHair';
-import {CrossHairEventArgs} from '@int/geotoolkit/controls/tools/CrossHairEventArgs';
 
 export class CustomCrossHair extends ToolWithButtons {
 
@@ -23,7 +22,7 @@ export class CustomCrossHair extends ToolWithButtons {
                 enabled: true,
                 checked: true
             },
-            action: (_: never, checked: boolean) => this.crossHair.setEnabled(checked)
+            action: (_, checked) => this.crossHair.setEnabled(checked)
         })];
     }
 
@@ -31,14 +30,14 @@ export class CustomCrossHair extends ToolWithButtons {
         return (this.getTool() || this.createTool())
             .setEnabled(true)
             .setProperties({east: {visible: true}})
-            .addListener(
+            .on(
                 CrossHairEvents.onPositionChanged,
-                (_: never, e: CrossHairEventArgs) => this.onCrossHairMoved(e.getPosition().getY())
+                (_, sender, e) => e && this.onCrossHairMoved(e.getPosition().getY())
             );
     }
 
     private getTool (): CrossHair | null {
-        return this.widget.getToolByName('cross-hair') as CrossHair;
+        return this.widget.getToolByName('cross-hair');
     }
 
     private createTool (): CrossHair {

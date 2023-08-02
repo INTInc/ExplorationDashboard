@@ -73,7 +73,7 @@ export class WellLogWithTools extends WellLog {
         const nonIndexTracks = this.root
             .getTrackContainer()
             .getChildren((t: Node) => t instanceof LogTrack && t.getTag().type !== TrackType.IndexTrack)
-            .toArray();
+            .toArray() as LogTrack[];
 
         if (nonIndexTracks.length === 1) {
             this.tools.push(this.limitsSelectionTool = new LimitsSelectionTool(nonIndexTracks[0], this.root));

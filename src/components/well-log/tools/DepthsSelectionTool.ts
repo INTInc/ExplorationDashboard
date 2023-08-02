@@ -20,15 +20,16 @@ export class DepthsSelectionTool extends CustomRubberBand {
     protected configureRubberBand () {
         this.rubberBand
             .setMode(RubberBandRenderMode.Vertical)
-            .addListener(
+            .on(
                 RubberBandEvents.onZoomEnd,
-                (_: never, event: RubberBandEventArgs) => this.onZoomEnd(event));
+                (_, sender, event) => this.onZoomEnd(event));
     }
 
     private onZoomEnd (event: RubberBandEventArgs) {
         const area = event.getArea();
         const values = [area.getBottom(), area.getTop()];
-        const range = new Range(...MathUtil.getLimits(values));
+        const limits = MathUtil.getLimits(values);
+        const range = new Range(limits[0], limits[1]);
         this.widget.setVisibleDepthLimits(range);
     }
 

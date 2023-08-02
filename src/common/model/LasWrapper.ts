@@ -1,6 +1,9 @@
 import {Range} from '@int/geotoolkit/util/Range';
 import {Las20} from '@int/geotoolkit/welllog/data/las/Las20';
 import {LasSection} from '@int/geotoolkit/welllog/data/las/LasSection';
+import {LasParameter} from '@int/geotoolkit/welllog/data/las/LasParameter';
+import {LasParameterSection} from '@int/geotoolkit/welllog/data/las/LasParameterSection';
+import {LasDataSection} from '@int/geotoolkit/welllog/data/las/LasDataSection';
 import {LasSectionGroup} from '@int/geotoolkit/welllog/data/las/LasSectionGroup';
 import {LogData} from '@int/geotoolkit/welllog/data/LogData';
 
@@ -15,23 +18,23 @@ enum MeasureProperty {
 export class LasWrapper {
 
     private las: Las20 = new Las20();
-    private curves: LasSectionGroup = new LasSectionGroup();
-    private properties: LasSection = new LasSection();
+    private curves: LasSectionGroup = new LasSectionGroup('', new LasParameterSection(), new LasParameterSection(), new LasDataSection());
+    private properties: LasParameterSection = new LasParameterSection();
     private sourceLoaded = false;
 
     public get depthLimits (): Range {
         return new Range(
-            parseFloat(this.property(MeasureProperty.Start).value),
-            parseFloat(this.property(MeasureProperty.Stop).value)
+            parseFloat(this.property(MeasureProperty.Start)?.getValue() || ''),
+            parseFloat(this.property(MeasureProperty.Stop)?.getValue() || '')
         );
     }
 
-    public get wellName (): string | null {
-        return this.property(MeasureProperty.Well).value;
+    public get wellName (): string | undefined {
+        return this.property(MeasureProperty.Well)?.getValue();
     }
 
-    public get nullValue (): number | null {
-        return this.property(MeasureProperty.Null).value;
+    public get nullValue (): number | undefined {
+        return this.property(MeasureProperty.Null)?.getValue() as (number | undefined);
     }
 
     public get length (): number {
@@ -72,7 +75,7 @@ export class LasWrapper {
     public values (measure: string): number[] {
         let values = new Array<number>();
         if (this.containMeasure(measure)) {
-            values = this.curves.getCurveData(measure);
+            values = this.curves.getCurveData(measure) as number[];
         } else {
             console.error(`Provided data not include measurement named ${measure}`);
         }

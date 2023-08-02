@@ -34,9 +34,9 @@ export class LimitsSelectionTool extends CustomRubberBand {
     protected configureRubberBand () {
         this.rubberBand
             .setMode(RubberBandRenderMode.Horizontal)
-            .addListener(
+            .on(
                 RubberBandEvents.onZoomEnd,
-                (_: never, event: RubberBandEventArgs) => this.onZoomEnd(event)
+                (_, sender, event) => this.onZoomEnd(event)
             );
     }
 
@@ -52,7 +52,8 @@ export class LimitsSelectionTool extends CustomRubberBand {
     private onZoomEnd (event: RubberBandEventArgs) {
         const area = event.getArea();
         const values = [area.getLeft(), area.getRight()];
-        const range = new Range(...MathUtil.getLimits(values));
+        const limits = MathUtil.getLimits(values);
+        const range = new Range(limits[0], limits[1]);
 
         (from(this.track)
             .where((node: Node) => (
@@ -64,7 +65,7 @@ export class LimitsSelectionTool extends CustomRubberBand {
             .forEach((c: LogCurve) => {
                 const minimum = c.getMinimumNormalizationLimit();
                 const maximum = c.getMaximumNormalizationLimit();
-                const multiplier = (maximum - minimum) / this.track.getBounds().getWidth();
+                const multiplier = (maximum - minimum) / (this.track.getBounds()?.getWidth() || 1);
                 c.setNormalizationLimits(
                     minimum + range.getLow() * multiplier,
                     minimum + range.getHigh() * multiplier
